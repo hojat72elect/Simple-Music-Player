@@ -1,6 +1,10 @@
 package com.simplemobiletools.musicplayer.models
 
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import com.simplemobiletools.commons.helpers.AlphanumericComparator
 import com.simplemobiletools.commons.helpers.SORT_DESCENDING
 import com.simplemobiletools.musicplayer.extensions.sortSafely
@@ -18,7 +22,11 @@ data class Playlist(
     companion object {
         fun getComparator(sorting: Int) = Comparator<Playlist> { first, second ->
             var result = when {
-                sorting and PLAYER_SORT_BY_TITLE != 0 -> AlphanumericComparator().compare(first.title.lowercase(), second.title.lowercase())
+                sorting and PLAYER_SORT_BY_TITLE != 0 -> AlphanumericComparator().compare(
+                    first.title.lowercase(),
+                    second.title.lowercase()
+                )
+
                 else -> first.trackCount.compareTo(second.trackCount)
             }
 

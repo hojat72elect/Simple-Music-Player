@@ -3,20 +3,43 @@ package com.simplemobiletools.musicplayer.helpers
 import android.app.Application
 import android.content.ContentUris
 import android.media.MediaMetadataRetriever
-import android.media.MediaMetadataRetriever.*
+import android.media.MediaMetadataRetriever.METADATA_KEY_ALBUM
+import android.media.MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST
+import android.media.MediaMetadataRetriever.METADATA_KEY_ARTIST
+import android.media.MediaMetadataRetriever.METADATA_KEY_CD_TRACK_NUMBER
+import android.media.MediaMetadataRetriever.METADATA_KEY_DURATION
+import android.media.MediaMetadataRetriever.METADATA_KEY_GENRE
+import android.media.MediaMetadataRetriever.METADATA_KEY_TITLE
+import android.media.MediaMetadataRetriever.METADATA_KEY_YEAR
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.containsNoMedia
+import com.simplemobiletools.commons.extensions.getFilenameFromPath
+import com.simplemobiletools.commons.extensions.getIntValue
+import com.simplemobiletools.commons.extensions.getLongValue
+import com.simplemobiletools.commons.extensions.getParentPath
+import com.simplemobiletools.commons.extensions.getStringValue
+import com.simplemobiletools.commons.extensions.internalStoragePath
+import com.simplemobiletools.commons.extensions.isAudioFast
+import com.simplemobiletools.commons.extensions.notificationManager
+import com.simplemobiletools.commons.extensions.queryCursor
+import com.simplemobiletools.commons.extensions.rescanPaths
+import com.simplemobiletools.commons.extensions.sdCardPath
+import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.models.*
+import com.simplemobiletools.musicplayer.models.Album
+import com.simplemobiletools.musicplayer.models.Artist
+import com.simplemobiletools.musicplayer.models.Genre
+import com.simplemobiletools.musicplayer.models.Playlist
+import com.simplemobiletools.musicplayer.models.Track
 import java.io.File
 import java.io.FileInputStream
 
@@ -130,13 +153,15 @@ class SimpleMediaScanner(private val context: Application) {
             artist.trackCnt = newTracks.filter { it.artistId == artist.id }.size
             val albumsByArtist = newAlbums.filter { it.artistId == artist.id }
             artist.albumCnt = albumsByArtist.size
-            artist.albumArt = albumsByArtist.firstOrNull { it.coverArt.isNotEmpty() }?.coverArt.orEmpty()
+            artist.albumArt =
+                albumsByArtist.firstOrNull { it.coverArt.isNotEmpty() }?.coverArt.orEmpty()
         }
 
         for (genre in newGenres) {
             val genreTracks = newTracks.filter { it.genreId == genre.id }
             genre.trackCnt = genreTracks.size
-            genre.albumArt = genreTracks.firstOrNull { it.coverArt.isNotEmpty() }?.coverArt.orEmpty()
+            genre.albumArt =
+                genreTracks.firstOrNull { it.coverArt.isNotEmpty() }?.coverArt.orEmpty()
         }
 
         // remove invalid albums, artists
@@ -194,7 +219,8 @@ class SimpleMediaScanner(private val context: Application) {
 
         // avoid re-adding tracks that have been explicitly removed from 'All tracks' playlist
         val excludedFolders = config.excludedFolders
-        val tracksRemovedFromAllTracks = config.tracksRemovedFromAllTracksPlaylist.map { it.toLong() }
+        val tracksRemovedFromAllTracks =
+            config.tracksRemovedFromAllTracksPlaylist.map { it.toLong() }
         val tracksWithPlaylist = newTracks
             .filter { it.mediaStoreId !in tracksRemovedFromAllTracks && it.playListId == 0 && it.path.getParentPath() !in excludedFolders }
             .onEach { it.playListId = ALL_TRACKS_PLAYLIST_ID }
@@ -260,9 +286,24 @@ class SimpleMediaScanner(private val context: Application) {
 
             if (!title.isNullOrEmpty()) {
                 val track = Track(
-                    id = 0, mediaStoreId = id, title = title, artist = artist, path = path, duration = duration, album = album, genre = genre,
-                    coverArt = coverArt, playListId = 0, trackId = trackId, folderName = folderName, albumId = albumId, artistId = artistId, genreId = genreId,
-                    year = year, dateAdded = dateAdded, orderInPlaylist = 0
+                    id = 0,
+                    mediaStoreId = id,
+                    title = title,
+                    artist = artist,
+                    path = path,
+                    duration = duration,
+                    album = album,
+                    genre = genre,
+                    coverArt = coverArt,
+                    playListId = 0,
+                    trackId = trackId,
+                    folderName = folderName,
+                    albumId = albumId,
+                    artistId = artistId,
+                    genreId = genreId,
+                    year = year,
+                    dateAdded = dateAdded,
+                    orderInPlaylist = 0
                 )
                 tracks.add(track)
             }
@@ -286,7 +327,13 @@ class SimpleMediaScanner(private val context: Application) {
             val title = cursor.getStringValue(Audio.Artists.ARTIST) ?: MediaStore.UNKNOWN_STRING
             val albumCnt = cursor.getIntValue(Audio.Artists.NUMBER_OF_TRACKS)
             val trackCnt = cursor.getIntValue(Audio.Artists.NUMBER_OF_ALBUMS)
-            val artist = Artist(id = id, title = title, albumCnt = albumCnt, trackCnt = trackCnt, albumArt = "")
+            val artist = Artist(
+                id = id,
+                title = title,
+                albumCnt = albumCnt,
+                trackCnt = trackCnt,
+                albumArt = ""
+            )
             if (artist.albumCnt > 0 && artist.trackCnt > 0) {
                 newArtists.add(artist)
             }
@@ -310,7 +357,13 @@ class SimpleMediaScanner(private val context: Application) {
             projection.add(Audio.Albums.ARTIST_ID)
         }
 
-        context.queryCursor(uri, projection.toTypedArray(), null, null, showErrors = true) { cursor ->
+        context.queryCursor(
+            uri,
+            projection.toTypedArray(),
+            null,
+            null,
+            showErrors = true
+        ) { cursor ->
             val id = cursor.getLongValue(Audio.Albums._ID)
             val artistName = cursor.getStringValue(Audio.Albums.ARTIST) ?: MediaStore.UNKNOWN_STRING
             val title = cursor.getStringValue(Audio.Albums.ALBUM) ?: MediaStore.UNKNOWN_STRING
@@ -325,7 +378,14 @@ class SimpleMediaScanner(private val context: Application) {
 
             if (trackCnt > 0) {
                 val album = Album(
-                    id = id, artist = artistName, title = title, coverArt = coverArt, year = year, trackCnt = trackCnt, artistId = artistId, dateAdded = 0
+                    id = id,
+                    artist = artistName,
+                    title = title,
+                    coverArt = coverArt,
+                    year = year,
+                    trackCnt = trackCnt,
+                    artistId = artistId,
+                    dateAdded = 0
                 )
                 albums.add(album)
             }
@@ -392,7 +452,8 @@ class SimpleMediaScanner(private val context: Application) {
 
     private fun findTracksManually(pathsToIgnore: List<String>): ArrayList<Track> {
         val audioFilePaths = arrayListOf<String>()
-        val excludedPaths = pathsToIgnore.toMutableList().apply { addAll(0, config.excludedFolders) }
+        val excludedPaths =
+            pathsToIgnore.toMutableList().apply { addAll(0, config.excludedFolders) }
 
         for (rootPath in arrayOf(context.internalStoragePath, context.sdCardPath)) {
             if (rootPath.isEmpty()) {
@@ -436,8 +497,13 @@ class SimpleMediaScanner(private val context: Application) {
             }
 
             val title = retriever.extractMetadata(METADATA_KEY_TITLE) ?: path.getFilenameFromPath()
-            val artist = retriever.extractMetadata(METADATA_KEY_ARTIST) ?: retriever.extractMetadata(METADATA_KEY_ALBUMARTIST) ?: MediaStore.UNKNOWN_STRING
-            val duration = retriever.extractMetadata(METADATA_KEY_DURATION)?.toLongOrNull()?.div(1000)?.toInt() ?: 0
+            val artist =
+                retriever.extractMetadata(METADATA_KEY_ARTIST) ?: retriever.extractMetadata(
+                    METADATA_KEY_ALBUMARTIST
+                ) ?: MediaStore.UNKNOWN_STRING
+            val duration =
+                retriever.extractMetadata(METADATA_KEY_DURATION)?.toLongOrNull()?.div(1000)?.toInt()
+                    ?: 0
             val folderName = path.getParentPath().getFilenameFromPath()
             val album = retriever.extractMetadata(METADATA_KEY_ALBUM) ?: folderName
             val trackNumber = retriever.extractMetadata(METADATA_KEY_CD_TRACK_NUMBER)
@@ -453,9 +519,25 @@ class SimpleMediaScanner(private val context: Application) {
 
             if (title.isNotEmpty()) {
                 val track = Track(
-                    id = 0, mediaStoreId = 0, title = title, artist = artist, path = path, duration = duration, album = album, genre = genre,
-                    coverArt = "", playListId = 0, trackId = trackId, folderName = folderName, albumId = 0, artistId = 0, genreId = 0,
-                    year = year, dateAdded = dateAdded, orderInPlaylist = 0, flags = FLAG_MANUAL_CACHE
+                    id = 0,
+                    mediaStoreId = 0,
+                    title = title,
+                    artist = artist,
+                    path = path,
+                    duration = duration,
+                    album = album,
+                    genre = genre,
+                    coverArt = "",
+                    playListId = 0,
+                    trackId = trackId,
+                    folderName = folderName,
+                    albumId = 0,
+                    artistId = 0,
+                    genreId = 0,
+                    year = year,
+                    dateAdded = dateAdded,
+                    orderInPlaylist = 0,
+                    flags = FLAG_MANUAL_CACHE
                 )
                 // use hashCode() as id for tracking purposes, there's a very slim chance of collision
                 track.mediaStoreId = track.hashCode().toLong()
@@ -473,7 +555,11 @@ class SimpleMediaScanner(private val context: Application) {
         return tracks
     }
 
-    private fun findAudioFiles(file: File, destination: ArrayList<String>, excludedPaths: MutableList<String>) {
+    private fun findAudioFiles(
+        file: File,
+        destination: ArrayList<String>,
+        excludedPaths: MutableList<String>
+    ) {
         if (file.isHidden) {
             return
         }
@@ -526,7 +612,16 @@ class SimpleMediaScanner(private val context: Application) {
                 val track = tracksInAlbum.first()
                 val artistName = track.artist
                 val year = track.year
-                val album = Album(0, artistName, albumName, "", year, trackCnt, track.artistId, track.dateAdded)
+                val album = Album(
+                    0,
+                    artistName,
+                    albumName,
+                    "",
+                    year,
+                    trackCnt,
+                    track.artistId,
+                    track.dateAdded
+                )
                 val albumId = album.hashCode().toLong()
                 album.id = albumId
                 tracksInAlbum.onEach { it.albumId = albumId }
@@ -558,20 +653,23 @@ class SimpleMediaScanner(private val context: Application) {
         // remove invalid tracks
         val newTrackIds = newTracks.map { it.mediaStoreId } as ArrayList<Long>
         val newTrackPaths = newTracks.map { it.path } as ArrayList<String>
-        val invalidTracks = context.audioHelper.getAllTracks().filter { it.mediaStoreId !in newTrackIds || it.path !in newTrackPaths }
+        val invalidTracks = context.audioHelper.getAllTracks()
+            .filter { it.mediaStoreId !in newTrackIds || it.path !in newTrackPaths }
         context.audioHelper.deleteTracks(invalidTracks)
         newTracks.removeAll(invalidTracks.toSet())
 
         // remove invalid albums
         val newAlbumIds = newAlbums.map { it.id }
-        val invalidAlbums = context.audioHelper.getAllAlbums().filter { it.id !in newAlbumIds }.toMutableList()
+        val invalidAlbums =
+            context.audioHelper.getAllAlbums().filter { it.id !in newAlbumIds }.toMutableList()
         invalidAlbums += newAlbums.filter { album -> newTracks.none { it.albumId == album.id } }
         context.audioHelper.deleteAlbums(invalidAlbums)
         newAlbums.removeAll(invalidAlbums.toSet())
 
         // remove invalid artists
         val newArtistIds = newArtists.map { it.id }
-        val invalidArtists = context.audioHelper.getAllArtists().filter { it.id !in newArtistIds }.toMutableList()
+        val invalidArtists =
+            context.audioHelper.getAllArtists().filter { it.id !in newArtistIds }.toMutableList()
         for (artist in newArtists) {
             val artistId = artist.id
             val albumsByArtist = newAlbums.filter { it.artistId == artistId }
@@ -594,12 +692,17 @@ class SimpleMediaScanner(private val context: Application) {
 
         // remove invalid genres
         val newGenreIds = newGenres.map { it.id }
-        val invalidGenres = context.audioHelper.getAllGenres().filter { it.id !in newGenreIds }.toMutableList()
+        val invalidGenres =
+            context.audioHelper.getAllGenres().filter { it.id !in newGenreIds }.toMutableList()
         invalidGenres += newGenres.filter { genre -> newTracks.none { it.genreId == genre.id } }
         context.audioHelper.deleteGenres(invalidGenres)
     }
 
-    private fun maybeShowScanProgress(pathBeingScanned: String = "", progress: Int = 0, max: Int = 0) {
+    private fun maybeShowScanProgress(
+        pathBeingScanned: String = "",
+        progress: Int = 0,
+        max: Int = 0
+    ) {
         if (!showProgress) {
             return
         }
@@ -616,13 +719,21 @@ class SimpleMediaScanner(private val context: Application) {
         val delayNotification = pathBeingScanned.isEmpty()
         if (delayNotification) {
             notificationHandler?.postDelayed({
-                val notification = notificationHelper!!.createMediaScannerNotification(pathBeingScanned, progress, max)
+                val notification = notificationHelper!!.createMediaScannerNotification(
+                    pathBeingScanned,
+                    progress,
+                    max
+                )
                 notificationHelper!!.notify(SCANNER_NOTIFICATION_ID, notification)
             }, SCANNER_NOTIFICATION_DELAY)
         } else {
             if (System.currentTimeMillis() - lastProgressUpdateMs > 100L) {
                 lastProgressUpdateMs = System.currentTimeMillis()
-                val notification = notificationHelper!!.createMediaScannerNotification(pathBeingScanned, progress, max)
+                val notification = notificationHelper!!.createMediaScannerNotification(
+                    pathBeingScanned,
+                    progress,
+                    max
+                )
                 notificationHelper!!.notify(SCANNER_NOTIFICATION_ID, notification)
             }
         }

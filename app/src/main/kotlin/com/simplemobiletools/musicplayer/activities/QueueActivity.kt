@@ -18,7 +18,14 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.QueueAdapter
 import com.simplemobiletools.musicplayer.databinding.ActivityQueueBinding
 import com.simplemobiletools.musicplayer.dialogs.NewPlaylistDialog
-import com.simplemobiletools.musicplayer.extensions.*
+import com.simplemobiletools.musicplayer.extensions.currentMediaItemsShuffled
+import com.simplemobiletools.musicplayer.extensions.toTracks
+import com.simplemobiletools.musicplayer.extensions.toTrack
+import com.simplemobiletools.musicplayer.extensions.currentMediaItems
+import com.simplemobiletools.musicplayer.extensions.indexOfTrack
+import com.simplemobiletools.musicplayer.extensions.shuffledMediaItemsIndices
+import com.simplemobiletools.musicplayer.extensions.isReallyPlaying
+import com.simplemobiletools.musicplayer.extensions.lazySmoothScroll
 import com.simplemobiletools.musicplayer.helpers.RoomHelper
 import com.simplemobiletools.musicplayer.models.Track
 

@@ -12,12 +12,21 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.fadeIn
+import com.simplemobiletools.commons.extensions.fadeOut
+import com.simplemobiletools.commons.extensions.getColoredDrawableWithColor
+import com.simplemobiletools.commons.extensions.getProperBackgroundColor
+import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ViewCurrentTrackBarBinding
-import com.simplemobiletools.musicplayer.extensions.*
+import com.simplemobiletools.musicplayer.extensions.ensureActivityNotDestroyed
+import com.simplemobiletools.musicplayer.extensions.getTrackCoverArt
+import com.simplemobiletools.musicplayer.extensions.toTrack
+import com.simplemobiletools.musicplayer.extensions.updatePlayPauseIcon
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 
-class CurrentTrackBar(context: Context, attributeSet: AttributeSet) : RelativeLayout(context, attributeSet) {
+class CurrentTrackBar(context: Context, attributeSet: AttributeSet) :
+    RelativeLayout(context, attributeSet) {
     private val binding by viewBinding(ViewCurrentTrackBarBinding::bind)
 
     fun initialize(togglePlayback: () -> Unit) {
@@ -40,16 +49,22 @@ class CurrentTrackBar(context: Context, attributeSet: AttributeSet) : RelativeLa
             fadeIn()
         }
 
-        val artist = if (track.artist.trim().isNotEmpty() && track.artist != MediaStore.UNKNOWN_STRING) {
-            " • ${track.artist}"
-        } else {
-            ""
-        }
+        val artist =
+            if (track.artist.trim().isNotEmpty() && track.artist != MediaStore.UNKNOWN_STRING) {
+                " • ${track.artist}"
+            } else {
+                ""
+            }
 
         @SuppressLint("SetTextI18n")
         binding.currentTrackLabel.text = "${track.title}$artist"
-        val cornerRadius = resources.getDimension(com.simplemobiletools.commons.R.dimen.rounded_corner_radius_small).toInt()
-        val currentTrackPlaceholder = resources.getColoredDrawableWithColor(R.drawable.ic_headset, context.getProperTextColor())
+        val cornerRadius =
+            resources.getDimension(com.simplemobiletools.commons.R.dimen.rounded_corner_radius_small)
+                .toInt()
+        val currentTrackPlaceholder = resources.getColoredDrawableWithColor(
+            R.drawable.ic_headset,
+            context.getProperTextColor()
+        )
         val options = RequestOptions()
             .error(currentTrackPlaceholder)
             .transform(CenterCrop(), RoundedCorners(cornerRadius))

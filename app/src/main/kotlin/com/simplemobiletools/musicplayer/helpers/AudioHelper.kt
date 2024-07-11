@@ -4,9 +4,23 @@ import android.content.Context
 import com.simplemobiletools.commons.extensions.addBit
 import com.simplemobiletools.commons.extensions.getParentPath
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.extensions.*
+import com.simplemobiletools.musicplayer.extensions.albumsDAO
+import com.simplemobiletools.musicplayer.extensions.artistDAO
+import com.simplemobiletools.musicplayer.extensions.audioHelper
+import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.extensions.genresDAO
+import com.simplemobiletools.musicplayer.extensions.playlistDAO
+import com.simplemobiletools.musicplayer.extensions.queueDAO
+import com.simplemobiletools.musicplayer.extensions.tracksDAO
 import com.simplemobiletools.musicplayer.inlines.indexOfFirstOrNull
-import com.simplemobiletools.musicplayer.models.*
+import com.simplemobiletools.musicplayer.models.Album
+import com.simplemobiletools.musicplayer.models.Artist
+import com.simplemobiletools.musicplayer.models.Folder
+import com.simplemobiletools.musicplayer.models.Genre
+import com.simplemobiletools.musicplayer.models.Playlist
+import com.simplemobiletools.musicplayer.models.QueueItem
+import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.models.sortSafely
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -279,7 +293,9 @@ class AudioHelper(private val context: Context) {
 
             // return the rest of the queued tracks.
             val queuedTracks = getQueuedTracks(queueItems)
-            val currentIndex = queuedTracks.indexOfFirstOrNull { it.mediaStoreId == currentTrack.mediaStoreId } ?: 0
+            val currentIndex =
+                queuedTracks.indexOfFirstOrNull { it.mediaStoreId == currentTrack.mediaStoreId }
+                    ?: 0
             callback(queuedTracks, currentIndex, startPositionMs)
         }
     }
@@ -287,14 +303,23 @@ class AudioHelper(private val context: Context) {
     fun initQueue(): ArrayList<Track> {
         val tracks = getAllTracks()
         val queueItems = tracks.mapIndexed { index, mediaItem ->
-            QueueItem(trackId = mediaItem.mediaStoreId, trackOrder = index, isCurrent = index == 0, lastPosition = 0)
+            QueueItem(
+                trackId = mediaItem.mediaStoreId,
+                trackOrder = index,
+                isCurrent = index == 0,
+                lastPosition = 0
+            )
         }
 
         resetQueue(queueItems)
         return tracks
     }
 
-    fun resetQueue(items: List<QueueItem>, currentTrackId: Long? = null, startPosition: Long? = null) {
+    fun resetQueue(
+        items: List<QueueItem>,
+        currentTrackId: Long? = null,
+        startPosition: Long? = null
+    ) {
         context.queueDAO.deleteAllItems()
         context.queueDAO.insertAll(items)
         if (currentTrackId != null && startPosition != null) {

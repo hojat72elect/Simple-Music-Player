@@ -3,7 +3,14 @@ package com.simplemobiletools.musicplayer.activities
 import android.content.Intent
 import android.os.Bundle
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.extensions.getProperPrimaryColor
+import com.simplemobiletools.commons.extensions.isOrWasThankYouInstalled
+import com.simplemobiletools.commons.extensions.beGoneIf
+import com.simplemobiletools.commons.extensions.launchPurchaseThankYouIntent
+import com.simplemobiletools.commons.extensions.getCustomizeColorsString
+import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.helpers.isQPlus

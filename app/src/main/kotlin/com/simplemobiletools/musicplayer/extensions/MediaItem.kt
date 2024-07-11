@@ -26,7 +26,12 @@ import com.simplemobiletools.musicplayer.helpers.EXTRA_TITLE
 import com.simplemobiletools.musicplayer.helpers.EXTRA_TRACK_ID
 import com.simplemobiletools.musicplayer.helpers.EXTRA_YEAR
 import com.simplemobiletools.musicplayer.inlines.indexOfFirstOrNull
-import com.simplemobiletools.musicplayer.models.*
+import com.simplemobiletools.musicplayer.models.Album
+import com.simplemobiletools.musicplayer.models.Artist
+import com.simplemobiletools.musicplayer.models.Folder
+import com.simplemobiletools.musicplayer.models.Genre
+import com.simplemobiletools.musicplayer.models.Playlist
+import com.simplemobiletools.musicplayer.models.Track
 
 fun buildMediaItem(
     mediaId: String,
@@ -137,7 +142,8 @@ fun Collection<MediaItem>.toTracks() = mapNotNull { it.toTrack() }
 
 fun Collection<MediaItem>.indexOfTrack(track: Track) = indexOfFirst { it.isSameMedia(track) }
 
-fun Collection<MediaItem>.indexOfTrackOrNull(track: Track) = indexOfFirstOrNull { it.isSameMedia(track) }
+fun Collection<MediaItem>.indexOfTrackOrNull(track: Track) =
+    indexOfFirstOrNull { it.isSameMedia(track) }
 
 fun MediaItem?.isSameMedia(track: Track) = this?.mediaId == track.mediaStoreId.toString()
 

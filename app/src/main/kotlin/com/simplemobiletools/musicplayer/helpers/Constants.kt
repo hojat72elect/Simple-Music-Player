@@ -11,7 +11,6 @@ const val EQUALIZER_PRESET_CUSTOM = -1
 
 const val ARTIST = "artist"
 const val ALBUM = "album"
-const val TRACK = "track"
 const val PLAYLIST = "playlist"
 const val FOLDER = "folder"
 const val GENRE = "genre"

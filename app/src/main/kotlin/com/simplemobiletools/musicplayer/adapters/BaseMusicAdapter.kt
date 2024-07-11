@@ -14,7 +14,13 @@ import com.simplemobiletools.commons.extensions.getProperPrimaryColor
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.activities.SimpleControllerActivity
-import com.simplemobiletools.musicplayer.extensions.*
+import com.simplemobiletools.musicplayer.extensions.addTracksToPlaylist
+import com.simplemobiletools.musicplayer.extensions.getBiggerPlaceholder
+import com.simplemobiletools.musicplayer.extensions.getSmallPlaceholder
+import com.simplemobiletools.musicplayer.extensions.isSameMedia
+import com.simplemobiletools.musicplayer.extensions.shareFiles
+import com.simplemobiletools.musicplayer.extensions.showTrackProperties
+import com.simplemobiletools.musicplayer.extensions.ensureActivityNotDestroyed
 import com.simplemobiletools.musicplayer.helpers.TagHelper
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.playback.PlaybackService

@@ -5,7 +5,11 @@ import android.content.Intent
 import android.util.AttributeSet
 import com.google.gson.Gson
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.areSystemAnimationsEnabled
+import com.simplemobiletools.commons.extensions.beGoneIf
+import com.simplemobiletools.commons.extensions.beVisibleIf
+import com.simplemobiletools.commons.extensions.hideKeyboard
+import com.simplemobiletools.commons.extensions.underlineText
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
@@ -25,7 +29,8 @@ import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.models.sortSafely
 import org.greenrobot.eventbus.EventBus
 
-class PlaylistsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
+class PlaylistsFragment(context: Context, attributeSet: AttributeSet) :
+    MyViewPagerFragment(context, attributeSet) {
     private var playlists = ArrayList<Playlist>()
     private val binding by viewBinding(FragmentPlaylistsBinding::bind)
 
@@ -83,7 +88,8 @@ class PlaylistsFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     }
 
     override fun onSearchQueryChanged(text: String) {
-        val filtered = playlists.filter { it.title.contains(text, true) }.toMutableList() as ArrayList<Playlist>
+        val filtered = playlists.filter { it.title.contains(text, true) }
+            .toMutableList() as ArrayList<Playlist>
         getAdapter()?.updateItems(filtered, text)
         binding.playlistsPlaceholder.beVisibleIf(filtered.isEmpty())
         binding.playlistsPlaceholder2.beVisibleIf(filtered.isEmpty())

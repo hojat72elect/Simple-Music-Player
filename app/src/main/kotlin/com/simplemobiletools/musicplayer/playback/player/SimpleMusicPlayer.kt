@@ -6,9 +6,18 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.ShuffleOrder.DefaultShuffleOrder
-import com.simplemobiletools.musicplayer.extensions.*
+import com.simplemobiletools.musicplayer.extensions.currentMediaItems
+import com.simplemobiletools.musicplayer.extensions.maybeForceNext
+import com.simplemobiletools.musicplayer.extensions.maybeForcePrevious
+import com.simplemobiletools.musicplayer.extensions.move
+import com.simplemobiletools.musicplayer.extensions.runOnPlayerThread
+import com.simplemobiletools.musicplayer.extensions.shuffledMediaItemsIndices
 import com.simplemobiletools.musicplayer.inlines.indexOfFirstOrNull
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 private const val DEFAULT_SHUFFLE_ORDER_SEED = 42L
 
@@ -130,7 +139,12 @@ class SimpleMusicPlayer(private val exoPlayer: ExoPlayer) : ForwardingPlayer(exo
             val shuffledCurrentIndex = shuffledIndices.indexOf(itemIndex)
             val shuffledNewIndex = shuffledIndices.indexOf(nextMediaItemIndex)
             shuffledIndices.move(currentIndex = shuffledCurrentIndex, newIndex = shuffledNewIndex)
-            exoPlayer.setShuffleOrder(DefaultShuffleOrder(shuffledIndices.toIntArray(), DEFAULT_SHUFFLE_ORDER_SEED))
+            exoPlayer.setShuffleOrder(
+                DefaultShuffleOrder(
+                    shuffledIndices.toIntArray(),
+                    DEFAULT_SHUFFLE_ORDER_SEED
+                )
+            )
         }
     }
 

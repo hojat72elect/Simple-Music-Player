@@ -5,7 +5,12 @@ import android.os.Bundle
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.hideKeyboard
+import com.simplemobiletools.commons.extensions.openNotificationSettings
+import com.simplemobiletools.commons.extensions.areSystemAnimationsEnabled
+import com.simplemobiletools.commons.extensions.getFormattedDuration
+import com.simplemobiletools.commons.extensions.getProperPrimaryColor
+import com.simplemobiletools.commons.extensions.viewBinding
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
@@ -14,7 +19,12 @@ import com.simplemobiletools.musicplayer.databinding.ActivityAlbumsBinding
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.helpers.ALBUM
 import com.simplemobiletools.musicplayer.helpers.ARTIST
-import com.simplemobiletools.musicplayer.models.*
+import com.simplemobiletools.musicplayer.models.Artist
+import com.simplemobiletools.musicplayer.models.ListItem
+import com.simplemobiletools.musicplayer.models.AlbumSection
+import com.simplemobiletools.musicplayer.models.Album
+import com.simplemobiletools.musicplayer.models.Track
+
 
 // Artists -> Albums -> Tracks
 class AlbumsActivity : SimpleMusicActivity() {
@@ -64,11 +74,9 @@ class AlbumsActivity : SimpleMusicActivity() {
                                 val startIndex = albumTracks.indexOf(it as Track)
                                 prepareAndPlay(albumTracks, startIndex)
                             } else {
-                                PermissionRequiredDialog(
-                                    this,
+                                PermissionRequiredDialog(this,
                                     com.simplemobiletools.commons.R.string.allow_notifications_music_player,
-                                    { openNotificationSettings() }
-                                )
+                                    { openNotificationSettings() })
                             }
                         }
                     }

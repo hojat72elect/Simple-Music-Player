@@ -7,7 +7,13 @@ import android.widget.SeekBar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.extensions.isWhiteTheme
+import com.simplemobiletools.commons.extensions.getProperPrimaryColor
+import com.simplemobiletools.commons.extensions.getProperTextColor
+import com.simplemobiletools.commons.extensions.getContrastColor
+import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.DARK_GREY
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.models.RadioItem
@@ -21,6 +27,8 @@ import java.text.DecimalFormat
 import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
+import androidx.media3.common.util.UnstableApi
+import androidx.annotation.OptIn
 
 class EqualizerActivity : SimpleActivity() {
     private var bands = HashMap<Short, Int>()
@@ -43,6 +51,7 @@ class EqualizerActivity : SimpleActivity() {
         setupToolbar(binding.equalizerToolbar, NavigationIcon.Arrow)
     }
 
+    @OptIn(UnstableApi::class)
     @SuppressLint("SetTextI18n")
     private fun initMediaPlayer() {
         val equalizer = SimpleEqualizer.instance

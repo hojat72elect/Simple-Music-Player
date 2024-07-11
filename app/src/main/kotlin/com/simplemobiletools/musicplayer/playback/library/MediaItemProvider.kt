@@ -14,7 +14,11 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession.MediaItemsWithStartPosition
 import com.google.common.util.concurrent.MoreExecutors
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.*
+import com.simplemobiletools.musicplayer.extensions.audioHelper
+import com.simplemobiletools.musicplayer.extensions.buildMediaItem
+import com.simplemobiletools.musicplayer.extensions.isTabVisible
+import com.simplemobiletools.musicplayer.extensions.queueDAO
+import com.simplemobiletools.musicplayer.extensions.toMediaItem
 import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
 import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
 import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
@@ -134,7 +138,13 @@ internal class MediaItemProvider(private val context: Context) {
             callback(getRecentItemsWithStartPosition())
         } else {
             audioHelper.getQueuedTracksLazily { tracks, startIndex, startPositionMs ->
-                callback(MediaItemsWithStartPosition(tracks.toMediaItems(), startIndex, startPositionMs))
+                callback(
+                    MediaItemsWithStartPosition(
+                        tracks.toMediaItems(),
+                        startIndex,
+                        startPositionMs
+                    )
+                )
             }
         }
     }
@@ -153,7 +163,11 @@ internal class MediaItemProvider(private val context: Context) {
         return MediaItemsWithStartPosition(recentItems, startIndex, startPosition)
     }
 
-    fun saveRecentItemsWithStartPosition(mediaItems: List<MediaItem>, current: MediaItem, startPosition: Long) {
+    fun saveRecentItemsWithStartPosition(
+        mediaItems: List<MediaItem>,
+        current: MediaItem,
+        startPosition: Long
+    ) {
         if (mediaItems.isEmpty()) {
             return
         }
@@ -161,7 +175,12 @@ internal class MediaItemProvider(private val context: Context) {
         executor.execute {
             val trackId = current.mediaId.toLong()
             val queueItems = mediaItems.mapIndexed { index, mediaItem ->
-                QueueItem(trackId = mediaItem.mediaId.toLong(), trackOrder = index, isCurrent = false, lastPosition = 0)
+                QueueItem(
+                    trackId = mediaItem.mediaId.toLong(),
+                    trackOrder = index,
+                    isCurrent = false,
+                    lastPosition = 0
+                )
             }
 
             audioHelper.resetQueue(queueItems, trackId, startPosition)
@@ -200,25 +219,37 @@ internal class MediaItemProvider(private val context: Context) {
 
     private fun buildPlaylists() = with(audioHelper) {
         getAllPlaylists().forEach { playlist ->
-            addNodeAndChildren(SMP_PLAYLISTS_ROOT_ID, playlist.toMediaItem(), getPlaylistTracks(playlist.id).map { it.toMediaItem() })
+            addNodeAndChildren(
+                SMP_PLAYLISTS_ROOT_ID,
+                playlist.toMediaItem(),
+                getPlaylistTracks(playlist.id).map { it.toMediaItem() })
         }
     }
 
     private fun buildFolders() = with(audioHelper) {
         getAllFolders().forEach { folder ->
-            addNodeAndChildren(SMP_FOLDERS_ROOT_ID, folder.toMediaItem(), getFolderTracks(folder.title).map { it.toMediaItem() })
+            addNodeAndChildren(
+                SMP_FOLDERS_ROOT_ID,
+                folder.toMediaItem(),
+                getFolderTracks(folder.title).map { it.toMediaItem() })
         }
     }
 
     private fun buildArtists() = with(audioHelper) {
         getAllArtists().forEach { artist ->
-            addNodeAndChildren(SMP_ARTISTS_ROOT_ID, artist.toMediaItem(), getArtistAlbums(artist.id).map { it.toMediaItem() })
+            addNodeAndChildren(
+                SMP_ARTISTS_ROOT_ID,
+                artist.toMediaItem(),
+                getArtistAlbums(artist.id).map { it.toMediaItem() })
         }
     }
 
     private fun buildAlbums() = with(audioHelper) {
         getAllAlbums().forEach { album ->
-            addNodeAndChildren(SMP_ALBUMS_ROOT_ID, album.toMediaItem(), getAlbumTracks(album.id).map { it.toMediaItem() })
+            addNodeAndChildren(
+                SMP_ALBUMS_ROOT_ID,
+                album.toMediaItem(),
+                getAlbumTracks(album.id).map { it.toMediaItem() })
         }
     }
 
@@ -231,13 +262,20 @@ internal class MediaItemProvider(private val context: Context) {
 
     private fun buildGenres() = with(audioHelper) {
         getAllGenres().forEach { genre ->
-            addNodeAndChildren(SMP_GENRES_ROOT_ID, genre.toMediaItem(), getGenreTracks(genre.id).map { it.toMediaItem() })
+            addNodeAndChildren(
+                SMP_GENRES_ROOT_ID,
+                genre.toMediaItem(),
+                getGenreTracks(genre.id).map { it.toMediaItem() })
         }
     }
 
     private fun getNode(id: String) = treeNodes[id]
 
-    private fun addNodeAndChildren(parentId: String? = null, item: MediaItem, children: List<MediaItem>? = null) {
+    private fun addNodeAndChildren(
+        parentId: String? = null,
+        item: MediaItem,
+        children: List<MediaItem>? = null
+    ) {
         val itemNode = MediaItemNode(item)
         treeNodes[item.mediaId] = itemNode
 
@@ -251,16 +289,52 @@ internal class MediaItemProvider(private val context: Context) {
         }
     }
 
-    private fun getMediaItemFromQueueItem(queueItem: QueueItem) = getNode(queueItem.trackId.toString())?.item
+    private fun getMediaItemFromQueueItem(queueItem: QueueItem) =
+        getNode(queueItem.trackId.toString())?.item
 }
 
-private enum class RootCategories(@StringRes val titleRes: Int, @DrawableRes val drawableRes: Int, val mediaId: String, val mediaType: @MediaType Int) {
-    PLAYLISTS(R.string.playlists, R.drawable.ic_playlist_vector, SMP_PLAYLISTS_ROOT_ID, MediaMetadata.MEDIA_TYPE_FOLDER_PLAYLISTS),
-    FOLDERS(R.string.folders, R.drawable.ic_folders_vector, SMP_FOLDERS_ROOT_ID, MediaMetadata.MEDIA_TYPE_FOLDER_PLAYLISTS),
-    ARTISTS(R.string.artists, com.simplemobiletools.commons.R.drawable.ic_person_vector, SMP_ARTISTS_ROOT_ID, MediaMetadata.MEDIA_TYPE_FOLDER_ARTISTS),
-    ALBUMS(R.string.albums, R.drawable.ic_album_vector, SMP_ALBUMS_ROOT_ID, MediaMetadata.MEDIA_TYPE_FOLDER_ALBUMS),
-    TRACKS(R.string.tracks, R.drawable.ic_music_note_vector, SMP_TRACKS_ROOT_ID, MediaMetadata.MEDIA_TYPE_PLAYLIST),
-    GENRES(R.string.genres, R.drawable.ic_genre_vector, SMP_GENRES_ROOT_ID, MediaMetadata.MEDIA_TYPE_FOLDER_GENRES);
+private enum class RootCategories(
+    @StringRes val titleRes: Int,
+    @DrawableRes val drawableRes: Int,
+    val mediaId: String,
+    val mediaType: @MediaType Int
+) {
+    PLAYLISTS(
+        R.string.playlists,
+        R.drawable.ic_playlist_vector,
+        SMP_PLAYLISTS_ROOT_ID,
+        MediaMetadata.MEDIA_TYPE_FOLDER_PLAYLISTS
+    ),
+    FOLDERS(
+        R.string.folders,
+        R.drawable.ic_folders_vector,
+        SMP_FOLDERS_ROOT_ID,
+        MediaMetadata.MEDIA_TYPE_FOLDER_PLAYLISTS
+    ),
+    ARTISTS(
+        R.string.artists,
+        com.simplemobiletools.commons.R.drawable.ic_person_vector,
+        SMP_ARTISTS_ROOT_ID,
+        MediaMetadata.MEDIA_TYPE_FOLDER_ARTISTS
+    ),
+    ALBUMS(
+        R.string.albums,
+        R.drawable.ic_album_vector,
+        SMP_ALBUMS_ROOT_ID,
+        MediaMetadata.MEDIA_TYPE_FOLDER_ALBUMS
+    ),
+    TRACKS(
+        R.string.tracks,
+        R.drawable.ic_music_note_vector,
+        SMP_TRACKS_ROOT_ID,
+        MediaMetadata.MEDIA_TYPE_PLAYLIST
+    ),
+    GENRES(
+        R.string.genres,
+        R.drawable.ic_genre_vector,
+        SMP_GENRES_ROOT_ID,
+        MediaMetadata.MEDIA_TYPE_FOLDER_GENRES
+    );
 
     companion object {
         fun buildRootChildren(context: Context): List<MediaItem> {

@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.os.ConditionVariable
 import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.session.*
+import androidx.media3.session.LibraryResult
+import androidx.media3.session.MediaLibraryService
 import androidx.media3.session.MediaLibraryService.MediaLibrarySession
+import androidx.media3.session.MediaSession
+import androidx.media3.session.SessionCommand
+import androidx.media3.session.SessionResult
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
@@ -38,7 +42,10 @@ internal fun PlaybackService.getMediaSessionCallback() = object : MediaLibrarySe
         }
     }
 
-    override fun onConnect(session: MediaSession, controller: MediaSession.ControllerInfo): MediaSession.ConnectionResult {
+    override fun onConnect(
+        session: MediaSession,
+        controller: MediaSession.ControllerInfo
+    ): MediaSession.ConnectionResult {
         val connectionResult = super.onConnect(session, controller)
         val availableSessionCommands = connectionResult.availableSessionCommands.buildUpon()
         for (command in customCommands) {
@@ -168,7 +175,13 @@ internal fun PlaybackService.getMediaSessionCallback() = object : MediaLibrarySe
         startPositionMs: Long
     ): ListenableFuture<MediaSession.MediaItemsWithStartPosition> {
         if (controller.packageName == packageName) {
-            return super.onSetMediaItems(mediaSession, controller, mediaItems, startIndex, startPositionMs)
+            return super.onSetMediaItems(
+                mediaSession,
+                controller,
+                mediaItems,
+                startIndex,
+                startPositionMs
+            )
         }
 
         // this is to avoid single items in the queue: https://github.com/androidx/media/issues/156
@@ -183,7 +196,13 @@ internal fun PlaybackService.getMediaSessionCallback() = object : MediaLibrarySe
         }
 
         val startItemIndex = queueItems.indexOfFirst { it.mediaId == startItemId }
-        return super.onSetMediaItems(mediaSession, controller, queueItems, startItemIndex, startPositionMs)
+        return super.onSetMediaItems(
+            mediaSession,
+            controller,
+            queueItems,
+            startItemIndex,
+            startPositionMs
+        )
     }
 
     override fun onAddMediaItems(
@@ -203,7 +222,8 @@ internal fun PlaybackService.getMediaSessionCallback() = object : MediaLibrarySe
     }
 
     private fun getMediaItemFromSearchQuery(query: String): MediaItem {
-        return mediaItemProvider.getItemFromSearch(query.lowercase()) ?: mediaItemProvider.getRandomItem()
+        return mediaItemProvider.getItemFromSearch(query.lowercase())
+            ?: mediaItemProvider.getRandomItem()
     }
 
     private fun reloadContent() {
@@ -216,7 +236,12 @@ internal fun PlaybackService.getMediaSessionCallback() = object : MediaLibrarySe
                 browsers.forEach { (browser, parentId) ->
                     val itemCount = mediaItemProvider.getChildren(parentId)?.size ?: 0
                     mediaSession.notifyChildrenChanged(browser, parentId, itemCount, null)
-                    mediaSession.notifyChildrenChanged(browser, rootItem.mediaId, rootItemCount, null)
+                    mediaSession.notifyChildrenChanged(
+                        browser,
+                        rootItem.mediaId,
+                        rootItemCount,
+                        null
+                    )
                 }
             }
         }

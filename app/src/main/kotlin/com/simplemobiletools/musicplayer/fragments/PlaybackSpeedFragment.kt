@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.applyColorFilter
+import com.simplemobiletools.commons.extensions.getProperBackgroundColor
+import com.simplemobiletools.commons.extensions.getProperTextColor
+import com.simplemobiletools.commons.extensions.onSeekBarChangeListener
+import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.views.MySeekBar
 import com.simplemobiletools.commons.views.MyTextView
 import com.simplemobiletools.musicplayer.R
@@ -31,10 +35,18 @@ class PlaybackSpeedFragment : BottomSheetDialogFragment() {
         setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val config = requireContext().config
         val binding = FragmentPlaybackSpeedBinding.inflate(inflater, container, false)
-        val background = ResourcesCompat.getDrawable(resources, com.simplemobiletools.commons.R.drawable.bottom_sheet_bg, requireContext().theme)
+        val background = ResourcesCompat.getDrawable(
+            resources,
+            com.simplemobiletools.commons.R.drawable.bottom_sheet_bg,
+            requireContext().theme
+        )
         (background as LayerDrawable).findDrawableByLayerId(com.simplemobiletools.commons.R.id.bottom_sheet_background)
             .applyColorFilter(requireContext().getProperBackgroundColor())
 
@@ -86,7 +98,8 @@ class PlaybackSpeedFragment : BottomSheetDialogFragment() {
         var playbackSpeed = when {
             progress < HALF_PROGRESS -> {
                 val lowerProgressPercent = progress / HALF_PROGRESS.toFloat()
-                val lowerProgress = (1 - MIN_PLAYBACK_SPEED) * lowerProgressPercent + MIN_PLAYBACK_SPEED
+                val lowerProgress =
+                    (1 - MIN_PLAYBACK_SPEED) * lowerProgressPercent + MIN_PLAYBACK_SPEED
                 lowerProgress
             }
 

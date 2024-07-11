@@ -4,16 +4,23 @@ import android.content.ContentUris
 import android.content.Context
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.getArtist
+import com.simplemobiletools.commons.extensions.getDuration
+import com.simplemobiletools.commons.extensions.getIntValue
+import com.simplemobiletools.commons.extensions.getIntValueOrNull
+import com.simplemobiletools.commons.extensions.getLongValue
+import com.simplemobiletools.commons.extensions.getStringValue
+import com.simplemobiletools.commons.extensions.getTitle
+import com.simplemobiletools.commons.extensions.queryCursor
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Track
-import org.greenrobot.eventbus.EventBus
 import java.io.File
 import kotlin.math.min
+import org.greenrobot.eventbus.EventBus
 
 class RoomHelper(val context: Context) {
     fun insertTracksWithPlaylist(tracks: ArrayList<Track>) {
@@ -58,12 +65,19 @@ class RoomHelper(val context: Context) {
 
         val parts = paths.size / ITEMS_PER_GROUP
         for (i in 0..parts) {
-            val sublist = paths.subList(i * ITEMS_PER_GROUP, min((i + 1) * ITEMS_PER_GROUP, paths.size))
+            val sublist =
+                paths.subList(i * ITEMS_PER_GROUP, min((i + 1) * ITEMS_PER_GROUP, paths.size))
             val questionMarks = getQuestionMarks(sublist.size)
             val selection = "${Audio.Media.DATA} IN ($questionMarks)"
             val selectionArgs = sublist.toTypedArray()
 
-            context.queryCursor(uri, projection.toTypedArray(), selection, selectionArgs, showErrors = true) { cursor ->
+            context.queryCursor(
+                uri,
+                projection.toTypedArray(),
+                selection,
+                selectionArgs,
+                showErrors = true
+            ) { cursor ->
                 val mediaStoreId = cursor.getLongValue(Audio.Media._ID)
                 val title = cursor.getStringValue(Audio.Media.TITLE)
                 val artist = cursor.getStringValue(Audio.Media.ARTIST)
@@ -76,7 +90,8 @@ class RoomHelper(val context: Context) {
                 val year = cursor.getIntValueOrNull(Audio.Media.YEAR) ?: 0
                 val dateAdded = cursor.getIntValueOrNull(Audio.Media.DATE_ADDED) ?: 0
                 val folderName = if (isQPlus()) {
-                    cursor.getStringValue(Audio.Media.BUCKET_DISPLAY_NAME) ?: MediaStore.UNKNOWN_STRING
+                    cursor.getStringValue(Audio.Media.BUCKET_DISPLAY_NAME)
+                        ?: MediaStore.UNKNOWN_STRING
                 } else {
                     ""
                 }
@@ -92,9 +107,24 @@ class RoomHelper(val context: Context) {
                 }
 
                 val song = Track(
-                    id = 0, mediaStoreId = mediaStoreId, title = title, artist = artist, path = path, duration = duration, album = album, genre = genre,
-                    coverArt = coverArt, playListId = playlistId, trackId = 0, folderName = folderName, albumId = albumId, artistId = artistId,
-                    genreId = genreId, year = year, dateAdded = dateAdded, orderInPlaylist = 0
+                    id = 0,
+                    mediaStoreId = mediaStoreId,
+                    title = title,
+                    artist = artist,
+                    path = path,
+                    duration = duration,
+                    album = album,
+                    genre = genre,
+                    coverArt = coverArt,
+                    playListId = playlistId,
+                    trackId = 0,
+                    folderName = folderName,
+                    albumId = albumId,
+                    artistId = artistId,
+                    genreId = genreId,
+                    year = year,
+                    dateAdded = dateAdded,
+                    orderInPlaylist = 0
                 )
                 song.title = song.getProperTitle(showFilename)
                 songs.add(song)
@@ -113,9 +143,24 @@ class RoomHelper(val context: Context) {
             }
 
             val song = Track(
-                id = 0, mediaStoreId = 0, title = title, artist = artist, path = it, duration = context.getDuration(it) ?: 0, album = "",
-                genre = "", coverArt = "", playListId = playlistId, trackId = 0, folderName = "", albumId = 0, artistId = 0, genreId = 0,
-                year = 0, dateAdded = dateAdded, orderInPlaylist = 0
+                id = 0,
+                mediaStoreId = 0,
+                title = title,
+                artist = artist,
+                path = it,
+                duration = context.getDuration(it) ?: 0,
+                album = "",
+                genre = "",
+                coverArt = "",
+                playListId = playlistId,
+                trackId = 0,
+                folderName = "",
+                albumId = 0,
+                artistId = 0,
+                genreId = 0,
+                year = 0,
+                dateAdded = dateAdded,
+                orderInPlaylist = 0
             )
             song.title = song.getProperTitle(showFilename)
             songs.add(song)

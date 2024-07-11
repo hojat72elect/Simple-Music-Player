@@ -20,12 +20,28 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.getFileUri
+import com.simplemobiletools.commons.extensions.getLongValue
+import com.simplemobiletools.commons.extensions.getRealPathFromURI
+import com.simplemobiletools.commons.extensions.isAudioFast
+import com.simplemobiletools.commons.extensions.rescanPaths
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.musicplayer.databases.SongsDatabase
-import com.simplemobiletools.musicplayer.helpers.*
-import com.simplemobiletools.musicplayer.interfaces.*
+import com.simplemobiletools.musicplayer.helpers.AudioHelper
+import com.simplemobiletools.musicplayer.helpers.Config
+import com.simplemobiletools.musicplayer.helpers.MyWidgetProvider
+import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
+import com.simplemobiletools.musicplayer.helpers.RoomHelper
+import com.simplemobiletools.musicplayer.helpers.SimpleMediaScanner
+import com.simplemobiletools.musicplayer.helpers.TRACK_STATE_CHANGED
+import com.simplemobiletools.musicplayer.helpers.tabsList
+import com.simplemobiletools.musicplayer.interfaces.AlbumsDao
+import com.simplemobiletools.musicplayer.interfaces.ArtistsDao
+import com.simplemobiletools.musicplayer.interfaces.GenresDao
+import com.simplemobiletools.musicplayer.interfaces.PlaylistsDao
+import com.simplemobiletools.musicplayer.interfaces.QueueItemsDao
+import com.simplemobiletools.musicplayer.interfaces.SongsDao
 import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.Artist
 import com.simplemobiletools.musicplayer.models.Genre
@@ -48,11 +64,15 @@ val Context.genresDAO: GenresDao get() = getTracksDB().GenresDao()
 
 val Context.audioHelper: AudioHelper get() = AudioHelper(this)
 
-val Context.mediaScanner: SimpleMediaScanner get() = SimpleMediaScanner.getInstance(applicationContext as Application)
+val Context.mediaScanner: SimpleMediaScanner
+    get() = SimpleMediaScanner.getInstance(
+        applicationContext as Application
+    )
 
 fun Context.getTracksDB() = SongsDatabase.getInstance(this)
 
-fun Context.getPlaylistIdWithTitle(title: String) = playlistDAO.getPlaylistWithTitle(title)?.id ?: -1
+fun Context.getPlaylistIdWithTitle(title: String) =
+    playlistDAO.getPlaylistWithTitle(title)?.id ?: -1
 
 fun Context.broadcastUpdateWidgetState() {
     Intent(this, MyWidgetProvider::class.java).apply {
@@ -84,7 +104,11 @@ fun Context.getMediaStoreIdFromPath(path: String): Long {
     return id
 }
 
-fun Context.getFolderTracks(path: String, rescanWrongPaths: Boolean, callback: (tracks: ArrayList<Track>) -> Unit) {
+fun Context.getFolderTracks(
+    path: String,
+    rescanWrongPaths: Boolean,
+    callback: (tracks: ArrayList<Track>) -> Unit
+) {
     val folderTracks = getFolderTrackPaths(File(path))
     val allTracks = audioHelper.getAllTracks()
     val wantedTracks = ArrayList<Track>()
@@ -242,7 +266,12 @@ fun Context.loadGlideResource(
                 .load(model)
                 .apply(options)
                 .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>, isFirstResource: Boolean): Boolean {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>,
+                        isFirstResource: Boolean
+                    ): Boolean {
                         onLoadFailed(e)
                         return true
                     }
@@ -280,7 +309,8 @@ fun Context.getTrackFromUri(uri: Uri?, callback: (track: Track?) -> Unit) {
         }
 
         val allTracks = audioHelper.getAllTracks()
-        val track = allTracks.find { it.path == path } ?: RoomHelper(this).getTrackFromPath(path) ?: return@ensureBackgroundThread
+        val track = allTracks.find { it.path == path } ?: RoomHelper(this).getTrackFromPath(path)
+        ?: return@ensureBackgroundThread
         callback(track)
     }
 }

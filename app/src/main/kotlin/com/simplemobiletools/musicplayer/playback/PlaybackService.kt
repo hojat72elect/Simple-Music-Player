@@ -5,12 +5,17 @@ import android.os.HandlerThread
 import android.os.Looper
 import androidx.annotation.OptIn
 import androidx.core.os.postDelayed
-import androidx.media3.common.*
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.session.*
+import androidx.media3.session.MediaLibraryService
+import androidx.media3.session.MediaSession
+import androidx.media3.session.MediaSessionService
 import com.simplemobiletools.commons.extensions.hasPermission
 import com.simplemobiletools.commons.extensions.showErrorToast
-import com.simplemobiletools.musicplayer.extensions.*
+import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.extensions.isReallyPlaying
+import com.simplemobiletools.musicplayer.extensions.nextMediaItem
 import com.simplemobiletools.musicplayer.helpers.NotificationHelper
 import com.simplemobiletools.musicplayer.helpers.getPermissionToRequest
 import com.simplemobiletools.musicplayer.playback.library.MediaItemProvider
@@ -31,7 +36,11 @@ class PlaybackService : MediaLibraryService(), MediaSessionService.Listener {
     override fun onCreate() {
         super.onCreate()
         setListener(this)
-        initializeSessionAndPlayer(handleAudioFocus = true, handleAudioBecomingNoisy = true, skipSilence = config.gaplessPlayback)
+        initializeSessionAndPlayer(
+            handleAudioFocus = true,
+            handleAudioBecomingNoisy = true,
+            skipSilence = config.gaplessPlayback
+        )
         initializeLibrary()
     }
 
@@ -71,7 +80,8 @@ class PlaybackService : MediaLibraryService(), MediaSessionService.Listener {
         }
     }
 
-    internal fun withPlayer(callback: SimpleMusicPlayer.() -> Unit) = playerHandler.post { callback(player) }
+    internal fun withPlayer(callback: SimpleMusicPlayer.() -> Unit) =
+        playerHandler.post { callback(player) }
 
     private fun showNoPermissionNotification() {
         Handler(Looper.getMainLooper()).postDelayed(delayInMillis = 100L) {

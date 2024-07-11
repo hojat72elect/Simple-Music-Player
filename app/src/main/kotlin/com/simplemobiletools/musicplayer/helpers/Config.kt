@@ -2,7 +2,7 @@ package com.simplemobiletools.musicplayer.helpers
 
 import android.content.Context
 import com.simplemobiletools.commons.helpers.BaseConfig
-import java.util.*
+import java.util.Arrays
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -14,8 +14,12 @@ class Config(context: Context) : BaseConfig(context) {
         set(shuffle) = prefs.edit().putBoolean(SHUFFLE, shuffle).apply()
 
     var playbackSetting: PlaybackSetting
-        get() = PlaybackSetting.values()[prefs.getInt(PLAYBACK_SETTING, PlaybackSetting.REPEAT_OFF.ordinal)]
-        set(playbackSetting) = prefs.edit().putInt(PLAYBACK_SETTING, playbackSetting.ordinal).apply()
+        get() = PlaybackSetting.values()[prefs.getInt(
+            PLAYBACK_SETTING,
+            PlaybackSetting.REPEAT_OFF.ordinal
+        )]
+        set(playbackSetting) = prefs.edit().putInt(PLAYBACK_SETTING, playbackSetting.ordinal)
+            .apply()
 
     var autoplay: Boolean
         get() = prefs.getBoolean(AUTOPLAY, true)
@@ -31,7 +35,8 @@ class Config(context: Context) : BaseConfig(context) {
 
     var lastSleepTimerSeconds: Int
         get() = prefs.getInt(LAST_SLEEP_TIMER_SECONDS, 30 * 60)
-        set(lastSleepTimerSeconds) = prefs.edit().putInt(LAST_SLEEP_TIMER_SECONDS, lastSleepTimerSeconds).apply()
+        set(lastSleepTimerSeconds) = prefs.edit()
+            .putInt(LAST_SLEEP_TIMER_SECONDS, lastSleepTimerSeconds).apply()
 
     var sleepInTS: Long
         get() = prefs.getLong(SLEEP_IN_TS, 0)
@@ -43,19 +48,22 @@ class Config(context: Context) : BaseConfig(context) {
 
     var playlistTracksSorting: Int
         get() = prefs.getInt(PLAYLIST_TRACKS_SORTING, PLAYER_SORT_BY_TITLE)
-        set(playlistTracksSorting) = prefs.edit().putInt(PLAYLIST_TRACKS_SORTING, playlistTracksSorting).apply()
+        set(playlistTracksSorting) = prefs.edit()
+            .putInt(PLAYLIST_TRACKS_SORTING, playlistTracksSorting).apply()
 
     fun saveCustomPlaylistSorting(playlistId: Int, value: Int) {
         prefs.edit().putInt(SORT_PLAYLIST_PREFIX + playlistId, value).apply()
     }
 
-    fun getCustomPlaylistSorting(playlistId: Int) = prefs.getInt(SORT_PLAYLIST_PREFIX + playlistId, sorting)
+    fun getCustomPlaylistSorting(playlistId: Int) =
+        prefs.getInt(SORT_PLAYLIST_PREFIX + playlistId, sorting)
 
     fun removeCustomPlaylistSorting(playlistId: Int) {
         prefs.edit().remove(SORT_PLAYLIST_PREFIX + playlistId).apply()
     }
 
-    fun hasCustomPlaylistSorting(playlistId: Int) = prefs.contains(SORT_PLAYLIST_PREFIX + playlistId)
+    fun hasCustomPlaylistSorting(playlistId: Int) =
+        prefs.contains(SORT_PLAYLIST_PREFIX + playlistId)
 
     fun getProperPlaylistSorting(playlistId: Int) = if (hasCustomPlaylistSorting(playlistId)) {
         getCustomPlaylistSorting(playlistId)
@@ -103,16 +111,22 @@ class Config(context: Context) : BaseConfig(context) {
 
     var playbackSpeedProgress: Int
         get() = prefs.getInt(PLAYBACK_SPEED_PROGRESS, -1)
-        set(playbackSpeedProgress) = prefs.edit().putInt(PLAYBACK_SPEED_PROGRESS, playbackSpeedProgress).apply()
+        set(playbackSpeedProgress) = prefs.edit()
+            .putInt(PLAYBACK_SPEED_PROGRESS, playbackSpeedProgress).apply()
 
     var wasAllTracksPlaylistCreated: Boolean
         get() = prefs.getBoolean(WAS_ALL_TRACKS_PLAYLIST_CREATED, false)
-        set(wasAllTracksPlaylistCreated) = prefs.edit().putBoolean(WAS_ALL_TRACKS_PLAYLIST_CREATED, wasAllTracksPlaylistCreated).apply()
+        set(wasAllTracksPlaylistCreated) = prefs.edit()
+            .putBoolean(WAS_ALL_TRACKS_PLAYLIST_CREATED, wasAllTracksPlaylistCreated).apply()
 
     var tracksRemovedFromAllTracksPlaylist: MutableSet<String>
         get() = prefs.getStringSet(TRACKS_REMOVED_FROM_ALL_TRACKS_PLAYLIST, HashSet())!!
-        set(tracksRemovedFromAllTracksPlaylist) = prefs.edit().remove(TRACKS_REMOVED_FROM_ALL_TRACKS_PLAYLIST)
-            .putStringSet(TRACKS_REMOVED_FROM_ALL_TRACKS_PLAYLIST, tracksRemovedFromAllTracksPlaylist)
+        set(tracksRemovedFromAllTracksPlaylist) = prefs.edit()
+            .remove(TRACKS_REMOVED_FROM_ALL_TRACKS_PLAYLIST)
+            .putStringSet(
+                TRACKS_REMOVED_FROM_ALL_TRACKS_PLAYLIST,
+                tracksRemovedFromAllTracksPlaylist
+            )
             .apply()
 
     var showTabs: Int
@@ -121,7 +135,8 @@ class Config(context: Context) : BaseConfig(context) {
 
     var excludedFolders: MutableSet<String>
         get() = prefs.getStringSet(EXCLUDED_FOLDERS, HashSet())!!
-        set(excludedFolders) = prefs.edit().remove(EXCLUDED_FOLDERS).putStringSet(EXCLUDED_FOLDERS, excludedFolders).apply()
+        set(excludedFolders) = prefs.edit().remove(EXCLUDED_FOLDERS)
+            .putStringSet(EXCLUDED_FOLDERS, excludedFolders).apply()
 
     fun addExcludedFolder(path: String) {
         addExcludedFolders(HashSet(Arrays.asList(path)))

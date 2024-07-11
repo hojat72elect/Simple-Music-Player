@@ -13,7 +13,22 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogChangeSortingBinding
 import com.simplemobiletools.musicplayer.databinding.SmallRadioButtonBinding
 import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.helpers.*
+import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
+import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
+import com.simplemobiletools.musicplayer.helpers.TAB_GENRES
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TITLE
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TRACK_COUNT
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ALBUM_COUNT
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ARTIST_TITLE
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_YEAR
+import com.simplemobiletools.musicplayer.helpers.ACTIVITY_PLAYLIST_FOLDER
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_CUSTOM
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_DATE_ADDED
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_DURATION
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TRACK_ID
+import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
+import com.simplemobiletools.musicplayer.helpers.TAB_PLAYLISTS
+import com.simplemobiletools.musicplayer.helpers.TAB_TRACKS
 import com.simplemobiletools.musicplayer.models.Playlist
 
 class ChangeSortingDialog(val activity: Activity, val location: Int, val playlist: Playlist? = null, val path: String? = null, val callback: () -> Unit) {

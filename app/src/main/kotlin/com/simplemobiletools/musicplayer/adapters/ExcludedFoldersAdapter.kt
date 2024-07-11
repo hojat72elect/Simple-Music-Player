@@ -1,7 +1,11 @@
 package com.simplemobiletools.musicplayer.adapters
 
 import android.annotation.SuppressLint
-import android.view.*
+import android.view.ContextThemeWrapper
+import android.view.Menu
+import android.view.View
+import android.view.Gravity
+import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter

@@ -14,11 +14,22 @@ import com.simplemobiletools.commons.helpers.AlphanumericComparator
 import com.simplemobiletools.commons.helpers.SORT_DESCENDING
 import com.simplemobiletools.musicplayer.extensions.sortSafely
 import com.simplemobiletools.musicplayer.extensions.toMediaItem
-import com.simplemobiletools.musicplayer.helpers.*
+import com.simplemobiletools.musicplayer.helpers.FLAG_IS_CURRENT
+import com.simplemobiletools.musicplayer.helpers.FLAG_MANUAL_CACHE
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ARTIST_TITLE
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_CUSTOM
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_DATE_ADDED
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TITLE
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TRACK_ID
+import com.simplemobiletools.musicplayer.helpers.SHOW_FILENAME_IF_UNAVAILABLE
+import com.simplemobiletools.musicplayer.helpers.SHOW_FILENAME_NEVER
 import java.io.File
 import java.io.Serializable
 
-@Entity(tableName = "tracks", indices = [Index(value = ["media_store_id", "playlist_id"], unique = true)])
+@Entity(
+    tableName = "tracks",
+    indices = [Index(value = ["media_store_id", "playlist_id"], unique = true)]
+)
 data class Track(
     @PrimaryKey(autoGenerate = true) var id: Long,
     @ColumnInfo(name = "media_store_id") var mediaStoreId: Long,
@@ -50,7 +61,10 @@ data class Track(
                     when {
                         first.title == MediaStore.UNKNOWN_STRING && second.title != MediaStore.UNKNOWN_STRING -> 1
                         first.title != MediaStore.UNKNOWN_STRING && second.title == MediaStore.UNKNOWN_STRING -> -1
-                        else -> AlphanumericComparator().compare(first.title.lowercase(), second.title.lowercase())
+                        else -> AlphanumericComparator().compare(
+                            first.title.lowercase(),
+                            second.title.lowercase()
+                        )
                     }
                 }
 
@@ -58,7 +72,10 @@ data class Track(
                     when {
                         first.artist == MediaStore.UNKNOWN_STRING && second.artist != MediaStore.UNKNOWN_STRING -> 1
                         first.artist != MediaStore.UNKNOWN_STRING && second.artist == MediaStore.UNKNOWN_STRING -> -1
-                        else -> AlphanumericComparator().compare(first.artist.lowercase(), second.artist.lowercase())
+                        else -> AlphanumericComparator().compare(
+                            first.artist.lowercase(),
+                            second.artist.lowercase()
+                        )
                     }
                 }
 
