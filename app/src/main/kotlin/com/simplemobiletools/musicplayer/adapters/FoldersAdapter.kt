@@ -4,8 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.highlightTextPart
-import com.simplemobiletools.commons.extensions.setupViewBackground
+import com.simplemobiletools.musicplayer.extensions.highlightTextPart
+import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ItemFolderBinding

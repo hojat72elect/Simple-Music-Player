@@ -5,11 +5,11 @@ import android.content.Intent
 import android.util.AttributeSet
 import com.google.gson.Gson
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.areSystemAnimationsEnabled
-import com.simplemobiletools.commons.extensions.beGoneIf
-import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.hideKeyboard
-import com.simplemobiletools.commons.extensions.underlineText
+import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
+import com.simplemobiletools.musicplayer.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.extensions.hideKeyboard
+import com.simplemobiletools.musicplayer.extensions.underlineText
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.SimpleActivity

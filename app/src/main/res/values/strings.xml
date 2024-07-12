@@ -17,6 +17,24 @@
     <string name="volume">Volume</string>
     <string name="playback_speed">Playback speed</string>
     <string name="loading_files">Loading files…</string>
+    <string name="customize_colors">Customize colors</string>
+    <string name="customize_colors_locked">Customize colors (Locked)</string>
+    <string name="unknown_error_occurred">An unknown error occurred</string>
+    <string name="error">Error: %s</string>
+    <string name="could_not_create_file">Could not create file %s</string>
+    <string name="no_app_found">No valid app found</string>
+    <string name="share_via">Share via</string>
+    <string name="maximum_share_reached">You cannot share this much content at once</string>
+    <string name="simple_commons">Simple Commons</string>
+    <string name="value_copied_to_clipboard_show">Value copied to clipboard:\n%s</string>
+    <string name="cannot_rename_folder">Cannot rename this folder</string>
+    <string name="could_not_create_folder">Could not create folder %s</string>
+    <string name="thank_you_url">https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou</string>
+    <string name="internal">Internal</string>
+    <string name="root">Root</string>
+    <string name="sd_card">SD Card</string>
+    <string name="no_browser_found">No browser found</string>
+    <string name="usb">USB</string>
     <!-- Playlists -->
     <string name="add_file_to_playlist">Add file to playlist</string>
     <string name="add_folder_to_playlist">Add folder to playlist</string>

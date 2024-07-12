@@ -4,9 +4,9 @@ import android.app.Activity
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
-import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
-import com.simplemobiletools.commons.extensions.setupDialogStuff
-import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.databinding.DialogSelectPlaylistBinding
 import com.simplemobiletools.musicplayer.databinding.ItemSelectPlaylistBinding

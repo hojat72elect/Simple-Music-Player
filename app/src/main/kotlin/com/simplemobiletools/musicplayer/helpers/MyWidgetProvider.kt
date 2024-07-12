@@ -11,9 +11,9 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import androidx.media3.common.MediaMetadata
 import androidx.media3.session.MediaController
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.getColoredBitmap
-import com.simplemobiletools.commons.extensions.getLaunchIntent
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.extensions.getColoredBitmap
+import com.simplemobiletools.musicplayer.extensions.getLaunchIntent
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.SplashActivity
 import com.simplemobiletools.musicplayer.extensions.config

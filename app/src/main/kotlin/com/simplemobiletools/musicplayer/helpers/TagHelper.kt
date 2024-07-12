@@ -4,9 +4,9 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.provider.MediaStore
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.getFilenameExtension
-import com.simplemobiletools.commons.extensions.getFilenameFromPath
-import com.simplemobiletools.commons.extensions.getTempFile
+import com.simplemobiletools.musicplayer.extensions.getFilenameExtension
+import com.simplemobiletools.musicplayer.extensions.getFilenameFromPath
+import com.simplemobiletools.musicplayer.extensions.getTempFile
 import com.simplemobiletools.musicplayer.models.Track
 import org.jaudiotagger.audio.AudioFileIO
 import org.jaudiotagger.audio.SupportedFileFormat

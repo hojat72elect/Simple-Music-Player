@@ -4,7 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
+import com.simplemobiletools.musicplayer.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.extensions.hideKeyboard
+import com.simplemobiletools.musicplayer.extensions.isVisible
+import com.simplemobiletools.musicplayer.extensions.underlineText
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.ExcludedFoldersActivity
@@ -22,7 +27,8 @@ import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
 import com.simplemobiletools.musicplayer.models.Folder
 import com.simplemobiletools.musicplayer.models.sortSafely
 
-class FoldersFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
+class FoldersFragment(context: Context, attributeSet: AttributeSet) :
+    MyViewPagerFragment(context, attributeSet) {
     private var folders = ArrayList<Folder>()
     private val binding by viewBinding(FragmentFoldersBinding::bind)
 
@@ -75,7 +81,8 @@ class FoldersFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
     }
 
     override fun onSearchQueryChanged(text: String) {
-        val filtered = folders.filter { it.title.contains(text, true) }.toMutableList() as ArrayList<Folder>
+        val filtered =
+            folders.filter { it.title.contains(text, true) }.toMutableList() as ArrayList<Folder>
         getAdapter()?.updateItems(filtered, text)
         binding.foldersPlaceholder.beVisibleIf(filtered.isEmpty())
     }

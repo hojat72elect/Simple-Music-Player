@@ -1,9 +1,9 @@
 package com.simplemobiletools.musicplayer.dialogs
 
 import android.app.Activity
-import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
-import com.simplemobiletools.commons.extensions.setupDialogStuff
-import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogRemovePlaylistBinding
 import com.simplemobiletools.musicplayer.models.Playlist

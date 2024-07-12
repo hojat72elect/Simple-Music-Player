@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.extensions.beGone
-import com.simplemobiletools.commons.extensions.beVisible
-import com.simplemobiletools.commons.extensions.getFormattedDuration
-import com.simplemobiletools.commons.extensions.setupViewBackground
+import com.simplemobiletools.musicplayer.extensions.beGone
+import com.simplemobiletools.musicplayer.extensions.beVisible
+import com.simplemobiletools.musicplayer.extensions.getFormattedDuration
+import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R

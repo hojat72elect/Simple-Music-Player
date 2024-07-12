@@ -3,8 +3,8 @@ package com.simplemobiletools.musicplayer.adapters
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import com.simplemobiletools.commons.extensions.getProperPrimaryColor
-import com.simplemobiletools.commons.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentAlbumsBinding
 import com.simplemobiletools.musicplayer.databinding.FragmentArtistsBinding

@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.getProperBackgroundColor
-import com.simplemobiletools.commons.extensions.getProperTextColor
-import com.simplemobiletools.commons.extensions.onSeekBarChangeListener
-import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.extensions.getProperBackgroundColor
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.onSeekBarChangeListener
+import com.simplemobiletools.musicplayer.extensions.updateTextColors
 import com.simplemobiletools.commons.views.MySeekBar
 import com.simplemobiletools.commons.views.MyTextView
 import com.simplemobiletools.musicplayer.R

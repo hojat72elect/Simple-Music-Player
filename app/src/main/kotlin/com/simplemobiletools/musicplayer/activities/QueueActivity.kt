@@ -8,10 +8,10 @@ import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.media3.common.MediaItem
-import com.simplemobiletools.commons.extensions.areSystemAnimationsEnabled
-import com.simplemobiletools.commons.extensions.beGoneIf
-import com.simplemobiletools.commons.extensions.getProperPrimaryColor
-import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
+import com.simplemobiletools.musicplayer.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R

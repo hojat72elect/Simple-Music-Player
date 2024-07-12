@@ -3,10 +3,10 @@ package com.simplemobiletools.musicplayer.dialogs
 import android.app.Activity
 import android.view.ViewGroup
 import android.widget.RadioGroup
-import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
-import com.simplemobiletools.commons.extensions.setupDialogStuff
-import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.commons.helpers.SORT_DESCENDING
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.musicplayer.R

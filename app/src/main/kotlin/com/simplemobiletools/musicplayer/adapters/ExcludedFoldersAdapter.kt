@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
-import com.simplemobiletools.commons.extensions.getPopupMenuTheme
-import com.simplemobiletools.commons.extensions.getProperTextColor
-import com.simplemobiletools.commons.extensions.humanizePath
-import com.simplemobiletools.commons.extensions.setupViewBackground
+import com.simplemobiletools.musicplayer.extensions.getPopupMenuTheme
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.humanizePath
+import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.commons.interfaces.RefreshRecyclerViewListener
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.databinding.ItemExcludedFolderBinding

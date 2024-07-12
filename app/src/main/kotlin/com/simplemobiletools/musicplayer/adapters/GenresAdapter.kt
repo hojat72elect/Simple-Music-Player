@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.extensions.highlightTextPart
-import com.simplemobiletools.commons.extensions.setupViewBackground
+import com.simplemobiletools.musicplayer.extensions.highlightTextPart
+import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R

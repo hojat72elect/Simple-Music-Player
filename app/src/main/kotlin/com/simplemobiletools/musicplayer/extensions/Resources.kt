@@ -2,10 +2,21 @@ package com.simplemobiletools.musicplayer.extensions
 
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.R
+
+
+
+fun Resources.getColoredDrawableWithColor(drawableId: Int, color: Int, alpha: Int = 255): Drawable {
+    val drawable = getDrawable(drawableId)
+    drawable.mutate().applyColorFilter(color)
+    drawable.mutate().alpha = alpha
+    return drawable
+}
 
 fun Resources.getSmallPlaceholder(color: Int): Drawable {
     val placeholder = getDrawable(R.drawable.ic_headset_padded)
@@ -34,4 +45,14 @@ fun Resources.getCoverArtHeight(): Int {
     } else {
         coverArtHeight
     }
+}
+
+fun Resources.getColoredBitmap(resourceId: Int, newColor: Int): Bitmap {
+    val drawable = getDrawable(resourceId)
+    val bitmap = Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
+    drawable.setBounds(0, 0, canvas.width, canvas.height)
+    drawable.colorFilter = PorterDuffColorFilter(newColor, PorterDuff.Mode.SRC_IN)
+    drawable.draw(canvas)
+    return bitmap
 }

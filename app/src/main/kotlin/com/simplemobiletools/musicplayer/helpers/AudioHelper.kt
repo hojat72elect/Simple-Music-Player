@@ -1,8 +1,8 @@
 package com.simplemobiletools.musicplayer.helpers
 
 import android.content.Context
-import com.simplemobiletools.commons.extensions.addBit
-import com.simplemobiletools.commons.extensions.getParentPath
+import com.simplemobiletools.musicplayer.extensions.addBit
+import com.simplemobiletools.musicplayer.extensions.getParentPath
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.extensions.albumsDAO
 import com.simplemobiletools.musicplayer.extensions.artistDAO

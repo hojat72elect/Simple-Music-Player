@@ -1,9 +1,9 @@
 package com.simplemobiletools.musicplayer.activities
 
 import android.os.Bundle
-import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.getProperTextColor
-import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.interfaces.RefreshRecyclerViewListener
 import com.simplemobiletools.musicplayer.adapters.ExcludedFoldersAdapter

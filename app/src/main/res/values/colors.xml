@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="bottom_tabs_light_background">#FFF1F1F1</color>
+    <color name="color_primary">#FFF57C00</color>
 </resources>

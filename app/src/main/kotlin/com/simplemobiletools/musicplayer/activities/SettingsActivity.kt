@@ -1,16 +1,18 @@
 package com.simplemobiletools.musicplayer.activities
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
-import com.simplemobiletools.commons.extensions.viewBinding
-import com.simplemobiletools.commons.extensions.updateTextColors
-import com.simplemobiletools.commons.extensions.getProperPrimaryColor
-import com.simplemobiletools.commons.extensions.isOrWasThankYouInstalled
-import com.simplemobiletools.commons.extensions.beGoneIf
-import com.simplemobiletools.commons.extensions.launchPurchaseThankYouIntent
-import com.simplemobiletools.commons.extensions.getCustomizeColorsString
-import com.simplemobiletools.commons.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.extensions.updateTextColors
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
+import com.simplemobiletools.musicplayer.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.extensions.launchPurchaseThankYouIntent
+import com.simplemobiletools.musicplayer.extensions.getCustomizeColorsString
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.helpers.isQPlus
@@ -41,6 +43,7 @@ class SettingsActivity : SimpleControllerActivity() {
         setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsToolbar)
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onResume() {
         super.onResume()
         setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
@@ -95,6 +98,7 @@ class SettingsActivity : SimpleControllerActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun setupLanguage() = binding.apply {
         settingsLanguage.text = Locale.getDefault().displayLanguage
         settingsLanguageHolder.beVisibleIf(isTiramisuPlus())

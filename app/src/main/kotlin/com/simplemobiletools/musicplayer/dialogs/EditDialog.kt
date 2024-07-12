@@ -2,7 +2,18 @@ package com.simplemobiletools.musicplayer.dialogs
 
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.musicplayer.extensions.beGone
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.getFilenameExtension
+import com.simplemobiletools.musicplayer.extensions.getFilenameFromPath
+import com.simplemobiletools.musicplayer.extensions.getParentPath
+import com.simplemobiletools.musicplayer.extensions.renameFile
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.showErrorToast
+import com.simplemobiletools.musicplayer.extensions.showKeyboard
+import com.simplemobiletools.musicplayer.extensions.toast
+import com.simplemobiletools.musicplayer.extensions.value
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.musicplayer.R
@@ -11,7 +22,11 @@ import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.helpers.TagHelper
 import com.simplemobiletools.musicplayer.models.Track
 
-class EditDialog(val activity: BaseSimpleActivity, val track: Track, val callback: (track: Track) -> Unit) {
+class EditDialog(
+    val activity: BaseSimpleActivity,
+    val track: Track,
+    val callback: (track: Track) -> Unit
+) {
     private val tagHelper = TagHelper(activity)
     private val binding by activity.viewBinding(DialogRenameSongBinding::inflate)
 
@@ -54,7 +69,8 @@ class EditDialog(val activity: BaseSimpleActivity, val track: Track, val callbac
                                 track.title = newTitle
                                 track.album = newAlbum
                                 val oldPath = track.path
-                                val newPath = "${oldPath.getParentPath()}/$newFilename.$newFileExtension"
+                                val newPath =
+                                    "${oldPath.getParentPath()}/$newFilename.$newFileExtension"
                                 if (oldPath == newPath) {
                                     storeEditedSong(track, oldPath, newPath)
                                     callback(track)
@@ -93,7 +109,13 @@ class EditDialog(val activity: BaseSimpleActivity, val track: Track, val callbac
         }
     }
 
-    private fun updateContentResolver(track: Track, newArtist: String, newTitle: String, newAlbum: String, onUpdateMediaStore: () -> Unit) {
+    private fun updateContentResolver(
+        track: Track,
+        newArtist: String,
+        newTitle: String,
+        newAlbum: String,
+        onUpdateMediaStore: () -> Unit
+    ) {
         ensureBackgroundThread {
             try {
                 activity.handleRecoverableSecurityException { granted ->

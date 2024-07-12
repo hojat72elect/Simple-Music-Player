@@ -10,4 +10,17 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="AppTheme.YouPopupMenuStyle" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:popupMenuStyle">@style/AppTheme.YouPopupMenu</item>
+        <item name="android:itemTextAppearance">@style/AppTheme.YouItemTextStyle</item>
+    </style>
+
+    <style name="AppTheme.PopupMenuLightStyle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:popupMenuStyle">@style/AppTheme.PopupMenuLight</item>
+    </style>
+
+    <style name="AppTheme.PopupMenuDarkStyle" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:popupMenuStyle">@style/AppTheme.PopupMenuDark</item>
+    </style>
+
 </resources>

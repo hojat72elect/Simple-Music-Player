@@ -1,10 +1,10 @@
 package com.simplemobiletools.musicplayer.dialogs
 
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.beGone
-import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
-import com.simplemobiletools.commons.extensions.setupDialogStuff
-import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.musicplayer.extensions.beGone
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.databinding.DialogManageVisibleTabsBinding

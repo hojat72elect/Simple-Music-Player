@@ -5,7 +5,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
-import com.simplemobiletools.commons.extensions.toast
+import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.getPlaybackSetting
 import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
