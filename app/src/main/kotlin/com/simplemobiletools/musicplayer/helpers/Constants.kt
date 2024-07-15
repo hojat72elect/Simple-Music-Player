@@ -43,7 +43,8 @@ const val EXTRA_ORDER_IN_PLAYLIST = "order_in_playlist"
 const val EXTRA_FLAGS = "flags"
 const val EXTRA_NEXT_MEDIA_ID = "EXTRA_NEXT_MEDIA_ID"
 const val EXTRA_SHUFFLE_INDICES = "EXTRA_SHUFFLE_INDICES"
-
+// licenses
+internal const val LICENSE_KOTLIN = 1L
 // shared preferences
 const val SHUFFLE = "shuffle"
 const val PLAYBACK_SETTING = "playback_setting"

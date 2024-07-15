@@ -1,6 +1,6 @@
 package com.simplemobiletools.musicplayer.dialogs
 
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.beGone
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff

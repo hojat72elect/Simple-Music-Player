@@ -8,26 +8,27 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
-import com.simplemobiletools.musicplayer.extensions.highlightTextPart
-import com.simplemobiletools.musicplayer.extensions.setupViewBackground
-import com.simplemobiletools.musicplayer.extensions.beVisible
-import com.simplemobiletools.musicplayer.extensions.beGone
-import com.simplemobiletools.musicplayer.extensions.getFormattedDuration
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.interfaces.ItemMoveCallback
 import com.simplemobiletools.commons.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.commons.interfaces.StartReorderDragListener
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding
 import com.simplemobiletools.musicplayer.dialogs.EditDialog
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.audioHelper
+import com.simplemobiletools.musicplayer.extensions.beGone
+import com.simplemobiletools.musicplayer.extensions.beVisible
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.extensions.getFormattedDuration
 import com.simplemobiletools.musicplayer.extensions.getTrackCoverArt
+import com.simplemobiletools.musicplayer.extensions.highlightTextPart
+import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.extensions.swap
 import com.simplemobiletools.musicplayer.helpers.ALL_TRACKS_PLAYLIST_ID
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_CUSTOM
@@ -45,7 +46,8 @@ class TracksAdapter(
     val playlist: Playlist? = null,
     items: ArrayList<Track>,
     itemClick: (Any) -> Unit
-) : BaseMusicAdapter<Track>(items, activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate, ItemTouchHelperContract {
+) : BaseMusicAdapter<Track>(items, activity, recyclerView, itemClick),
+    RecyclerViewFastScroller.OnPopupTextUpdate, ItemTouchHelperContract {
 
     private var touchHelper: ItemTouchHelper? = null
     private var startReorderDragListener: StartReorderDragListener
@@ -127,12 +129,14 @@ class TracksAdapter(
 
             context.audioHelper.deleteTracks(selectedTracks)
             // this is to make sure these tracks aren't automatically re-added to the 'All tracks' playlist on rescan
-            val removedTrackIds = selectedTracks.filter { it.playListId == ALL_TRACKS_PLAYLIST_ID }.map { it.mediaStoreId.toString() }
+            val removedTrackIds = selectedTracks.filter { it.playListId == ALL_TRACKS_PLAYLIST_ID }
+                .map { it.mediaStoreId.toString() }
             if (removedTrackIds.isNotEmpty()) {
                 val config = context.config
-                config.tracksRemovedFromAllTracksPlaylist = config.tracksRemovedFromAllTracksPlaylist.apply {
-                    addAll(removedTrackIds)
-                }
+                config.tracksRemovedFromAllTracksPlaylist =
+                    config.tracksRemovedFromAllTracksPlaylist.apply {
+                        addAll(removedTrackIds)
+                    }
             }
 
             EventBus.getDefault().post(Events.PlaylistsUpdated())
@@ -180,18 +184,26 @@ class TracksAdapter(
         }
     }
 
-    override fun getSelectedTracks(): List<Track> = items.filter { selectedKeys.contains(it.hashCode()) }
+    override fun getSelectedTracks(): List<Track> =
+        items.filter { selectedKeys.contains(it.hashCode()) }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setupView(view: View, track: Track, holder: ViewHolder) {
         ItemTrackBinding.bind(view).apply {
             root.setupViewBackground(context)
             trackFrame.isSelected = selectedKeys.contains(track.hashCode())
-            trackTitle.text = if (textToHighlight.isEmpty()) track.title else track.title.highlightTextPart(textToHighlight, properPrimaryColor)
+            trackTitle.text =
+                if (textToHighlight.isEmpty()) track.title else track.title.highlightTextPart(
+                    textToHighlight,
+                    properPrimaryColor
+                )
             trackInfo.text = if (textToHighlight.isEmpty()) {
                 "${track.artist} • ${track.album}"
             } else {
-                ("${track.artist} • ${track.album}").highlightTextPart(textToHighlight, properPrimaryColor)
+                ("${track.artist} • ${track.album}").highlightTextPart(
+                    textToHighlight,
+                    properPrimaryColor
+                )
             }
             trackDragHandle.beVisibleIf(isPlaylistContent() && selectedKeys.isNotEmpty())
             trackDragHandle.applyColorFilter(textColor)
@@ -231,12 +243,23 @@ class TracksAdapter(
     private fun displayEditDialog() {
         getSelectedTracks().firstOrNull()?.let { selectedTrack ->
             EditDialog(context, selectedTrack) { track ->
-                val trackIndex = items.indexOfFirstOrNull { it.mediaStoreId == track.mediaStoreId } ?: return@EditDialog
+                val trackIndex = items.indexOfFirstOrNull { it.mediaStoreId == track.mediaStoreId }
+                    ?: return@EditDialog
                 items[trackIndex] = track
                 notifyItemChanged(trackIndex)
                 finishActMode()
 
                 context.refreshQueueAndTracks(track)
+            }
+        }
+    }
+
+    override fun onRowClear(myViewHolder: MyRecyclerViewAdapter.ViewHolder?) {
+        ensureBackgroundThread {
+            var index = 0
+            items.forEach {
+                it.orderInPlaylist = index++
+                context.audioHelper.updateOrderInPlaylist(index, it.id)
             }
         }
     }
@@ -247,17 +270,7 @@ class TracksAdapter(
         notifyItemMoved(fromPosition, toPosition)
     }
 
-    override fun onRowSelected(myViewHolder: ViewHolder?) {}
-
-    override fun onRowClear(myViewHolder: ViewHolder?) {
-        ensureBackgroundThread {
-            var index = 0
-            items.forEach {
-                it.orderInPlaylist = index++
-                context.audioHelper.updateOrderInPlaylist(index, it.id)
-            }
-        }
-    }
+    override fun onRowSelected(myViewHolder: MyRecyclerViewAdapter.ViewHolder?) {}
 
     private fun isPlaylistContent() = sourceType == TYPE_PLAYLIST
 

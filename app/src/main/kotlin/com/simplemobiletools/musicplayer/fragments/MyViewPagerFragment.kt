@@ -3,7 +3,7 @@ package com.simplemobiletools.musicplayer.fragments
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
 import com.simplemobiletools.musicplayer.activities.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.models.Track

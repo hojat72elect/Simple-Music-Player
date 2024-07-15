@@ -1,7 +1,12 @@
 package com.simplemobiletools.musicplayer.dialogs
 
 import androidx.appcompat.app.AlertDialog
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.commons.helpers.isRPlus
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.DialogRenameSongBinding
+import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.beGone
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.getFilenameExtension
@@ -14,11 +19,6 @@ import com.simplemobiletools.musicplayer.extensions.showKeyboard
 import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.extensions.viewBinding
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.helpers.isRPlus
-import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.databinding.DialogRenameSongBinding
-import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.helpers.TagHelper
 import com.simplemobiletools.musicplayer.models.Track
 

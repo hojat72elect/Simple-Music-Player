@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
 import com.google.gson.Gson
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf

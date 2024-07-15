@@ -9,13 +9,8 @@ import androidx.media3.session.MediaController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
+import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
-import com.simplemobiletools.musicplayer.extensions.getFormattedDuration
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.highlightTextPart
-import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.commons.interfaces.ItemMoveCallback
 import com.simplemobiletools.commons.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.commons.interfaces.StartReorderDragListener
@@ -23,19 +18,32 @@ import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.ItemTrackQueueBinding
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.extensions.getFormattedDuration
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.extensions.getTrackCoverArt
+import com.simplemobiletools.musicplayer.extensions.highlightTextPart
+import com.simplemobiletools.musicplayer.extensions.lazySmoothScroll
+import com.simplemobiletools.musicplayer.extensions.sendCommand
+import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.extensions.shuffledMediaItemsIndices
 import com.simplemobiletools.musicplayer.extensions.swap
 import com.simplemobiletools.musicplayer.extensions.toTrack
-import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.extensions.lazySmoothScroll
-import com.simplemobiletools.musicplayer.extensions.sendCommand
 import com.simplemobiletools.musicplayer.helpers.EXTRA_SHUFFLE_INDICES
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 
-class QueueAdapter(activity: SimpleActivity, items: ArrayList<Track>, var currentTrack: Track? = null, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
-    BaseMusicAdapter<Track>(items, activity, recyclerView, itemClick), ItemTouchHelperContract, RecyclerViewFastScroller.OnPopupTextUpdate {
+class QueueAdapter(
+    activity: SimpleActivity,
+    items: ArrayList<Track>,
+    var currentTrack: Track? = null,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit
+) :
+    BaseMusicAdapter<Track>(items, activity, recyclerView, itemClick), ItemTouchHelperContract,
+    RecyclerViewFastScroller.OnPopupTextUpdate {
 
     private var startReorderDragListener: StartReorderDragListener
 
@@ -118,7 +126,13 @@ class QueueAdapter(activity: SimpleActivity, items: ArrayList<Track>, var curren
     }
 
     private fun deleteTracks() {
-        ConfirmationDialog(context, "", R.string.delete_song_warning, com.simplemobiletools.commons.R.string.ok, com.simplemobiletools.commons.R.string.cancel) {
+        ConfirmationDialog(
+            context,
+            "",
+            R.string.delete_song_warning,
+            com.simplemobiletools.commons.R.string.ok,
+            com.simplemobiletools.commons.R.string.cancel
+        ) {
             val positions = ArrayList<Int>()
             val selectedTracks = getSelectedTracks()
             selectedTracks.forEach { track ->
@@ -153,7 +167,11 @@ class QueueAdapter(activity: SimpleActivity, items: ArrayList<Track>, var curren
         ItemTrackQueueBinding.bind(view).apply {
             root.setupViewBackground(context)
             trackQueueFrame.isSelected = selectedKeys.contains(track.hashCode())
-            trackQueueTitle.text = if (textToHighlight.isEmpty()) track.title else track.title.highlightTextPart(textToHighlight, properPrimaryColor)
+            trackQueueTitle.text =
+                if (textToHighlight.isEmpty()) track.title else track.title.highlightTextPart(
+                    textToHighlight,
+                    properPrimaryColor
+                )
 
             arrayOf(trackQueueTitle, trackQueueDuration).forEach {
                 val color = if (track.mediaStoreId == currentTrack?.mediaStoreId) {
@@ -180,12 +198,18 @@ class QueueAdapter(activity: SimpleActivity, items: ArrayList<Track>, var curren
         }
     }
 
-    override fun updateItems(newItems: ArrayList<Track>, highlightText: String, forceUpdate: Boolean) {
+    override fun updateItems(
+        newItems: ArrayList<Track>,
+        highlightText: String,
+        forceUpdate: Boolean
+    ) {
         context.withPlayer {
             currentTrack = currentMediaItem?.toTrack()
             super.updateItems(newItems, highlightText, forceUpdate)
         }
     }
+
+    override fun onRowClear(myViewHolder: MyRecyclerViewAdapter.ViewHolder?) {}
 
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
         items.swap(fromPosition, toPosition)
@@ -193,11 +217,11 @@ class QueueAdapter(activity: SimpleActivity, items: ArrayList<Track>, var curren
         swapMediaItemInQueue(fromPosition, toPosition)
     }
 
-    override fun onRowClear(myViewHolder: ViewHolder?) {}
+    override fun onRowSelected(myViewHolder: MyRecyclerViewAdapter.ViewHolder?) {}
 
-    override fun onRowSelected(myViewHolder: ViewHolder?) {}
 
-    override fun onChange(position: Int) = items.getOrNull(position)?.getBubbleText(context.config.trackSorting) ?: ""
+    override fun onChange(position: Int) =
+        items.getOrNull(position)?.getBubbleText(context.config.trackSorting) ?: ""
 
     /**
      * [MediaController.moveMediaItem] is the proper way to move media items but it doesn't work when shuffle mode is enabled. This method modifies

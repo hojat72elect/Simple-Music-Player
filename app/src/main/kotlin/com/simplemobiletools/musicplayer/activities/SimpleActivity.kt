@@ -1,6 +1,5 @@
 package com.simplemobiletools.musicplayer.activities
 
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.R
 
 open class SimpleActivity : BaseSimpleActivity() {

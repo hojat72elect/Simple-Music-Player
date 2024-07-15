@@ -3,7 +3,7 @@ package com.simplemobiletools.musicplayer.fragments
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.beGoneIf

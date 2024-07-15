@@ -62,6 +62,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.simplemobiletools.commons.extensions.createFirstParentTreeUri
 import com.simplemobiletools.commons.extensions.getInternalStoragePath
 import com.simplemobiletools.commons.helpers.BaseConfig
 import com.simplemobiletools.commons.helpers.DARK_GREY
@@ -273,6 +274,14 @@ fun Context.hasProperStoredAndroidTreeUri(path: String): Boolean {
     return hasProperUri
 }
 
+fun Context.createFirstParentTreeUriUsingRootTree(fullPath: String): Uri {
+    val storageId = getSAFStorageId(fullPath)
+    val level = getFirstParentLevel(fullPath)
+    val rootParentDirName = fullPath.getFirstParentDirName(this, level)
+    val treeUri = DocumentsContract.buildTreeDocumentUri(EXTERNAL_STORAGE_PROVIDER_AUTHORITY, "$storageId:")
+    val documentId = "${storageId}:$rootParentDirName"
+    return DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId)
+}
 
 val Context.newNavigationBarHeight: Int
     get() {
@@ -578,6 +587,11 @@ private fun Context.createCasualFileOutputStream(targetFile: File): OutputStream
     }
 }
 
+fun Context.hasProperStoredFirstParentUri(path: String): Boolean {
+    val firstParentUri = createFirstParentTreeUri(path)
+    return contentResolver.persistedUriPermissions.any { it.uri.toString() == firstParentUri.toString() }
+}
+
 fun Context.getFileOutputStreamSync(
     path: String,
     mimeType: String,
@@ -813,6 +827,26 @@ fun Context.renameAndroidSAFDocument(oldPath: String, newPath: String): Boolean 
     }
 }
 
+fun Context.deleteDocumentWithSAFSdk30(fileDirItem: FileDirItem, allowDeleteFolder: Boolean, callback: ((wasSuccess: Boolean) -> Unit)?) {
+    try {
+        var fileDeleted = false
+        if (fileDirItem.isDirectory.not() || allowDeleteFolder) {
+            val fileUri = createDocumentUriUsingFirstParentTreeUri(fileDirItem.path)
+            fileDeleted = DocumentsContract.deleteDocument(contentResolver, fileUri)
+        }
+
+        if (fileDeleted) {
+            deleteFromMediaStore(fileDirItem.path)
+            callback?.invoke(true)
+        }
+
+    } catch (e: Exception) {
+        callback?.invoke(false)
+        showErrorToast(e)
+    }
+}
+
+
 fun Context.createDocumentUriUsingFirstParentTreeUri(fullPath: String): Uri {
     val storageId = getSAFStorageId(fullPath)
     val relativePath = when {
@@ -888,6 +922,7 @@ fun Context.isRestrictedWithSAFSdk30(path: String): Boolean {
         DIRS_INACCESSIBLE_WITH_SAF_SDK_30.any { firstParentDir.equals(it, true) }
     return isRPlus() && (isInvalidName || (isDirectory && isARestrictedDirectory))
 }
+
 
 val Context.otgPath: String get() = baseConfig.OTGPath
 

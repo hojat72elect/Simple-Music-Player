@@ -46,8 +46,13 @@ android {
     }
 
     buildFeatures {
+        compose = true
         viewBinding = true
         buildConfig = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     buildTypes {
@@ -108,7 +113,12 @@ dependencies {
     implementation(libs.lottie)
     implementation(libs.m3u.parser)
     implementation(libs.autofittextview)
+    implementation(libs.bundles.compose)
     implementation(libs.jaudiotagger)
+    implementation(libs.androidx.ui.android)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.ui.viewbinding)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     implementation(libs.bundles.room)

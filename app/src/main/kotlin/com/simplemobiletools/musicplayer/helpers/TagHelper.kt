@@ -3,7 +3,7 @@ package com.simplemobiletools.musicplayer.helpers
 import android.content.ContentUris
 import android.content.ContentValues
 import android.provider.MediaStore
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.getFilenameExtension
 import com.simplemobiletools.musicplayer.extensions.getFilenameFromPath
 import com.simplemobiletools.musicplayer.extensions.getTempFile

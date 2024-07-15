@@ -7,8 +7,7 @@ import android.view.View
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.PopupMenu
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.getPopupMenuTheme
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.humanizePath
