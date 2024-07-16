@@ -4,25 +4,25 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
-import com.simplemobiletools.commons.dialogs.RadioGroupDialog
-import com.simplemobiletools.musicplayer.extensions.viewBinding
-import com.simplemobiletools.musicplayer.extensions.updateTextColors
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
-import com.simplemobiletools.musicplayer.extensions.beGoneIf
-import com.simplemobiletools.musicplayer.extensions.launchPurchaseThankYouIntent
-import com.simplemobiletools.musicplayer.extensions.getCustomizeColorsString
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.helpers.isTiramisuPlus
-import com.simplemobiletools.commons.models.RadioItem
+import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivitySettingsBinding
 import com.simplemobiletools.musicplayer.dialogs.ManageVisibleTabsDialog
+import com.simplemobiletools.musicplayer.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.extensions.getCustomizeColorsString
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
+import com.simplemobiletools.musicplayer.extensions.launchPurchaseThankYouIntent
 import com.simplemobiletools.musicplayer.extensions.sendCommand
+import com.simplemobiletools.musicplayer.extensions.updateTextColors
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.SHOW_FILENAME_ALWAYS
 import com.simplemobiletools.musicplayer.helpers.SHOW_FILENAME_IF_UNAVAILABLE
 import com.simplemobiletools.musicplayer.helpers.SHOW_FILENAME_NEVER
@@ -39,7 +39,12 @@ class SettingsActivity : SimpleControllerActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        updateMaterialActivityViews(binding.settingsCoordinator, binding.settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+        updateMaterialActivityViews(
+            binding.settingsCoordinator,
+            binding.settingsHolder,
+            useTransparentNavigation = true,
+            useTopSearchMenu = false
+        )
         setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsToolbar)
     }
 
@@ -60,7 +65,11 @@ class SettingsActivity : SimpleControllerActivity() {
         setupGaplessPlayback()
         updateTextColors(binding.settingsNestedScrollview)
 
-        arrayOf(binding.settingsColorCustomizationSectionLabel, binding.settingsGeneralSettingsLabel, binding.settingsPlaybackSectionLabel).forEach {
+        arrayOf(
+            binding.settingsColorCustomizationSectionLabel,
+            binding.settingsGeneralSettingsLabel,
+            binding.settingsPlaybackSectionLabel
+        ).forEach {
             it.setTextColor(getProperPrimaryColor())
         }
     }
@@ -119,9 +128,9 @@ class SettingsActivity : SimpleControllerActivity() {
         settingsShowFilename.text = getReplaceTitleText()
         settingsShowFilenameHolder.setOnClickListener {
             val items = arrayListOf(
-                RadioItem(SHOW_FILENAME_NEVER, getString(com.simplemobiletools.commons.R.string.never)),
+                RadioItem(SHOW_FILENAME_NEVER, getString(R.string.never)),
                 RadioItem(SHOW_FILENAME_IF_UNAVAILABLE, getString(R.string.title_is_not_available)),
-                RadioItem(SHOW_FILENAME_ALWAYS, getString(com.simplemobiletools.commons.R.string.always))
+                RadioItem(SHOW_FILENAME_ALWAYS, getString(R.string.always))
             )
 
             RadioGroupDialog(this@SettingsActivity, items, config.showFilename) {
@@ -134,9 +143,9 @@ class SettingsActivity : SimpleControllerActivity() {
 
     private fun getReplaceTitleText() = getString(
         when (config.showFilename) {
-            SHOW_FILENAME_NEVER -> com.simplemobiletools.commons.R.string.never
+            SHOW_FILENAME_NEVER -> R.string.never
             SHOW_FILENAME_IF_UNAVAILABLE -> R.string.title_is_not_available
-            else -> com.simplemobiletools.commons.R.string.always
+            else -> R.string.always
         }
     )
 

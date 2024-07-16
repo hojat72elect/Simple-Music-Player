@@ -174,7 +174,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
                 if (track != null) {
                     prepareAndPlay(listOf(track), startActivity = false)
                 } else {
-                    toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
+                    toast(R.string.unknown_error_occurred)
                     finish()
                 }
             }
@@ -217,7 +217,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
         binding.nextTrackLabel.text = "${getString(R.string.next_track)} ${track.title}$artist"
 
         getTrackCoverArt(track) { coverArt ->
-            val cornerRadius = resources.getDimension(com.simplemobiletools.commons.R.dimen.rounded_corner_radius_small).toInt()
+            val cornerRadius = resources.getDimension(R.dimen.rounded_corner_radius_small).toInt()
             val wantedSize = resources.getDimension(R.dimen.song_image_size).toInt()
 
             // change cover image manually only once loaded successfully to avoid blinking at fails and placeholders

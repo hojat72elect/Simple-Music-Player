@@ -1,5 +1,6 @@
 package com.simplemobiletools.musicplayer.helpers
 
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.extensions.toast
@@ -25,7 +26,7 @@ class M3uExporter(val activity: BaseSimpleActivity) {
             return
         }
 
-        activity.toast(com.simplemobiletools.commons.R.string.exporting)
+        activity.toast(R.string.exporting)
 
         try {
             outputStream.bufferedWriter().use { out ->

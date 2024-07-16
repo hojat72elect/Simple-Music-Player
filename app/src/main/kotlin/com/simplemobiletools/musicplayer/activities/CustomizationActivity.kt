@@ -12,7 +12,7 @@ import com.simplemobiletools.commons.dialogs.ConfirmationAdvancedDialog
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.dialogs.LineColorPickerDialog
 import com.simplemobiletools.commons.dialogs.PurchaseThankYouDialog
-import com.simplemobiletools.commons.dialogs.RadioGroupDialog
+import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.commons.extensions.baseConfig
 import com.simplemobiletools.commons.extensions.beGone
@@ -40,7 +40,7 @@ import com.simplemobiletools.commons.helpers.SAVE_DISCARD_PROMPT_INTERVAL
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isSPlus
 import com.simplemobiletools.commons.models.MyTheme
-import com.simplemobiletools.commons.models.RadioItem
+import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.commons.models.SharedTheme
 
 class CustomizationActivity : BaseSimpleActivity() {

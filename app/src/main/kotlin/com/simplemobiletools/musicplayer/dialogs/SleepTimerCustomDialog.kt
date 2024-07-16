@@ -2,25 +2,27 @@ package com.simplemobiletools.musicplayer.dialogs
 
 import android.app.Activity
 import androidx.appcompat.app.AlertDialog
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.DialogCustomSleepTimerPickerBinding
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.extensions.showKeyboard
 import com.simplemobiletools.musicplayer.extensions.value
-import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.extensions.viewBinding
-import com.simplemobiletools.musicplayer.databinding.DialogCustomSleepTimerPickerBinding
 
 class SleepTimerCustomDialog(val activity: Activity, val callback: (seconds: Int) -> Unit) {
     private var dialog: AlertDialog? = null
     private val binding by activity.viewBinding(DialogCustomSleepTimerPickerBinding::inflate)
 
     init {
-        binding.minutesHint.hint = activity.getString(com.simplemobiletools.commons.R.string.minutes_raw).replaceFirstChar { it.uppercaseChar() }
+        binding.minutesHint.hint =
+            activity.getString(R.string.minutes_raw).replaceFirstChar { it.uppercaseChar() }
         activity.getAlertDialogBuilder()
-            .setPositiveButton(com.simplemobiletools.commons.R.string.ok) { _, _ -> dialogConfirmed() }
-            .setNegativeButton(com.simplemobiletools.commons.R.string.cancel, null)
+            .setPositiveButton(R.string.ok) { _, _ -> dialogConfirmed() }
+            .setNegativeButton(R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this, com.simplemobiletools.commons.R.string.sleep_timer) { alertDialog ->
+                activity.setupDialogStuff(binding.root, this, R.string.sleep_timer) { alertDialog ->
                     dialog = alertDialog
                     alertDialog.showKeyboard(binding.minutes)
                 }

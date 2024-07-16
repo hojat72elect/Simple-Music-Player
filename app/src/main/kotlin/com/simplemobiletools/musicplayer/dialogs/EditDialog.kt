@@ -1,10 +1,10 @@
 package com.simplemobiletools.musicplayer.dialogs
 
 import androidx.appcompat.app.AlertDialog
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogRenameSongBinding
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.beGone
@@ -46,8 +46,8 @@ class EditDialog(
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(com.simplemobiletools.commons.R.string.ok, null)
-            .setNegativeButton(com.simplemobiletools.commons.R.string.cancel, null)
+            .setPositiveButton(R.string.ok, null)
+            .setNegativeButton(R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this, R.string.rename_song) { alertDialog ->
                     alertDialog.showKeyboard(binding.title)
@@ -127,7 +127,7 @@ class EditDialog(
                     }
                 }
             } catch (e: Exception) {
-                activity.toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
+                activity.toast(R.string.unknown_error_occurred)
             }
         }
     }

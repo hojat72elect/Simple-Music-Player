@@ -26,7 +26,7 @@ import com.simplemobiletools.musicplayer.extensions.isGif
 import com.simplemobiletools.musicplayer.extensions.isPathOnOTG
 import com.simplemobiletools.musicplayer.extensions.isRestrictedSAFOnlyRoot
 import com.simplemobiletools.commons.helpers.getFilePlaceholderDrawables
-import com.simplemobiletools.commons.models.FileDirItem
+import com.simplemobiletools.musicplayer.models.FileDirItem
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import java.util.Locale

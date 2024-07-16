@@ -6,5 +6,6 @@
     <color name="theme_light_text_color">@color/md_grey_800_dark</color>
     <color name="theme_dark_background_color">@color/md_grey_800_dark</color>
     <color name="theme_light_background_color">@color/md_grey_white</color>
+    <color name="default_widget_text_color">@color/color_primary</color>
 
 </resources>

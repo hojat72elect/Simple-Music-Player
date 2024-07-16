@@ -75,7 +75,7 @@ class AlbumsActivity : SimpleMusicActivity() {
                                 prepareAndPlay(albumTracks, startIndex)
                             } else {
                                 PermissionRequiredDialog(this,
-                                    com.simplemobiletools.commons.R.string.allow_notifications_music_player,
+                                    R.string.allow_notifications_music_player,
                                     { openNotificationSettings() })
                             }
                         }

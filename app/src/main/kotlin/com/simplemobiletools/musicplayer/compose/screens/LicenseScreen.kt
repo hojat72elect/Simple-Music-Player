@@ -49,7 +49,7 @@ import com.simplemobiletools.commons.helpers.LICENSE_SMS_MMS
 import com.simplemobiletools.commons.helpers.LICENSE_STETHO
 import com.simplemobiletools.commons.helpers.LICENSE_SUBSAMPLING
 import com.simplemobiletools.commons.helpers.LICENSE_ZIP4J
-import com.simplemobiletools.commons.models.License
+import com.simplemobiletools.musicplayer.models.License
 import com.simplemobiletools.musicplayer.helpers.LICENSE_KOTLIN
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList

@@ -56,7 +56,7 @@ class PlaylistsFragment(context: Context, attributeSet: AttributeSet) :
                 binding.playlistsPlaceholder.text = if (scanning) {
                     context.getString(R.string.loading_files)
                 } else {
-                    context.getString(com.simplemobiletools.commons.R.string.no_items_found)
+                    context.getString(R.string.no_items_found)
                 }
                 binding.playlistsPlaceholder.beVisibleIf(playlists.isEmpty())
                 binding.playlistsPlaceholder2.beVisibleIf(playlists.isEmpty() && !scanning)

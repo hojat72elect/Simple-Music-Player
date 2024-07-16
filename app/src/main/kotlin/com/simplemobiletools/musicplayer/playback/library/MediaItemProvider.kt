@@ -209,7 +209,7 @@ internal class MediaItemProvider(private val context: Context) {
 
     private fun buildRoot() {
         val root = buildMediaItem(
-            title = context.getString(com.simplemobiletools.commons.R.string.root),
+            title = context.getString(R.string.root),
             mediaId = SMP_ROOT_ID,
             mediaType = MediaMetadata.MEDIA_TYPE_FOLDER_MIXED
         )

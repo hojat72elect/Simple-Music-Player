@@ -13,23 +13,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.simplemobiletools.musicplayer.dialogs.FilePickerDialog
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.extensions.showErrorToast
-import com.simplemobiletools.musicplayer.extensions.underlineText
-import com.simplemobiletools.musicplayer.extensions.beGone
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
-import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
-import com.simplemobiletools.musicplayer.extensions.isAudioFast
-import com.simplemobiletools.musicplayer.extensions.toast
-import com.simplemobiletools.musicplayer.extensions.rescanPaths
-import com.simplemobiletools.musicplayer.extensions.beGoneIf
-import com.simplemobiletools.musicplayer.extensions.toFileDirItem
-import com.simplemobiletools.musicplayer.extensions.getFileOutputStream
-import com.simplemobiletools.musicplayer.extensions.openNotificationSettings
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.commons.helpers.NavigationIcon
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isOreoPlus
@@ -44,30 +28,46 @@ import com.simplemobiletools.musicplayer.adapters.TracksHeaderAdapter
 import com.simplemobiletools.musicplayer.databinding.ActivityTracksBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
 import com.simplemobiletools.musicplayer.dialogs.ExportPlaylistDialog
+import com.simplemobiletools.musicplayer.dialogs.FilePickerDialog
+import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.audioHelper
+import com.simplemobiletools.musicplayer.extensions.beGone
+import com.simplemobiletools.musicplayer.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.extensions.getFileOutputStream
 import com.simplemobiletools.musicplayer.extensions.getFolderTracks
 import com.simplemobiletools.musicplayer.extensions.getMediaStoreIdFromPath
-import com.simplemobiletools.musicplayer.helpers.PLAYLIST
-import com.simplemobiletools.musicplayer.helpers.ALBUM
-import com.simplemobiletools.musicplayer.helpers.GENRE
-import com.simplemobiletools.musicplayer.helpers.FOLDER
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.isAudioFast
+import com.simplemobiletools.musicplayer.extensions.openNotificationSettings
+import com.simplemobiletools.musicplayer.extensions.rescanPaths
+import com.simplemobiletools.musicplayer.extensions.showErrorToast
+import com.simplemobiletools.musicplayer.extensions.toFileDirItem
+import com.simplemobiletools.musicplayer.extensions.toast
+import com.simplemobiletools.musicplayer.extensions.underlineText
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.ACTIVITY_PLAYLIST_FOLDER
-import com.simplemobiletools.musicplayer.helpers.RoomHelper
-import com.simplemobiletools.musicplayer.helpers.MIME_TYPE_M3U
-import com.simplemobiletools.musicplayer.helpers.getPermissionToRequest
+import com.simplemobiletools.musicplayer.helpers.ALBUM
+import com.simplemobiletools.musicplayer.helpers.FOLDER
+import com.simplemobiletools.musicplayer.helpers.GENRE
 import com.simplemobiletools.musicplayer.helpers.M3uExporter
 import com.simplemobiletools.musicplayer.helpers.M3uExporter.ExportResult
-import com.simplemobiletools.musicplayer.models.Track
-import com.simplemobiletools.musicplayer.models.Events
-import com.simplemobiletools.musicplayer.models.sortSafely
-import com.simplemobiletools.musicplayer.models.AlbumHeader
-import com.simplemobiletools.musicplayer.models.ListItem
-import com.simplemobiletools.musicplayer.models.Genre
+import com.simplemobiletools.musicplayer.helpers.MIME_TYPE_M3U
+import com.simplemobiletools.musicplayer.helpers.PLAYLIST
+import com.simplemobiletools.musicplayer.helpers.RoomHelper
+import com.simplemobiletools.musicplayer.helpers.getPermissionToRequest
 import com.simplemobiletools.musicplayer.models.Album
+import com.simplemobiletools.musicplayer.models.AlbumHeader
+import com.simplemobiletools.musicplayer.models.Events
+import com.simplemobiletools.musicplayer.models.Genre
+import com.simplemobiletools.musicplayer.models.ListItem
 import com.simplemobiletools.musicplayer.models.Playlist
-import org.greenrobot.eventbus.EventBus
+import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.models.sortSafely
 import java.io.OutputStream
+import org.greenrobot.eventbus.EventBus
 
 // this activity is used for displaying Playlist and Folder tracks, also Album tracks with a possible album header at the top
 // Artists -> Albums -> Tracks
@@ -91,7 +91,12 @@ class TracksActivity : SimpleMusicActivity() {
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(binding.tracksCoordinator, binding.tracksHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+        updateMaterialActivityViews(
+            binding.tracksCoordinator,
+            binding.tracksHolder,
+            useTransparentNavigation = true,
+            useTopSearchMenu = false
+        )
         setupMaterialScrollListener(binding.tracksList, binding.tracksToolbar)
 
         val properPrimaryColor = getProperPrimaryColor()
@@ -166,19 +171,21 @@ class TracksActivity : SimpleMusicActivity() {
             })
         }
 
-        MenuItemCompat.setOnActionExpandListener(searchMenuItem, object : MenuItemCompat.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                onSearchOpened()
-                isSearchOpen = true
-                return true
-            }
+        MenuItemCompat.setOnActionExpandListener(
+            searchMenuItem,
+            object : MenuItemCompat.OnActionExpandListener {
+                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                    onSearchOpened()
+                    isSearchOpen = true
+                    return true
+                }
 
-            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                onSearchClosed()
-                isSearchOpen = false
-                return true
-            }
-        })
+                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                    onSearchClosed()
+                    isSearchOpen = false
+                    return true
+                }
+            })
     }
 
     private fun refreshTracks() {
@@ -229,7 +236,15 @@ class TracksActivity : SimpleMusicActivity() {
                     val albumTracks = audioHelper.getAlbumTracks(album.id)
                     tracks.addAll(albumTracks)
 
-                    val header = AlbumHeader(album.id, album.title, album.coverArt, album.year, tracks.size, tracks.sumOf { it.duration }, album.artist)
+                    val header = AlbumHeader(
+                        album.id,
+                        album.title,
+                        album.coverArt,
+                        album.year,
+                        tracks.size,
+                        tracks.sumOf { it.duration },
+                        album.artist
+                    )
                     listItems.add(header)
                     listItems.addAll(tracks)
                 }
@@ -321,7 +336,7 @@ class TracksActivity : SimpleMusicActivity() {
                 if (path.isAudioFast()) {
                     addTrackFromPath(path, true)
                 } else {
-                    toast(com.simplemobiletools.commons.R.string.invalid_file_format)
+                    toast(R.string.invalid_file_format)
                 }
             }
         }
@@ -335,7 +350,7 @@ class TracksActivity : SimpleMusicActivity() {
                     addTrackFromPath(path, false)
                 }
             } else {
-                toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
+                toast(R.string.unknown_error_occurred)
             }
         } else {
             var track = audioHelper.getTrack(mediaStoreId)
@@ -406,7 +421,10 @@ class TracksActivity : SimpleMusicActivity() {
                 val startIndex = tracks.indexOf(track)
                 prepareAndPlay(tracks, startIndex)
             } else {
-                PermissionRequiredDialog(this, com.simplemobiletools.commons.R.string.allow_notifications_music_player, { openNotificationSettings() })
+                PermissionRequiredDialog(
+                    this,
+                    R.string.allow_notifications_music_player,
+                    { openNotificationSettings() })
             }
         }
     }
@@ -422,7 +440,7 @@ class TracksActivity : SimpleMusicActivity() {
                     try {
                         startActivityForResult(this, PICK_EXPORT_FILE_INTENT)
                     } catch (e: ActivityNotFoundException) {
-                        toast(com.simplemobiletools.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
+                        toast(R.string.system_service_disabled, Toast.LENGTH_LONG)
                     } catch (e: Exception) {
                         showErrorToast(e)
                     }
@@ -444,16 +462,16 @@ class TracksActivity : SimpleMusicActivity() {
     private fun exportPlaylistTo(outputStream: OutputStream?) {
         val tracks = getTracksAdapter()?.items
         if (tracks.isNullOrEmpty()) {
-            toast(com.simplemobiletools.commons.R.string.no_entries_for_exporting)
+            toast(R.string.no_entries_for_exporting)
             return
         }
 
         M3uExporter(this).exportPlaylist(outputStream, tracks) { result ->
             toast(
                 when (result) {
-                    ExportResult.EXPORT_OK -> com.simplemobiletools.commons.R.string.exporting_successful
-                    ExportResult.EXPORT_PARTIAL -> com.simplemobiletools.commons.R.string.exporting_some_entries_failed
-                    else -> com.simplemobiletools.commons.R.string.exporting_failed
+                    ExportResult.EXPORT_OK -> R.string.exporting_successful
+                    ExportResult.EXPORT_PARTIAL -> R.string.exporting_some_entries_failed
+                    else -> R.string.exporting_failed
                 }
             )
         }

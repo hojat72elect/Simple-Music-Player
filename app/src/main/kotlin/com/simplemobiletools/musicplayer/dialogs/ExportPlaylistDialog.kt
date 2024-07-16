@@ -53,18 +53,18 @@ class ExportPlaylistDialog(
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(com.simplemobiletools.commons.R.string.ok, null)
-            .setNegativeButton(com.simplemobiletools.commons.R.string.cancel, null)
+            .setPositiveButton(R.string.ok, null)
+            .setNegativeButton(R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this, R.string.export_playlist) { alertDialog ->
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val filename = binding.exportPlaylistFilename.value
                         when {
-                            filename.isEmpty() -> activity.toast(com.simplemobiletools.commons.R.string.empty_name)
+                            filename.isEmpty() -> activity.toast(R.string.empty_name)
                             filename.isAValidFilename() -> {
                                 val file = File(realPath, "$filename.m3u")
                                 if (!hidePath && file.exists()) {
-                                    activity.toast(com.simplemobiletools.commons.R.string.name_taken)
+                                    activity.toast(R.string.name_taken)
                                     return@setOnClickListener
                                 }
 
@@ -76,7 +76,7 @@ class ExportPlaylistDialog(
                                 }
                             }
 
-                            else -> activity.toast(com.simplemobiletools.commons.R.string.invalid_name)
+                            else -> activity.toast(R.string.invalid_name)
                         }
                     }
                 }

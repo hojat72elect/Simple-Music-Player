@@ -14,8 +14,8 @@ class RemovePlaylistDialog(val activity: Activity, val playlist: Playlist? = nul
     init {
         binding.removePlaylistDescription.text = getDescriptionText()
         activity.getAlertDialogBuilder()
-            .setPositiveButton(com.simplemobiletools.commons.R.string.ok) { _, _ -> callback(binding.removePlaylistCheckbox.isChecked) }
-            .setNegativeButton(com.simplemobiletools.commons.R.string.cancel, null)
+            .setPositiveButton(R.string.ok) { _, _ -> callback(binding.removePlaylistCheckbox.isChecked) }
+            .setNegativeButton(R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this, R.string.remove_playlist)
             }

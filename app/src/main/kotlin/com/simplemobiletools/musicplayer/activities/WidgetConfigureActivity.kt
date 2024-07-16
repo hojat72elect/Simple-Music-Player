@@ -9,18 +9,18 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
-import com.simplemobiletools.musicplayer.extensions.viewBinding
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
-import com.simplemobiletools.musicplayer.extensions.onSeekBarChangeListener
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.adjustAlpha
-import com.simplemobiletools.musicplayer.extensions.setFillWithStroke
-import com.simplemobiletools.musicplayer.extensions.getContrastColor
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.WidgetConfigBinding
+import com.simplemobiletools.musicplayer.extensions.adjustAlpha
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
+import com.simplemobiletools.musicplayer.extensions.onSeekBarChangeListener
+import com.simplemobiletools.musicplayer.extensions.setFillWithStroke
+import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.MyWidgetProvider
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 
@@ -42,7 +42,8 @@ class WidgetConfigureActivity : SimpleActivity() {
         initVariables()
 
         val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
-        mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
+        mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID)
+            ?: AppWidgetManager.INVALID_APPWIDGET_ID
 
         if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID && !isCustomizingColors) {
             finish()
@@ -60,8 +61,8 @@ class WidgetConfigureActivity : SimpleActivity() {
                 songInfoTitle.text = currSong.title
                 songInfoArtist.text = currSong.artist
             } else {
-                songInfoTitle.text = getString(com.simplemobiletools.commons.R.string.artist)
-                songInfoArtist.text = getString(com.simplemobiletools.commons.R.string.song_title)
+                songInfoTitle.text = getString(R.string.artist)
+                songInfoArtist.text = getString(R.string.song_title)
             }
         }
 
@@ -85,7 +86,8 @@ class WidgetConfigureActivity : SimpleActivity() {
         mBgColor = config.widgetBgColor
         mBgAlpha = Color.alpha(mBgColor) / 255.toFloat()
 
-        mBgColorWithoutTransparency = Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
+        mBgColorWithoutTransparency =
+            Color.rgb(Color.red(mBgColor), Color.green(mBgColor), Color.blue(mBgColor))
         binding.configBgSeekbar.progress = (mBgAlpha * 100).toInt()
         updateBackgroundColor()
         binding.configBgSeekbar.onSeekBarChangeListener { progress ->
@@ -94,8 +96,8 @@ class WidgetConfigureActivity : SimpleActivity() {
         }
 
         mTextColor = config.widgetTextColor
-        if (mTextColor == resources.getColor(com.simplemobiletools.commons.R.color.default_widget_text_color) && config.isUsingSystemTheme) {
-            mTextColor = resources.getColor(com.simplemobiletools.commons.R.color.you_primary_color, theme)
+        if (mTextColor == resources.getColor(R.color.default_widget_text_color) && config.isUsingSystemTheme) {
+            mTextColor = resources.getColor(R.color.you_primary_color, theme)
         }
 
         updateTextColor()
@@ -131,7 +133,12 @@ class WidgetConfigureActivity : SimpleActivity() {
     }
 
     private fun requestWidgetUpdate() {
-        Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyWidgetProvider::class.java).apply {
+        Intent(
+            AppWidgetManager.ACTION_APPWIDGET_UPDATE,
+            null,
+            this,
+            MyWidgetProvider::class.java
+        ).apply {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(mWidgetId))
             sendBroadcast(this)
         }

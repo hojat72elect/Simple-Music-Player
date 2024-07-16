@@ -12,7 +12,7 @@ import com.simplemobiletools.musicplayer.extensions.getPopupMenuTheme
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.humanizePath
 import com.simplemobiletools.musicplayer.extensions.setupViewBackground
-import com.simplemobiletools.commons.interfaces.RefreshRecyclerViewListener
+import com.simplemobiletools.musicplayer.interfaces.RefreshRecyclerViewListener
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.databinding.ItemExcludedFolderBinding
 import com.simplemobiletools.musicplayer.extensions.config

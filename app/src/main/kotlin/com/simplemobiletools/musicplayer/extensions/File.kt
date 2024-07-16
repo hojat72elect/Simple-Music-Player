@@ -6,7 +6,7 @@ import com.simplemobiletools.commons.helpers.audioExtensions
 import com.simplemobiletools.commons.helpers.photoExtensions
 import com.simplemobiletools.commons.helpers.rawExtensions
 import com.simplemobiletools.commons.helpers.videoExtensions
-import com.simplemobiletools.commons.models.FileDirItem
+import com.simplemobiletools.musicplayer.models.FileDirItem
 import java.io.File
 
 fun File.toFileDirItem(context: Context) = FileDirItem(absolutePath, name, context.getIsPathDirectory(absolutePath), 0, length(), lastModified())

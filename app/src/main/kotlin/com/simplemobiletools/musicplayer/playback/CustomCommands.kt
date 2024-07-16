@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.media3.session.CommandButton
 import androidx.media3.session.SessionCommand
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.helpers.PATH
 
 /**
@@ -31,9 +32,9 @@ internal val customCommands = CustomCommands.values().map { it.sessionCommand }
 internal fun Context.getCustomLayout(): List<CommandButton> {
     return listOf(
         CommandButton.Builder()
-            .setDisplayName(getString(com.simplemobiletools.commons.R.string.close))
+            .setDisplayName(getString(R.string.close))
             .setSessionCommand(CustomCommands.CLOSE_PLAYER.sessionCommand)
-            .setIconResId(com.simplemobiletools.commons.R.drawable.ic_cross_vector)
+            .setIconResId(R.drawable.ic_cross_vector)
             .build()
     )
 }

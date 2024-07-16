@@ -3,30 +3,31 @@ package com.simplemobiletools.musicplayer.fragments
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
-import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
-import com.simplemobiletools.musicplayer.extensions.beGoneIf
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
-import com.simplemobiletools.musicplayer.extensions.getParentPath
-import com.simplemobiletools.musicplayer.extensions.hideKeyboard
-import com.simplemobiletools.musicplayer.extensions.openNotificationSettings
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
 import com.simplemobiletools.musicplayer.adapters.TracksAdapter
 import com.simplemobiletools.musicplayer.databinding.FragmentTracksBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
+import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.audioHelper
+import com.simplemobiletools.musicplayer.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.extensions.getParentPath
+import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.extensions.mediaScanner
+import com.simplemobiletools.musicplayer.extensions.openNotificationSettings
 import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.TAB_TRACKS
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.models.sortSafely
 
 // Artists -> Albums -> Tracks
-class TracksFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
+class TracksFragment(context: Context, attributeSet: AttributeSet) :
+    MyViewPagerFragment(context, attributeSet) {
     private var tracks = ArrayList<Track>()
     private val binding by viewBinding(FragmentTracksBinding::bind)
 
@@ -44,12 +45,17 @@ class TracksFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                 binding.tracksPlaceholder.text = if (scanning) {
                     context.getString(R.string.loading_files)
                 } else {
-                    context.getString(com.simplemobiletools.commons.R.string.no_items_found)
+                    context.getString(R.string.no_items_found)
                 }
                 binding.tracksPlaceholder.beVisibleIf(tracks.isEmpty())
                 val adapter = binding.tracksList.adapter
                 if (adapter == null) {
-                    TracksAdapter(activity = activity, recyclerView = binding.tracksList, sourceType = TracksAdapter.TYPE_TRACKS, items = tracks) {
+                    TracksAdapter(
+                        activity = activity,
+                        recyclerView = binding.tracksList,
+                        sourceType = TracksAdapter.TYPE_TRACKS,
+                        items = tracks
+                    ) {
                         activity.hideKeyboard()
                         activity.handleNotificationPermission { granted ->
                             if (granted) {
@@ -59,7 +65,7 @@ class TracksFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
                                 if (context is Activity) {
                                     PermissionRequiredDialog(
                                         activity,
-                                        com.simplemobiletools.commons.R.string.allow_notifications_music_player,
+                                        R.string.allow_notifications_music_player,
                                         { activity.openNotificationSettings() }
                                     )
                                 }

@@ -33,7 +33,7 @@ import com.simplemobiletools.commons.dialogs.DonateDialog
 import com.simplemobiletools.commons.dialogs.PropertiesDialog
 import com.simplemobiletools.commons.dialogs.RateStarsDialog
 import com.simplemobiletools.commons.dialogs.UpgradeToProDialog
-import com.simplemobiletools.commons.dialogs.WhatsNewDialog
+import com.simplemobiletools.musicplayer.dialogs.WhatsNewDialog
 import com.simplemobiletools.commons.dialogs.WritePermissionDialog
 import com.simplemobiletools.commons.dialogs.WritePermissionDialog.WritePermissionDialogMode
 import com.simplemobiletools.commons.extensions.baseConfig
@@ -42,10 +42,13 @@ import com.simplemobiletools.commons.extensions.deleteFromMediaStore
 import com.simplemobiletools.commons.extensions.getFilenameFromPath
 import com.simplemobiletools.commons.extensions.getInternalStoragePath
 import com.simplemobiletools.commons.extensions.getSomeDocumentFile
+import com.simplemobiletools.commons.extensions.getStoreUrl
 import com.simplemobiletools.commons.extensions.hasProperStoredTreeUri
+import com.simplemobiletools.commons.extensions.hideKeyboard
 import com.simplemobiletools.commons.extensions.isAccessibleWithSAFSdk30
 import com.simplemobiletools.commons.extensions.isPathOnInternalStorage
 import com.simplemobiletools.commons.extensions.isRestrictedSAFOnlyRoot
+import com.simplemobiletools.commons.extensions.launchViewIntent
 import com.simplemobiletools.commons.extensions.needsStupidWritePermissions
 import com.simplemobiletools.commons.extensions.renameAndroidSAFDocument
 import com.simplemobiletools.commons.extensions.renameDocumentSdk30
@@ -65,8 +68,8 @@ import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isOnMainThread
 import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.commons.models.Android30RenameFormat
-import com.simplemobiletools.commons.models.FileDirItem
-import com.simplemobiletools.commons.models.Release
+import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.models.Release
 import com.simplemobiletools.commons.views.MyTextView
 import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
@@ -302,7 +305,10 @@ fun BaseSimpleActivity.isShowingAndroidSAFDialog(path: String): Boolean {
     }
 }
 
-private fun BaseSimpleActivity.deleteSdk30(fileDirItem: FileDirItem, callback: ((wasSuccess: Boolean) -> Unit)?) {
+private fun BaseSimpleActivity.deleteSdk30(
+    fileDirItem: FileDirItem,
+    callback: ((wasSuccess: Boolean) -> Unit)?
+) {
     val fileUris = getFileUrisFromFileDirItems(arrayListOf(fileDirItem))
     deleteSDK30Uris(fileUris) { success ->
         runOnUiThread {
@@ -342,7 +348,8 @@ fun BaseSimpleActivity.deleteFileBg(
             return
         }
 
-        var fileDeleted = !isPathOnOTG(path) && ((!file.exists() && file.length() == 0L) || file.delete())
+        var fileDeleted =
+            !isPathOnOTG(path) && ((!file.exists() && file.length() == 0L) || file.delete())
         if (fileDeleted) {
             deleteFromMediaStore(path) { needsRescan ->
                 if (needsRescan) {
@@ -608,11 +615,11 @@ fun BaseSimpleActivity.isShowingSAFDialog(path: String): Boolean {
                             checkedDocumentPath = path
                         } catch (e: ActivityNotFoundException) {
                             toast(
-                                com.simplemobiletools.commons.R.string.system_service_disabled,
+                                R.string.system_service_disabled,
                                 Toast.LENGTH_LONG
                             )
                         } catch (e: Exception) {
-                            toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
+                            toast(R.string.unknown_error_occurred)
                         }
                     }
                 }
@@ -1278,5 +1285,13 @@ fun Activity.launchUpgradeToProIntent() {
     }
 }
 
+fun Activity.redirectToRateUs() {
+    hideKeyboard()
+    try {
+        launchViewIntent("market://details?id=${packageName.removeSuffix(".debug")}")
+    } catch (ignored: ActivityNotFoundException) {
+        launchViewIntent(getStoreUrl())
+    }
+}
 
 fun Activity.launchViewIntent(id: Int) = launchViewIntent(getString(id))

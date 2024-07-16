@@ -9,11 +9,8 @@ import androidx.media3.session.MediaController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.interfaces.ItemMoveCallback
-import com.simplemobiletools.commons.interfaces.ItemTouchHelperContract
-import com.simplemobiletools.commons.interfaces.StartReorderDragListener
+import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
@@ -32,6 +29,8 @@ import com.simplemobiletools.musicplayer.extensions.shuffledMediaItemsIndices
 import com.simplemobiletools.musicplayer.extensions.swap
 import com.simplemobiletools.musicplayer.extensions.toTrack
 import com.simplemobiletools.musicplayer.helpers.EXTRA_SHUFFLE_INDICES
+import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
+import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 
@@ -130,8 +129,8 @@ class QueueAdapter(
             context,
             "",
             R.string.delete_song_warning,
-            com.simplemobiletools.commons.R.string.ok,
-            com.simplemobiletools.commons.R.string.cancel
+            R.string.ok,
+            R.string.cancel
         ) {
             val positions = ArrayList<Int>()
             val selectedTracks = getSelectedTracks()
@@ -209,7 +208,6 @@ class QueueAdapter(
         }
     }
 
-    override fun onRowClear(myViewHolder: MyRecyclerViewAdapter.ViewHolder?) {}
 
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
         items.swap(fromPosition, toPosition)
@@ -217,7 +215,9 @@ class QueueAdapter(
         swapMediaItemInQueue(fromPosition, toPosition)
     }
 
-    override fun onRowSelected(myViewHolder: MyRecyclerViewAdapter.ViewHolder?) {}
+    override fun onRowSelected(myViewHolder: com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
+
+    override fun onRowClear(myViewHolder: com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
 
 
     override fun onChange(position: Int) =

@@ -11,7 +11,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.simplemobiletools.commons.databinding.BottomTablayoutItemBinding
-import com.simplemobiletools.commons.dialogs.RadioGroupDialog
+import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.helpers.LICENSE_AUTOFITTEXTVIEW
 import com.simplemobiletools.commons.helpers.LICENSE_EVENT_BUS
 import com.simplemobiletools.commons.helpers.LICENSE_GLIDE
@@ -21,9 +21,9 @@ import com.simplemobiletools.commons.helpers.PERMISSION_READ_STORAGE
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.commons.helpers.isOreoPlus
 import com.simplemobiletools.commons.helpers.isQPlus
-import com.simplemobiletools.commons.models.FAQItem
-import com.simplemobiletools.commons.models.RadioItem
-import com.simplemobiletools.commons.models.Release
+import com.simplemobiletools.musicplayer.models.FAQItem
+import com.simplemobiletools.musicplayer.models.RadioItem
+import com.simplemobiletools.musicplayer.models.Release
 import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.ViewPagerAdapter
@@ -97,7 +97,12 @@ class MainActivity : SimpleMusicActivity() {
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
-        updateMaterialActivityViews(binding.mainCoordinator, binding.mainHolder, useTransparentNavigation = false, useTopSearchMenu = true)
+        updateMaterialActivityViews(
+            binding.mainCoordinator,
+            binding.mainHolder,
+            useTransparentNavigation = false,
+            useTopSearchMenu = true
+        )
         storeStateVariables()
         setupTabs()
         setupCurrentTrackBar(binding.currentTrackBar.root)
@@ -106,7 +111,7 @@ class MainActivity : SimpleMusicActivity() {
             if (it) {
                 initActivity()
             } else {
-                toast(com.simplemobiletools.commons.R.string.no_storage_permissions)
+                toast(R.string.no_storage_permissions)
                 finish()
             }
         }
@@ -168,7 +173,8 @@ class MainActivity : SimpleMusicActivity() {
             findItem(R.id.create_new_playlist).isVisible = isPlaylistFragment
             findItem(R.id.create_playlist_from_folder).isVisible = isPlaylistFragment
             findItem(R.id.import_playlist).isVisible = isPlaylistFragment && isOreoPlus()
-            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations)
+            findItem(R.id.more_apps_from_us).isVisible =
+                !resources.getBoolean(R.bool.hide_google_relations)
         }
     }
 
@@ -261,7 +267,12 @@ class MainActivity : SimpleMusicActivity() {
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
 
             override fun onPageSelected(position: Int) {
                 binding.mainTabsHolder.getTabAt(position)?.select()
@@ -277,13 +288,14 @@ class MainActivity : SimpleMusicActivity() {
     private fun setupTabs() {
         binding.mainTabsHolder.removeAllTabs()
         getVisibleTabs().forEach { value ->
-            binding.mainTabsHolder.newTab().setCustomView(com.simplemobiletools.commons.R.layout.bottom_tablayout_item).apply {
-                val tabItemBinding = BottomTablayoutItemBinding.bind(customView!!)
-                tabItemBinding.tabItemIcon.setImageDrawable(getTabIcon(value))
-                tabItemBinding.tabItemLabel.text = getTabLabel(value)
-                AutofitHelper.create(tabItemBinding.tabItemLabel)
-                binding.mainTabsHolder.addTab(this)
-            }
+            binding.mainTabsHolder.newTab()
+                .setCustomView(com.simplemobiletools.commons.R.layout.bottom_tablayout_item).apply {
+                    val tabItemBinding = BottomTablayoutItemBinding.bind(customView!!)
+                    tabItemBinding.tabItemIcon.setImageDrawable(getTabIcon(value))
+                    tabItemBinding.tabItemLabel.text = getTabLabel(value)
+                    AutofitHelper.create(tabItemBinding.tabItemLabel)
+                    binding.mainTabsHolder.addTab(this)
+                }
         }
 
         binding.mainTabsHolder.onTabSelectionChanged(
@@ -314,7 +326,8 @@ class MainActivity : SimpleMusicActivity() {
         updateNavigationBarColor(bottomBarColor)
     }
 
-    private fun getInactiveTabIndexes(activeIndex: Int) = (0 until tabsList.size).filter { it != activeIndex }
+    private fun getInactiveTabIndexes(activeIndex: Int) =
+        (0 until tabsList.size).filter { it != activeIndex }
 
     private fun getTabIcon(position: Int): Drawable {
         val drawableId = when (position) {
@@ -390,7 +403,7 @@ class MainActivity : SimpleMusicActivity() {
             uri.scheme == "content" -> {
                 val tempFile = getTempFile("imports", uri.path!!.getFilenameFromPath())
                 if (tempFile == null) {
-                    toast(com.simplemobiletools.commons.R.string.unknown_error_occurred)
+                    toast(R.string.unknown_error_occurred)
                     return
                 }
 
@@ -405,7 +418,7 @@ class MainActivity : SimpleMusicActivity() {
                 }
             }
 
-            else -> toast(com.simplemobiletools.commons.R.string.invalid_file_format)
+            else -> toast(R.string.invalid_file_format)
         }
     }
 
@@ -419,7 +432,7 @@ class MainActivity : SimpleMusicActivity() {
                 try {
                     startActivityForResult(this, PICK_IMPORT_SOURCE_INTENT)
                 } catch (e: ActivityNotFoundException) {
-                    toast(com.simplemobiletools.commons.R.string.system_service_disabled, Toast.LENGTH_LONG)
+                    toast(R.string.system_service_disabled, Toast.LENGTH_LONG)
                 } catch (e: Exception) {
                     showErrorToast(e)
                 }
@@ -453,9 +466,9 @@ class MainActivity : SimpleMusicActivity() {
                 runOnUiThread {
                     toast(
                         when (result) {
-                            ImportResult.IMPORT_OK -> com.simplemobiletools.commons.R.string.importing_successful
-                            ImportResult.IMPORT_PARTIAL -> com.simplemobiletools.commons.R.string.importing_some_entries_failed
-                            else -> com.simplemobiletools.commons.R.string.importing_failed
+                            ImportResult.IMPORT_OK -> R.string.importing_successful
+                            ImportResult.IMPORT_PARTIAL -> R.string.importing_some_entries_failed
+                            else -> R.string.importing_failed
                         }
                     )
 
@@ -466,8 +479,8 @@ class MainActivity : SimpleMusicActivity() {
     }
 
     private fun showSleepTimer() {
-        val minutes = getString(com.simplemobiletools.commons.R.string.minutes_raw)
-        val hour = resources.getQuantityString(com.simplemobiletools.commons.R.plurals.hours, 1, 1)
+        val minutes = getString(R.string.minutes_raw)
+        val hour = resources.getQuantityString(R.plurals.hours, 1, 1)
 
         val items = arrayListOf(
             RadioItem(5 * 60, "5 $minutes"),
@@ -479,12 +492,16 @@ class MainActivity : SimpleMusicActivity() {
 
         if (items.none { it.id == config.lastSleepTimerSeconds }) {
             val lastSleepTimerMinutes = config.lastSleepTimerSeconds / 60
-            val text = resources.getQuantityString(com.simplemobiletools.commons.R.plurals.minutes, lastSleepTimerMinutes, lastSleepTimerMinutes)
+            val text = resources.getQuantityString(
+                R.plurals.minutes,
+                lastSleepTimerMinutes,
+                lastSleepTimerMinutes
+            )
             items.add(RadioItem(config.lastSleepTimerSeconds, text))
         }
 
         items.sortBy { it.id }
-        items.add(RadioItem(-1, getString(com.simplemobiletools.commons.R.string.custom)))
+        items.add(RadioItem(-1, getString(R.string.custom)))
 
         RadioGroupDialog(this, items, config.lastSleepTimerSeconds) {
             if (it as Int == -1) {
@@ -561,18 +578,38 @@ class MainActivity : SimpleMusicActivity() {
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_EVENT_BUS or LICENSE_GLIDE or LICENSE_M3U_PARSER or LICENSE_AUTOFITTEXTVIEW
+        val licenses =
+            LICENSE_EVENT_BUS or LICENSE_GLIDE or LICENSE_M3U_PARSER or LICENSE_AUTOFITTEXTVIEW
 
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-            FAQItem(com.simplemobiletools.commons.R.string.faq_1_title_commons, com.simplemobiletools.commons.R.string.faq_1_text_commons),
-            FAQItem(com.simplemobiletools.commons.R.string.faq_4_title_commons, com.simplemobiletools.commons.R.string.faq_4_text_commons),
-            FAQItem(com.simplemobiletools.commons.R.string.faq_9_title_commons, com.simplemobiletools.commons.R.string.faq_9_text_commons)
+            FAQItem(
+                R.string.faq_1_title_commons,
+                R.string.faq_1_text_commons
+            ),
+            FAQItem(
+                R.string.faq_4_title_commons,
+                R.string.faq_4_text_commons
+            ),
+            FAQItem(
+                R.string.faq_9_title_commons,
+                R.string.faq_9_text_commons
+            )
         )
 
-        if (!resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_2_title_commons, com.simplemobiletools.commons.R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_6_title_commons, com.simplemobiletools.commons.R.string.faq_6_text_commons))
+        if (!resources.getBoolean(R.bool.hide_google_relations)) {
+            faqItems.add(
+                FAQItem(
+                    R.string.faq_2_title_commons,
+                    R.string.faq_2_text_commons
+                )
+            )
+            faqItems.add(
+                FAQItem(
+                    R.string.faq_6_title_commons,
+                    R.string.faq_6_text_commons
+                )
+            )
         }
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)

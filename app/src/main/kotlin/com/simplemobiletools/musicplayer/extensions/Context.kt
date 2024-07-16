@@ -105,7 +105,7 @@ import com.simplemobiletools.commons.helpers.isQPlus
 import com.simplemobiletools.commons.helpers.isRPlus
 import com.simplemobiletools.commons.helpers.isSPlus
 import com.simplemobiletools.commons.helpers.proPackages
-import com.simplemobiletools.commons.models.FileDirItem
+import com.simplemobiletools.musicplayer.models.FileDirItem
 import com.simplemobiletools.commons.views.MyAppCompatCheckbox
 import com.simplemobiletools.commons.views.MyAppCompatSpinner
 import com.simplemobiletools.commons.views.MyAutoCompleteTextView

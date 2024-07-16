@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.interfaces.ItemMoveCallback
-import com.simplemobiletools.commons.interfaces.ItemTouchHelperContract
-import com.simplemobiletools.commons.interfaces.StartReorderDragListener
+import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
+import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.commons.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
@@ -33,6 +31,7 @@ import com.simplemobiletools.musicplayer.extensions.swap
 import com.simplemobiletools.musicplayer.helpers.ALL_TRACKS_PLAYLIST_ID
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_CUSTOM
 import com.simplemobiletools.musicplayer.inlines.indexOfFirstOrNull
+import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.models.Track
@@ -254,7 +253,7 @@ class TracksAdapter(
         }
     }
 
-    override fun onRowClear(myViewHolder: MyRecyclerViewAdapter.ViewHolder?) {
+    override fun onRowClear(myViewHolder: com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter.ViewHolder?) {
         ensureBackgroundThread {
             var index = 0
             items.forEach {
@@ -270,7 +269,8 @@ class TracksAdapter(
         notifyItemMoved(fromPosition, toPosition)
     }
 
-    override fun onRowSelected(myViewHolder: MyRecyclerViewAdapter.ViewHolder?) {}
+    override fun onRowSelected(myViewHolder: com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
+
 
     private fun isPlaylistContent() = sourceType == TYPE_PLAYLIST
 

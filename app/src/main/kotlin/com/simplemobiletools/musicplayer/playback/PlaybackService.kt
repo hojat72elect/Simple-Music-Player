@@ -11,6 +11,7 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaLibraryService
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.hasPermission
 import com.simplemobiletools.musicplayer.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.extensions.config
@@ -101,7 +102,7 @@ class PlaybackService : MediaLibraryService(), MediaSessionService.Listener {
      * background.
      */
     override fun onForegroundServiceStartNotAllowedException() {
-        showErrorToast(getString(com.simplemobiletools.commons.R.string.unknown_error_occurred))
+        showErrorToast(getString(R.string.unknown_error_occurred))
         // todo: show a notification instead.
     }
 

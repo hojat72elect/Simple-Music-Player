@@ -20,20 +20,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.net.toUri
-import com.simplemobiletools.commons.activities.ContributorsActivity
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.extensions.rateStarsRedirectAndThankYou
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ConfirmationAdvancedAlertDialog
 import com.simplemobiletools.commons.dialogs.RateStarsAlertDialog
-import com.simplemobiletools.musicplayer.extensions.baseConfig
-import com.simplemobiletools.musicplayer.extensions.getStoreUrl
-import com.simplemobiletools.musicplayer.extensions.launchMoreAppsFromUsIntent
-import com.simplemobiletools.musicplayer.extensions.launchViewIntent
-import com.simplemobiletools.commons.extensions.redirectToRateUs
-import com.simplemobiletools.musicplayer.extensions.showErrorToast
-import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.commons.helpers.APP_FAQ
 import com.simplemobiletools.commons.helpers.APP_ICON_IDS
 import com.simplemobiletools.commons.helpers.APP_LAUNCHER_NAME
@@ -41,8 +33,15 @@ import com.simplemobiletools.commons.helpers.APP_LICENSES
 import com.simplemobiletools.commons.helpers.APP_NAME
 import com.simplemobiletools.commons.helpers.APP_VERSION_NAME
 import com.simplemobiletools.commons.helpers.SHOW_FAQ_BEFORE_MAIL
-import com.simplemobiletools.commons.models.FAQItem
+import com.simplemobiletools.musicplayer.models.FAQItem
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.extensions.baseConfig
+import com.simplemobiletools.musicplayer.extensions.getStoreUrl
+import com.simplemobiletools.musicplayer.extensions.launchMoreAppsFromUsIntent
+import com.simplemobiletools.musicplayer.extensions.launchViewIntent
+import com.simplemobiletools.musicplayer.extensions.redirectToRateUs
+import com.simplemobiletools.musicplayer.extensions.showErrorToast
+import com.simplemobiletools.musicplayer.extensions.toast
 
 class AboutActivity : ComponentActivity() {
     private val appName get() = intent.getStringExtra(APP_NAME) ?: ""
