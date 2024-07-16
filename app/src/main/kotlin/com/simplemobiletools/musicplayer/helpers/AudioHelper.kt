@@ -2,13 +2,12 @@ package com.simplemobiletools.musicplayer.helpers
 
 import android.content.Context
 import com.simplemobiletools.musicplayer.extensions.addBit
-import com.simplemobiletools.musicplayer.extensions.getParentPath
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.extensions.albumsDAO
 import com.simplemobiletools.musicplayer.extensions.artistDAO
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.genresDAO
+import com.simplemobiletools.musicplayer.extensions.getParentPath
 import com.simplemobiletools.musicplayer.extensions.playlistDAO
 import com.simplemobiletools.musicplayer.extensions.queueDAO
 import com.simplemobiletools.musicplayer.extensions.tracksDAO

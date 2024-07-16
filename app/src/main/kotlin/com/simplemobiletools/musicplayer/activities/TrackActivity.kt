@@ -28,7 +28,7 @@ import com.simplemobiletools.musicplayer.extensions.realScreenSize
 import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.extensions.statusBarHeight
 import com.simplemobiletools.musicplayer.extensions.toast
-import com.simplemobiletools.commons.helpers.MEDIUM_ALPHA
+import com.simplemobiletools.musicplayer.helpers.MEDIUM_ALPHA
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivityTrackBinding
 import com.simplemobiletools.musicplayer.extensions.beGone
@@ -239,6 +239,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun setupTopArt(track: Track) {
         getTrackCoverArt(track) { coverArt ->
             var wantedHeight = resources.getCoverArtHeight()
@@ -376,6 +377,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
         fragment.setListener(this)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun updatePlaybackSpeed(speed: Float) {
         val isSlow = speed < 1f
         if (isSlow != binding.activityTrackSpeed.tag as? Boolean) {

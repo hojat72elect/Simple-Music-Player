@@ -1,5 +1,6 @@
 package com.simplemobiletools.musicplayer.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.LayerDrawable
@@ -10,38 +11,38 @@ import com.simplemobiletools.commons.databinding.ActivityCustomizationBinding
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.ConfirmationAdvancedDialog
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.musicplayer.dialogs.LineColorPickerDialog
 import com.simplemobiletools.commons.dialogs.PurchaseThankYouDialog
-import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.baseConfig
-import com.simplemobiletools.commons.extensions.beGone
-import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.checkAppIconColor
-import com.simplemobiletools.commons.extensions.getColoredMaterialStatusBarColor
-import com.simplemobiletools.commons.extensions.getContrastColor
-import com.simplemobiletools.commons.extensions.getMyContentProviderCursorLoader
-import com.simplemobiletools.commons.extensions.getProperTextColor
-import com.simplemobiletools.commons.extensions.getSharedThemeSync
-import com.simplemobiletools.commons.extensions.getThemeId
-import com.simplemobiletools.commons.extensions.isThankYouInstalled
-import com.simplemobiletools.commons.extensions.isUsingSystemDarkTheme
-import com.simplemobiletools.commons.extensions.setFillWithStroke
-import com.simplemobiletools.commons.extensions.toast
-import com.simplemobiletools.commons.extensions.updateSharedTheme
-import com.simplemobiletools.commons.extensions.value
-import com.simplemobiletools.commons.extensions.viewBinding
-import com.simplemobiletools.commons.helpers.APP_ICON_IDS
-import com.simplemobiletools.commons.helpers.APP_LAUNCHER_NAME
-import com.simplemobiletools.commons.helpers.DARK_GREY
-import com.simplemobiletools.commons.helpers.MyContentProvider
-import com.simplemobiletools.commons.helpers.NavigationIcon
-import com.simplemobiletools.commons.helpers.SAVE_DISCARD_PROMPT_INTERVAL
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.helpers.isSPlus
+import com.simplemobiletools.musicplayer.helpers.APP_ICON_IDS
+import com.simplemobiletools.musicplayer.helpers.APP_LAUNCHER_NAME
+import com.simplemobiletools.musicplayer.helpers.DARK_GREY
+import com.simplemobiletools.musicplayer.helpers.MyContentProvider
+import com.simplemobiletools.musicplayer.helpers.NavigationIcon
+import com.simplemobiletools.musicplayer.helpers.SAVE_DISCARD_PROMPT_INTERVAL
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.helpers.isSPlus
 import com.simplemobiletools.commons.models.MyTheme
-import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.commons.models.SharedTheme
+import com.simplemobiletools.musicplayer.dialogs.LineColorPickerDialog
+import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.extensions.baseConfig
+import com.simplemobiletools.musicplayer.extensions.beGone
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.extensions.checkAppIconColor
+import com.simplemobiletools.musicplayer.extensions.getColoredMaterialStatusBarColor
+import com.simplemobiletools.musicplayer.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.extensions.getMyContentProviderCursorLoader
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.getSharedThemeSync
+import com.simplemobiletools.musicplayer.extensions.getThemeId
+import com.simplemobiletools.musicplayer.extensions.isThankYouInstalled
+import com.simplemobiletools.musicplayer.extensions.isUsingSystemDarkTheme
+import com.simplemobiletools.musicplayer.extensions.setFillWithStroke
+import com.simplemobiletools.musicplayer.extensions.toast
+import com.simplemobiletools.musicplayer.extensions.updateSharedTheme
+import com.simplemobiletools.musicplayer.extensions.value
+import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.models.RadioItem
 
 class CustomizationActivity : BaseSimpleActivity() {
     private val THEME_LIGHT = 0
@@ -589,6 +590,7 @@ class CustomizationActivity : BaseSimpleActivity() {
         updateApplyToAllColors(color)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun updateApplyToAllColors(newColor: Int) {
         if (newColor == baseConfig.primaryColor && !baseConfig.isUsingSystemTheme) {
             binding.applyToAll.setBackgroundResource(R.drawable.button_background_rounded)

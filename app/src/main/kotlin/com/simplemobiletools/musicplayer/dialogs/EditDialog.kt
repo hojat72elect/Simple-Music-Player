@@ -1,8 +1,8 @@
 package com.simplemobiletools.musicplayer.dialogs
 
 import androidx.appcompat.app.AlertDialog
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.helpers.isRPlus
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.helpers.isRPlus
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogRenameSongBinding

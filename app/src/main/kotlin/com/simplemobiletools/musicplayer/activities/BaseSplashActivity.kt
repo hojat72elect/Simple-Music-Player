@@ -3,16 +3,16 @@ package com.simplemobiletools.musicplayer.activities
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.simplemobiletools.commons.extensions.baseConfig
-import com.simplemobiletools.commons.extensions.checkAppIconColor
-import com.simplemobiletools.commons.extensions.checkAppSideloading
-import com.simplemobiletools.commons.extensions.getSharedTheme
-import com.simplemobiletools.commons.extensions.isThankYouInstalled
-import com.simplemobiletools.commons.extensions.isUsingSystemDarkTheme
-import com.simplemobiletools.commons.extensions.showSideloadingDialog
-import com.simplemobiletools.commons.helpers.SIDELOADING_TRUE
-import com.simplemobiletools.commons.helpers.SIDELOADING_UNCHECKED
+import com.simplemobiletools.musicplayer.extensions.baseConfig
+import com.simplemobiletools.musicplayer.extensions.checkAppIconColor
+import com.simplemobiletools.musicplayer.extensions.checkAppSideloading
+import com.simplemobiletools.musicplayer.helpers.SIDELOADING_TRUE
+import com.simplemobiletools.musicplayer.helpers.SIDELOADING_UNCHECKED
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.extensions.getSharedTheme
+import com.simplemobiletools.musicplayer.extensions.isThankYouInstalled
+import com.simplemobiletools.musicplayer.extensions.isUsingSystemDarkTheme
+import com.simplemobiletools.musicplayer.extensions.showSideloadingDialog
 
 @SuppressLint("CustomSplashScreen")
 abstract class BaseSplashActivity : AppCompatActivity() {

@@ -22,12 +22,12 @@ enum class CustomCommands(val customAction: String) {
 
     companion object {
         fun fromSessionCommand(sessionCommand: SessionCommand): CustomCommands? {
-            return values().find { it.customAction == sessionCommand.customAction }
+            return entries.find { it.customAction == sessionCommand.customAction }
         }
     }
 }
 
-internal val customCommands = CustomCommands.values().map { it.sessionCommand }
+internal val customCommands = CustomCommands.entries.map { it.sessionCommand }
 
 internal fun Context.getCustomLayout(): List<CommandButton> {
     return listOf(

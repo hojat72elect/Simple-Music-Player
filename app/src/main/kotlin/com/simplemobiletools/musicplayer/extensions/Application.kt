@@ -1,7 +1,7 @@
 package com.simplemobiletools.musicplayer.extensions
 
 import android.app.Application
-import com.simplemobiletools.commons.helpers.isNougatPlus
+import com.simplemobiletools.musicplayer.helpers.isNougatPlus
 import java.util.Locale
 
 fun Application.checkUseEnglish() {

@@ -1,5 +1,6 @@
 package com.simplemobiletools.musicplayer.extensions
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -11,6 +12,7 @@ import com.simplemobiletools.musicplayer.R
 
 
 
+@SuppressLint("UseCompatLoadingForDrawables")
 fun Resources.getColoredDrawableWithColor(drawableId: Int, color: Int, alpha: Int = 255): Drawable {
     val drawable = getDrawable(drawableId)
     drawable.mutate().applyColorFilter(color)
@@ -18,6 +20,7 @@ fun Resources.getColoredDrawableWithColor(drawableId: Int, color: Int, alpha: In
     return drawable
 }
 
+@SuppressLint("UseCompatLoadingForDrawables")
 fun Resources.getSmallPlaceholder(color: Int): Drawable {
     val placeholder = getDrawable(R.drawable.ic_headset_padded)
     val resized = resizeDrawable(placeholder, getDimension(R.dimen.song_image_size).toInt())
@@ -25,6 +28,7 @@ fun Resources.getSmallPlaceholder(color: Int): Drawable {
     return resized
 }
 
+@SuppressLint("UseCompatLoadingForDrawables")
 fun Resources.getBiggerPlaceholder(color: Int): Drawable {
     val placeholder = getDrawable(R.drawable.ic_headset)
     val resized = resizeDrawable(placeholder, getDimension(R.dimen.artist_image_size).toInt())
@@ -47,6 +51,7 @@ fun Resources.getCoverArtHeight(): Int {
     }
 }
 
+@SuppressLint("UseCompatLoadingForDrawables")
 fun Resources.getColoredBitmap(resourceId: Int, newColor: Int): Bitmap {
     val drawable = getDrawable(resourceId)
     val bitmap = Bitmap.createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)

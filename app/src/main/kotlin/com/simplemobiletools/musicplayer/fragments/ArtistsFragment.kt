@@ -9,7 +9,7 @@ import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.hideKeyboard
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.AlbumsActivity
 import com.simplemobiletools.musicplayer.activities.SimpleActivity

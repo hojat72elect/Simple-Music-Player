@@ -4,22 +4,25 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Point
+import android.os.Build
 import android.os.StatFs
 import android.provider.MediaStore
 import android.telephony.PhoneNumberUtils
+import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.Spanned
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
 import android.widget.TextView
 import com.bumptech.glide.signature.ObjectKey
-import com.simplemobiletools.commons.helpers.audioExtensions
-import com.simplemobiletools.commons.helpers.extensionsSupportingEXIF
-import com.simplemobiletools.commons.helpers.getDateFormats
-import com.simplemobiletools.commons.helpers.normalizeRegex
-import com.simplemobiletools.commons.helpers.photoExtensions
-import com.simplemobiletools.commons.helpers.rawExtensions
-import com.simplemobiletools.commons.helpers.videoExtensions
+import com.simplemobiletools.musicplayer.helpers.audioExtensions
+import com.simplemobiletools.musicplayer.helpers.extensionsSupportingEXIF
+import com.simplemobiletools.musicplayer.helpers.getDateFormats
+import com.simplemobiletools.musicplayer.helpers.normalizeRegex
+import com.simplemobiletools.musicplayer.helpers.photoExtensions
+import com.simplemobiletools.musicplayer.helpers.rawExtensions
+import com.simplemobiletools.musicplayer.helpers.videoExtensions
 import java.io.File
 import java.text.DateFormat
 import java.text.Normalizer
@@ -97,6 +100,12 @@ fun String.highlightTextPart(
     return spannableString
 }
 
+fun String?.fromHtml(): Spanned =
+    when {
+        this == null -> SpannableString("")
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
+        else -> Html.fromHtml(this)
+    }
 
 fun String.getBasePath(context: Context): String {
     return when {
@@ -783,7 +792,7 @@ fun String.getMimeType(): String {
         put("zip", "application/zip")
     }
 
-    return typesMap[getFilenameExtension().toLowerCase()] ?: ""
+    return typesMap[getFilenameExtension().lowercase()] ?: ""
 }
 
 fun String.getOTGPublicPath(context: Context) =
@@ -814,7 +823,7 @@ fun String.isRawFast() = rawExtensions.any { endsWith(it, true) }
 
 fun String.canModifyEXIF() = extensionsSupportingEXIF.any { endsWith(it, true) }
 
-fun String.getCompressionFormat() = when (getFilenameExtension().toLowerCase()) {
+fun String.getCompressionFormat() = when (getFilenameExtension().lowercase()) {
     "png" -> Bitmap.CompressFormat.PNG
     "webp" -> Bitmap.CompressFormat.WEBP
     else -> Bitmap.CompressFormat.JPEG

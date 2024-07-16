@@ -1,7 +1,6 @@
 package com.simplemobiletools.musicplayer.helpers
 
 import android.content.Context
-import com.simplemobiletools.commons.helpers.BaseConfig
 import java.util.Arrays
 
 class Config(context: Context) : BaseConfig(context) {
@@ -14,7 +13,7 @@ class Config(context: Context) : BaseConfig(context) {
         set(shuffle) = prefs.edit().putBoolean(SHUFFLE, shuffle).apply()
 
     var playbackSetting: PlaybackSetting
-        get() = PlaybackSetting.values()[prefs.getInt(
+        get() = PlaybackSetting.entries[prefs.getInt(
             PLAYBACK_SETTING,
             PlaybackSetting.REPEAT_OFF.ordinal
         )]

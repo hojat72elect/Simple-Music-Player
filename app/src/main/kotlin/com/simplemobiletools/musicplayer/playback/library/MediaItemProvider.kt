@@ -339,7 +339,7 @@ private enum class RootCategories(
     companion object {
         fun buildRootChildren(context: Context): List<MediaItem> {
             val rootChildren = mutableListOf<MediaItem>()
-            values().forEach {
+            entries.forEach {
                 val flag = getTabFlag(it.mediaId)
                 if (context.isTabVisible(flag)) {
                     rootChildren += buildMediaItem(

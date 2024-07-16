@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
-import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
+import com.simplemobiletools.musicplayer.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.WidgetConfigBinding
 import com.simplemobiletools.musicplayer.extensions.adjustAlpha

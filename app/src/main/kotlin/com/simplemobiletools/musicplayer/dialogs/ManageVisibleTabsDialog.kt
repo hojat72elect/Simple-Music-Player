@@ -1,6 +1,6 @@
 package com.simplemobiletools.musicplayer.dialogs
 
-import com.simplemobiletools.commons.helpers.isQPlus
+import com.simplemobiletools.musicplayer.helpers.isQPlus
 import com.simplemobiletools.commons.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity

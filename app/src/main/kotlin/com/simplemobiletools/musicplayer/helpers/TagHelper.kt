@@ -28,7 +28,7 @@ class TagHelper(private val activity: BaseSimpleActivity) {
         private const val TEMP_FOLDER = "music"
         // Editing tags in WMA and WAV files are flaky so we exclude them
         private val EXCLUDED_EXTENSIONS = listOf("wma", "wav")
-        private val SUPPORTED_EXTENSIONS = SupportedFileFormat.values().map { it.filesuffix }.filter { it !in EXCLUDED_EXTENSIONS }
+        private val SUPPORTED_EXTENSIONS = SupportedFileFormat.entries.map { it.filesuffix }.filter { it !in EXCLUDED_EXTENSIONS }
     }
 
     fun isEditTagSupported(track: Track): Boolean {

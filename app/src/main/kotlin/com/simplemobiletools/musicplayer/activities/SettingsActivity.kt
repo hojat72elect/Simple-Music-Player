@@ -5,10 +5,10 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
-import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
-import com.simplemobiletools.commons.helpers.NavigationIcon
-import com.simplemobiletools.commons.helpers.isQPlus
-import com.simplemobiletools.commons.helpers.isTiramisuPlus
+import com.simplemobiletools.musicplayer.helpers.IS_CUSTOMIZING_COLORS
+import com.simplemobiletools.musicplayer.helpers.NavigationIcon
+import com.simplemobiletools.musicplayer.helpers.isQPlus
+import com.simplemobiletools.musicplayer.helpers.isTiramisuPlus
 import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivitySettingsBinding

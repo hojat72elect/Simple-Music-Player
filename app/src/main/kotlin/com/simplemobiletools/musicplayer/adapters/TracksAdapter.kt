@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
 import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.commons.views.MyRecyclerView

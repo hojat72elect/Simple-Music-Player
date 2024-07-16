@@ -16,7 +16,7 @@ import com.simplemobiletools.commons.compose.lists.SimpleLazyListScaffold
 import com.simplemobiletools.commons.compose.settings.SettingsHorizontalDivider
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
-import com.simplemobiletools.commons.extensions.fromHtml
+import com.simplemobiletools.musicplayer.extensions.fromHtml
 import com.simplemobiletools.musicplayer.models.FAQItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -35,7 +35,7 @@ internal fun FAQScreen(
             Column(modifier = Modifier.fillMaxWidth()) {
                 ListItem(
                     headlineContent = {
-                        val text = if (faqItem.title is Int) stringResource(faqItem.title as Int) else faqItem.title as String
+                        val text = if (faqItem.title is Int) stringResource(faqItem.title) else faqItem.title as String
                         Text(
                             text = text,
                             modifier = Modifier
@@ -47,7 +47,7 @@ internal fun FAQScreen(
                     },
                     supportingContent = {
                         if (faqItem.text is Int) {
-                            val text = stringResource(id = faqItem.text as Int).fromHtml()
+                            val text = stringResource(id = faqItem.text).fromHtml()
                             LinkifyTextComponent(
                                 text = { text },
                                 modifier = Modifier.fillMaxWidth(),

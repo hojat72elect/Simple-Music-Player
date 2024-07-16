@@ -1,7 +1,8 @@
 package com.simplemobiletools.musicplayer.extensions
 
 import android.graphics.Color
-import com.simplemobiletools.commons.helpers.DARK_GREY
+import com.simplemobiletools.commons.extensions.addBit
+import com.simplemobiletools.musicplayer.helpers.DARK_GREY
 import java.util.Locale
 
 private fun hsv2hsl(hsv: FloatArray): FloatArray {
@@ -24,6 +25,11 @@ private fun hsl2hsv(hsl: FloatArray): FloatArray {
     sat *= if (light < .5) light else 1 - light
     return floatArrayOf(hue, 2f * sat / (light + sat), light + sat)
 }
+
+
+
+// TODO: how to do "bits & ~bit" in kotlin?
+fun Int.removeBit(bit: Int) = addBit(bit) - bit
 
 fun Int.addBit(bit: Int) = this or bit
 
@@ -55,6 +61,26 @@ fun Int.getFormattedDuration(forceShowHours: Boolean = false): String {
 fun Int.getContrastColor(): Int {
     val y = (299 * Color.red(this) + 587 * Color.green(this) + 114 * Color.blue(this)) / 1000
     return if (y >= 149 && this != Color.BLACK) DARK_GREY else Color.WHITE
+}
+
+fun Int.toHex() = String.format("#%06X", 0xFFFFFF and this).uppercase()
+
+
+// taken from https://stackoverflow.com/a/40964456/1967672
+fun Int.darkenColor(factor: Int = 8): Int {
+    if (this == Color.WHITE || this == Color.BLACK) {
+        return this
+    }
+
+    val DARK_FACTOR = factor
+    var hsv = FloatArray(3)
+    Color.colorToHSV(this, hsv)
+    val hsl = hsv2hsl(hsv)
+    hsl[2] -= DARK_FACTOR / 100f
+    if (hsl[2] < 0)
+        hsl[2] = 0f
+    hsv = hsl2hsv(hsl)
+    return Color.HSVToColor(hsv)
 }
 
 fun Int.lightenColor(factor: Int = 8): Int {

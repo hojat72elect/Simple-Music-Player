@@ -1,5 +1,6 @@
 package com.simplemobiletools.musicplayer.adapters
 
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
@@ -14,27 +15,28 @@ import com.bumptech.glide.request.RequestOptions
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.databinding.ItemFilepickerListBinding
+import com.simplemobiletools.musicplayer.extensions.formatSize
+import com.simplemobiletools.musicplayer.extensions.hasOTGConnected
+import com.simplemobiletools.musicplayer.helpers.getFilePlaceholderDrawables
+import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.baseConfig
-import com.simplemobiletools.commons.extensions.formatSize
 import com.simplemobiletools.musicplayer.extensions.getAndroidSAFUri
 import com.simplemobiletools.musicplayer.extensions.getColoredDrawableWithColor
 import com.simplemobiletools.musicplayer.extensions.getOTGPublicPath
-import com.simplemobiletools.commons.extensions.getTextSize
+import com.simplemobiletools.musicplayer.extensions.getTextSize
 import com.simplemobiletools.musicplayer.extensions.getTimeFormat
-import com.simplemobiletools.commons.extensions.hasOTGConnected
 import com.simplemobiletools.musicplayer.extensions.isGif
 import com.simplemobiletools.musicplayer.extensions.isPathOnOTG
 import com.simplemobiletools.musicplayer.extensions.isRestrictedSAFOnlyRoot
-import com.simplemobiletools.commons.helpers.getFilePlaceholderDrawables
 import com.simplemobiletools.musicplayer.models.FileDirItem
-import com.simplemobiletools.commons.views.MyRecyclerView
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import java.util.Locale
 
 class FilepickerItemsAdapter(
     activity: BaseSimpleActivity, val fileDirItems: List<FileDirItem>, recyclerView: MyRecyclerView,
     itemClick: (Any) -> Unit
-) : MyRecyclerViewAdapter(activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
+) : MyRecyclerViewAdapter(activity, recyclerView, itemClick),
+    RecyclerViewFastScroller.OnPopupTextUpdate {
 
     private lateinit var fileDrawable: Drawable
     private lateinit var folderDrawable: Drawable
@@ -52,11 +54,16 @@ class FilepickerItemsAdapter(
 
     override fun getActionMenuId() = 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_filepicker_list, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        createViewHolder(R.layout.item_filepicker_list, parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val fileDirItem = fileDirItems[position]
-        holder.bindView(fileDirItem, allowSingleClick = true, allowLongClick = false) { itemView, adapterPosition ->
+        holder.bindView(
+            fileDirItem,
+            allowSingleClick = true,
+            allowLongClick = false
+        ) { itemView, adapterPosition ->
             setupView(ItemFilepickerListBinding.bind(itemView), fileDirItem)
         }
         bindViewHolder(holder)
@@ -72,7 +79,8 @@ class FilepickerItemsAdapter(
 
     override fun getIsItemSelectable(position: Int) = false
 
-    override fun getItemKeyPosition(key: Int) = fileDirItems.indexOfFirst { it.path.hashCode() == key }
+    override fun getItemKeyPosition(key: Int) =
+        fileDirItems.indexOfFirst { it.path.hashCode() == key }
 
     override fun getItemSelectionKey(position: Int) = fileDirItems[position].path.hashCode()
 
@@ -102,7 +110,9 @@ class FilepickerItemsAdapter(
             } else {
                 listItemDetails.text = fileDirItem.size.formatSize()
                 val path = fileDirItem.path
-                val placeholder = fileDrawables.getOrElse(fileDirItem.name.substringAfterLast(".").lowercase(Locale.getDefault())) { fileDrawable }
+                val placeholder = fileDrawables.getOrElse(
+                    fileDirItem.name.substringAfterLast(".").lowercase(Locale.getDefault())
+                ) { fileDrawable }
                 val options = RequestOptions()
                     .signature(fileDirItem.getKey())
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -110,7 +120,10 @@ class FilepickerItemsAdapter(
                     .error(placeholder)
 
                 var itemToLoad = if (fileDirItem.name.endsWith(".apk", true)) {
-                    val packageInfo = root.context.packageManager.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES)
+                    val packageInfo = root.context.packageManager.getPackageArchiveInfo(
+                        path,
+                        PackageManager.GET_ACTIVITIES
+                    )
                     if (packageInfo != null) {
                         val appInfo = packageInfo.applicationInfo
                         appInfo.sourceDir = path
@@ -126,12 +139,16 @@ class FilepickerItemsAdapter(
                 if (!activity.isDestroyed && !activity.isFinishing) {
                     if (activity.isRestrictedSAFOnlyRoot(path)) {
                         itemToLoad = activity.getAndroidSAFUri(path)
-                    } else if (hasOTGConnected && itemToLoad is String && activity.isPathOnOTG(itemToLoad)) {
+                    } else if (hasOTGConnected && itemToLoad is String && activity.isPathOnOTG(
+                            itemToLoad
+                        )
+                    ) {
                         itemToLoad = itemToLoad.getOTGPublicPath(activity)
                     }
 
                     if (itemToLoad.toString().isGif()) {
-                        Glide.with(activity).asBitmap().load(itemToLoad).apply(options).into(listItemIcon)
+                        Glide.with(activity).asBitmap().load(itemToLoad).apply(options)
+                            .into(listItemIcon)
                     } else {
                         Glide.with(activity)
                             .load(itemToLoad)
@@ -150,12 +167,15 @@ class FilepickerItemsAdapter(
         return activity.resources.getQuantityString(R.plurals.items, children, children)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun initDrawables() {
-        folderDrawable = resources.getColoredDrawableWithColor(R.drawable.ic_folder_vector, textColor)
+        folderDrawable =
+            resources.getColoredDrawableWithColor(R.drawable.ic_folder_vector, textColor)
         folderDrawable.alpha = 180
         fileDrawable = resources.getDrawable(R.drawable.ic_file_generic)
         fileDrawables = getFilePlaceholderDrawables(activity)
     }
 
-    override fun onChange(position: Int) = fileDirItems.getOrNull(position)?.getBubbleText(activity, dateFormat, timeFormat) ?: ""
+    override fun onChange(position: Int) =
+        fileDirItems.getOrNull(position)?.getBubbleText(activity, dateFormat, timeFormat) ?: ""
 }

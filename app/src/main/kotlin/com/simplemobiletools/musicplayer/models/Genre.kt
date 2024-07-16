@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.simplemobiletools.commons.helpers.AlphanumericComparator
-import com.simplemobiletools.commons.helpers.SORT_DESCENDING
+import com.simplemobiletools.musicplayer.helpers.AlphanumericComparator
+import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
 import com.simplemobiletools.musicplayer.extensions.sortSafely
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TITLE
 

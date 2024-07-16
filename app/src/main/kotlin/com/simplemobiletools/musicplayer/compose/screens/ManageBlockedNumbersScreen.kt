@@ -95,8 +95,8 @@ import com.simplemobiletools.commons.compose.theme.actionModeColor
 import com.simplemobiletools.commons.compose.theme.iconsColor
 import com.simplemobiletools.commons.compose.theme.isLitWell
 import com.simplemobiletools.commons.compose.theme.model.Theme
-import com.simplemobiletools.commons.extensions.darkenColor
-import com.simplemobiletools.commons.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.extensions.darkenColor
+import com.simplemobiletools.musicplayer.extensions.getContrastColor
 import com.simplemobiletools.commons.models.BlockedNumber
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.compose.extensions.isScrollingUp

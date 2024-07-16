@@ -54,7 +54,7 @@ import com.simplemobiletools.musicplayer.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.extensions.showKeyboard
 import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.value
-import com.simplemobiletools.commons.helpers.isRPlus
+import com.simplemobiletools.musicplayer.helpers.isRPlus
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import java.io.File
 

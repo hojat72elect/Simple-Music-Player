@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.extensions.viewBinding
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.databinding.DialogSelectPlaylistBinding
 import com.simplemobiletools.musicplayer.databinding.ItemSelectPlaylistBinding
 import com.simplemobiletools.musicplayer.extensions.audioHelper

@@ -1,5 +1,6 @@
 package com.simplemobiletools.musicplayer.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -7,9 +8,10 @@ import android.view.MotionEvent
 import android.widget.LinearLayout
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.extensions.isRTLLayout
-import com.simplemobiletools.commons.extensions.onGlobalLayout
+import com.simplemobiletools.musicplayer.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.interfaces.LineColorPickerListener
 
+@SuppressLint("ClickableViewAccessibility")
 class LineColorPicker @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

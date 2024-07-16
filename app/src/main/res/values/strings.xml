@@ -234,6 +234,7 @@
     <string name="scanning">Scanning…</string>
     <string name="no_items_found">No items found.</string>
     <string name="close">Close</string>
+    <string name="back">Back</string>
     <string name="allow_notifications_music_player">You must allow the app displaying notifications, else it cannot play songs.</string>
     <string name="invalid_file_format">Invalid file format</string>
     <string name="never">Never</string>

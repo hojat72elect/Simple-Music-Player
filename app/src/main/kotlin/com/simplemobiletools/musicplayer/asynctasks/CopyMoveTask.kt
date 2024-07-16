@@ -12,10 +12,9 @@ import androidx.core.util.Pair
 import androidx.documentfile.provider.DocumentFile
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.extensions.getDocumentSdk30
-import com.simplemobiletools.commons.helpers.CONFLICT_KEEP_BOTH
-import com.simplemobiletools.commons.helpers.CONFLICT_SKIP
-import com.simplemobiletools.commons.helpers.getConflictResolution
-import com.simplemobiletools.commons.helpers.isOreoPlus
+import com.simplemobiletools.musicplayer.helpers.CONFLICT_KEEP_BOTH
+import com.simplemobiletools.musicplayer.helpers.CONFLICT_SKIP
+import com.simplemobiletools.musicplayer.helpers.getConflictResolution
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.canManageMedia
@@ -42,6 +41,7 @@ import com.simplemobiletools.musicplayer.extensions.notificationManager
 import com.simplemobiletools.musicplayer.extensions.rescanPath
 import com.simplemobiletools.musicplayer.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.extensions.toFileDirItem
+import com.simplemobiletools.musicplayer.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.interfaces.CopyMoveListener
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import java.io.File
@@ -83,7 +83,7 @@ class CopyMoveTask(
         mNotificationBuilder = NotificationCompat.Builder(activity)
     }
 
-    override fun doInBackground(vararg params: Pair<ArrayList<FileDirItem>, String>): Boolean? {
+    override fun doInBackground(vararg params: Pair<ArrayList<FileDirItem>, String>): Boolean {
         if (params.isEmpty()) {
             return false
         }

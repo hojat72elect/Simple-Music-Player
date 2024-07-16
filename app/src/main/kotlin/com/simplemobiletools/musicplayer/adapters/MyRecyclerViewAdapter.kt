@@ -1,5 +1,6 @@
 package com.simplemobiletools.musicplayer.adapters
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.ActionMode
 import android.view.Menu
@@ -288,6 +289,7 @@ abstract class MyRecyclerViewAdapter(
         recyclerView.setupZoomListener(zoomListener)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     fun addVerticalDividers(add: Boolean) {
         if (recyclerView.itemDecorationCount > 0) {
             recyclerView.removeItemDecorationAt(0)
@@ -305,6 +307,7 @@ abstract class MyRecyclerViewAdapter(
         actMode?.finish()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateTextColor(textColor: Int) {
         this.textColor = textColor
         notifyDataSetChanged()

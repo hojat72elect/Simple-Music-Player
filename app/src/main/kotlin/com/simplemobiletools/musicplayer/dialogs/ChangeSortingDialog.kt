@@ -7,7 +7,7 @@ import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.extensions.viewBinding
-import com.simplemobiletools.commons.helpers.SORT_DESCENDING
+import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
 import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogChangeSortingBinding
@@ -133,7 +133,7 @@ class ChangeSortingDialog(val activity: Activity, val location: Int, val playlis
                 smallRadioButton.apply {
                     text = radioItem.title
                     isChecked = currSorting and (radioItem.value as Int) != 0
-                    id = radioItem.value as Int
+                    id = radioItem.value
                 }
 
                 binding.sortingDialogRadioSorting.addView(

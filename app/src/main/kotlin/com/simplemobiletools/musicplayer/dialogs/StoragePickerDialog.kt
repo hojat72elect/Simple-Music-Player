@@ -10,7 +10,7 @@ import com.simplemobiletools.commons.databinding.RadioButtonBinding
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.getBasePath
 import com.simplemobiletools.commons.extensions.hasExternalSDCard
-import com.simplemobiletools.commons.extensions.hasOTGConnected
+import com.simplemobiletools.musicplayer.extensions.hasOTGConnected
 import com.simplemobiletools.musicplayer.extensions.internalStoragePath
 import com.simplemobiletools.musicplayer.extensions.otgPath
 import com.simplemobiletools.musicplayer.extensions.sdCardPath

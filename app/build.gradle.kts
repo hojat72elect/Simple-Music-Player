@@ -83,7 +83,7 @@ android {
     }
 
     compileOptions {
-        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get().toString())
+        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get())
         sourceCompatibility = currentJavaVersionFromLibs
         targetCompatibility = currentJavaVersionFromLibs
         isCoreLibraryDesugaringEnabled = true
@@ -91,6 +91,14 @@ android {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions.jvmTarget = project.libs.versions.app.build.kotlinJVMTarget.get()
+        kotlinOptions.freeCompilerArgs = listOf(
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.material.ExperimentalMaterialApi",
+            "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
+            "-opt-in=com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi",
+            "-Xcontext-receivers"
+        )
     }
 
     namespace = libs.versions.app.version.appId.get()

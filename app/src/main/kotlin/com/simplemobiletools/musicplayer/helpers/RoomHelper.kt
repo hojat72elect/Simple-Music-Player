@@ -4,6 +4,8 @@ import android.content.ContentUris
 import android.content.Context
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio
+import com.simplemobiletools.musicplayer.extensions.audioHelper
+import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.getArtist
 import com.simplemobiletools.musicplayer.extensions.getDuration
 import com.simplemobiletools.musicplayer.extensions.getIntValue
@@ -12,10 +14,6 @@ import com.simplemobiletools.musicplayer.extensions.getLongValue
 import com.simplemobiletools.musicplayer.extensions.getStringValue
 import com.simplemobiletools.musicplayer.extensions.getTitle
 import com.simplemobiletools.musicplayer.extensions.queryCursor
-import com.simplemobiletools.commons.helpers.isQPlus
-import com.simplemobiletools.commons.helpers.isRPlus
-import com.simplemobiletools.musicplayer.extensions.audioHelper
-import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Track
 import java.io.File

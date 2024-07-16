@@ -12,6 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.databinding.DialogFilepickerBinding
 import com.simplemobiletools.commons.extensions.getDirectChildrenCount
+import com.simplemobiletools.commons.extensions.getSomeDocumentSdk30
+import com.simplemobiletools.musicplayer.extensions.getTextSize
+import com.simplemobiletools.musicplayer.extensions.handleHiddenFolderPasswordProtection
+import com.simplemobiletools.musicplayer.extensions.handleLockedFolderOpening
+import com.simplemobiletools.musicplayer.extensions.isInDownloadDir
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.commons.views.Breadcrumbs
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.adapters.FilepickerFavoritesAdapter
+import com.simplemobiletools.musicplayer.adapters.FilepickerItemsAdapter
 import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.beGone
@@ -31,25 +41,15 @@ import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.getSomeAndroidSAFDocument
 import com.simplemobiletools.musicplayer.extensions.getSomeDocumentFile
-import com.simplemobiletools.commons.extensions.getSomeDocumentSdk30
-import com.simplemobiletools.commons.extensions.getTextSize
-import com.simplemobiletools.commons.extensions.handleHiddenFolderPasswordProtection
-import com.simplemobiletools.commons.extensions.handleLockedFolderOpening
 import com.simplemobiletools.musicplayer.extensions.internalStoragePath
 import com.simplemobiletools.musicplayer.extensions.isAccessibleWithSAFSdk30
-import com.simplemobiletools.commons.extensions.isInDownloadDir
 import com.simplemobiletools.musicplayer.extensions.isPathOnOTG
 import com.simplemobiletools.musicplayer.extensions.isRestrictedSAFOnlyRoot
 import com.simplemobiletools.musicplayer.extensions.isRestrictedWithSAFSdk30
 import com.simplemobiletools.musicplayer.extensions.isVisible
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.extensions.toast
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.models.FileDirItem
-import com.simplemobiletools.commons.views.Breadcrumbs
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.adapters.FilepickerFavoritesAdapter
-import com.simplemobiletools.musicplayer.adapters.FilepickerItemsAdapter
 import java.io.File
 
 /**

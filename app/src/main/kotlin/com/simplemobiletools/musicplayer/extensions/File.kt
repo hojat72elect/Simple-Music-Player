@@ -1,11 +1,11 @@
 package com.simplemobiletools.musicplayer.extensions
 
 import android.content.Context
-import com.simplemobiletools.commons.helpers.NOMEDIA
-import com.simplemobiletools.commons.helpers.audioExtensions
-import com.simplemobiletools.commons.helpers.photoExtensions
-import com.simplemobiletools.commons.helpers.rawExtensions
-import com.simplemobiletools.commons.helpers.videoExtensions
+import com.simplemobiletools.musicplayer.helpers.NOMEDIA
+import com.simplemobiletools.musicplayer.helpers.audioExtensions
+import com.simplemobiletools.musicplayer.helpers.photoExtensions
+import com.simplemobiletools.musicplayer.helpers.rawExtensions
+import com.simplemobiletools.musicplayer.helpers.videoExtensions
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import java.io.File
 

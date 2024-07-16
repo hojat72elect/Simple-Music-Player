@@ -8,4 +8,10 @@
     <dimen name="equalizer_seekbar_height">300dp</dimen>
     <dimen name="smaller_icon_size">36dp</dimen>
     <dimen name="rounded_corner_radius_small">4dp</dimen>
+    <dimen name="smaller_text_size">12sp</dimen>
+    <dimen name="bigger_text_size">16sp</dimen>
+    <dimen name="big_text_size">18sp</dimen>
+    <dimen name="extra_big_text_size">22sp</dimen>
+
+
 </resources>

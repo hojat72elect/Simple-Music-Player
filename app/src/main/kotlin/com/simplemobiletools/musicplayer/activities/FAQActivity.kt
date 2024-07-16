@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.musicplayer.compose.screens.FAQScreen
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.helpers.APP_FAQ
+import com.simplemobiletools.musicplayer.helpers.APP_FAQ
 import com.simplemobiletools.musicplayer.models.FAQItem
 import kotlinx.collections.immutable.toImmutableList
 

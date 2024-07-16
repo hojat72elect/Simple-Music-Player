@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.databinding.FilepickerFavoriteBinding
-import com.simplemobiletools.commons.extensions.getTextSize
+import com.simplemobiletools.musicplayer.extensions.getTextSize
 import com.simplemobiletools.commons.views.MyRecyclerView
 
 class FilepickerFavoritesAdapter(

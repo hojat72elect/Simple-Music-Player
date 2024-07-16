@@ -22,6 +22,8 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.Drawable
+import android.hardware.usb.UsbConstants
+import android.hardware.usb.UsbManager
 import android.media.MediaMetadataRetriever
 import android.media.MediaScannerConnection
 import android.media.ThumbnailUtils
@@ -55,6 +57,7 @@ import androidx.core.content.FileProvider
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
+import androidx.loader.content.CursorLoader
 import androidx.media3.common.Player
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -62,50 +65,47 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.simplemobiletools.commons.extensions.createFirstParentTreeUri
 import com.simplemobiletools.commons.extensions.getInternalStoragePath
-import com.simplemobiletools.commons.helpers.BaseConfig
-import com.simplemobiletools.commons.helpers.DARK_GREY
-import com.simplemobiletools.commons.helpers.EXTERNAL_STORAGE_PROVIDER_AUTHORITY
-import com.simplemobiletools.commons.helpers.ExternalStorageProviderHack
-import com.simplemobiletools.commons.helpers.PERMISSION_ACCESS_COARSE_LOCATION
-import com.simplemobiletools.commons.helpers.PERMISSION_ACCESS_FINE_LOCATION
-import com.simplemobiletools.commons.helpers.PERMISSION_CALL_PHONE
-import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
-import com.simplemobiletools.commons.helpers.PERMISSION_GET_ACCOUNTS
-import com.simplemobiletools.commons.helpers.PERMISSION_MEDIA_LOCATION
-import com.simplemobiletools.commons.helpers.PERMISSION_POST_NOTIFICATIONS
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_CALENDAR
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_CALL_LOG
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_CONTACTS
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_MEDIA_AUDIO
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_MEDIA_IMAGES
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_MEDIA_VIDEO
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_MEDIA_VISUAL_USER_SELECTED
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_PHONE_STATE
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_SMS
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_STORAGE
-import com.simplemobiletools.commons.helpers.PERMISSION_READ_SYNC_SETTINGS
-import com.simplemobiletools.commons.helpers.PERMISSION_RECORD_AUDIO
-import com.simplemobiletools.commons.helpers.PERMISSION_SEND_SMS
-import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_CALENDAR
-import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_CALL_LOG
-import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_CONTACTS
-import com.simplemobiletools.commons.helpers.PERMISSION_WRITE_STORAGE
-import com.simplemobiletools.commons.helpers.SD_OTG_PATTERN
-import com.simplemobiletools.commons.helpers.SD_OTG_SHORT
-import com.simplemobiletools.commons.helpers.TIME_FORMAT_12
-import com.simplemobiletools.commons.helpers.TIME_FORMAT_24
-import com.simplemobiletools.commons.helpers.appIconColorStrings
-import com.simplemobiletools.commons.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.helpers.isNougatPlus
-import com.simplemobiletools.commons.helpers.isOnMainThread
-import com.simplemobiletools.commons.helpers.isOreoPlus
-import com.simplemobiletools.commons.helpers.isQPlus
-import com.simplemobiletools.commons.helpers.isRPlus
-import com.simplemobiletools.commons.helpers.isSPlus
-import com.simplemobiletools.commons.helpers.proPackages
-import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.helpers.BaseConfig
+import com.simplemobiletools.musicplayer.helpers.DARK_GREY
+import com.simplemobiletools.musicplayer.helpers.EXTERNAL_STORAGE_PROVIDER_AUTHORITY
+import com.simplemobiletools.musicplayer.helpers.ExternalStorageProviderHack
+import com.simplemobiletools.musicplayer.helpers.FONT_SIZE_LARGE
+import com.simplemobiletools.musicplayer.helpers.FONT_SIZE_MEDIUM
+import com.simplemobiletools.musicplayer.helpers.FONT_SIZE_SMALL
+import com.simplemobiletools.musicplayer.helpers.MyContentProvider
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_ACCESS_COARSE_LOCATION
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_ACCESS_FINE_LOCATION
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_CALL_PHONE
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_CAMERA
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_GET_ACCOUNTS
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_MEDIA_LOCATION
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_POST_NOTIFICATIONS
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_CALENDAR
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_CALL_LOG
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_CONTACTS
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_MEDIA_AUDIO
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_MEDIA_IMAGES
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_MEDIA_VIDEO
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_MEDIA_VISUAL_USER_SELECTED
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_PHONE_STATE
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_SMS
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_STORAGE
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_READ_SYNC_SETTINGS
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_RECORD_AUDIO
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_SEND_SMS
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_CALENDAR
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_CALL_LOG
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_CONTACTS
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_STORAGE
+import com.simplemobiletools.musicplayer.helpers.SD_OTG_PATTERN
+import com.simplemobiletools.musicplayer.helpers.SD_OTG_SHORT
+import com.simplemobiletools.musicplayer.helpers.TIME_FORMAT_12
+import com.simplemobiletools.musicplayer.helpers.TIME_FORMAT_24
+import com.simplemobiletools.musicplayer.helpers.appIconColorStrings
+import com.simplemobiletools.musicplayer.helpers.isOnMainThread
+import com.simplemobiletools.musicplayer.helpers.proPackages
+import com.simplemobiletools.commons.models.SharedTheme
 import com.simplemobiletools.commons.views.MyAppCompatCheckbox
 import com.simplemobiletools.commons.views.MyAppCompatSpinner
 import com.simplemobiletools.commons.views.MyAutoCompleteTextView
@@ -125,6 +125,12 @@ import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
 import com.simplemobiletools.musicplayer.helpers.RoomHelper
 import com.simplemobiletools.musicplayer.helpers.SimpleMediaScanner
 import com.simplemobiletools.musicplayer.helpers.TRACK_STATE_CHANGED
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.helpers.isNougatPlus
+import com.simplemobiletools.musicplayer.helpers.isOreoPlus
+import com.simplemobiletools.musicplayer.helpers.isQPlus
+import com.simplemobiletools.musicplayer.helpers.isRPlus
+import com.simplemobiletools.musicplayer.helpers.isSPlus
 import com.simplemobiletools.musicplayer.helpers.tabsList
 import com.simplemobiletools.musicplayer.interfaces.AlbumsDao
 import com.simplemobiletools.musicplayer.interfaces.ArtistsDao
@@ -134,6 +140,7 @@ import com.simplemobiletools.musicplayer.interfaces.QueueItemsDao
 import com.simplemobiletools.musicplayer.interfaces.SongsDao
 import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.Artist
+import com.simplemobiletools.musicplayer.models.FileDirItem
 import com.simplemobiletools.musicplayer.models.Genre
 import com.simplemobiletools.musicplayer.models.Track
 import java.io.File
@@ -225,7 +232,7 @@ fun Context.getMediaContent(path: String, uri: Uri): Uri? {
                 return Uri.withAppendedPath(uri, id)
             }
         }
-    } catch (e: Exception) {
+    } catch (_: Exception) {
     }
     return null
 }
@@ -278,7 +285,8 @@ fun Context.createFirstParentTreeUriUsingRootTree(fullPath: String): Uri {
     val storageId = getSAFStorageId(fullPath)
     val level = getFirstParentLevel(fullPath)
     val rootParentDirName = fullPath.getFirstParentDirName(this, level)
-    val treeUri = DocumentsContract.buildTreeDocumentUri(EXTERNAL_STORAGE_PROVIDER_AUTHORITY, "$storageId:")
+    val treeUri =
+        DocumentsContract.buildTreeDocumentUri(EXTERNAL_STORAGE_PROVIDER_AUTHORITY, "$storageId:")
     val documentId = "${storageId}:$rootParentDirName"
     return DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId)
 }
@@ -396,7 +404,7 @@ fun Context.getSDCardPath(): String {
 
     val fullSDpattern = Pattern.compile(SD_OTG_PATTERN)
     var sdCardPath = directories.firstOrNull { fullSDpattern.matcher(it).matches() }
-        ?: directories.firstOrNull { !physicalPaths.contains(it.toLowerCase()) } ?: ""
+        ?: directories.firstOrNull { !physicalPaths.contains(it.lowercase()) } ?: ""
 
     // on some devices no method retrieved any SD card path, so test if its not sdcard1 by any chance. It happened on an Android 5.1
     if (sdCardPath.trimEnd('/').isEmpty()) {
@@ -416,7 +424,7 @@ fun Context.getSDCardPath(): String {
                     sdCardPath = "/storage/${it.name}"
                 }
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }
 
@@ -716,7 +724,7 @@ fun Context.toggleAppIconColor(appId: String, colorIndex: Int, color: Int, enabl
         if (enable) {
             baseConfig.lastIconColor = color
         }
-    } catch (e: Exception) {
+    } catch (_: Exception) {
     }
 }
 
@@ -827,7 +835,11 @@ fun Context.renameAndroidSAFDocument(oldPath: String, newPath: String): Boolean 
     }
 }
 
-fun Context.deleteDocumentWithSAFSdk30(fileDirItem: FileDirItem, allowDeleteFolder: Boolean, callback: ((wasSuccess: Boolean) -> Unit)?) {
+fun Context.deleteDocumentWithSAFSdk30(
+    fileDirItem: FileDirItem,
+    allowDeleteFolder: Boolean,
+    callback: ((wasSuccess: Boolean) -> Unit)?
+) {
     try {
         var fileDeleted = false
         if (fileDirItem.isDirectory.not() || allowDeleteFolder) {
@@ -1183,7 +1195,7 @@ fun Context.getDataColumn(
                 }
             }
         }
-    } catch (e: Exception) {
+    } catch (_: Exception) {
     }
     return null
 }
@@ -1259,10 +1271,10 @@ fun getMediaStoreIds(context: Context): HashMap<String, Long> {
                     val path = cursor.getStringValue(Images.Media.DATA)
                     ids[path] = id
                 }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
             }
         }
-    } catch (e: Exception) {
+    } catch (_: Exception) {
     }
 
     return ids
@@ -1597,6 +1609,118 @@ fun Context.broadcastUpdateWidgetState() {
     }
 }
 
+fun Context.getMyContentProviderCursorLoader() =
+    CursorLoader(this, MyContentProvider.MY_CONTENT_URI, null, null, null, null)
+
+// get the color of the statusbar with material activity, if the layout is scrolled down a bit
+fun Context.getColoredMaterialStatusBarColor(): Int {
+    return if (baseConfig.isUsingSystemTheme) {
+        resources.getColor(R.color.you_status_bar_color, theme)
+    } else {
+        getProperPrimaryColor()
+    }
+}
+
+fun Context.isUsingSystemDarkTheme() =
+    resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_YES != 0
+
+fun Context.getSharedThemeSync(cursorLoader: CursorLoader): SharedTheme? {
+    val cursor = cursorLoader.loadInBackground()
+    cursor?.use {
+        if (cursor.moveToFirst()) {
+            try {
+                val textColor = cursor.getIntValue(MyContentProvider.COL_TEXT_COLOR)
+                val backgroundColor = cursor.getIntValue(MyContentProvider.COL_BACKGROUND_COLOR)
+                val primaryColor = cursor.getIntValue(MyContentProvider.COL_PRIMARY_COLOR)
+                val accentColor = cursor.getIntValue(MyContentProvider.COL_ACCENT_COLOR)
+                val appIconColor = cursor.getIntValue(MyContentProvider.COL_APP_ICON_COLOR)
+                val lastUpdatedTS = cursor.getIntValue(MyContentProvider.COL_LAST_UPDATED_TS)
+                return SharedTheme(
+                    textColor,
+                    backgroundColor,
+                    primaryColor,
+                    appIconColor,
+                    lastUpdatedTS,
+                    accentColor
+                )
+            } catch (_: Exception) {
+            }
+        }
+    }
+    return null
+}
+
+fun Context.getSharedTheme(callback: (sharedTheme: SharedTheme?) -> Unit) {
+    if (!isThankYouInstalled()) {
+        callback(null)
+    } else {
+        val cursorLoader = getMyContentProviderCursorLoader()
+        ensureBackgroundThread {
+            callback(getSharedThemeSync(cursorLoader))
+        }
+    }
+}
+
+fun Context.hasProperStoredTreeUri(isOTG: Boolean): Boolean {
+    val uri = if (isOTG) baseConfig.OTGTreeUri else baseConfig.sdTreeUri
+    val hasProperUri = contentResolver.persistedUriPermissions.any { it.uri.toString() == uri }
+    if (!hasProperUri) {
+        if (isOTG) {
+            baseConfig.OTGTreeUri = ""
+        } else {
+            baseConfig.sdTreeUri = ""
+        }
+    }
+    return hasProperUri
+}
+
+
+fun Context.isInDownloadDir(path: String): Boolean {
+    if (path.startsWith(recycleBinPath)) {
+        return false
+    }
+    val firstParentDir = path.getFirstParentDirName(this, 0)
+    return firstParentDir.equals(DOWNLOAD_DIR, true)
+}
+
+fun Context.getTextSize() = when (baseConfig.fontSize) {
+    FONT_SIZE_SMALL -> resources.getDimension(R.dimen.smaller_text_size)
+    FONT_SIZE_MEDIUM -> resources.getDimension(R.dimen.bigger_text_size)
+    FONT_SIZE_LARGE -> resources.getDimension(R.dimen.big_text_size)
+    else -> resources.getDimension(R.dimen.extra_big_text_size)
+}
+
+fun Context.hasOTGConnected(): Boolean {
+    return try {
+        (getSystemService(Context.USB_SERVICE) as UsbManager).deviceList.any {
+            it.value.getInterface(0).interfaceClass == UsbConstants.USB_CLASS_MASS_STORAGE
+        }
+    } catch (e: Exception) {
+        false
+    }
+}
+
+fun Context.getProperStatusBarColor() = when {
+    baseConfig.isUsingSystemTheme -> resources.getColor(R.color.you_status_bar_color, theme)
+    else -> getProperBackgroundColor()
+}
+
+fun Context.hasAllPermissions(permIds: Collection<Int>) = permIds.all(this::hasPermission)
+
+
+fun Context.openDeviceSettings() {
+    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+        data = Uri.fromParts("package", packageName, null)
+    }
+
+    try {
+        startActivity(intent)
+    } catch (e: Exception) {
+        showErrorToast(e)
+    }
+}
+
+
 fun Context.getMediaStoreIdFromPath(path: String): Long {
     var id = 0L
     val projection = arrayOf(
@@ -1901,7 +2025,7 @@ fun Context.rescanAndDeletePath(path: String, callback: () -> Unit) {
         scanFileHandler.removeCallbacksAndMessages(null)
         try {
             applicationContext.contentResolver.delete(uri, null, null)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
         callback()
     }
@@ -2324,12 +2448,12 @@ fun Context.getFolderLastModifieds(folder: String): java.util.HashMap<String, Lo
                             val name = cursor.getStringValue(Images.Media.DISPLAY_NAME)
                             lastModifieds["$folder/$name"] = lastModified
                         }
-                    } catch (e: Exception) {
+                    } catch (_: Exception) {
                     }
                 } while (cursor.moveToNext())
             }
         }
-    } catch (e: Exception) {
+    } catch (_: Exception) {
     }
 
     return lastModifieds

@@ -34,7 +34,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
 import com.google.android.material.appbar.MaterialToolbar
 import com.simplemobiletools.commons.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.DialogSurface
 import com.simplemobiletools.commons.compose.alert_dialog.dialogTextColor
@@ -42,13 +41,14 @@ import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogSta
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
+import com.simplemobiletools.musicplayer.extensions.toHex
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogLineColorPickerBinding
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.copyToClipboard
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.commons.extensions.toHex
 import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.interfaces.LineColorPickerListener
 
