@@ -97,7 +97,7 @@ import com.simplemobiletools.commons.compose.theme.isLitWell
 import com.simplemobiletools.commons.compose.theme.model.Theme
 import com.simplemobiletools.musicplayer.extensions.darkenColor
 import com.simplemobiletools.musicplayer.extensions.getContrastColor
-import com.simplemobiletools.commons.models.BlockedNumber
+import com.simplemobiletools.musicplayer.models.BlockedNumber
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.compose.extensions.isScrollingUp
 import com.simplemobiletools.musicplayer.compose.extensions.listDragHandlerLongKey

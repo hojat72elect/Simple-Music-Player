@@ -20,8 +20,8 @@ import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.helpers.SAVE_DISCARD_PROMPT_INTERVAL
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.helpers.isSPlus
-import com.simplemobiletools.commons.models.MyTheme
-import com.simplemobiletools.commons.models.SharedTheme
+import com.simplemobiletools.musicplayer.models.MyTheme
+import com.simplemobiletools.musicplayer.models.SharedTheme
 import com.simplemobiletools.musicplayer.dialogs.LineColorPickerDialog
 import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter

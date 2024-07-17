@@ -42,8 +42,8 @@ import com.simplemobiletools.commons.dialogs.UpgradeToProDialog
 import com.simplemobiletools.commons.dialogs.WritePermissionDialog
 import com.simplemobiletools.commons.dialogs.WritePermissionDialog.WritePermissionDialogMode
 import com.simplemobiletools.commons.extensions.getInternalStoragePath
-import com.simplemobiletools.commons.models.Android30RenameFormat
-import com.simplemobiletools.commons.models.SharedTheme
+import com.simplemobiletools.musicplayer.models.Android30RenameFormat
+import com.simplemobiletools.musicplayer.models.SharedTheme
 import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity

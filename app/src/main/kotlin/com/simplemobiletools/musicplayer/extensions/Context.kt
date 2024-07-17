@@ -105,7 +105,7 @@ import com.simplemobiletools.musicplayer.helpers.TIME_FORMAT_24
 import com.simplemobiletools.musicplayer.helpers.appIconColorStrings
 import com.simplemobiletools.musicplayer.helpers.isOnMainThread
 import com.simplemobiletools.musicplayer.helpers.proPackages
-import com.simplemobiletools.commons.models.SharedTheme
+import com.simplemobiletools.musicplayer.models.SharedTheme
 import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.views.MyAppCompatSpinner
 import com.simplemobiletools.musicplayer.views.MyAutoCompleteTextView
