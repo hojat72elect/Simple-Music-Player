@@ -9,7 +9,7 @@ import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.extensions.highlightTextPart
 import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ItemArtistBinding
 import com.simplemobiletools.musicplayer.extensions.audioHelper

@@ -7,7 +7,7 @@ import android.text.format.DateFormat
 import androidx.core.content.ContextCompat
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.extensions.getInternalStoragePath
-import com.simplemobiletools.commons.extensions.getSDCardPath
+import com.simplemobiletools.musicplayer.extensions.getSDCardPath
 import com.simplemobiletools.commons.extensions.getSharedPrefs
 import com.simplemobiletools.commons.extensions.sharedPreferencesCallback
 import java.text.SimpleDateFormat

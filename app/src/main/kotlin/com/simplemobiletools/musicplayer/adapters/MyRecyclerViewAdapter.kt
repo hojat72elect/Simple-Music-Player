@@ -21,7 +21,7 @@ import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.interfaces.MyActionModeCallback
-import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import kotlin.math.max
 import kotlin.math.min

@@ -6,7 +6,7 @@ import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.highlightTextPart
 import com.simplemobiletools.musicplayer.extensions.setupViewBackground
-import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ItemFolderBinding
 import com.simplemobiletools.musicplayer.extensions.audioHelper

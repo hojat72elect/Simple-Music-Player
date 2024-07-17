@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.activities.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.extensions.addTracksToPlaylist
 import com.simplemobiletools.musicplayer.extensions.getBiggerPlaceholder

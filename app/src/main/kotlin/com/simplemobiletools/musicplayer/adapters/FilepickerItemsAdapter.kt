@@ -18,7 +18,7 @@ import com.simplemobiletools.commons.databinding.ItemFilepickerListBinding
 import com.simplemobiletools.musicplayer.extensions.formatSize
 import com.simplemobiletools.musicplayer.extensions.hasOTGConnected
 import com.simplemobiletools.musicplayer.helpers.getFilePlaceholderDrawables
-import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.getAndroidSAFUri

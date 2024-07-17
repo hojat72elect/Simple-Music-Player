@@ -12,8 +12,8 @@ import com.simplemobiletools.musicplayer.extensions.getProperBackgroundColor
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.onSeekBarChangeListener
 import com.simplemobiletools.musicplayer.extensions.updateTextColors
-import com.simplemobiletools.commons.views.MySeekBar
-import com.simplemobiletools.commons.views.MyTextView
+import com.simplemobiletools.musicplayer.views.MySeekBar
+import com.simplemobiletools.musicplayer.views.MyTextView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.FragmentPlaybackSpeedBinding
 import com.simplemobiletools.musicplayer.extensions.config

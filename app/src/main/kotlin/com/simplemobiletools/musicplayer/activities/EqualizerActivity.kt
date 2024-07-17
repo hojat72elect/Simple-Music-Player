@@ -12,7 +12,7 @@ import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
 import com.simplemobiletools.musicplayer.helpers.DARK_GREY
 import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.models.RadioItem
-import com.simplemobiletools.commons.views.MySeekBar
+import com.simplemobiletools.musicplayer.views.MySeekBar
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivityEqualizerBinding
 import com.simplemobiletools.musicplayer.databinding.EqualizerBandBinding

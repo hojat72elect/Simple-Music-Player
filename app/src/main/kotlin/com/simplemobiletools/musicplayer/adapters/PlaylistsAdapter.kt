@@ -8,7 +8,7 @@ import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.highlightTextPart
 import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ItemPlaylistBinding
 import com.simplemobiletools.musicplayer.dialogs.NewPlaylistDialog

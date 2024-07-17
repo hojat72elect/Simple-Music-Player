@@ -7,7 +7,7 @@ import com.simplemobiletools.commons.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.databinding.FilepickerFavoriteBinding
 import com.simplemobiletools.musicplayer.extensions.getTextSize
-import com.simplemobiletools.commons.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 
 class FilepickerFavoritesAdapter(
     activity: BaseSimpleActivity, val paths: List<String>, recyclerView: MyRecyclerView,
