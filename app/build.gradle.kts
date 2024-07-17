@@ -131,4 +131,10 @@ dependencies {
 
     implementation(libs.bundles.room)
     ksp(libs.androidx.room.compiler)
+
+    implementation(libs.glide.compose)
+    api(libs.glide)
+    ksp(libs.glide.compiler)
+
+    implementation(libs.androidx.biometric.ktx)
 }

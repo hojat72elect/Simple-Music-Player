@@ -24,8 +24,8 @@ import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogSta
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.extensions.rateStarsRedirectAndThankYou
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.dialogs.ConfirmationAdvancedAlertDialog
-import com.simplemobiletools.commons.dialogs.RateStarsAlertDialog
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationAdvancedAlertDialog
+import com.simplemobiletools.musicplayer.dialogs.RateStarsAlertDialog
 import com.simplemobiletools.musicplayer.helpers.APP_FAQ
 import com.simplemobiletools.musicplayer.helpers.APP_ICON_IDS
 import com.simplemobiletools.musicplayer.helpers.APP_LAUNCHER_NAME

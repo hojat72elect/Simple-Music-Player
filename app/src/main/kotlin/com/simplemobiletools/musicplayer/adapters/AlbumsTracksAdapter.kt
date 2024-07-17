@@ -4,7 +4,7 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.commons.dialogs.ConfirmationDialog
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.extensions.beGone
 import com.simplemobiletools.musicplayer.extensions.beVisible
 import com.simplemobiletools.musicplayer.extensions.getFormattedDuration

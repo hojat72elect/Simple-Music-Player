@@ -12,6 +12,7 @@ ksp = "1.9.10-1.0.13"
 androidx-constraintlayout = "2.1.4"
 androidx-swiperefreshlayout = "1.1.0"
 androidx-lifecycleprocess = "2.6.1"
+androidx-biometricKtx = "1.2.0-alpha05"
 #Eventbus
 eventbus = "3.3.1"
 #Room
@@ -25,6 +26,9 @@ composeActivity = "1.8.0"
 compose = "1.6.0-alpha07"
 composeCompiler = "1.5.3"
 composeMaterial3 = "1.2.0-alpha09"
+#Glide
+glide = "4.16.0"
+glideCompose = "1.0.0-beta01"
 #Simple Mobile Tools
 simple-commons = "6a7777d740"
 #Gradle
@@ -53,6 +57,7 @@ androidx-media = { module = "androidx.media:media", version.ref = "media" }
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3" }
 androidx-media3-session = { module = "androidx.media3:media3-session", version.ref = "media3" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "androidx-swiperefreshlayout" }
+androidx-biometric-ktx = { module = "androidx.biometric:biometric-ktx", version.ref = "androidx-biometricKtx" }
 #Room
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
@@ -76,6 +81,10 @@ compose-activity = { module = "androidx.activity:activity-compose", version.ref 
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 compose-uiTooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 androidx-ui-viewbinding = { group = "androidx.compose.ui", name = "ui-viewbinding", version.ref = "uiViewbinding" }
+#Glide
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glideCompose" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 [bundles]
 compose=[
     "compose-compiler",

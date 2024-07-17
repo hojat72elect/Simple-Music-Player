@@ -40,11 +40,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.commons.compose.extensions.DEVELOPER_PLAY_STORE_URL
-import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
-import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
-import com.simplemobiletools.commons.dialogs.WritePermissionDialog
-import com.simplemobiletools.commons.dialogs.WritePermissionDialog.WritePermissionDialogMode
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
+import com.simplemobiletools.musicplayer.dialogs.FeatureLockedDialog
+import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
+import com.simplemobiletools.musicplayer.dialogs.WritePermissionDialog
+import com.simplemobiletools.musicplayer.dialogs.WritePermissionDialog.WritePermissionDialogMode
 import com.simplemobiletools.musicplayer.helpers.APP_FAQ
 import com.simplemobiletools.musicplayer.helpers.APP_ICON_IDS
 import com.simplemobiletools.musicplayer.helpers.APP_LAUNCHER_NAME

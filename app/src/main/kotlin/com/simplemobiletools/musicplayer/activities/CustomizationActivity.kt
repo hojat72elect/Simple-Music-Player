@@ -8,10 +8,10 @@ import android.graphics.drawable.RippleDrawable
 import android.os.Bundle
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.databinding.ActivityCustomizationBinding
-import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.dialogs.ConfirmationAdvancedDialog
-import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.dialogs.PurchaseThankYouDialog
+import com.simplemobiletools.musicplayer.dialogs.ColorPickerDialog
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationAdvancedDialog
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
+import com.simplemobiletools.musicplayer.dialogs.PurchaseThankYouDialog
 import com.simplemobiletools.musicplayer.helpers.APP_ICON_IDS
 import com.simplemobiletools.musicplayer.helpers.APP_LAUNCHER_NAME
 import com.simplemobiletools.musicplayer.helpers.DARK_GREY

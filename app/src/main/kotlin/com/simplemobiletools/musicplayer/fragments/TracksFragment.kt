@@ -3,7 +3,7 @@ package com.simplemobiletools.musicplayer.fragments
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
-import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
+import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity

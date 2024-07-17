@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.annotation.CallSuper
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
-import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
+import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.extensions.openNotificationSettings

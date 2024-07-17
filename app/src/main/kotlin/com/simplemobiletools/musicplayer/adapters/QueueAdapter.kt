@@ -9,7 +9,7 @@ import androidx.media3.session.MediaController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.commons.dialogs.ConfirmationDialog
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
