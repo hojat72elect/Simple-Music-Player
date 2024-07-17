@@ -6,19 +6,19 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.google.android.material.appbar.AppBarLayout
 import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.commons.databinding.MenuSearchBinding
-import com.simplemobiletools.commons.extensions.adjustAlpha
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.getContrastColor
-import com.simplemobiletools.commons.extensions.getProperBackgroundColor
-import com.simplemobiletools.commons.extensions.getProperPrimaryColor
-import com.simplemobiletools.commons.extensions.hideKeyboard
-import com.simplemobiletools.commons.extensions.onTextChangeListener
-import com.simplemobiletools.commons.extensions.removeBit
-import com.simplemobiletools.commons.extensions.showKeyboard
-import com.simplemobiletools.commons.helpers.LOWER_ALPHA
-import com.simplemobiletools.commons.helpers.MEDIUM_ALPHA
+import com.simplemobiletools.musicplayer.extensions.onTextChangeListener
+import com.simplemobiletools.musicplayer.helpers.LOWER_ALPHA
+import com.simplemobiletools.musicplayer.helpers.MEDIUM_ALPHA
+import com.simplemobiletools.musicplayer.extensions.adjustAlpha
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.extensions.getProperBackgroundColor
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.extensions.hideKeyboard
+import com.simplemobiletools.musicplayer.extensions.removeBit
+import com.simplemobiletools.musicplayer.extensions.showKeyboard
 
 class MySearchMenu(context: Context, attrs: AttributeSet) : AppBarLayout(context, attrs) {
     var isSearchOpen = false

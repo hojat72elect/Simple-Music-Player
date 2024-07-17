@@ -1,7 +1,6 @@
 package com.simplemobiletools.musicplayer.extensions
 
 import android.graphics.Color
-import com.simplemobiletools.commons.extensions.addBit
 import com.simplemobiletools.musicplayer.helpers.DARK_GREY
 import java.util.Locale
 

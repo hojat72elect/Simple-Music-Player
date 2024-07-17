@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.widget.LinearLayout
 import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.extensions.isRTLLayout
+import com.simplemobiletools.musicplayer.extensions.isRTLLayout
 import com.simplemobiletools.musicplayer.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.interfaces.LineColorPickerListener
 

@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.extensions.launchViewIntent
+import com.simplemobiletools.musicplayer.extensions.launchViewIntent
 import com.simplemobiletools.musicplayer.helpers.APP_LICENSES
 import com.simplemobiletools.musicplayer.helpers.LICENSE_ANDROID_LAME
 import com.simplemobiletools.musicplayer.helpers.LICENSE_APNG

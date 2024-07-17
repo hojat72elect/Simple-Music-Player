@@ -26,12 +26,12 @@ import com.simplemobiletools.commons.compose.extensions.composeDonateIntent
 import com.simplemobiletools.commons.compose.extensions.config
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.databinding.DialogPurchaseThankYouBinding
-import com.simplemobiletools.commons.extensions.baseConfig
-import com.simplemobiletools.commons.extensions.fromHtml
-import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
-import com.simplemobiletools.commons.extensions.launchPurchaseThankYouIntent
-import com.simplemobiletools.commons.extensions.removeUnderlines
-import com.simplemobiletools.commons.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.baseConfig
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.launchPurchaseThankYouIntent
+import com.simplemobiletools.musicplayer.extensions.removeUnderlines
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.fromHtml
 
 class PurchaseThankYouDialog(val activity: Activity) {
     init {

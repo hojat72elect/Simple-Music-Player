@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.commons.R
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.getContrastColor
@@ -22,7 +23,6 @@ import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.interfaces.MyActionModeCallback
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import kotlin.math.max
 import kotlin.math.min
 

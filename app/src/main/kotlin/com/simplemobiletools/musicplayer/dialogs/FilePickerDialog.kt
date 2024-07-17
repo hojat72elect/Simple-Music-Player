@@ -10,8 +10,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.extensions.getDirectChildrenCount
-import com.simplemobiletools.commons.extensions.getSomeDocumentSdk30
+import com.simplemobiletools.musicplayer.extensions.getDirectChildrenCount
+import com.simplemobiletools.musicplayer.extensions.getSomeDocumentSdk30
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.adapters.FilepickerFavoritesAdapter
 import com.simplemobiletools.musicplayer.adapters.FilepickerItemsAdapter

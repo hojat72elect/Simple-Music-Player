@@ -9,13 +9,45 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.exifinterface.media.ExifInterface
 import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
-import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.*
-import com.simplemobiletools.commons.models.FileDirItem
-import com.simplemobiletools.commons.views.MyTextView
+import com.simplemobiletools.musicplayer.extensions.formatAsResolution
+import com.simplemobiletools.musicplayer.extensions.getExifCameraModel
+import com.simplemobiletools.musicplayer.extensions.getExifDateTaken
+import com.simplemobiletools.musicplayer.extensions.getExifProperties
+import com.simplemobiletools.musicplayer.extensions.md5
+import com.simplemobiletools.musicplayer.extensions.removeValues
+import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.views.MyTextView
+import com.simplemobiletools.musicplayer.extensions.baseConfig
+import com.simplemobiletools.musicplayer.extensions.beGone
+import com.simplemobiletools.musicplayer.extensions.canModifyEXIF
+import com.simplemobiletools.musicplayer.extensions.formatDate
+import com.simplemobiletools.musicplayer.extensions.formatSize
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.getAndroidSAFUri
+import com.simplemobiletools.musicplayer.extensions.getDoesFilePathExist
+import com.simplemobiletools.musicplayer.extensions.getFileInputStreamSync
+import com.simplemobiletools.musicplayer.extensions.getFilenameFromPath
+import com.simplemobiletools.musicplayer.extensions.getIsPathDirectory
+import com.simplemobiletools.musicplayer.extensions.getLongValue
+import com.simplemobiletools.musicplayer.extensions.hasPermission
+import com.simplemobiletools.musicplayer.extensions.isAudioSlow
+import com.simplemobiletools.musicplayer.extensions.isImageSlow
+import com.simplemobiletools.musicplayer.extensions.isPathOnInternalStorage
+import com.simplemobiletools.musicplayer.extensions.isPathOnOTG
+import com.simplemobiletools.musicplayer.extensions.isRestrictedSAFOnlyRoot
+import com.simplemobiletools.musicplayer.extensions.isVideoSlow
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.showErrorToast
+import com.simplemobiletools.musicplayer.extensions.toast
+import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_STORAGE
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.helpers.isNougatPlus
+import com.simplemobiletools.musicplayer.helpers.isRPlus
+import com.simplemobiletools.musicplayer.helpers.sumByInt
+import com.simplemobiletools.musicplayer.helpers.sumByLong
 import java.io.File
-import java.util.*
+
 
 class PropertiesDialog : BasePropertiesDialog {
     private var mCountHiddenItems = false

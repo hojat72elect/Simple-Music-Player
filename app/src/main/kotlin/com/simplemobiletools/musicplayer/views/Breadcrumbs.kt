@@ -14,14 +14,14 @@ import androidx.core.view.ViewCompat
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.databinding.ItemBreadcrumbBinding
 import com.simplemobiletools.commons.databinding.ItemBreadcrumbFirstBinding
-import com.simplemobiletools.commons.extensions.adjustAlpha
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.baseConfig
-import com.simplemobiletools.commons.extensions.getBasePath
-import com.simplemobiletools.commons.extensions.getProperBackgroundColor
-import com.simplemobiletools.commons.extensions.getProperTextColor
-import com.simplemobiletools.commons.extensions.humanizePath
-import com.simplemobiletools.commons.extensions.onGlobalLayout
+import com.simplemobiletools.musicplayer.extensions.adjustAlpha
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.extensions.baseConfig
+import com.simplemobiletools.musicplayer.extensions.getBasePath
+import com.simplemobiletools.musicplayer.extensions.getProperBackgroundColor
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.humanizePath
+import com.simplemobiletools.musicplayer.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.models.FileDirItem
 
 class Breadcrumbs(context: Context, attrs: AttributeSet) : HorizontalScrollView(context, attrs) {

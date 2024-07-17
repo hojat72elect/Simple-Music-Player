@@ -8,10 +8,10 @@ import android.widget.LinearLayout
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.databinding.DialogPropertiesBinding
 import com.simplemobiletools.commons.databinding.ItemPropertyBinding
-import com.simplemobiletools.commons.extensions.copyToClipboard
-import com.simplemobiletools.commons.extensions.getProperTextColor
-import com.simplemobiletools.commons.extensions.showLocationOnMap
-import com.simplemobiletools.commons.extensions.value
+import com.simplemobiletools.musicplayer.extensions.copyToClipboard
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.showLocationOnMap
+import com.simplemobiletools.musicplayer.extensions.value
 
 abstract class BasePropertiesDialog(activity: Activity) {
     protected val mInflater: LayoutInflater

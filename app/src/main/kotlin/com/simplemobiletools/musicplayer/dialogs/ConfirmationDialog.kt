@@ -12,12 +12,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.compose.alert_dialog.*
+import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
+import com.simplemobiletools.commons.compose.alert_dialog.dialogBorder
+import com.simplemobiletools.commons.compose.alert_dialog.dialogContainerColor
+import com.simplemobiletools.commons.compose.alert_dialog.dialogElevation
+import com.simplemobiletools.commons.compose.alert_dialog.dialogShape
+import com.simplemobiletools.commons.compose.alert_dialog.dialogTextColor
+import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.databinding.DialogMessageBinding
-import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
-import com.simplemobiletools.commons.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 
 /**
  * A simple dialog without any view, just a messageId, a positive button and optionally a negative button
@@ -52,7 +58,12 @@ class ConfirmationDialog(
         }
 
         builder.apply {
-            activity.setupDialogStuff(view.root, this, titleText = dialogTitle, cancelOnTouchOutside = cancelOnTouchOutside) { alertDialog ->
+            activity.setupDialogStuff(
+                view.root,
+                this,
+                titleText = dialogTitle,
+                cancelOnTouchOutside = cancelOnTouchOutside
+            ) { alertDialog ->
                 dialog = alertDialog
             }
         }

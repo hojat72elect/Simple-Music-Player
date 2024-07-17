@@ -52,20 +52,20 @@ import com.simplemobiletools.commons.compose.extensions.config
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
 import com.simplemobiletools.commons.databinding.DialogColorPickerBinding
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.baseConfig
-import com.simplemobiletools.commons.extensions.beVisible
-import com.simplemobiletools.commons.extensions.copyToClipboard
-import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
-import com.simplemobiletools.commons.extensions.getProperTextColor
-import com.simplemobiletools.commons.extensions.onGlobalLayout
-import com.simplemobiletools.commons.extensions.onTextChangeListener
-import com.simplemobiletools.commons.extensions.setFillWithStroke
-import com.simplemobiletools.commons.extensions.setupDialogStuff
-import com.simplemobiletools.commons.extensions.toHex
-import com.simplemobiletools.commons.extensions.updateTextColors
-import com.simplemobiletools.commons.extensions.value
-import com.simplemobiletools.commons.helpers.isQPlus
+import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.extensions.baseConfig
+import com.simplemobiletools.musicplayer.extensions.beVisible
+import com.simplemobiletools.musicplayer.extensions.copyToClipboard
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.extensions.onGlobalLayout
+import com.simplemobiletools.musicplayer.extensions.onTextChangeListener
+import com.simplemobiletools.musicplayer.extensions.setFillWithStroke
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.toHex
+import com.simplemobiletools.musicplayer.extensions.updateTextColors
+import com.simplemobiletools.musicplayer.extensions.value
+import com.simplemobiletools.musicplayer.helpers.isQPlus
 import java.util.LinkedList
 
 private const val RECENT_COLORS_NUMBER = 5

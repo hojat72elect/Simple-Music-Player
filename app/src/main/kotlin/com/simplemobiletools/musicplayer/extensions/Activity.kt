@@ -26,24 +26,24 @@ import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.simplemobiletools.commons.databinding.DialogTitleBinding
-import com.simplemobiletools.musicplayer.dialogs.AppSideloadedDialog
-import com.simplemobiletools.musicplayer.dialogs.DonateDialog
-import com.simplemobiletools.musicplayer.dialogs.RateStarsDialog
-import com.simplemobiletools.musicplayer.dialogs.SecurityDialog
-import com.simplemobiletools.musicplayer.dialogs.UpgradeToProDialog
-import com.simplemobiletools.commons.extensions.getInternalStoragePath
 import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.dialogs.AppSideloadedDialog
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationAdvancedDialog
+import com.simplemobiletools.musicplayer.dialogs.DonateDialog
 import com.simplemobiletools.musicplayer.dialogs.PropertiesDialog
+import com.simplemobiletools.musicplayer.dialogs.RateStarsDialog
+import com.simplemobiletools.musicplayer.dialogs.SecurityDialog
 import com.simplemobiletools.musicplayer.dialogs.SelectPlaylistDialog
+import com.simplemobiletools.musicplayer.dialogs.UpgradeToProDialog
 import com.simplemobiletools.musicplayer.dialogs.WhatsNewDialog
 import com.simplemobiletools.musicplayer.dialogs.WritePermissionDialog
 import com.simplemobiletools.musicplayer.dialogs.WritePermissionDialog.WritePermissionDialogMode
@@ -623,6 +623,11 @@ fun Activity.onApplyWindowInsets(callback: (WindowInsetsCompat) -> Unit) {
     }
 }
 
+fun Activity.showKeyboard(et: EditText) {
+    et.requestFocus()
+    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT)
+}
 
 fun BaseSimpleActivity.showOTGPermissionDialog(path: String) {
     runOnUiThread {
@@ -737,6 +742,14 @@ fun BaseSimpleActivity.isShowingSAFCreateDocumentDialogSdk30(path: String): Bool
     } else {
         false
     }
+}
+
+fun Activity.showLocationOnMap(coordinates: String) {
+    val uriBegin = "geo:${coordinates.replace(" ", "")}"
+    val encodedQuery = Uri.encode(coordinates)
+    val uriString = "$uriBegin?q=$encodedQuery&z=16"
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uriString))
+    launchActivityIntent(intent)
 }
 
 fun BaseSimpleActivity.isShowingAndroidSAFDialog(path: String): Boolean {

@@ -41,6 +41,7 @@ import android.provider.MediaStore.Files
 import android.provider.MediaStore.Images
 import android.provider.MediaStore.MediaColumns
 import android.provider.MediaStore.Video
+import android.provider.OpenableColumns
 import android.provider.Settings
 import android.telecom.TelecomManager
 import android.text.TextUtils
@@ -52,6 +53,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.biometric.BiometricManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.content.res.ResourcesCompat
@@ -65,8 +67,12 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.simplemobiletools.commons.extensions.getInternalStoragePath
+import com.github.ajalt.reprint.core.Reprint
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databases.SongsDatabase
+import com.simplemobiletools.musicplayer.helpers.AudioHelper
 import com.simplemobiletools.musicplayer.helpers.BaseConfig
+import com.simplemobiletools.musicplayer.helpers.Config
 import com.simplemobiletools.musicplayer.helpers.DARK_GREY
 import com.simplemobiletools.musicplayer.helpers.EXTERNAL_STORAGE_PROVIDER_AUTHORITY
 import com.simplemobiletools.musicplayer.helpers.ExternalStorageProviderHack
@@ -74,6 +80,7 @@ import com.simplemobiletools.musicplayer.helpers.FONT_SIZE_LARGE
 import com.simplemobiletools.musicplayer.helpers.FONT_SIZE_MEDIUM
 import com.simplemobiletools.musicplayer.helpers.FONT_SIZE_SMALL
 import com.simplemobiletools.musicplayer.helpers.MyContentProvider
+import com.simplemobiletools.musicplayer.helpers.MyWidgetProvider
 import com.simplemobiletools.musicplayer.helpers.PERMISSION_ACCESS_COARSE_LOCATION
 import com.simplemobiletools.musicplayer.helpers.PERMISSION_ACCESS_FINE_LOCATION
 import com.simplemobiletools.musicplayer.helpers.PERMISSION_CALL_PHONE
@@ -98,39 +105,24 @@ import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_CALENDAR
 import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_CALL_LOG
 import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_CONTACTS
 import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_STORAGE
-import com.simplemobiletools.musicplayer.helpers.SD_OTG_PATTERN
-import com.simplemobiletools.musicplayer.helpers.SD_OTG_SHORT
-import com.simplemobiletools.musicplayer.helpers.TIME_FORMAT_12
-import com.simplemobiletools.musicplayer.helpers.TIME_FORMAT_24
-import com.simplemobiletools.musicplayer.helpers.appIconColorStrings
-import com.simplemobiletools.musicplayer.helpers.isOnMainThread
-import com.simplemobiletools.musicplayer.helpers.proPackages
-import com.simplemobiletools.musicplayer.models.SharedTheme
-import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
-import com.simplemobiletools.musicplayer.views.MyAppCompatSpinner
-import com.simplemobiletools.musicplayer.views.MyAutoCompleteTextView
-import com.simplemobiletools.musicplayer.views.MyButton
-import com.simplemobiletools.musicplayer.views.MyCompatRadioButton
-import com.simplemobiletools.musicplayer.views.MyEditText
-import com.simplemobiletools.musicplayer.views.MyFloatingActionButton
-import com.simplemobiletools.musicplayer.views.MySeekBar
-import com.simplemobiletools.musicplayer.views.MyTextInputLayout
-import com.simplemobiletools.musicplayer.views.MyTextView
-import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.databases.SongsDatabase
-import com.simplemobiletools.musicplayer.helpers.AudioHelper
-import com.simplemobiletools.musicplayer.helpers.Config
-import com.simplemobiletools.musicplayer.helpers.MyWidgetProvider
+import com.simplemobiletools.musicplayer.helpers.PREFS_KEY
 import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
 import com.simplemobiletools.musicplayer.helpers.RoomHelper
+import com.simplemobiletools.musicplayer.helpers.SD_OTG_PATTERN
+import com.simplemobiletools.musicplayer.helpers.SD_OTG_SHORT
 import com.simplemobiletools.musicplayer.helpers.SimpleMediaScanner
+import com.simplemobiletools.musicplayer.helpers.TIME_FORMAT_12
+import com.simplemobiletools.musicplayer.helpers.TIME_FORMAT_24
 import com.simplemobiletools.musicplayer.helpers.TRACK_STATE_CHANGED
+import com.simplemobiletools.musicplayer.helpers.appIconColorStrings
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.helpers.isNougatPlus
+import com.simplemobiletools.musicplayer.helpers.isOnMainThread
 import com.simplemobiletools.musicplayer.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.helpers.isQPlus
 import com.simplemobiletools.musicplayer.helpers.isRPlus
 import com.simplemobiletools.musicplayer.helpers.isSPlus
+import com.simplemobiletools.musicplayer.helpers.proPackages
 import com.simplemobiletools.musicplayer.helpers.tabsList
 import com.simplemobiletools.musicplayer.interfaces.AlbumsDao
 import com.simplemobiletools.musicplayer.interfaces.ArtistsDao
@@ -142,7 +134,18 @@ import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.Artist
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import com.simplemobiletools.musicplayer.models.Genre
+import com.simplemobiletools.musicplayer.models.SharedTheme
 import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
+import com.simplemobiletools.musicplayer.views.MyAppCompatSpinner
+import com.simplemobiletools.musicplayer.views.MyAutoCompleteTextView
+import com.simplemobiletools.musicplayer.views.MyButton
+import com.simplemobiletools.musicplayer.views.MyCompatRadioButton
+import com.simplemobiletools.musicplayer.views.MyEditText
+import com.simplemobiletools.musicplayer.views.MyFloatingActionButton
+import com.simplemobiletools.musicplayer.views.MySeekBar
+import com.simplemobiletools.musicplayer.views.MyTextInputLayout
+import com.simplemobiletools.musicplayer.views.MyTextView
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -319,6 +322,38 @@ fun Context.isUsingGestureNavigation(): Boolean {
         }
     } catch (e: Exception) {
         false
+    }
+}
+
+fun getInternalStoragePath() =
+    if (File("/storage/emulated/0").exists()) "/storage/emulated/0" else Environment.getExternalStorageDirectory().absolutePath.trimEnd(
+        '/'
+    )
+
+fun Context.getSomeDocumentSdk30(path: String): DocumentFile? =
+    getFastDocumentSdk30(path) ?: getDocumentSdk30(path)
+
+fun Context.hasExternalSDCard() = sdCardPath.isNotEmpty()
+
+
+fun Context.getDocumentSdk30(path: String): DocumentFile? {
+    val level = getFirstParentLevel(path)
+    val firstParentPath = path.getFirstParentPath(this, level)
+    var relativePath = path.substring(firstParentPath.length)
+    if (relativePath.startsWith(File.separator)) {
+        relativePath = relativePath.substring(1)
+    }
+
+    return try {
+        val treeUri = createFirstParentTreeUri(path)
+        var document = DocumentFile.fromTreeUri(applicationContext, treeUri)
+        val parts = relativePath.split("/").filter { it.isNotEmpty() }
+        for (part in parts) {
+            document = document?.findFile(part)
+        }
+        document
+    } catch (ignored: Exception) {
+        null
     }
 }
 
@@ -900,6 +935,19 @@ fun Context.createAndroidSAFDocumentId(path: String): String {
     return "$storageId:$relativePath"
 }
 
+fun Context.isBiometricIdAvailable(): Boolean = when (BiometricManager.from(this).canAuthenticate(
+    BiometricManager.Authenticators.BIOMETRIC_WEAK
+)) {
+    BiometricManager.BIOMETRIC_SUCCESS, BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> true
+    else -> false
+}
+
+fun Context.isFingerPrintSensorAvailable() = Reprint.isHardwarePresent()
+
+val Context.isRTLLayout: Boolean get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+
+fun Context.getStringsPackageName() = getString(R.string.package_name)
+
 fun Context.createFirstParentTreeUri(fullPath: String): Uri {
     val storageId = getSAFStorageId(fullPath)
     val level = getFirstParentLevel(fullPath)
@@ -909,6 +957,38 @@ fun Context.createFirstParentTreeUri(fullPath: String): Uri {
         EXTERNAL_STORAGE_PROVIDER_AUTHORITY,
         firstParentId
     )
+}
+
+fun Context.getSharedPrefs() = getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
+
+fun Context.getAlbum(path: String): String? {
+    val projection = arrayOf(
+        Audio.Media.ALBUM
+    )
+
+    val uri = getFileUri(path)
+    val selection =
+        if (path.startsWith("content://")) "${BaseColumns._ID} = ?" else "${MediaColumns.DATA} = ?"
+    val selectionArgs =
+        if (path.startsWith("content://")) arrayOf(path.substringAfterLast("/")) else arrayOf(path)
+
+    try {
+        val cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)
+        cursor?.use {
+            if (cursor.moveToFirst()) {
+                return cursor.getStringValue(Audio.Media.ALBUM)
+            }
+        }
+    } catch (ignored: Exception) {
+    }
+
+    return try {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(path)
+        retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM)
+    } catch (ignored: Exception) {
+        null
+    }
 }
 
 
@@ -997,6 +1077,7 @@ fun Context.isWhiteTheme() =
 fun Context.isAProApp() =
     packageName.startsWith("com.simplemobiletools.") && packageName.removeSuffix(".debug")
         .endsWith(".pro")
+
 
 fun Context.isAccessibleWithSAFSdk30(path: String): Boolean {
     if (path.startsWith(recycleBinPath) || isExternalStorageManager()) {
@@ -2388,6 +2469,43 @@ fun Context.deleteAndroidSAFDirectory(
         storeAndroidTreeUri(path, "")
     }
 }
+
+fun Context.getSizeFromContentUri(uri: Uri): Long {
+    val projection = arrayOf(OpenableColumns.SIZE)
+    try {
+        val cursor = contentResolver.query(uri, projection, null, null, null)
+        cursor?.use {
+            if (cursor.moveToFirst()) {
+                return cursor.getLongValue(OpenableColumns.SIZE)
+            }
+        }
+    } catch (e: Exception) {
+    }
+    return 0L
+}
+
+
+fun Context.getMediaStoreLastModified(path: String): Long {
+    val projection = arrayOf(
+        MediaColumns.DATE_MODIFIED
+    )
+
+    val uri = getFileUri(path)
+    val selection = "${BaseColumns._ID} = ?"
+    val selectionArgs = arrayOf(path.substringAfterLast("/"))
+
+    try {
+        val cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)
+        cursor?.use {
+            if (cursor.moveToFirst()) {
+                return cursor.getLongValue(MediaColumns.DATE_MODIFIED) * 1000
+            }
+        }
+    } catch (ignored: Exception) {
+    }
+    return 0
+}
+
 
 fun Context.trySAFFileDelete(
     fileDirItem: FileDirItem,

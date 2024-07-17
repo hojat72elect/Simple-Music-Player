@@ -6,10 +6,10 @@ import android.os.Environment
 import android.text.format.DateFormat
 import androidx.core.content.ContextCompat
 import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.extensions.getInternalStoragePath
+import com.simplemobiletools.musicplayer.extensions.getInternalStoragePath
 import com.simplemobiletools.musicplayer.extensions.getSDCardPath
-import com.simplemobiletools.commons.extensions.getSharedPrefs
-import com.simplemobiletools.commons.extensions.sharedPreferencesCallback
+import com.simplemobiletools.musicplayer.extensions.getSharedPrefs
+import com.simplemobiletools.musicplayer.extensions.sharedPreferencesCallback
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.LinkedList
@@ -86,7 +86,7 @@ open class BaseConfig(val context: Context) {
             .putString(INTERNAL_STORAGE_PATH, internalStoragePath).apply()
 
     private fun getDefaultInternalPath() =
-        if (prefs.contains(INTERNAL_STORAGE_PATH)) "" else context.getInternalStoragePath()
+        if (prefs.contains(INTERNAL_STORAGE_PATH)) "" else getInternalStoragePath()
 
     var textColor: Int
         get() = prefs.getInt(

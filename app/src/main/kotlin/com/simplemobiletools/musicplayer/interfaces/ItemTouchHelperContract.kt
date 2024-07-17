@@ -1,6 +1,6 @@
 package com.simplemobiletools.musicplayer.interfaces
 
-import com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter
 
 interface ItemTouchHelperContract {
     fun onRowMoved(fromPosition: Int, toPosition: Int)

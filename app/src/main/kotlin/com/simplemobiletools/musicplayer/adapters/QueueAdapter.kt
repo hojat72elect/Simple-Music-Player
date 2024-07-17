@@ -215,9 +215,9 @@ class QueueAdapter(
         swapMediaItemInQueue(fromPosition, toPosition)
     }
 
-    override fun onRowSelected(myViewHolder: com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
+    override fun onRowSelected(myViewHolder: com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
 
-    override fun onRowClear(myViewHolder: com.simplemobiletools.commons.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
+    override fun onRowClear(myViewHolder: com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
 
 
     override fun onChange(position: Int) =
