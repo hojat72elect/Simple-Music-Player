@@ -10,7 +10,7 @@ import androidx.annotation.ColorInt
 import androidx.core.os.postDelayed
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.baseConfig
-import com.simplemobiletools.commons.extensions.countdown
+import com.simplemobiletools.musicplayer.extensions.countdown
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.helpers.DEFAULT_PASSWORD_COUNTDOWN
 import com.simplemobiletools.musicplayer.helpers.MAX_PASSWORD_RETRY_COUNT

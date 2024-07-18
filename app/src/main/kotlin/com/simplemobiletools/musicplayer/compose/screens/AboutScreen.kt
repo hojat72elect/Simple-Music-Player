@@ -8,14 +8,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.commons.compose.extensions.MyDevices
-import com.simplemobiletools.commons.compose.lists.SimpleColumnScaffold
-import com.simplemobiletools.commons.compose.settings.SettingsGroup
-import com.simplemobiletools.commons.compose.settings.SettingsHorizontalDivider
-import com.simplemobiletools.commons.compose.settings.SettingsListItem
-import com.simplemobiletools.commons.compose.settings.SettingsTitleTextComponent
-import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.compose.theme.SimpleTheme
+import com.simplemobiletools.musicplayer.compose.extensions.MyDevices
+import com.simplemobiletools.musicplayer.compose.lists.SimpleColumnScaffold
+import com.simplemobiletools.musicplayer.compose.settings.SettingsGroup
+import com.simplemobiletools.musicplayer.compose.settings.SettingsHorizontalDivider
+import com.simplemobiletools.musicplayer.compose.settings.SettingsListItem
+import com.simplemobiletools.musicplayer.compose.settings.SettingsTitleTextComponent
+import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
+import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 
 private val startingTitlePadding = Modifier.padding(start = 60.dp)
 

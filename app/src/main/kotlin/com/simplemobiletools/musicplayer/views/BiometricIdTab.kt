@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.biometric.auth.AuthPromptHost
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.simplemobiletools.commons.extensions.showBiometricPrompt
+import com.simplemobiletools.musicplayer.extensions.showBiometricPrompt
 import com.simplemobiletools.musicplayer.databinding.TabBiometricIdBinding
 import com.simplemobiletools.musicplayer.extensions.getContrastColor
 import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor

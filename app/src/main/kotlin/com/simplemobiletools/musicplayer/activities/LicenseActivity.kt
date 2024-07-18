@@ -7,8 +7,8 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
-import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.musicplayer.compose.extensions.enableEdgeToEdgeSimple
+import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.extensions.launchViewIntent
 import com.simplemobiletools.musicplayer.helpers.APP_LICENSES
 import com.simplemobiletools.musicplayer.helpers.LICENSE_ANDROID_LAME

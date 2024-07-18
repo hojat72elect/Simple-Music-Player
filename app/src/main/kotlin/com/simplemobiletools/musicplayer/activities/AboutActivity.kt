@@ -20,10 +20,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.net.toUri
-import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
-import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
-import com.simplemobiletools.commons.compose.extensions.rateStarsRedirectAndThankYou
-import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.musicplayer.compose.alert_dialog.rememberAlertDialogState
+import com.simplemobiletools.musicplayer.compose.extensions.enableEdgeToEdgeSimple
+import com.simplemobiletools.musicplayer.compose.extensions.rateStarsRedirectAndThankYou
+import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationAdvancedAlertDialog
 import com.simplemobiletools.musicplayer.dialogs.RateStarsAlertDialog
 import com.simplemobiletools.musicplayer.helpers.APP_FAQ
@@ -35,6 +35,11 @@ import com.simplemobiletools.musicplayer.helpers.APP_VERSION_NAME
 import com.simplemobiletools.musicplayer.helpers.SHOW_FAQ_BEFORE_MAIL
 import com.simplemobiletools.musicplayer.models.FAQItem
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.compose.screens.AboutScreen
+import com.simplemobiletools.musicplayer.compose.screens.AboutSection
+import com.simplemobiletools.musicplayer.compose.screens.HelpUsSection
+import com.simplemobiletools.musicplayer.compose.screens.OtherSection
+import com.simplemobiletools.musicplayer.compose.screens.SocialSection
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.getStoreUrl
 import com.simplemobiletools.musicplayer.extensions.launchMoreAppsFromUsIntent
@@ -69,12 +74,12 @@ class AboutActivity : ComponentActivity() {
                 val rateStarsAlertDialogState = getRateStarsAlertDialogState()
                 val onRateUsClickAlertDialogState =
                     getOnRateUsClickAlertDialogState(rateStarsAlertDialogState::show)
-                com.simplemobiletools.musicplayer.compose.screens.AboutScreen(
+                AboutScreen(
                     goBack = ::finish,
                     helpUsSection = {
                         val showHelpUsSection =
                             remember { showGoogleRelations || !showExternalLinks }
-                        com.simplemobiletools.musicplayer.compose.screens.HelpUsSection(
+                        HelpUsSection(
                             onRateUsClick = {
                                 onRateUsClick(
                                     showConfirmationAdvancedDialog = onRateUsClickAlertDialogState::show,
@@ -92,7 +97,7 @@ class AboutActivity : ComponentActivity() {
                     aboutSection = {
                         val setupFAQ = rememberFAQ()
                         if (!showExternalLinks || setupFAQ) {
-                            com.simplemobiletools.musicplayer.compose.screens.AboutSection(
+                            AboutSection(
                                 setupFAQ = setupFAQ,
                                 onFAQClick = ::launchFAQActivity,
                                 onEmailClick = {
@@ -102,7 +107,7 @@ class AboutActivity : ComponentActivity() {
                     },
                     socialSection = {
                         if (showExternalLinks) {
-                            com.simplemobiletools.musicplayer.compose.screens.SocialSection(
+                            SocialSection(
                                 onFacebookClick = ::onFacebookClick,
                                 onGithubClick = ::onGithubClick,
                                 onRedditClick = ::onRedditClick,
@@ -115,7 +120,7 @@ class AboutActivity : ComponentActivity() {
                         resources,
                         showExternalLinks
                     )
-                    com.simplemobiletools.musicplayer.compose.screens.OtherSection(
+                    OtherSection(
                         showMoreApps = showGoogleRelations,
                         onMoreAppsClick = ::launchMoreAppsFromUsIntent,
                         showWebsite = showWebsite,

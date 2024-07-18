@@ -2,6 +2,7 @@ package com.simplemobiletools.musicplayer.extensions
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.viewbinding.ViewBinding
@@ -36,7 +37,7 @@ fun View.onGlobalLayout(callback: () -> Unit) {
     })
 }
 
-
+fun View.performHapticFeedback() = performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY, HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING)
 
 
 fun View.isVisible() = visibility == View.VISIBLE

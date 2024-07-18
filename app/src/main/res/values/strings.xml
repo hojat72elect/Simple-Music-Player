@@ -28,6 +28,7 @@
     <string name="simple_commons">Simple Commons</string>
     <string name="value_copied_to_clipboard_show">Value copied to clipboard:\n%s</string>
     <string name="cannot_rename_folder">Cannot rename this folder</string>
+    <string name="authenticate">Authenticate</string>
     <string name="could_not_create_folder">Could not create folder %s</string>
     <string name="thank_you_url">https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou</string>
     <string name="internal">Internal</string>
@@ -551,14 +552,12 @@
     <string name="no_fingerprints_registered">You have no fingerprints registered, please add some in the Settings of your device</string>
     <string name="authentication_failed">Authentication failed</string>
     <string name="authentication_blocked">Authentication blocked, please try again in a moment</string>
-
-
-
-
-
-
-
-
+    <string name="enter_pin">Enter PIN</string>
+    <string name="wrong_pin">Wrong PIN</string>
+    <string name="please_enter_pin">Please enter a PIN</string>
+    <string name="pin_must_be_4_digits_long">PIN must be at least 4 digits long</string>
+    <string name="repeat_pin">Repeat PIN</string>
+    <string name="language">Language</string>
 
 
 

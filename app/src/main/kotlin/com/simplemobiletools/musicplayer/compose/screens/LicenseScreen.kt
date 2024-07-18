@@ -11,11 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.commons.compose.extensions.MyDevices
-import com.simplemobiletools.commons.compose.lists.SimpleLazyListScaffold
-import com.simplemobiletools.commons.compose.settings.SettingsHorizontalDivider
-import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.compose.theme.SimpleTheme
+import com.simplemobiletools.musicplayer.compose.extensions.MyDevices
+import com.simplemobiletools.musicplayer.compose.lists.SimpleLazyListScaffold
+import com.simplemobiletools.musicplayer.compose.settings.SettingsHorizontalDivider
+import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
+import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.helpers.LICENSE_ANDROID_LAME
 import com.simplemobiletools.musicplayer.helpers.LICENSE_APNG
 import com.simplemobiletools.musicplayer.helpers.LICENSE_AUDIO_RECORD_VIEW

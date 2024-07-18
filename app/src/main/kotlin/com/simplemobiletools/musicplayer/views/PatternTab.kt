@@ -11,7 +11,7 @@ import androidx.core.os.postDelayed
 import com.andrognito.patternlockview.PatternLockView
 import com.andrognito.patternlockview.listener.PatternLockViewListener
 import com.andrognito.patternlockview.utils.PatternLockUtils
-import com.simplemobiletools.commons.extensions.performHapticFeedback
+import com.simplemobiletools.musicplayer.extensions.performHapticFeedback
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.TabPatternBinding
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter

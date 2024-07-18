@@ -1,6 +1,9 @@
 package com.simplemobiletools.musicplayer.extensions
 
 import android.graphics.Color
+import android.os.Handler
+import android.os.Looper
+import androidx.core.os.postDelayed
 import com.simplemobiletools.musicplayer.helpers.DARK_GREY
 import java.util.Locale
 
@@ -96,4 +99,15 @@ fun Int.lightenColor(factor: Int = 8): Int {
         hsl[2] = 0f
     hsv = hsl2hsv(hsl)
     return Color.HSVToColor(hsv)
+}
+
+fun Int.countdown(intervalMillis: Long, callback: (count: Int) -> Unit) {
+    callback(this)
+    if (this == 0) {
+        return
+    }
+
+    Handler(Looper.getMainLooper()).postDelayed(intervalMillis) {
+        (this - 1).countdown(intervalMillis, callback)
+    }
 }

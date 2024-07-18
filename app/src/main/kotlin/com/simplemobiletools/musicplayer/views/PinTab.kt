@@ -5,9 +5,9 @@ import android.util.AttributeSet
 import android.widget.TextView
 import android.widget.Toast
 import androidx.biometric.auth.AuthPromptHost
-import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.databinding.TabPinBinding
-import com.simplemobiletools.commons.extensions.performHapticFeedback
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.TabPinBinding
+import com.simplemobiletools.musicplayer.extensions.performHapticFeedback
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.toast

@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.remember
-import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
-import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.musicplayer.compose.extensions.enableEdgeToEdgeSimple
+import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.models.LanguageContributor
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.compose.screens.ContributorsScreen

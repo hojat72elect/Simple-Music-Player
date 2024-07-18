@@ -29,9 +29,16 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.biometric.BiometricPrompt
+import androidx.biometric.auth.AuthPromptCallback
+import androidx.biometric.auth.AuthPromptHost
+import androidx.biometric.auth.Class2BiometricAuthPrompt
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.toast
+import com.simplemobiletools.musicplayer.helpers.PROTECTION_FINGERPRINT
 import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
@@ -1069,6 +1076,35 @@ fun Activity.showDonateOrUpgradeDialog() {
 
 fun Activity.rescanPaths(paths: List<String>, callback: (() -> Unit)? = null) {
     applicationContext.rescanPaths(paths, callback)
+}
+
+fun Activity.showBiometricPrompt(
+    successCallback: ((String, Int) -> Unit)? = null,
+    failureCallback: (() -> Unit)? = null
+) {
+    Class2BiometricAuthPrompt.Builder(getText(R.string.authenticate), getText(R.string.cancel))
+        .build()
+        .startAuthentication(
+            AuthPromptHost(this as FragmentActivity),
+            object : AuthPromptCallback() {
+                override fun onAuthenticationSucceeded(activity: FragmentActivity?, result: BiometricPrompt.AuthenticationResult) {
+                    successCallback?.invoke("", PROTECTION_FINGERPRINT)
+                }
+
+                override fun onAuthenticationError(activity: FragmentActivity?, errorCode: Int, errString: CharSequence) {
+                    val isCanceledByUser = errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON || errorCode == BiometricPrompt.ERROR_USER_CANCELED
+                    if (!isCanceledByUser) {
+                        toast(errString.toString())
+                    }
+                    failureCallback?.invoke()
+                }
+
+                override fun onAuthenticationFailed(activity: FragmentActivity?) {
+                    toast(R.string.authentication_failed)
+                    failureCallback?.invoke()
+                }
+            }
+        )
 }
 
 fun Activity.createTempFile(file: File): File? {
