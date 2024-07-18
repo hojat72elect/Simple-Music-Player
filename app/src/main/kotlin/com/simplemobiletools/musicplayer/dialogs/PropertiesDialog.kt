@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.exifinterface.media.ExifInterface
-import com.simplemobiletools.commons.R
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.formatAsResolution
 import com.simplemobiletools.musicplayer.extensions.getExifCameraModel
 import com.simplemobiletools.musicplayer.extensions.getExifDateTaken

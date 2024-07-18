@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
@@ -37,7 +38,7 @@ abstract class BaseMusicAdapter<Type>(
     val tagHelper by lazy { TagHelper(context) }
     var placeholder = resources.getSmallPlaceholder(textColor)
     var placeholderBig = resources.getBiggerPlaceholder(textColor)
-    open val cornerRadius by lazy { resources.getDimension(com.simplemobiletools.commons.R.dimen.rounded_corner_radius_small).toInt() }
+    open val cornerRadius by lazy { resources.getDimension(R.dimen.rounded_corner_radius_small).toInt() }
 
     init {
         setupDragListener(true)

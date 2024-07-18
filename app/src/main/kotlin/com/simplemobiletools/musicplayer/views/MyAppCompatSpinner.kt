@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
-import com.simplemobiletools.commons.R
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.MyArrayAdapter
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 

@@ -9,9 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.simplemobiletools.commons.R
-import com.simplemobiletools.musicplayer.extensions.getDirectChildrenCount
-import com.simplemobiletools.musicplayer.extensions.getSomeDocumentSdk30
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.adapters.FilepickerFavoritesAdapter
 import com.simplemobiletools.musicplayer.adapters.FilepickerItemsAdapter
@@ -25,6 +23,7 @@ import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.getAndroidSAFFileItems
 import com.simplemobiletools.musicplayer.extensions.getColoredDrawableWithColor
 import com.simplemobiletools.musicplayer.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.extensions.getDirectChildrenCount
 import com.simplemobiletools.musicplayer.extensions.getDoesFilePathExist
 import com.simplemobiletools.musicplayer.extensions.getFilenameFromPath
 import com.simplemobiletools.musicplayer.extensions.getFolderLastModifieds
@@ -35,6 +34,7 @@ import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.getSomeAndroidSAFDocument
 import com.simplemobiletools.musicplayer.extensions.getSomeDocumentFile
+import com.simplemobiletools.musicplayer.extensions.getSomeDocumentSdk30
 import com.simplemobiletools.musicplayer.extensions.getTextSize
 import com.simplemobiletools.musicplayer.extensions.handleHiddenFolderPasswordProtection
 import com.simplemobiletools.musicplayer.extensions.handleLockedFolderOpening

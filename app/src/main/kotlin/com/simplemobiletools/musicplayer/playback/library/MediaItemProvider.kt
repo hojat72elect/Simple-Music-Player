@@ -313,7 +313,7 @@ private enum class RootCategories(
     ),
     ARTISTS(
         R.string.artists,
-        com.simplemobiletools.commons.R.drawable.ic_person_vector,
+        R.drawable.ic_person_vector,
         SMP_ARTISTS_ROOT_ID,
         MediaMetadata.MEDIA_TYPE_FOLDER_ARTISTS
     ),

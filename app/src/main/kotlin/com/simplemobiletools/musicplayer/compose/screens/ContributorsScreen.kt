@@ -15,7 +15,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.compose.components.LinkifyTextComponent
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.lists.SimpleLazyListScaffold
@@ -25,6 +24,7 @@ import com.simplemobiletools.commons.compose.settings.SettingsListItem
 import com.simplemobiletools.commons.compose.settings.SettingsTitleTextComponent
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.fromHtml
 import com.simplemobiletools.musicplayer.models.LanguageContributor
 import kotlinx.collections.immutable.ImmutableList
@@ -54,7 +54,10 @@ internal fun ContributorsScreen(
     ) {
         item {
             SettingsGroupTitle {
-                SettingsTitleTextComponent(text = stringResource(id = R.string.development), modifier = startingPadding)
+                SettingsTitleTextComponent(
+                    text = stringResource(id = R.string.development),
+                    modifier = startingPadding
+                )
             }
         }
         item {
@@ -73,7 +76,10 @@ internal fun ContributorsScreen(
         }
         item {
             SettingsGroupTitle {
-                SettingsTitleTextComponent(text = stringResource(id = R.string.translation), modifier = startingPadding)
+                SettingsTitleTextComponent(
+                    text = stringResource(id = R.string.translation),
+                    modifier = startingPadding
+                )
             }
         }
         items(contributors, key = { it.contributorsId.plus(it.iconId).plus(it.labelId) }) {
@@ -98,7 +104,7 @@ internal fun ContributorsScreen(
                 Spacer(modifier = Modifier.padding(bottom = SimpleTheme.dimens.padding.medium))
             }
         }
-       
+
     }
 }
 
@@ -146,10 +152,26 @@ private fun ContributorsScreenPreview() {
         ContributorsScreen(
             goBack = {},
             contributors = listOf(
-                LanguageContributor(R.drawable.ic_flag_arabic_vector, R.string.translation_arabic, R.string.translators_arabic),
-                LanguageContributor(R.drawable.ic_flag_azerbaijani_vector, R.string.translation_azerbaijani, R.string.translators_azerbaijani),
-                LanguageContributor(R.drawable.ic_flag_bengali_vector, R.string.translation_bengali, R.string.translators_bengali),
-                LanguageContributor(R.drawable.ic_flag_catalan_vector, R.string.translation_catalan, R.string.translators_catalan),
+                LanguageContributor(
+                    R.drawable.ic_flag_arabic_vector,
+                    R.string.translation_arabic,
+                    R.string.translators_arabic
+                ),
+                LanguageContributor(
+                    R.drawable.ic_flag_azerbaijani_vector,
+                    R.string.translation_azerbaijani,
+                    R.string.translators_azerbaijani
+                ),
+                LanguageContributor(
+                    R.drawable.ic_flag_bengali_vector,
+                    R.string.translation_bengali,
+                    R.string.translators_bengali
+                ),
+                LanguageContributor(
+                    R.drawable.ic_flag_catalan_vector,
+                    R.string.translation_catalan,
+                    R.string.translators_catalan
+                ),
             ).toImmutableList(),
             showContributorsLabel = true,
         )

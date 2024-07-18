@@ -11,9 +11,9 @@ import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
-import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.databinding.ItemBreadcrumbBinding
-import com.simplemobiletools.commons.databinding.ItemBreadcrumbFirstBinding
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.ItemBreadcrumbBinding
+import com.simplemobiletools.musicplayer.databinding.ItemBreadcrumbFirstBinding
 import com.simplemobiletools.musicplayer.extensions.adjustAlpha
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.baseConfig

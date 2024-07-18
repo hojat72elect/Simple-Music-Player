@@ -10,7 +10,7 @@ import android.provider.MediaStore
 import androidx.core.app.NotificationCompat
 import androidx.core.util.Pair
 import androidx.documentfile.provider.DocumentFile
-import com.simplemobiletools.commons.R
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.getDocumentSdk30
 import com.simplemobiletools.musicplayer.helpers.CONFLICT_KEEP_BOTH
 import com.simplemobiletools.musicplayer.helpers.CONFLICT_SKIP

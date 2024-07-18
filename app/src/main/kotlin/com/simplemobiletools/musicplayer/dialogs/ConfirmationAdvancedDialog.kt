@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.dialogBorder
 import com.simplemobiletools.commons.compose.alert_dialog.dialogContainerColor
@@ -20,7 +19,8 @@ import com.simplemobiletools.commons.compose.alert_dialog.dialogTextColor
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.databinding.DialogMessageBinding
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.DialogMessageBinding
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 
@@ -31,7 +31,7 @@ class ConfirmationAdvancedDialog(
     messageId: Int = R.string.proceed_with_deletion,
     positive: Int = R.string.yes,
     negative: Int = R.string.no,
-    val cancelOnTouchOutside: Boolean = true,
+    private val cancelOnTouchOutside: Boolean = true,
     val callback: (result: Boolean) -> Unit
 ) {
     private var dialog: AlertDialog? = null

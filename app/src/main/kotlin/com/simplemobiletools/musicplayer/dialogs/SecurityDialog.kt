@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.biometric.auth.AuthPromptHost
 import androidx.fragment.app.FragmentActivity
-import com.simplemobiletools.commons.R
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.PasswordTypesAdapter
 import com.simplemobiletools.musicplayer.databinding.DialogSecurityBinding
 import com.simplemobiletools.musicplayer.extensions.isBiometricIdAvailable

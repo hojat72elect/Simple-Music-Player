@@ -44,10 +44,10 @@ class PlaybackSpeedFragment : BottomSheetDialogFragment() {
         val binding = FragmentPlaybackSpeedBinding.inflate(inflater, container, false)
         val background = ResourcesCompat.getDrawable(
             resources,
-            com.simplemobiletools.commons.R.drawable.bottom_sheet_bg,
+            R.drawable.bottom_sheet_bg,
             requireContext().theme
         )
-        (background as LayerDrawable).findDrawableByLayerId(com.simplemobiletools.commons.R.id.bottom_sheet_background)
+        (background as LayerDrawable).findDrawableByLayerId(R.id.bottom_sheet_background)
             .applyColorFilter(requireContext().getProperBackgroundColor())
 
         binding.apply {

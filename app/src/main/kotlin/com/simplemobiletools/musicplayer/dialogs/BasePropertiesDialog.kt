@@ -5,9 +5,9 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.databinding.DialogPropertiesBinding
-import com.simplemobiletools.commons.databinding.ItemPropertyBinding
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.DialogPropertiesBinding
+import com.simplemobiletools.musicplayer.databinding.ItemPropertyBinding
 import com.simplemobiletools.musicplayer.extensions.copyToClipboard
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.showLocationOnMap

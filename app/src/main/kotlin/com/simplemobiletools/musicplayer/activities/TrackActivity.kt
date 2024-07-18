@@ -282,7 +282,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
                     if (velocityY > 0 && velocityY > velocityX && e2.y - e1.y > SWIPE_DOWN_THRESHOLD) {
                         finish()
                         binding.activityTrackTopShadow.animate().alpha(0f).start()
-                        overridePendingTransition(0, com.simplemobiletools.commons.R.anim.slide_down)
+                        overridePendingTransition(0, R.anim.slide_down)
                     }
                 }
                 return super.onFling(e1, e2, velocityX, velocityY)

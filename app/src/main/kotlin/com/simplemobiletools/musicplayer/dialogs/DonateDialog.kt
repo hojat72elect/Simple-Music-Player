@@ -21,7 +21,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.dialogBorder
 import com.simplemobiletools.commons.compose.alert_dialog.dialogContainerColor
@@ -35,7 +34,8 @@ import com.simplemobiletools.commons.compose.extensions.getActivity
 import com.simplemobiletools.commons.compose.extensions.rememberMutableInteractionSource
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
-import com.simplemobiletools.commons.databinding.DialogDonateBinding
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.DialogDonateBinding
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.fromHtml
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder

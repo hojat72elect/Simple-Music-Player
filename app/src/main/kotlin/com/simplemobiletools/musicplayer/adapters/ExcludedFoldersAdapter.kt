@@ -7,6 +7,7 @@ import android.view.View
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.getPopupMenuTheme
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
@@ -31,13 +32,13 @@ class ExcludedFoldersAdapter(
         setupDragListener(true)
     }
 
-    override fun getActionMenuId() = com.simplemobiletools.commons.R.menu.cab_remove_only
+    override fun getActionMenuId() = R.menu.cab_remove_only
 
     override fun prepareActionMode(menu: Menu) {}
 
     override fun actionItemPressed(id: Int) {
         when (id) {
-            com.simplemobiletools.commons.R.id.cab_remove -> removeSelection()
+            R.id.cab_remove -> removeSelection()
         }
     }
 
@@ -101,7 +102,7 @@ class ExcludedFoldersAdapter(
             setOnMenuItemClickListener { item ->
                 val eventTypeId = folder.hashCode()
                 when (item.itemId) {
-                    com.simplemobiletools.commons.R.id.cab_remove -> {
+                    R.id.cab_remove -> {
                         executeItemMenuOperation(eventTypeId) {
                             removeSelection()
                         }

@@ -6,23 +6,13 @@ import android.graphics.Color
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Bundle
-import com.simplemobiletools.commons.R
-import com.simplemobiletools.commons.databinding.ActivityCustomizationBinding
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.ActivityCustomizationBinding
 import com.simplemobiletools.musicplayer.dialogs.ColorPickerDialog
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationAdvancedDialog
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
-import com.simplemobiletools.musicplayer.dialogs.PurchaseThankYouDialog
-import com.simplemobiletools.musicplayer.helpers.APP_ICON_IDS
-import com.simplemobiletools.musicplayer.helpers.APP_LAUNCHER_NAME
-import com.simplemobiletools.musicplayer.helpers.DARK_GREY
-import com.simplemobiletools.musicplayer.helpers.MyContentProvider
-import com.simplemobiletools.musicplayer.helpers.NavigationIcon
-import com.simplemobiletools.musicplayer.helpers.SAVE_DISCARD_PROMPT_INTERVAL
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.helpers.isSPlus
-import com.simplemobiletools.musicplayer.models.MyTheme
-import com.simplemobiletools.musicplayer.models.SharedTheme
 import com.simplemobiletools.musicplayer.dialogs.LineColorPickerDialog
+import com.simplemobiletools.musicplayer.dialogs.PurchaseThankYouDialog
 import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.baseConfig
@@ -42,7 +32,17 @@ import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.updateSharedTheme
 import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.helpers.APP_ICON_IDS
+import com.simplemobiletools.musicplayer.helpers.APP_LAUNCHER_NAME
+import com.simplemobiletools.musicplayer.helpers.DARK_GREY
+import com.simplemobiletools.musicplayer.helpers.MyContentProvider
+import com.simplemobiletools.musicplayer.helpers.NavigationIcon
+import com.simplemobiletools.musicplayer.helpers.SAVE_DISCARD_PROMPT_INTERVAL
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.helpers.isSPlus
+import com.simplemobiletools.musicplayer.models.MyTheme
 import com.simplemobiletools.musicplayer.models.RadioItem
+import com.simplemobiletools.musicplayer.models.SharedTheme
 
 class CustomizationActivity : BaseSimpleActivity() {
     private val THEME_LIGHT = 0
@@ -176,6 +176,7 @@ class CustomizationActivity : BaseSimpleActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (hasUnsavedChanges && System.currentTimeMillis() - lastSavePromptTS > SAVE_DISCARD_PROMPT_INTERVAL) {
             promptSaveDiscard()

@@ -1,6 +1,10 @@
 package com.simplemobiletools.musicplayer.compose.screens
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
@@ -9,13 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.compose.components.LinkifyTextComponent
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.lists.SimpleLazyListScaffold
 import com.simplemobiletools.commons.compose.settings.SettingsHorizontalDivider
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.fromHtml
 import com.simplemobiletools.musicplayer.models.FAQItem
 import kotlinx.collections.immutable.ImmutableList
@@ -35,7 +39,8 @@ internal fun FAQScreen(
             Column(modifier = Modifier.fillMaxWidth()) {
                 ListItem(
                     headlineContent = {
-                        val text = if (faqItem.title is Int) stringResource(faqItem.title) else faqItem.title as String
+                        val text =
+                            if (faqItem.title is Int) stringResource(faqItem.title) else faqItem.title as String
                         Text(
                             text = text,
                             modifier = Modifier

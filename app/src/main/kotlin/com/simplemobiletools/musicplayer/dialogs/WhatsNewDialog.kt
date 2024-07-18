@@ -15,7 +15,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
-import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.dialogBorder
 import com.simplemobiletools.commons.compose.alert_dialog.dialogContainerColor
@@ -26,14 +25,15 @@ import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogSta
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.settings.SettingsHorizontalDivider
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.databinding.DialogWhatsNewBinding
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.DialogWhatsNewBinding
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.models.Release
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
-class WhatsNewDialog(val activity: Activity, val releases: List<Release>) {
+class WhatsNewDialog(val activity: Activity, private val releases: List<Release>) {
     init {
         val view = DialogWhatsNewBinding.inflate(LayoutInflater.from(activity), null, false)
         view.whatsNewContent.text = getNewReleases()
@@ -53,10 +53,10 @@ class WhatsNewDialog(val activity: Activity, val releases: List<Release>) {
     private fun getNewReleases(): String {
         val sb = StringBuilder()
 
-        releases.forEach {
-            val parts = activity.getString(it.textId).split("\n").map(String::trim)
-            parts.forEach {
-                sb.append("- $it\n")
+        releases.forEach { release ->
+            val parts = activity.getString(release.textId).split("\n").map(String::trim)
+            parts.forEach { releasePart ->
+                sb.append("- $releasePart\n")
             }
         }
 

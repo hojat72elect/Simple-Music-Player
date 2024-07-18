@@ -5,7 +5,7 @@ import android.content.res.Configuration
 import android.os.Environment
 import android.text.format.DateFormat
 import androidx.core.content.ContextCompat
-import com.simplemobiletools.commons.R
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.getInternalStoragePath
 import com.simplemobiletools.musicplayer.extensions.getSDCardPath
 import com.simplemobiletools.musicplayer.extensions.getSharedPrefs

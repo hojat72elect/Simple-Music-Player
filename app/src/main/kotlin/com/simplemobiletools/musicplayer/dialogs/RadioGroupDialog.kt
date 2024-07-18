@@ -36,7 +36,7 @@ import com.simplemobiletools.commons.compose.extensions.BooleanPreviewParameterP
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
-import com.simplemobiletools.commons.databinding.DialogRadioGroupBinding
+import com.simplemobiletools.musicplayer.databinding.DialogRadioGroupBinding
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.onGlobalLayout

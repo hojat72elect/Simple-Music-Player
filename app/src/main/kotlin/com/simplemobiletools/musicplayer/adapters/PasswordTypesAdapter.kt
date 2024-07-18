@@ -14,7 +14,7 @@ import com.simplemobiletools.musicplayer.helpers.isRPlus
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 import com.simplemobiletools.musicplayer.interfaces.SecurityTab
 import com.simplemobiletools.musicplayer.views.MyScrollView
-import com.simplemobiletools.commons.R
+import com.simplemobiletools.musicplayer.R
 
 
 class PasswordTypesAdapter(

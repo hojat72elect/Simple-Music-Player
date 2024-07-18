@@ -409,9 +409,165 @@
     <string name="moving_success">Files moved successfully</string>
     <string name="moving_success_partial">Some files could not be moved</string>
     <string name="copy_move_failed">An error occurred</string>
+    <string name="folder_already_exists">Folder \"%s\" already exists</string>
+    <string name="file_already_exists">File \"%s\" already exists</string>
+    <string name="apply_to_all">Apply to all</string>
+    <string name="merge">Merge</string>
+    <string name="keep_both">Keep both</string>
+    <string name="overwrite">Overwrite</string>
+    <string name="default_color">Default</string>
+    <string name="update_thank_you">Please update Simple Thank You to the latest version</string>
+    <!-- Themes -->
+    <string name="light_theme">Light</string>
+    <string name="dark_theme">Dark</string>
+    <string name="auto_theme">Auto</string>
+    <string name="auto_light_dark_theme">Auto light / dark</string>
+    <string name="solarized">Solarized</string>
+    <string name="dark_red">Dark red</string>
+    <string name="white">White</string>
+    <string name="black_white">Black &amp; White</string>
+    <string name="shared">Shared</string>
+    <string name="system_default">System default</string>
+    <string name="app_icon_color_warning">WARNING: Some launchers do not handle app icon customization properly. In case the icon will disappear, try launching the app via Google Play or some widget, if available.
+        Once launched, just set back the default orange icon #F57C00. You might have to reinstall the app in the worst case.</string>
+    <string name="changing_color_description">Changing a color will make it switch to Custom theme</string>
+    <string name="save">Save</string>
+    <string name="discard">Discard</string>
+    <string name="save_before_closing">You have unsaved changes. Save before exit?</string>
+    <string name="accent_color_white">Accent color of white theme</string>
+    <string name="accent_color_black_and_white">Accent color of Black &amp; White theme</string>
+    <string name="share_colors_success">Colors updated successfully. A new Theme called \'Shared\' has been added, please use that for updating all app colors in the future.</string>
+    <string name="material_you">Material You</string>
+    <string name="purchase_thank_you">
+        <![CDATA[
+            Please purchase <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Simple Thank You</a> to unlock this function and support the development. Thanks!
+        ]]>
+    </string>
+    <string name="shared_theme_note">Note that even though you are using the Pro app version, you still need Simple Thank You for technical reasons. It takes care of the color synchronization.</string>
+    <string name="purchase">Purchase</string>
+    <string name="later">Later</string>
+    <string name="folder">Folder</string>
+    <string name="create_new_folder">Create new folder</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="proceed_with_deletion">Are you sure you want to proceed with the deletion?</string>
+    <string name="use_24_hour_time_format">Use 24-hour time format</string>
+    <string name="temporarily_show_hidden">Temporarily show hidden</string>
+    <string name="temporarily_show_excluded">Temporarily show excluded</string>
+    <string name="whats_new_disclaimer">* only the bigger updates are listed here, there are always some smaller improvements too</string>
+    <string name="whats_new">What\'s new</string>
+    <string name="sideloaded_app">
+        <![CDATA[
+            It looks like your app version is corrupt. Please download the original version <a href="%s">here</a>.
+        ]]>
+    </string>
+    <string name="download">Download</string>
+    <string name="app_corrupt">App Corrupt</string>
+    <string name="gps_coordinates">GPS coordinates</string>
+    <string name="confirm_storage_access_title">Confirm external storage access</string>
+    <string name="confirm_folder_access_title">Confirm folder access</string>
+    <string name="confirm_usb_storage_access_text">Please choose the top folder of the USB device on the next screen, to grant access</string>
+    <string name="confirm_storage_access_android_text_specific">Please allow accessing \'&lt;b&gt;%s&lt;/b&gt;\' on the next screen by pressing \'&lt;b&gt;Use this folder&lt;/b&gt;\' at the bottom.</string>
+    <string name="confirm_create_doc_for_new_folder_text">Please press \'&lt;b&gt;Save&lt;/b&gt;\' at the bottom of the next screen to create the new folder.</string>
+    <string name="confirm_storage_access_text">Please choose the top folder of the SD card on the next screen, to grant write access</string>
+    <string name="confirm_storage_access_text_sd">If you don\'t see the SD card, try this</string>
+    <string name="upgrade_to_pro_long">Your app version will not be updated anymore. Please upgrade to the Pro version to receive new fixes and other improvements.</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="more_info">More info</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="features_locked">This feature is locked, please purchase &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou&gt;Simple Thank You&lt;/a&gt; for unlocking the full app.&lt;br&gt;&lt;br&gt;It is a one time payment only and if you won\'t be satisfied, we can refund you.</string>
+    <string name="export_settings">Export settings</string>
+    <string name="filename_cannot_be_empty">Filename cannot be empty</string>
+    <string name="filename_invalid_characters">Filename contains invalid characters</string>
+    <string name="file_already_exists_overwrite">File \"%s\" already exists. Overwrite?</string>
+    <string name="thank_you">Thank you</string>
+    <string name="rate_our_app">Rate our app please :)</string>
+    <string name="donate_short">Support us by purchasing &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou&gt;Simple Thank You&lt;/a&gt; please, it will also unlock all app features including color customization.</string>
+    <string name="favorites">Favorites</string>
+    <string name="select_file">Select a file</string>
+    <string name="select_folder">Select a folder</string>
+    <string name="system_folder_restriction">The system does not allow the operation in this folder, please pick another one</string>
+    <string name="source_file_doesnt_exist">Source file %s doesn\'t exist</string>
+    <string name="remove_exif">Remove EXIF</string>
+    <string name="properties">Properties</string>
+    <string name="path">Path</string>
+    <string name="name">Name</string>
+    <string name="size">Size</string>
+    <string name="altitude">Altitude</string>
+
+    <string name="direct_children_count">Direct children count</string>
+    <string name="files_count">Total files count</string>
+    <string name="resolution">Resolution</string>
+    <string name="album">Album</string>
+    <string name="last_modified">Last modified</string>
+    <string name="md5">MD5</string>
+    <string name="items_selected">Items selected</string>
+    <string name="date_taken">Date taken</string>
+    <string name="camera">Camera</string>
+    <string name="exif">EXIF</string>
+    <string name="remove_exif_confirmation">Are you sure you want to remove EXIF values like GPS coordinates, camera model etc?</string>
+    <string name="exif_removed">EXIF values removed successfully</string>
+    <string name="biometrics">Biometrics</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="pattern">Pattern</string>
+    <string name="pin">PIN</string>
+    <string name="select_storage">Select storage</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="about">About</string>
+    <string name="about_footer">Made with &#10084;&#65039; in Slovakia</string>
+    <string name="help_us">Help us</string>
+    <string name="rate_us">Rate us</string>
+    <string name="invite_friends">Invite friends</string>
+    <string name="contributors">Contributors</string>
+    <string name="donate">Donate</string>
+    <string name="other">Other</string>
+    <string name="website">Website</string>
+    <string name="more_apps_from_us">More apps from us</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="support">Support</string>
+    <string name="frequently_asked_questions">Frequently asked questions</string>
+    <string name="social">Social</string>
+    <string name="facebook">Facebook</string>
+    <string name="reddit">Reddit</string>
+    <string name="telegram">Telegram</string>
+    <string name="github">GitHub</string>
+    <string name="translation">Translation</string>
+    <string name="development">Development</string>
+    <string name="contributors_developers">Aga-C, AlbertoPellitteri, Alfavio, connyduck, correia55, dagkalis, DaPa, ForgottenUmbrella, KryptKode, Naveen3Singh, qwertyfinger</string>
+    <string name="contributors_label">
+        <![CDATA[
+            This list contains everyone that noticeably helped any app within the Simple Mobile Tools suite, not only this one. Translations are handled by volunteers,
+            let us know if you want to help too. The guide to translating is at <a href="https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file">this website</a>, or just contact us at <a href="mailto:hello@simplemobiletools.com">hello@simplemobiletools.com</a> if you have any questions.
+            Thanks to all contributors and other supporters!
+        ]]>
+    </string>
+
+    <string name="too_many_incorrect_attempts">Too many incorrect unlock attempts.\nTry again in %d seconds.</string>
+    <string name="insert_pattern">Insert pattern</string>
+    <string name="wrong_pattern">Wrong pattern</string>
+    <string name="repeat_pattern">Repeat pattern</string>
+    <string name="place_finger">Please place your finger on the fingerprint sensor</string>
+    <string name="no_fingerprints_registered">You have no fingerprints registered, please add some in the Settings of your device</string>
+    <string name="authentication_failed">Authentication failed</string>
+    <string name="authentication_blocked">Authentication blocked, please try again in a moment</string>
 
 
 
+
+
+
+
+
+
+
+
+
+
+    <plurals name="items">
+        <item quantity="one">%d item</item>
+        <item quantity="other">%d items</item>
+    </plurals>
 
 
 

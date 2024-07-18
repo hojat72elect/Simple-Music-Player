@@ -10,7 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
-import com.simplemobiletools.commons.databinding.BottomTablayoutItemBinding
+import com.simplemobiletools.musicplayer.databinding.BottomTablayoutItemBinding
 import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
 import com.simplemobiletools.musicplayer.helpers.LICENSE_AUTOFITTEXTVIEW
 import com.simplemobiletools.musicplayer.helpers.LICENSE_EVENT_BUS
@@ -289,7 +289,7 @@ class MainActivity : SimpleMusicActivity() {
         binding.mainTabsHolder.removeAllTabs()
         getVisibleTabs().forEach { value ->
             binding.mainTabsHolder.newTab()
-                .setCustomView(com.simplemobiletools.commons.R.layout.bottom_tablayout_item).apply {
+                .setCustomView(R.layout.bottom_tablayout_item).apply {
                     val tabItemBinding = BottomTablayoutItemBinding.bind(customView!!)
                     tabItemBinding.tabItemIcon.setImageDrawable(getTabIcon(value))
                     tabItemBinding.tabItemLabel.text = getTabLabel(value)
@@ -333,7 +333,7 @@ class MainActivity : SimpleMusicActivity() {
         val drawableId = when (position) {
             TAB_PLAYLISTS -> R.drawable.ic_playlist_vector
             TAB_FOLDERS -> R.drawable.ic_folders_vector
-            TAB_ARTISTS -> com.simplemobiletools.commons.R.drawable.ic_person_vector
+            TAB_ARTISTS -> R.drawable.ic_person_vector
             TAB_ALBUMS -> R.drawable.ic_album_vector
             TAB_GENRES -> R.drawable.ic_genre_vector
             else -> R.drawable.ic_music_note_vector
