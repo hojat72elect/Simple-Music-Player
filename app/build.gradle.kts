@@ -110,7 +110,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.simple.mobile.tools.commons)
+
     implementation(libs.eventbus)
     implementation(libs.androidx.media)
     implementation(libs.androidx.swiperefreshlayout)
@@ -129,10 +129,23 @@ dependencies {
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.ui.viewbinding)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+    implementation(libs.material)
+    implementation(libs.recyclerview.fastscroller)
+    api(libs.patternLockView)
+
+    api(libs.reprint)
+    api(libs.joda.time)
+
+
+
+
+    api(libs.gson)
+    implementation(libs.kotlinx.serialization.json)
+    api(libs.kotlin.immutable.collections)
 
     implementation(libs.bundles.room)
     ksp(libs.androidx.room.compiler)
-
+    api(libs.rtl.viewpager)
     implementation(libs.glide.compose)
     api(libs.glide)
     ksp(libs.glide.compiler)

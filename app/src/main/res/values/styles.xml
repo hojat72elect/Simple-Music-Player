@@ -1,4 +1,32 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme.Base" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
+        <item name="spinnerDropDownItemStyle">@style/SpinnerItem.DropDownItem</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerItem.DropDownItem</item>
+        <item name="buttonStyle">@style/MyTransparentButton</item>
+        <item name="android:buttonStyle">@style/MyTransparentButton</item>
+        <item name="actionOverflowMenuStyle">@style/TopPopupMenu.Overflow.Dark</item>
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:colorControlHighlight">@color/activated_item_foreground</item>
+        <item name="colorControlHighlight">@color/activated_item_foreground</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
+        <item name="android:actionModeCloseDrawable">@drawable/ic_arrow_left_vector</item>
+        <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:actionOverflowButtonStyle">@style/ActionMenuOverflowIcon</item>
+        <item name="android:radioButtonStyle">@style/MyRadioButtonStyle</item>
+        <item name="radioButtonStyle">@style/MyRadioButtonStyle</item>
+    </style>
+
+    <style name="SettingsTextValueStyle">
+        <item name="android:alpha">0.6</item>
+        <item name="android:textFontWeight" tools:targetApi="p">300</item>
+        <item name="android:textSize">@dimen/normal_text_size</item>
+    </style>
 
     <style name="AppTheme" parent="AppTheme.Base" />
 
@@ -23,6 +51,16 @@
         <item name="android:popupMenuStyle">@style/AppTheme.PopupMenuDark</item>
     </style>
 
+    <style name="AppTheme.Base.Core" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:colorControlHighlight">@color/activated_item_foreground</item>
+        <item name="colorControlHighlight">@color/activated_item_foreground</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
+        <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
+        <item name="actionOverflowMenuStyle">@style/TopPopupMenu.Overflow.Dark</item>
+        <item name="android:actionOverflowButtonStyle">@style/ActionMenuOverflowIcon</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
     <style name="AppTheme.Base.System" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/you_primary_color</item>
         <item name="colorPrimaryDark">@color/you_primary_dark_color</item>
@@ -42,7 +80,7 @@
         <item name="actionBarStyle">@style/AppTheme.ActionBar</item>
         <item name="actionModeStyle">@style/AppTheme.ActionMode</item>
         <item name="bottomSheetDialogTheme">@style/AppTheme.Material3.BottomSheetDialogTheme</item>
-        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:forceDarkAllowed" tools:ignore="NewApi">false</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="android:actionOverflowButtonStyle">@style/ActionMenuOverflowIcon</item>
@@ -50,6 +88,15 @@
         <item name="radioButtonStyle">@style/MyRadioButtonStyle</item>
     </style>
 
+    <style name="AppTheme.Material3.BottomSheetDialogTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="android:backgroundDimAmount">0.32</item>
+        <item name="bottomSheetStyle">@style/AppTheme.Material3.BottomSheetModalStyle</item>
+        <item name="elevationOverlayEnabled">true</item>
+        <item name="android:navigationBarColor">@color/you_status_bar_color</item>
+        <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">
+            @color/you_status_bar_color
+        </item>
+    </style>
 
     <style name="AppTheme.Base.System.Light" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/you_primary_color</item>
@@ -193,7 +240,7 @@
         <item name="android:background">@drawable/transparent_button</item>
     </style>
 
-    <!-- EditText inside MyTextInputLayout, when the value shouldnt be edited by inserting text manually -->
+    <!-- EditText inside MyTextInputLayout, when the value shouldn't be edited by inserting text manually -->
     <style name="UnclickableEditText">
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
@@ -3073,6 +3120,5 @@
         <item name="colorPrimaryDark">@color/md_grey_black_dark</item>
         <item name="colorAccent">@color/md_grey_black</item>
     </style>
-
 
 </resources>

@@ -5,8 +5,11 @@ desugar_jdk_libs = "2.0.3"
 # higher versions of jaudiotagger not compatible with <= API 25 devices
 # https://bitbucket.org/ijabz/jaudiotagger/issues/149/some-nio-classes-are-unavailable-while
 jaudiotagger = "2.2.5"
+#Kotlin
 kotlin = "1.9.10"
+kotlin-immutable-collections = "0.3.6"
 #KSP
+kotlinxSerializationJson = "1.5.1"
 ksp = "1.9.10-1.0.13"
 #AndroidX
 androidx-constraintlayout = "2.1.4"
@@ -14,6 +17,20 @@ androidx-swiperefreshlayout = "1.1.0"
 androidx-lifecycleprocess = "2.6.1"
 androidx-biometricKtx = "1.2.0-alpha05"
 androidx-lifecycle = "2.7.0-alpha02"
+#Material
+material = "1.10.0"
+#patternLockView
+patternLockView = "a90b0d4bf0"
+#rtlViewpager
+rtlViewpager = "940f12724f"
+#recyclerviewFastscroller
+recyclerviewFastscroller = "5a95285b1f"
+#gson
+gson = "2.10.1"
+#reprint
+reprint = "2cb206415d"
+#jodaTime
+jodaTime = "2.12.5"
 #Eventbus
 eventbus = "3.3.1"
 #Room
@@ -30,8 +47,6 @@ composeMaterial3 = "1.2.0-alpha09"
 #Glide
 glide = "4.16.0"
 glideCompose = "1.0.0-beta01"
-#Simple Mobile Tools
-simple-commons = "6a7777d740"
 #Gradle
 gradlePlugins-agp = "8.1.1"
 #build
@@ -40,8 +55,6 @@ app-build-targetSDK = "34"
 app-build-minimumSDK = "23"
 app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
-#Helpers
-shortcut-badger = "1.1.22"
 #versioning
 app-version-appId = "com.simplemobiletools.musicplayer"
 app-version-versionCode = "119"
@@ -68,8 +81,6 @@ androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-co
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-#Simple Mobile Tools
-simple-mobile-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 #Helpers
@@ -78,25 +89,45 @@ jaudiotagger = { module = "net.jthink:jaudiotagger", version.ref = "jaudiotagger
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 autofittextview = { module = "me.grantland:autofittextview", version.ref = "autofittextview" }
 m3u-parser = { module = "com.github.bjoernpetersen:m3u-parser", version.ref = "m3uParser" }
+rtl-viewpager = { module = "com.github.duolingo:rtl-viewpager", version.ref = "rtlViewpager" }
+patternLockView = { module = "com.github.aritraroy:patternLockView", version.ref = "patternLockView" }
 #Compose
 compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
 androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "uiAndroid" }
 androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 compose-uiTooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 androidx-ui-viewbinding = { group = "androidx.compose.ui", name = "ui-viewbinding", version.ref = "uiViewbinding" }
+compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
+compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 #Glide
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glideCompose" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
+#Helpers
+recyclerview-fastscroller = { module = "com.github.tibbi:RecyclerView-FastScroller", version.ref = "recyclerviewFastscroller" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+reprint = { module = "com.github.tibbi:reprint", version.ref = "reprint" }
+joda-time = { module = "joda-time:joda-time", version.ref = "jodaTime" }
+#Material
+material = { module = "com.google.android.material:material", version.ref = "material" }
+#Kotlin
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlin-immutable-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlin-immutable-collections" }
 [bundles]
 compose=[
     "compose-compiler",
     "compose-activity",
+    "compose-animation",
     "compose-material-icons",
+    "compose-ui",
     "compose-uiTooling-preview",
+    "compose-material3",
+    "compose-foundation",
 ]
 room = [
     "androidx-room-ktx",

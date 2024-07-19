@@ -16,7 +16,7 @@
 
 
     <dimen name="rounded_corner_radius_big">10dp</dimen>
-
+    <dimen name="corner_radius">24dp</dimen>
 
     <dimen name="one_dp">1dp</dimen>
     <dimen name="tiny_margin">2dp</dimen>
