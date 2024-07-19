@@ -12,7 +12,6 @@ import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.getFilenameExtension
 import com.simplemobiletools.musicplayer.extensions.getFilenameFromPath
 import com.simplemobiletools.musicplayer.extensions.getParentPath
-import com.simplemobiletools.musicplayer.extensions.renameFile
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.extensions.showKeyboard
@@ -79,7 +78,7 @@ class EditDialog(
                                 }
 
                                 if (!isRPlus()) {
-                                    activity.renameFile(oldPath, newPath, false) { success, _ ->
+                                    activity.newRenameFile(oldPath, newPath, false) { success, _ ->
                                         if (success) {
                                             storeEditedSong(track, oldPath, newPath)
                                             track.path = newPath

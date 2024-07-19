@@ -38,7 +38,6 @@ import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisible
-import com.simplemobiletools.musicplayer.extensions.checkWhatsNew
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.fadeIn
 import com.simplemobiletools.musicplayer.extensions.fadeOut

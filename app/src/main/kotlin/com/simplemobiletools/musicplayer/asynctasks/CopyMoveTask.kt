@@ -19,7 +19,6 @@ import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.canManageMedia
 import com.simplemobiletools.musicplayer.extensions.createDirectorySync
-import com.simplemobiletools.musicplayer.extensions.deleteFileBg
 import com.simplemobiletools.musicplayer.extensions.deleteFromMediaStore
 import com.simplemobiletools.musicplayer.extensions.getAndroidSAFFileItems
 import com.simplemobiletools.musicplayer.extensions.getDocumentFile

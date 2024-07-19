@@ -35,7 +35,6 @@ import com.simplemobiletools.musicplayer.extensions.beGone
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.extensions.getFileOutputStream
 import com.simplemobiletools.musicplayer.extensions.getFolderTracks
 import com.simplemobiletools.musicplayer.extensions.getMediaStoreIdFromPath
 import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
