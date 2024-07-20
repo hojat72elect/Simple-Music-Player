@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.fragments
+package com.simplemobiletools.musicplayer.new_architecture.feature_genres
 
 import android.content.Context
 import android.content.Intent
@@ -11,15 +11,15 @@ import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.SimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
-import com.simplemobiletools.musicplayer.adapters.GenresAdapter
 import com.simplemobiletools.musicplayer.databinding.FragmentGenresBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.mediaScanner
 import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.fragments.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.helpers.GENRE
 import com.simplemobiletools.musicplayer.helpers.TAB_GENRES
 import com.simplemobiletools.musicplayer.models.Genre

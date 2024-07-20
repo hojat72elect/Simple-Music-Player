@@ -1,26 +1,33 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.new_architecture.feature_artists
 
 import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
-import com.simplemobiletools.musicplayer.extensions.highlightTextPart
-import com.simplemobiletools.musicplayer.extensions.setupViewBackground
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemArtistBinding
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.getArtistCoverArt
+import com.simplemobiletools.musicplayer.extensions.highlightTextPart
+import com.simplemobiletools.musicplayer.extensions.setupViewBackground
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.inlines.indexOfFirstOrNull
 import com.simplemobiletools.musicplayer.models.Artist
 import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 
-class ArtistsAdapter(activity: BaseSimpleActivity, items: ArrayList<Artist>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
-    BaseMusicAdapter<Artist>(items, activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
+class ArtistsAdapter(
+    activity: BaseSimpleActivity,
+    items: ArrayList<Artist>,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit
+) :
+    BaseMusicAdapter<Artist>(items, activity, recyclerView, itemClick),
+    RecyclerViewFastScroller.OnPopupTextUpdate {
 
     override fun getActionMenuId() = R.menu.cab_artists
 
@@ -60,7 +67,8 @@ class ArtistsAdapter(activity: BaseSimpleActivity, items: ArrayList<Artist>, rec
         ConfirmationDialog(context) {
             ensureBackgroundThread {
                 val selectedArtists = getSelectedItems()
-                val positions = selectedArtists.mapNotNull { artist -> items.indexOfFirstOrNull { it.id == artist.id } } as ArrayList<Int>
+                val positions =
+                    selectedArtists.mapNotNull { artist -> items.indexOfFirstOrNull { it.id == artist.id } } as ArrayList<Int>
                 val tracks = context.audioHelper.getArtistTracks(selectedArtists)
 
                 context.audioHelper.deleteArtists(selectedArtists)
@@ -83,11 +91,23 @@ class ArtistsAdapter(activity: BaseSimpleActivity, items: ArrayList<Artist>, rec
         ItemArtistBinding.bind(view).apply {
             root.setupViewBackground(context)
             artistFrame.isSelected = selectedKeys.contains(artist.hashCode())
-            artistTitle.text = if (textToHighlight.isEmpty()) artist.title else artist.title.highlightTextPart(textToHighlight, properPrimaryColor)
+            artistTitle.text =
+                if (textToHighlight.isEmpty()) artist.title else artist.title.highlightTextPart(
+                    textToHighlight,
+                    properPrimaryColor
+                )
             artistTitle.setTextColor(textColor)
 
-            val albums = resources.getQuantityString(R.plurals.albums_plural, artist.albumCnt, artist.albumCnt)
-            val tracks = resources.getQuantityString(R.plurals.tracks_plural, artist.trackCnt, artist.trackCnt)
+            val albums = resources.getQuantityString(
+                R.plurals.albums_plural,
+                artist.albumCnt,
+                artist.albumCnt
+            )
+            val tracks = resources.getQuantityString(
+                R.plurals.tracks_plural,
+                artist.trackCnt,
+                artist.trackCnt
+            )
             @SuppressLint("SetTextI18n")
             artistAlbumsTracks.text = "$albums, $tracks"
             artistAlbumsTracks.setTextColor(textColor)
@@ -98,5 +118,6 @@ class ArtistsAdapter(activity: BaseSimpleActivity, items: ArrayList<Artist>, rec
         }
     }
 
-    override fun onChange(position: Int) = items.getOrNull(position)?.getBubbleText(context.config.artistSorting) ?: ""
+    override fun onChange(position: Int) =
+        items.getOrNull(position)?.getBubbleText(context.config.artistSorting) ?: ""
 }

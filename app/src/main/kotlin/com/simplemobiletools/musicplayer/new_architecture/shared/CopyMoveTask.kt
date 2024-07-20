@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.asynctasks
+package com.simplemobiletools.musicplayer.new_architecture.shared
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -11,17 +11,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.util.Pair
 import androidx.documentfile.provider.DocumentFile
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.getDocumentSdk30
-import com.simplemobiletools.musicplayer.helpers.CONFLICT_KEEP_BOTH
-import com.simplemobiletools.musicplayer.helpers.CONFLICT_SKIP
-import com.simplemobiletools.musicplayer.helpers.getConflictResolution
-import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.canManageMedia
 import com.simplemobiletools.musicplayer.extensions.createDirectorySync
 import com.simplemobiletools.musicplayer.extensions.deleteFromMediaStore
 import com.simplemobiletools.musicplayer.extensions.getAndroidSAFFileItems
 import com.simplemobiletools.musicplayer.extensions.getDocumentFile
+import com.simplemobiletools.musicplayer.extensions.getDocumentSdk30
 import com.simplemobiletools.musicplayer.extensions.getDoesFilePathExist
 import com.simplemobiletools.musicplayer.extensions.getFileInputStreamSync
 import com.simplemobiletools.musicplayer.extensions.getFileOutputStreamSync
@@ -40,6 +36,9 @@ import com.simplemobiletools.musicplayer.extensions.notificationManager
 import com.simplemobiletools.musicplayer.extensions.rescanPath
 import com.simplemobiletools.musicplayer.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.extensions.toFileDirItem
+import com.simplemobiletools.musicplayer.helpers.CONFLICT_KEEP_BOTH
+import com.simplemobiletools.musicplayer.helpers.CONFLICT_SKIP
+import com.simplemobiletools.musicplayer.helpers.getConflictResolution
 import com.simplemobiletools.musicplayer.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.interfaces.CopyMoveListener
 import com.simplemobiletools.musicplayer.models.FileDirItem
@@ -48,16 +47,16 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.lang.ref.WeakReference
 
+@SuppressLint("StaticFieldLeak")
 class CopyMoveTask(
     val activity: BaseSimpleActivity,
-    val copyOnly: Boolean,
-    val copyMediaOnly: Boolean,
-    val conflictResolutions: LinkedHashMap<String, Int>,
+    private val copyOnly: Boolean,
+    private val copyMediaOnly: Boolean,
+    private val conflictResolutions: LinkedHashMap<String, Int>,
     listener: CopyMoveListener,
-    val copyHidden: Boolean
+    private val copyHidden: Boolean
 ) : AsyncTask<Pair<ArrayList<FileDirItem>, String>, Void, Boolean>() {
-    private val INITIAL_PROGRESS_DELAY = 3000L
-    private val PROGRESS_RECHECK_INTERVAL = 500L
+
 
     private var mListener: WeakReference<CopyMoveListener>? = null
     private var mTransferredFiles = ArrayList<FileDirItem>()
@@ -425,5 +424,10 @@ class CopyMoveTask(
                 )
             }
         }
+    }
+
+    companion object{
+        private const val INITIAL_PROGRESS_DELAY = 3000L
+        private const val PROGRESS_RECHECK_INTERVAL = 500L
     }
 }

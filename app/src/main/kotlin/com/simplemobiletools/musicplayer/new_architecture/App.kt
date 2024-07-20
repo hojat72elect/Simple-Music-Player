@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer
+package com.simplemobiletools.musicplayer.new_architecture
 
 import android.app.Application
 import androidx.lifecycle.DefaultLifecycleObserver

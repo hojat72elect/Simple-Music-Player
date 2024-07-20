@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -61,7 +61,7 @@ import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.updateBottomTabItemColors
 import com.simplemobiletools.musicplayer.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.extensions.viewBinding
-import com.simplemobiletools.musicplayer.fragments.PlaylistsFragment
+import com.simplemobiletools.musicplayer.new_architecture.feature_playlists.PlaylistsFragment
 import com.simplemobiletools.musicplayer.helpers.M3uImporter
 import com.simplemobiletools.musicplayer.helpers.M3uImporter.ImportResult
 import com.simplemobiletools.musicplayer.helpers.MIME_TYPE_M3U

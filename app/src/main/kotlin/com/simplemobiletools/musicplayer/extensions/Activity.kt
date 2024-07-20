@@ -38,7 +38,6 @@ import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogTitleBinding
 import com.simplemobiletools.musicplayer.dialogs.AppSideloadedDialog
-import com.simplemobiletools.musicplayer.dialogs.DonateDialog
 import com.simplemobiletools.musicplayer.dialogs.PropertiesDialog
 import com.simplemobiletools.musicplayer.dialogs.RateStarsDialog
 import com.simplemobiletools.musicplayer.dialogs.SecurityDialog
@@ -694,13 +693,14 @@ fun Activity.appLaunched(appId: String) {
     }
 
     baseConfig.appRunCount++
-    if (baseConfig.appRunCount % 30 == 0 && !isAProApp()) {
+    if (baseConfig.appRunCount % 3 == 0 && !isAProApp()) {
+        // Ask user to update
         if (!resources.getBoolean(R.bool.hide_google_relations)) {
             showDonateOrUpgradeDialog()
         }
     }
 
-    if (baseConfig.appRunCount % 40 == 0 && !baseConfig.wasAppRated) {
+    if (baseConfig.appRunCount % 4 == 0 && !baseConfig.wasAppRated) {
         if (!resources.getBoolean(R.bool.hide_google_relations)) {
             RateStarsDialog(this)
         }

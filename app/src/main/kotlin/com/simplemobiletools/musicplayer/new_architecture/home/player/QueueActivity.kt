@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.home.player
 
 import android.app.SearchManager
 import android.content.Context
@@ -15,7 +15,6 @@ import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.adapters.QueueAdapter
 import com.simplemobiletools.musicplayer.databinding.ActivityQueueBinding
 import com.simplemobiletools.musicplayer.dialogs.NewPlaylistDialog
 import com.simplemobiletools.musicplayer.extensions.currentMediaItemsShuffled
@@ -54,6 +53,7 @@ class QueueActivity : SimpleControllerActivity() {
         setupToolbar(binding.queueToolbar, NavigationIcon.Arrow, searchMenuItem = searchMenuItem)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (isSearchOpen && searchMenuItem != null) {
             searchMenuItem!!.collapseActionView()

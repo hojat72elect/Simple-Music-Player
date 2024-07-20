@@ -11,8 +11,7 @@ import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.helpers.isRPlus
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.SimpleActivity
-import com.simplemobiletools.musicplayer.activities.TrackActivity
+import com.simplemobiletools.musicplayer.new_architecture.home.player.TrackActivity
 import com.simplemobiletools.musicplayer.extensions.prepareUsingTracks
 import com.simplemobiletools.musicplayer.extensions.maybePreparePlayer
 import com.simplemobiletools.musicplayer.extensions.audioHelper

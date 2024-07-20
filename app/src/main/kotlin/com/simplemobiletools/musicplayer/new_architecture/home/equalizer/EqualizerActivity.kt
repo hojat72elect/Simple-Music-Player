@@ -14,7 +14,7 @@ import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.views.MySeekBar
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.SimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.ActivityEqualizerBinding
 import com.simplemobiletools.musicplayer.databinding.EqualizerBandBinding
 import com.simplemobiletools.musicplayer.extensions.config

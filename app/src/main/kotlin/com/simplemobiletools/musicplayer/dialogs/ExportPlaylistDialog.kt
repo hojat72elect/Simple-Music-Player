@@ -3,7 +3,7 @@ package com.simplemobiletools.musicplayer.dialogs
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.SimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogExportPlaylistBinding
 import com.simplemobiletools.musicplayer.extensions.beGone
 import com.simplemobiletools.musicplayer.extensions.config

@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.new_architecture.feature_tracks
 
 import android.annotation.SuppressLint
 import android.view.Menu
@@ -8,14 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
-import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.dialogs.EditDialog
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.audioHelper
@@ -30,11 +26,16 @@ import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.extensions.swap
 import com.simplemobiletools.musicplayer.helpers.ALL_TRACKS_PLAYLIST_ID
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_CUSTOM
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.inlines.indexOfFirstOrNull
+import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
+import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import org.greenrobot.eventbus.EventBus
 
 class TracksAdapter(
@@ -253,7 +254,7 @@ class TracksAdapter(
         }
     }
 
-    override fun onRowClear(myViewHolder: com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter.ViewHolder?) {
+    override fun onRowClear(myViewHolder: ViewHolder?) {
         ensureBackgroundThread {
             var index = 0
             items.forEach {
@@ -269,7 +270,7 @@ class TracksAdapter(
         notifyItemMoved(fromPosition, toPosition)
     }
 
-    override fun onRowSelected(myViewHolder: com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
+    override fun onRowSelected(myViewHolder: ViewHolder?) {}
 
 
     private fun isPlaylistContent() = sourceType == TYPE_PLAYLIST

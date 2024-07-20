@@ -1,6 +1,5 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.new_architecture.feature_albums
 
-import android.annotation.SuppressLint
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
@@ -13,30 +12,37 @@ import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.SimpleActivity
-import com.simplemobiletools.musicplayer.databinding.ItemAlbumHeaderBinding
+import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
+import com.simplemobiletools.musicplayer.databinding.ItemAlbumBinding
+import com.simplemobiletools.musicplayer.databinding.ItemSectionBinding
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding
 import com.simplemobiletools.musicplayer.dialogs.EditDialog
-import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.getAlbumCoverArt
-import com.simplemobiletools.musicplayer.models.AlbumHeader
+import com.simplemobiletools.musicplayer.extensions.getTrackCoverArt
+import com.simplemobiletools.musicplayer.inlines.indexOfFirstOrNull
+import com.simplemobiletools.musicplayer.models.Album
+import com.simplemobiletools.musicplayer.models.AlbumSection
 import com.simplemobiletools.musicplayer.models.ListItem
 import com.simplemobiletools.musicplayer.models.Track
 
-class TracksHeaderAdapter(activity: SimpleActivity, items: ArrayList<ListItem>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
-    BaseMusicAdapter<ListItem>(items, activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
+// we show both albums and individual tracks here
+class AlbumsTracksAdapter(
+    activity: SimpleActivity, items: ArrayList<ListItem>, recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit
+) : BaseMusicAdapter<ListItem>(items, activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
 
-    private val ITEM_HEADER = 0
-    private val ITEM_TRACK = 1
+    private val ITEM_SECTION = 0
+    private val ITEM_ALBUM = 1
+    private val ITEM_TRACK = 2
 
-    override val cornerRadius = resources.getDimension(R.dimen.rounded_corner_radius_big).toInt()
-
-    override fun getActionMenuId() = R.menu.cab_tracks_header
+    override fun getActionMenuId() = R.menu.cab_albums_tracks
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = when (viewType) {
-            ITEM_HEADER -> ItemAlbumHeaderBinding.inflate(layoutInflater, parent, false)
+            ITEM_SECTION -> ItemSectionBinding.inflate(layoutInflater, parent, false)
+            ITEM_ALBUM -> ItemAlbumBinding.inflate(layoutInflater, parent, false)
             else -> ItemTrackBinding.inflate(layoutInflater, parent, false)
         }
 
@@ -45,10 +51,11 @@ class TracksHeaderAdapter(activity: SimpleActivity, items: ArrayList<ListItem>, 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items.getOrNull(position) ?: return
-        val allowClicks = item !is AlbumHeader
+        val allowClicks = item !is AlbumSection
         holder.bindView(item, allowClicks, allowClicks) { itemView, _ ->
             when (item) {
-                is AlbumHeader -> setupHeader(itemView, item)
+                is AlbumSection -> setupSection(itemView, item)
+                is Album -> setupAlbum(itemView, item)
                 else -> setupTrack(itemView, item as Track)
             }
         }
@@ -57,15 +64,16 @@ class TracksHeaderAdapter(activity: SimpleActivity, items: ArrayList<ListItem>, 
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
-            is AlbumHeader -> ITEM_HEADER
+            is AlbumSection -> ITEM_SECTION
+            is Album -> ITEM_ALBUM
             else -> ITEM_TRACK
         }
     }
 
     override fun prepareActionMode(menu: Menu) {
         menu.apply {
-            findItem(R.id.cab_rename).isVisible = shouldShowRename()
             findItem(R.id.cab_play_next).isVisible = shouldShowPlayNext()
+            findItem(R.id.cab_rename).isVisible = shouldShowRename()
         }
     }
 
@@ -86,21 +94,19 @@ class TracksHeaderAdapter(activity: SimpleActivity, items: ArrayList<ListItem>, 
         }
     }
 
-    override fun getSelectableItemCount() = items.size - 1
+    override fun getSelectableItemCount() = items.filter { it !is AlbumSection }.size
 
-    override fun getIsItemSelectable(position: Int) = position != 0
+    override fun getIsItemSelectable(position: Int) = items[position] !is AlbumSection
 
     private fun askConfirmDelete() {
         ConfirmationDialog(context) {
             ensureBackgroundThread {
                 val positions = ArrayList<Int>()
-                val selectedTracks = getSelectedTracks()
-                selectedTracks.forEach { track ->
-                    val position = items.indexOfFirst { it is Track && it.mediaStoreId == track.mediaStoreId }
-                    if (position != -1) {
-                        positions.add(position)
-                    }
-                }
+                val selectedTracks = getAllSelectedTracks()
+                val selectedAlbums = getSelectedAlbums()
+
+                positions += selectedTracks.mapNotNull { track -> items.indexOfFirstOrNull { it is Track && it.mediaStoreId == track.mediaStoreId } }
+                positions += selectedAlbums.mapNotNull { album -> items.indexOfFirstOrNull { it is Album && it.id == album.id } }
 
                 context.deleteTracks(selectedTracks) {
                     context.runOnUiThread {
@@ -120,68 +126,68 @@ class TracksHeaderAdapter(activity: SimpleActivity, items: ArrayList<ListItem>, 
         }
     }
 
+    override fun getAllSelectedTracks(): List<Track> {
+        val tracks = getSelectedTracks().toMutableList()
+        tracks.addAll(context.audioHelper.getAlbumTracks(getSelectedAlbums()))
+        return tracks
+    }
+
+    private fun getSelectedAlbums(): List<Album> = getSelectedItems().filterIsInstance<Album>().toList()
+
+    private fun setupAlbum(view: View, album: Album) {
+        ItemAlbumBinding.bind(view).apply {
+            root.setupViewBackground(context)
+            albumFrame.isSelected = selectedKeys.contains(album.hashCode())
+            albumTitle.text = album.title
+            albumTitle.setTextColor(textColor)
+            albumTracks.text = resources.getQuantityString(R.plurals.tracks_plural, album.trackCnt, album.trackCnt)
+            albumTracks.setTextColor(textColor)
+
+            context.getAlbumCoverArt(album) { coverArt ->
+                loadImage(albumImage, coverArt, placeholderBig)
+            }
+        }
+    }
+
     private fun setupTrack(view: View, track: Track) {
         ItemTrackBinding.bind(view).apply {
             root.setupViewBackground(context)
             trackFrame.isSelected = selectedKeys.contains(track.hashCode())
             trackTitle.text = track.title
-            trackInfo.beGone()
+            trackTitle.setTextColor(textColor)
+            trackInfo.text = track.album
+            trackInfo.setTextColor(textColor)
 
-            arrayOf(trackId, trackTitle, trackDuration).forEach {
-                it.setTextColor(textColor)
-            }
-
+            trackId.beGone()
+            trackImage.beVisible()
             trackDuration.text = track.duration.getFormattedDuration()
-            trackId.text = track.trackId.toString()
-            trackImage.beGone()
-            trackId.beVisible()
+            trackDuration.setTextColor(textColor)
+
+            context.getTrackCoverArt(track) { coverArt ->
+                loadImage(trackImage, coverArt, placeholder)
+            }
         }
     }
 
-    private fun setupHeader(view: View, header: AlbumHeader) {
-        ItemAlbumHeaderBinding.bind(view).apply {
-            albumTitle.text = header.title
-            albumArtist.text = header.artist
-
-            val tracks = resources.getQuantityString(R.plurals.tracks_plural, header.trackCnt, header.trackCnt)
-            var year = ""
-            if (header.year != 0) {
-                year = "${header.year} • "
-            }
-
-            @SuppressLint("SetTextI18n")
-            albumMeta.text = "$year$tracks • ${header.duration.getFormattedDuration(true)}"
-
-            arrayOf(albumTitle, albumArtist, albumMeta).forEach {
-                it.setTextColor(textColor)
-            }
-
-            ensureBackgroundThread {
-                val album = context.audioHelper.getAlbum(header.id)
-                if (album != null) {
-                    context.getAlbumCoverArt(album) { coverArt ->
-                        loadImage(albumImage, coverArt, placeholderBig)
-                    }
-                } else {
-                    context.runOnUiThread {
-                        albumImage.setImageDrawable(placeholderBig)
-                    }
-                }
-            }
+    private fun setupSection(view: View, section: AlbumSection) {
+        ItemSectionBinding.bind(view).apply {
+            itemSection.text = section.title
+            itemSection.setTextColor(textColor)
         }
     }
 
     override fun onChange(position: Int): CharSequence {
         return when (val listItem = items.getOrNull(position)) {
-            is Track -> listItem.getBubbleText(context.config.trackSorting)
-            is AlbumHeader -> listItem.title
+            is Track -> listItem.title
+            is Album -> listItem.title
+            is AlbumSection -> listItem.title
             else -> ""
         }
     }
 
     private fun displayEditDialog() {
         getSelectedTracks().firstOrNull()?.let { selectedTrack ->
-            EditDialog(context, selectedTrack) { track ->
+            EditDialog(context as SimpleActivity, selectedTrack) { track ->
                 val trackIndex = items.indexOfFirst { (it as? Track)?.mediaStoreId == track.mediaStoreId }
                 if (trackIndex != -1) {
                     items[trackIndex] = track

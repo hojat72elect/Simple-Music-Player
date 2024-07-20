@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.new_architecture.home.player
 
 import android.annotation.SuppressLint
 import android.view.MotionEvent
@@ -9,12 +9,10 @@ import androidx.media3.session.MediaController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
-import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.SimpleActivity
+import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemTrackQueueBinding
+import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.config
@@ -31,8 +29,11 @@ import com.simplemobiletools.musicplayer.extensions.toTrack
 import com.simplemobiletools.musicplayer.helpers.EXTRA_SHUFFLE_INDICES
 import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
 import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
+import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
 import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.playback.CustomCommands
+import com.simplemobiletools.musicplayer.views.MyRecyclerView
 
 class QueueAdapter(
     activity: SimpleActivity,
@@ -215,9 +216,9 @@ class QueueAdapter(
         swapMediaItemInQueue(fromPosition, toPosition)
     }
 
-    override fun onRowSelected(myViewHolder: com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
+    override fun onRowSelected(myViewHolder: ViewHolder?) {}
 
-    override fun onRowClear(myViewHolder: com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter.ViewHolder?) {}
+    override fun onRowClear(myViewHolder: ViewHolder?) {}
 
 
     override fun onChange(position: Int) =

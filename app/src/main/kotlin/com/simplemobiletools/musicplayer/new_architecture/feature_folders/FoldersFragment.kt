@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.fragments
+package com.simplemobiletools.musicplayer.new_architecture.feature_folders
 
 import android.content.Context
 import android.content.Intent
@@ -12,16 +12,16 @@ import com.simplemobiletools.musicplayer.extensions.isVisible
 import com.simplemobiletools.musicplayer.extensions.underlineText
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.ExcludedFoldersActivity
-import com.simplemobiletools.musicplayer.activities.SimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.home.settings.ExcludedFoldersActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
-import com.simplemobiletools.musicplayer.adapters.FoldersAdapter
 import com.simplemobiletools.musicplayer.databinding.FragmentFoldersBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.mediaScanner
 import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.fragments.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.helpers.FOLDER
 import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
 import com.simplemobiletools.musicplayer.models.Folder

@@ -6,7 +6,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.TrackActivity
+import com.simplemobiletools.musicplayer.new_architecture.home.player.TrackActivity
 import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.extensions.openNotificationSettings
 import com.simplemobiletools.musicplayer.extensions.isReallyPlaying

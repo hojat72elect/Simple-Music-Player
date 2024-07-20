@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.home.settings
 
 import android.app.Activity
 import android.appwidget.AppWidgetManager
@@ -11,6 +11,7 @@ import com.simplemobiletools.musicplayer.dialogs.ColorPickerDialog
 import com.simplemobiletools.musicplayer.dialogs.FeatureLockedDialog
 import com.simplemobiletools.musicplayer.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.WidgetConfigBinding
 import com.simplemobiletools.musicplayer.extensions.adjustAlpha
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter

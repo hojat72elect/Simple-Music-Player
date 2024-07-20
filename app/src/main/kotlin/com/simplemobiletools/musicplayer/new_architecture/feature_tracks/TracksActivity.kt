@@ -20,12 +20,10 @@ import com.simplemobiletools.musicplayer.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.helpers.isQPlus
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleMusicActivity
-import com.simplemobiletools.musicplayer.adapters.TracksAdapter
-import com.simplemobiletools.musicplayer.adapters.TracksAdapter.Companion.TYPE_ALBUM
-import com.simplemobiletools.musicplayer.adapters.TracksAdapter.Companion.TYPE_FOLDER
-import com.simplemobiletools.musicplayer.adapters.TracksAdapter.Companion.TYPE_PLAYLIST
-import com.simplemobiletools.musicplayer.adapters.TracksAdapter.Companion.TYPE_TRACKS
-import com.simplemobiletools.musicplayer.adapters.TracksHeaderAdapter
+import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksAdapter.Companion.TYPE_ALBUM
+import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksAdapter.Companion.TYPE_FOLDER
+import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksAdapter.Companion.TYPE_PLAYLIST
+import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksAdapter.Companion.TYPE_TRACKS
 import com.simplemobiletools.musicplayer.databinding.ActivityTracksBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
 import com.simplemobiletools.musicplayer.dialogs.ExportPlaylistDialog

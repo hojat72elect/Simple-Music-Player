@@ -30,7 +30,7 @@
         android:required="false" />
 
     <application
-        android:name=".App"
+        android:name=".new_architecture.App"
         android:allowBackup="true"
         android:appCategory="audio"
         android:enabled="true"
@@ -38,7 +38,8 @@
         android:label="@string/app_launcher_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:targetApi="o">
 
 
 
@@ -48,13 +49,13 @@
             android:theme="@style/SplashTheme" />
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".new_architecture.MainActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask" />
 
         <activity
-            android:name=".activities.WidgetConfigureActivity"
+            android:name=".new_architecture.home.settings.WidgetConfigureActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/MyWidgetConfigTheme">
@@ -68,7 +69,7 @@
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/about"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".new_architecture.MainActivity" />
 
         <activity
             android:name="com.simplemobiletools.musicplayer.new_architecture.home.about.ContributorsActivity"
@@ -78,7 +79,7 @@
             android:parentActivityName="com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity" />
 
         <activity
-            android:name="com.simplemobiletools.musicplayer.activities.CustomizationActivity"
+            android:name="com.simplemobiletools.musicplayer.new_architecture.home.settings.CustomizationActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/customize_colors"
@@ -89,7 +90,7 @@
             android:configChanges="orientation"
             android:exported="true"
             android:label="@string/settings"
-            android:parentActivityName=".activities.MainActivity">
+            android:parentActivityName=".new_architecture.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -98,7 +99,7 @@
         </activity>
 
         <activity
-            android:name=".activities.ExcludedFoldersActivity"
+            android:name=".new_architecture.home.settings.ExcludedFoldersActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/excluded_folders"
@@ -109,14 +110,14 @@
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/equalizer"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".new_architecture.MainActivity" />
 
         <activity
             android:name=".new_architecture.feature_albums.AlbumsActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/artist"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".new_architecture.MainActivity" />
 
         <activity
             android:name=".new_architecture.feature_tracks.TracksActivity"
@@ -126,10 +127,10 @@
             android:parentActivityName=".new_architecture.feature_albums.AlbumsActivity" />
 
         <activity
-            android:name=".activities.TrackActivity"
+            android:name=".new_architecture.home.player.TrackActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName=".new_architecture.MainActivity"
             android:theme="@style/TranslucentTheme">
 
 
@@ -167,11 +168,11 @@
             android:parentActivityName="com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity" />
 
         <activity
-            android:name=".activities.QueueActivity"
+            android:name=".new_architecture.home.player.QueueActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/track_queue"
-            android:parentActivityName=".activities.TrackActivity" />
+            android:parentActivityName=".new_architecture.home.player.TrackActivity" />
 
         <activity
             android:name="com.simplemobiletools.musicplayer.new_architecture.home.about.LicenseActivity"

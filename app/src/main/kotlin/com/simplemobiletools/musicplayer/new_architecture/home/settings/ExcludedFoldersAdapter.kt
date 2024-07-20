@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.new_architecture.home.settings
 
 import android.annotation.SuppressLint
 import android.view.ContextThemeWrapper
@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.getPopupMenuTheme
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
