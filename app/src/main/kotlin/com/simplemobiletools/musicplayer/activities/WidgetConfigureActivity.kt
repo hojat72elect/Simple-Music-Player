@@ -17,7 +17,6 @@ import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.getContrastColor
 import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.musicplayer.extensions.onSeekBarChangeListener
 import com.simplemobiletools.musicplayer.extensions.setFillWithStroke
 import com.simplemobiletools.musicplayer.extensions.viewBinding
@@ -66,18 +65,11 @@ class WidgetConfigureActivity : SimpleActivity() {
             }
         }
 
-        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog = FeatureLockedDialog(this) {
-                if (!isOrWasThankYouInstalled()) {
-                    finish()
-                }
-            }
-        }
     }
 
     override fun onResume() {
         super.onResume()
-        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
+        if (mFeatureLockedDialog != null) {
             mFeatureLockedDialog?.dismissDialog()
         }
     }

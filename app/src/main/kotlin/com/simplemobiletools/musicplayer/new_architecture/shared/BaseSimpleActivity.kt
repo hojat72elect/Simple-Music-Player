@@ -47,7 +47,6 @@ import com.simplemobiletools.musicplayer.compose.extensions.DEVELOPER_PLAY_STORE
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationAdvancedDialog
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.dialogs.ExportSettingsDialog
-import com.simplemobiletools.musicplayer.dialogs.FeatureLockedDialog
 import com.simplemobiletools.musicplayer.dialogs.FileConflictDialog
 import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.dialogs.WhatsNewDialog
@@ -108,7 +107,6 @@ import com.simplemobiletools.musicplayer.extensions.humanizePath
 import com.simplemobiletools.musicplayer.extensions.internalStoragePath
 import com.simplemobiletools.musicplayer.extensions.isAccessibleWithSAFSdk30
 import com.simplemobiletools.musicplayer.extensions.isAppInstalledOnSDCard
-import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.musicplayer.extensions.isPathOnInternalStorage
 import com.simplemobiletools.musicplayer.extensions.isPathOnOTG
 import com.simplemobiletools.musicplayer.extensions.isPathOnSD
@@ -872,11 +870,7 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
     }
 
     fun handleCustomizeColorsClick() {
-        if (isOrWasThankYouInstalled()) {
-            startCustomizationActivity()
-        } else {
-            FeatureLockedDialog(this) {}
-        }
+        startCustomizationActivity()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -17,7 +17,6 @@ import com.simplemobiletools.musicplayer.extensions.getCanAppBeUpgraded
 import com.simplemobiletools.musicplayer.extensions.getInternalStoragePath
 import com.simplemobiletools.musicplayer.extensions.isAProApp
 import com.simplemobiletools.musicplayer.extensions.isAppInstalledOnSDCard
-import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.musicplayer.extensions.launchViewIntent
 import com.simplemobiletools.musicplayer.extensions.random
 import com.simplemobiletools.musicplayer.extensions.toggleAppIconColor
@@ -71,8 +70,6 @@ fun ComponentActivity.appLaunchedCompose(
         if (!resources.getBoolean(R.bool.hide_google_relations)) {
             if (getCanAppBeUpgraded()) {
                 showUpgradeDialog()
-            } else if (!isOrWasThankYouInstalled()) {
-                showDonateDialog()
             }
         }
     }

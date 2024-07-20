@@ -1140,19 +1140,6 @@ fun isAndroidDataDir(path: String): Boolean {
     return resolvedPath.contains(ANDROID_DATA_DIR)
 }
 
-fun Context.isOrWasThankYouInstalled(): Boolean {
-    return when {
-        resources.getBoolean(R.bool.pretend_thank_you_installed) -> true
-        baseConfig.hadThankYouInstalled -> true
-        isThankYouInstalled() -> {
-            baseConfig.hadThankYouInstalled = true
-            true
-        }
-
-        else -> false
-    }
-}
-
 val Context.areSystemAnimationsEnabled: Boolean
     get() = Settings.Global.getFloat(
         contentResolver,
@@ -1497,15 +1484,8 @@ fun Context.getProperTextColor() = if (baseConfig.isUsingSystemTheme) {
     baseConfig.textColor
 }
 
-fun Context.getCustomizeColorsString(): String {
-    val textId = if (isOrWasThankYouInstalled()) {
-        R.string.customize_colors
-    } else {
-        R.string.customize_colors_locked
-    }
+fun Context.getCustomizeColorsString(): String = getString(R.string.customize_colors)
 
-    return getString(textId)
-}
 
 fun Context.getCurrentFormattedDateTime(): String {
     val simpleDateFormat = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())

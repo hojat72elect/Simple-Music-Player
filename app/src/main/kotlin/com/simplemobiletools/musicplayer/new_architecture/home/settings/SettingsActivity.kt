@@ -16,12 +16,11 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControlle
 import com.simplemobiletools.musicplayer.activities.WidgetConfigureActivity
 import com.simplemobiletools.musicplayer.databinding.ActivitySettingsBinding
 import com.simplemobiletools.musicplayer.dialogs.ManageVisibleTabsDialog
-import com.simplemobiletools.musicplayer.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.extensions.beGone
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.getCustomizeColorsString
 import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.musicplayer.extensions.launchPurchaseThankYouIntent
 import com.simplemobiletools.musicplayer.extensions.sendCommand
 import com.simplemobiletools.musicplayer.extensions.updateTextColors
@@ -78,7 +77,7 @@ class SettingsActivity : SimpleControllerActivity() {
     }
 
     private fun setupPurchaseThankYou() = binding.apply {
-        settingsPurchaseThankYouHolder.beGoneIf(isOrWasThankYouInstalled())
+        settingsPurchaseThankYouHolder.beGone()
         settingsPurchaseThankYouHolder.setOnClickListener {
             launchPurchaseThankYouIntent()
         }
