@@ -15,7 +15,7 @@ import com.simplemobiletools.musicplayer.extensions.getExifDateTaken
 import com.simplemobiletools.musicplayer.extensions.getExifProperties
 import com.simplemobiletools.musicplayer.extensions.md5
 import com.simplemobiletools.musicplayer.extensions.removeValues
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import com.simplemobiletools.musicplayer.views.MyTextView
 import com.simplemobiletools.musicplayer.extensions.baseConfig

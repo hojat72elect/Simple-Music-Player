@@ -1,6 +1,7 @@
 package com.simplemobiletools.musicplayer.activities
 
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 open class SimpleActivity : BaseSimpleActivity() {
     override fun getAppIconIDs() = arrayListOf(

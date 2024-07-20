@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.feature_tracks
 
 import android.app.Activity
 import android.app.SearchManager
@@ -19,6 +19,7 @@ import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.helpers.isQPlus
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleMusicActivity
 import com.simplemobiletools.musicplayer.adapters.TracksAdapter
 import com.simplemobiletools.musicplayer.adapters.TracksAdapter.Companion.TYPE_ALBUM
 import com.simplemobiletools.musicplayer.adapters.TracksAdapter.Companion.TYPE_FOLDER

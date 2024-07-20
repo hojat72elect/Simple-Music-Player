@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.home.about
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException

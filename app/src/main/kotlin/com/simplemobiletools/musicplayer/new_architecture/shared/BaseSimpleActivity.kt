@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.shared
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
@@ -41,6 +41,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.activities.CustomizationActivity
 import com.simplemobiletools.musicplayer.asynctasks.CopyMoveTask
 import com.simplemobiletools.musicplayer.compose.extensions.DEVELOPER_PLAY_STORE_URL
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationAdvancedDialog
@@ -183,6 +184,7 @@ import com.simplemobiletools.musicplayer.models.Android30RenameFormat
 import com.simplemobiletools.musicplayer.models.FAQItem
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import com.simplemobiletools.musicplayer.models.Release
+import com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream

@@ -28,6 +28,7 @@ import com.simplemobiletools.musicplayer.extensions.isReallyPlaying
 import com.simplemobiletools.musicplayer.extensions.lazySmoothScroll
 import com.simplemobiletools.musicplayer.helpers.RoomHelper
 import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 
 class QueueActivity : SimpleControllerActivity() {
     private var searchMenuItem: MenuItem? = null

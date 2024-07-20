@@ -42,7 +42,7 @@ import com.simplemobiletools.musicplayer.compose.extensions.MyDevices
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.extensions.toHex
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogLineColorPickerBinding
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf

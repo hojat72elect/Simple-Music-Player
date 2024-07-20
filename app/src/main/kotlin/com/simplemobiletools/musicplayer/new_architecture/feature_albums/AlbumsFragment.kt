@@ -1,10 +1,10 @@
-package com.simplemobiletools.musicplayer.fragments
+package com.simplemobiletools.musicplayer.new_architecture.feature_albums
 
 import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
 import com.google.gson.Gson
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf
@@ -12,7 +12,7 @@ import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
-import com.simplemobiletools.musicplayer.activities.TracksActivity
+import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
 import com.simplemobiletools.musicplayer.adapters.AlbumsAdapter
 import com.simplemobiletools.musicplayer.databinding.FragmentAlbumsBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
@@ -20,12 +20,12 @@ import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.mediaScanner
 import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.fragments.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.helpers.ALBUM
 import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
 import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.sortSafely
 
-// Artists -> Albums -> Tracks
 class AlbumsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
     private var albums = ArrayList<Album>()
     private val binding by viewBinding(FragmentAlbumsBinding::bind)

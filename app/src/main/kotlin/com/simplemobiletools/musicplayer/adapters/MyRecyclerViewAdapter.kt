@@ -13,7 +13,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.getContrastColor

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.extensions.highlightTextPart
 import com.simplemobiletools.musicplayer.extensions.setupViewBackground

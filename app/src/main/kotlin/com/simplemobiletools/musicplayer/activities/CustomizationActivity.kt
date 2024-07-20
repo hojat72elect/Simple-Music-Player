@@ -43,6 +43,7 @@ import com.simplemobiletools.musicplayer.helpers.isSPlus
 import com.simplemobiletools.musicplayer.models.MyTheme
 import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.models.SharedTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 class CustomizationActivity : BaseSimpleActivity() {
     private val THEME_LIGHT = 0

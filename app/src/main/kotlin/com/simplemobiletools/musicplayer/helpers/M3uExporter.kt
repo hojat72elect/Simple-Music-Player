@@ -1,7 +1,7 @@
 package com.simplemobiletools.musicplayer.helpers
 
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.writeLn

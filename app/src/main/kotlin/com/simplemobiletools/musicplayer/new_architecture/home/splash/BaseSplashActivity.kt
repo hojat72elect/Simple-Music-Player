@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.home.splash
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -73,6 +73,9 @@ import com.simplemobiletools.musicplayer.helpers.TAB_PLAYLISTS
 import com.simplemobiletools.musicplayer.helpers.getPermissionToRequest
 import com.simplemobiletools.musicplayer.helpers.tabsList
 import com.simplemobiletools.musicplayer.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.home.equalizer.EqualizerActivity
+import com.simplemobiletools.musicplayer.new_architecture.home.settings.SettingsActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleMusicActivity
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 import java.io.FileOutputStream
 import me.grantland.widget.AutofitHelper

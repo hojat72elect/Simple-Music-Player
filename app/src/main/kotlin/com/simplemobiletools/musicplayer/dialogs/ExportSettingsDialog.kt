@@ -14,7 +14,7 @@ import com.simplemobiletools.musicplayer.extensions.isAValidFilename
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.value
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 class ExportSettingsDialog(
     val activity: BaseSimpleActivity, val defaultFilename: String, val hidePath: Boolean,

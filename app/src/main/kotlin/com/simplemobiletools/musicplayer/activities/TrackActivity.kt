@@ -60,6 +60,7 @@ import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
 import com.simplemobiletools.musicplayer.helpers.SEEK_INTERVAL_S
 import com.simplemobiletools.musicplayer.interfaces.PlaybackSpeedListener
 import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 import java.text.DecimalFormat

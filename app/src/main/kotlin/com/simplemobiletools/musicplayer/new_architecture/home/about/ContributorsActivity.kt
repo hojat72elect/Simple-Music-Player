@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.home.about
 
 import android.os.Bundle
 import androidx.activity.compose.setContent

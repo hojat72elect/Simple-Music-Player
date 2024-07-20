@@ -15,7 +15,7 @@ import com.simplemobiletools.musicplayer.extensions.internalStoragePath
 import com.simplemobiletools.musicplayer.extensions.otgPath
 import com.simplemobiletools.musicplayer.extensions.sdCardPath
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 /**
  * A dialog for choosing between internal, root, SD card (optional) storage

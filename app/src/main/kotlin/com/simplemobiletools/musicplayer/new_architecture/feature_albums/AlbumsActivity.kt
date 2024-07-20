@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.feature_albums
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,8 @@ import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleMusicActivity
+import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
 import com.simplemobiletools.musicplayer.adapters.AlbumsTracksAdapter
 import com.simplemobiletools.musicplayer.databinding.ActivityAlbumsBinding
 import com.simplemobiletools.musicplayer.extensions.audioHelper
@@ -26,7 +28,6 @@ import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.Track
 
 
-// Artists -> Albums -> Tracks
 class AlbumsActivity : SimpleMusicActivity() {
 
     private val binding by viewBinding(ActivityAlbumsBinding::inflate)

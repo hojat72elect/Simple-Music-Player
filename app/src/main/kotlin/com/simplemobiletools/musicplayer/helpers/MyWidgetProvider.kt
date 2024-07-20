@@ -15,7 +15,7 @@ import com.simplemobiletools.musicplayer.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.extensions.getColoredBitmap
 import com.simplemobiletools.musicplayer.extensions.getLaunchIntent
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.SplashActivity
+import com.simplemobiletools.musicplayer.new_architecture.home.splash.SplashActivity
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.maybePreparePlayer
 import com.simplemobiletools.musicplayer.extensions.togglePlayback

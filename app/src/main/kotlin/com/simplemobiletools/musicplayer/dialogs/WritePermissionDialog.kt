@@ -45,7 +45,7 @@ import com.simplemobiletools.musicplayer.compose.extensions.andThen
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogWritePermissionBinding
 import com.simplemobiletools.musicplayer.databinding.DialogWritePermissionOtgBinding
 import com.simplemobiletools.musicplayer.extensions.fromHtml

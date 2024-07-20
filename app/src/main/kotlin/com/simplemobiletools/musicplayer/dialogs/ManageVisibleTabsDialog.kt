@@ -3,7 +3,7 @@ package com.simplemobiletools.musicplayer.dialogs
 import com.simplemobiletools.musicplayer.helpers.isQPlus
 import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogManageVisibleTabsBinding
 import com.simplemobiletools.musicplayer.extensions.beGone
 import com.simplemobiletools.musicplayer.extensions.config

@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.shared
 
 import android.content.ContentUris
 import android.content.Intent
@@ -11,6 +11,8 @@ import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.helpers.isRPlus
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.activities.SimpleActivity
+import com.simplemobiletools.musicplayer.activities.TrackActivity
 import com.simplemobiletools.musicplayer.extensions.prepareUsingTracks
 import com.simplemobiletools.musicplayer.extensions.maybePreparePlayer
 import com.simplemobiletools.musicplayer.extensions.audioHelper

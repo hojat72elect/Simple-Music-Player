@@ -8,7 +8,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.getPopupMenuTheme
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.humanizePath

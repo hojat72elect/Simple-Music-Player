@@ -4,7 +4,7 @@ import android.util.TypedValue
 import android.view.Menu
 import android.view.ViewGroup
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.FilepickerFavoriteBinding
 import com.simplemobiletools.musicplayer.extensions.getTextSize
 import com.simplemobiletools.musicplayer.views.MyRecyclerView

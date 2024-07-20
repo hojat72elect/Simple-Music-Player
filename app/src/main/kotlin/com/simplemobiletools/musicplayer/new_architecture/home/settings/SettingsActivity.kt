@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.activities
+package com.simplemobiletools.musicplayer.new_architecture.home.settings
 
 import android.content.Intent
 import android.os.Build
@@ -11,6 +11,9 @@ import com.simplemobiletools.musicplayer.helpers.isQPlus
 import com.simplemobiletools.musicplayer.helpers.isTiramisuPlus
 import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.activities.ExcludedFoldersActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
+import com.simplemobiletools.musicplayer.activities.WidgetConfigureActivity
 import com.simplemobiletools.musicplayer.databinding.ActivitySettingsBinding
 import com.simplemobiletools.musicplayer.dialogs.ManageVisibleTabsDialog
 import com.simplemobiletools.musicplayer.extensions.beGoneIf

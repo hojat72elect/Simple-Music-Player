@@ -15,7 +15,7 @@ import com.simplemobiletools.musicplayer.extensions.getDocumentSdk30
 import com.simplemobiletools.musicplayer.helpers.CONFLICT_KEEP_BOTH
 import com.simplemobiletools.musicplayer.helpers.CONFLICT_SKIP
 import com.simplemobiletools.musicplayer.helpers.getConflictResolution
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.baseConfig
 import com.simplemobiletools.musicplayer.extensions.canManageMedia
 import com.simplemobiletools.musicplayer.extensions.createDirectorySync

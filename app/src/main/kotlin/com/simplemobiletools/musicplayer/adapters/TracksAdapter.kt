@@ -14,7 +14,7 @@ import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
 import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding
 import com.simplemobiletools.musicplayer.dialogs.EditDialog
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter

@@ -10,7 +10,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.adapters.FilepickerFavoritesAdapter
 import com.simplemobiletools.musicplayer.adapters.FilepickerItemsAdapter
 import com.simplemobiletools.musicplayer.databinding.DialogFilepickerBinding

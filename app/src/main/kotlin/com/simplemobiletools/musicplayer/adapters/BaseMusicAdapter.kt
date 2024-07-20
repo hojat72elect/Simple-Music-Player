@@ -9,11 +9,11 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
-import com.simplemobiletools.musicplayer.activities.SimpleControllerActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.extensions.addTracksToPlaylist
 import com.simplemobiletools.musicplayer.extensions.getBiggerPlaceholder
 import com.simplemobiletools.musicplayer.extensions.getSmallPlaceholder

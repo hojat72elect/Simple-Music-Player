@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
 import com.simplemobiletools.musicplayer.adapters.TracksAdapter
 import com.simplemobiletools.musicplayer.databinding.FragmentTracksBinding

@@ -3,7 +3,7 @@ package com.simplemobiletools.musicplayer.adapters
 import android.view.View
 import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.highlightTextPart
 import com.simplemobiletools.musicplayer.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.views.MyRecyclerView

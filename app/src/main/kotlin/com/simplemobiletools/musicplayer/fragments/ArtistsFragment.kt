@@ -4,14 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
 import com.google.gson.Gson
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.AlbumsActivity
+import com.simplemobiletools.musicplayer.new_architecture.feature_albums.AlbumsActivity
 import com.simplemobiletools.musicplayer.activities.SimpleActivity
 import com.simplemobiletools.musicplayer.adapters.ArtistsAdapter
 import com.simplemobiletools.musicplayer.databinding.FragmentArtistsBinding

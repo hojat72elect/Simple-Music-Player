@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.google.android.material.appbar.AppBarLayout
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.activities.BaseSimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.MenuSearchBinding
 import com.simplemobiletools.musicplayer.extensions.onTextChangeListener
 import com.simplemobiletools.musicplayer.helpers.LOWER_ALPHA
