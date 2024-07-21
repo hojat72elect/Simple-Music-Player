@@ -21,12 +21,12 @@ class MyAppCompatSpinner : AppCompatSpinner {
         defStyle
     )
 
-    fun setColors(textColor: Int, accentColor: Int, backgroundColor: Int) {
+    fun setColors(textColor: Int, backgroundColor: Int) {
         if (adapter == null)
             return
 
         val cnt = adapter.count
-        val items = kotlin.arrayOfNulls<Any>(cnt)
+        val items = arrayOfNulls<Any>(cnt)
         for (i in 0 until cnt)
             items[i] = adapter.getItem(i)
 

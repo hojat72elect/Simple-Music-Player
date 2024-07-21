@@ -37,7 +37,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogTitleBinding
-import com.simplemobiletools.musicplayer.dialogs.AppSideloadedDialog
+import com.simplemobiletools.musicplayer.dialogs.AppSideLoadedDialog
 import com.simplemobiletools.musicplayer.dialogs.PropertiesDialog
 import com.simplemobiletools.musicplayer.dialogs.RateStarsDialog
 import com.simplemobiletools.musicplayer.dialogs.SecurityDialog
@@ -500,7 +500,7 @@ fun Activity.getThemeId(color: Int = baseConfig.primaryColor, showTransparentTop
     }
 
 fun Activity.showSideloadingDialog() {
-    AppSideloadedDialog(this) {
+    AppSideLoadedDialog(this) {
         finish()
     }
 }
@@ -721,12 +721,12 @@ fun Activity.setupDialogStuff(
     }
 
     val textColor = getProperTextColor()
-    val backgroundColor = getProperBackgroundColor()
+
     val primaryColor = getProperPrimaryColor()
     if (view is ViewGroup) {
         updateTextColors(view)
     } else if (view is MyTextView) {
-        view.setColors(textColor, primaryColor, backgroundColor)
+        view.setColors(textColor, primaryColor)
     }
 
     if (dialog is MaterialAlertDialogBuilder) {

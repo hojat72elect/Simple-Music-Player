@@ -55,7 +55,7 @@ import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 
 class WritePermissionDialog(
     activity: Activity,
-    val writePermissionDialogMode: WritePermissionDialogMode,
+    private val writePermissionDialogMode: WritePermissionDialogMode,
     val callback: () -> Unit
 ) {
 

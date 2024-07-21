@@ -22,11 +22,11 @@ import com.simplemobiletools.musicplayer.extensions.showKeyboard
 
 class MySearchMenu(context: Context, attrs: AttributeSet) : AppBarLayout(context, attrs) {
     var isSearchOpen = false
-    var useArrowIcon = false
-    var onSearchOpenListener: (() -> Unit)? = null
+    private var useArrowIcon = false
+    private var onSearchOpenListener: (() -> Unit)? = null
     var onSearchClosedListener: (() -> Unit)? = null
     var onSearchTextChangedListener: ((text: String) -> Unit)? = null
-    var onNavigateBackClickListener: (() -> Unit)? = null
+    private var onNavigateBackClickListener: (() -> Unit)? = null
 
     val binding = MenuSearchBinding.inflate(LayoutInflater.from(context), this, true)
 
@@ -45,7 +45,7 @@ class MySearchMenu(context: Context, attrs: AttributeSet) : AppBarLayout(context
         }
 
         post {
-            binding.topToolbarSearch.setOnFocusChangeListener { v, hasFocus ->
+            binding.topToolbarSearch.setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
                     openSearch()
                 }
@@ -55,10 +55,6 @@ class MySearchMenu(context: Context, attrs: AttributeSet) : AppBarLayout(context
         binding.topToolbarSearch.onTextChangeListener { text ->
             onSearchTextChangedListener?.invoke(text)
         }
-    }
-
-    fun focusView() {
-        binding.topToolbarSearch.requestFocus()
     }
 
     private fun openSearch() {
@@ -79,11 +75,7 @@ class MySearchMenu(context: Context, attrs: AttributeSet) : AppBarLayout(context
         (context as? Activity)?.hideKeyboard()
     }
 
-    fun getCurrentQuery() = binding.topToolbarSearch.text.toString()
 
-    fun updateHintText(text: String) {
-        binding.topToolbarSearch.hint = text
-    }
 
     fun toggleHideOnScroll(hideOnScroll: Boolean) {
         val params = binding.topAppBarLayout.layoutParams as LayoutParams
@@ -96,17 +88,7 @@ class MySearchMenu(context: Context, attrs: AttributeSet) : AppBarLayout(context
         }
     }
 
-    fun toggleForceArrowBackIcon(useArrowBack: Boolean) {
-        this.useArrowIcon = useArrowBack
-        val (icon, accessibilityString) = if (useArrowBack) {
-            Pair(R.drawable.ic_arrow_left_vector, R.string.back)
-        } else {
-            Pair(R.drawable.ic_search_vector, R.string.search)
-        }
 
-        binding.topToolbarSearchIcon.setImageResource(icon)
-        binding.topToolbarSearchIcon.contentDescription = resources.getString(accessibilityString)
-    }
 
     fun updateColors() {
         val backgroundColor = context.getProperBackgroundColor()

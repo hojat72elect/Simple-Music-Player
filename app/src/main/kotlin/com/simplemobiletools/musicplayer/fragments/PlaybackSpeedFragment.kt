@@ -1,5 +1,6 @@
 package com.simplemobiletools.musicplayer.fragments
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,25 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.databinding.FragmentPlaybackSpeedBinding
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.getProperBackgroundColor
 import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.onSeekBarChangeListener
 import com.simplemobiletools.musicplayer.extensions.updateTextColors
-import com.simplemobiletools.musicplayer.views.MySeekBar
-import com.simplemobiletools.musicplayer.views.MyTextView
-import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.databinding.FragmentPlaybackSpeedBinding
-import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.helpers.Config
 import com.simplemobiletools.musicplayer.interfaces.PlaybackSpeedListener
+import com.simplemobiletools.musicplayer.views.MySeekBar
+import com.simplemobiletools.musicplayer.views.MyTextView
+import kotlin.math.max
+import kotlin.math.min
 
 class PlaybackSpeedFragment : BottomSheetDialogFragment() {
-    private val MIN_PLAYBACK_SPEED = 0.25f
-    private val MAX_PLAYBACK_SPEED = 3f
-    private val MAX_PROGRESS = (MAX_PLAYBACK_SPEED * 100 + MIN_PLAYBACK_SPEED * 100).toInt()
-    private val HALF_PROGRESS = MAX_PROGRESS / 2
-    private val STEP = 0.05f
+
 
     private var seekBar: MySeekBar? = null
     private var listener: PlaybackSpeedListener? = null
@@ -64,6 +63,7 @@ class PlaybackSpeedFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initSeekbar(seekbar: MySeekBar, speedLabel: MyTextView, config: Config) {
         val formattedValue = formatPlaybackSpeed(config.playbackSpeed)
         speedLabel.text = "${formattedValue}x"
@@ -111,7 +111,7 @@ class PlaybackSpeedFragment : BottomSheetDialogFragment() {
 
             else -> 1f
         }
-        playbackSpeed = Math.min(Math.max(playbackSpeed, MIN_PLAYBACK_SPEED), MAX_PLAYBACK_SPEED)
+        playbackSpeed = min(max(playbackSpeed, MIN_PLAYBACK_SPEED), MAX_PLAYBACK_SPEED)
         val stepMultiplier = 1 / STEP
         return Math.round(playbackSpeed * stepMultiplier) / stepMultiplier
     }
@@ -140,9 +140,19 @@ class PlaybackSpeedFragment : BottomSheetDialogFragment() {
         }
     }
 
+    @SuppressLint("DefaultLocale")
     private fun formatPlaybackSpeed(value: Float) = String.format("%.2f", value)
 
     fun setListener(playbackSpeedListener: PlaybackSpeedListener) {
         listener = playbackSpeedListener
+    }
+
+    companion object {
+        private const val MIN_PLAYBACK_SPEED = 0.25f
+        private const val MAX_PLAYBACK_SPEED = 3f
+        private const val MAX_PROGRESS =
+            (MAX_PLAYBACK_SPEED * 100 + MIN_PLAYBACK_SPEED * 100).toInt()
+        private const val HALF_PROGRESS = MAX_PROGRESS / 2
+        private const val STEP = 0.05f
     }
 }

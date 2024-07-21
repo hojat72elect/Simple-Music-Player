@@ -93,9 +93,9 @@ private value class Hsv(val value: FloatArray) {
 class ColorPickerDialog(
     val activity: Activity,
     color: Int,
-    val removeDimmedBackground: Boolean = false,
-    val addDefaultColorButton: Boolean = false,
-    val currentColorCallback: ((color: Int) -> Unit)? = null,
+    private val removeDimmedBackground: Boolean = false,
+    private val addDefaultColorButton: Boolean = false,
+    private val currentColorCallback: ((color: Int) -> Unit)? = null,
     val callback: (wasPositivePressed: Boolean, color: Int) -> Unit
 ) {
     private val baseConfig = activity.baseConfig
@@ -311,7 +311,7 @@ private fun DialogColorPickerBinding.init(
     colorPickerNewHex.setText(hexCode)
     setupRecentColors(backgroundColor, recentColors)
 
-    colorPickerHue.setOnTouchListener(OnTouchListener { v, event ->
+    colorPickerHue.setOnTouchListener(OnTouchListener { _, event ->
         if (event.action == MotionEvent.ACTION_DOWN) {
             isHueBeingDragged = true
         }
@@ -341,7 +341,7 @@ private fun DialogColorPickerBinding.init(
         false
     })
 
-    colorPickerSquare.setOnTouchListener(OnTouchListener { v, event ->
+    colorPickerSquare.setOnTouchListener(OnTouchListener { _, event ->
         if (event.action == MotionEvent.ACTION_MOVE || event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_UP) {
             var x = event.x
             var y = event.y

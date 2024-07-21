@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.res.Configuration
 import android.os.Build
-import java.util.*
+import java.util.Locale
 
 // language forcing used at "Use english language", taken from https://stackoverflow.com/a/40704077/1967672
 class MyContextWrapper(context: Context) : ContextWrapper(context) {
@@ -13,9 +13,8 @@ class MyContextWrapper(context: Context) : ContextWrapper(context) {
     fun wrap(context: Context, language: String): ContextWrapper {
         var newContext = context
         val config = newContext.resources.configuration
-        val sysLocale: Locale?
 
-        sysLocale = if (isNougatPlus()) {
+        val sysLocale: Locale? = if (isNougatPlus()) {
             getSystemLocale(config)
         } else {
             getSystemLocaleLegacy(config)

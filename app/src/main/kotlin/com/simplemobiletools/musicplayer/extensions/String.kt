@@ -1,37 +1,24 @@
 package com.simplemobiletools.musicplayer.extensions
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Point
 import android.os.Build
 import android.os.StatFs
 import android.provider.MediaStore
-import android.telephony.PhoneNumberUtils
 import android.text.Html
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
-import android.widget.TextView
-import com.bumptech.glide.signature.ObjectKey
 import com.simplemobiletools.musicplayer.helpers.audioExtensions
 import com.simplemobiletools.musicplayer.helpers.extensionsSupportingEXIF
-import com.simplemobiletools.musicplayer.helpers.getDateFormats
 import com.simplemobiletools.musicplayer.helpers.normalizeRegex
 import com.simplemobiletools.musicplayer.helpers.photoExtensions
 import com.simplemobiletools.musicplayer.helpers.rawExtensions
 import com.simplemobiletools.musicplayer.helpers.videoExtensions
 import java.io.File
-import java.text.DateFormat
 import java.text.Normalizer
-import java.text.SimpleDateFormat
-import java.util.Locale
 import java.util.regex.Pattern
-import org.joda.time.DateTime
-import org.joda.time.Years
-import org.joda.time.format.DateTimeFormat
 
 // remove diacritics, for example č -> c
 fun String.normalizeString() = Normalizer.normalize(this, Normalizer.Form.NFD).replace(
@@ -53,9 +40,7 @@ fun String.highlightTextPart(
     var startIndex = normalizeString().indexOf(textToHighlight, 0, true)
     val indexes = ArrayList<Int>()
     while (startIndex >= 0) {
-        if (startIndex != -1) {
             indexes.add(startIndex)
-        }
 
         startIndex =
             normalizeString().indexOf(textToHighlight, startIndex + textToHighlight.length, true)
@@ -85,7 +70,7 @@ fun String.highlightTextPart(
     }
 
     indexes.forEach {
-        val endIndex = Math.min(it + textToHighlight.length, length)
+        val endIndex = (it + textToHighlight.length).coerceAtMost(length)
         try {
             spannableString.setSpan(
                 ForegroundColorSpan(color),
@@ -170,7 +155,6 @@ fun String.isVideoSlow() =
 
 // fast extension checks, not guaranteed to be accurate
 fun String.isVideoFast() = videoExtensions.any { endsWith(it, true) }
-
 
 fun String.isAValidFilename(): Boolean {
     val ILLEGAL_CHARACTERS =
@@ -796,21 +780,13 @@ fun String.getMimeType(): String {
 }
 
 fun String.getOTGPublicPath(context: Context) =
-    "${context.baseConfig.OTGTreeUri}/document/${context.baseConfig.OTGPartition}%3A${
+    "${context.baseConfig.oTGTreeUri}/document/${context.baseConfig.oTGPartition}%3A${
         substring(
-            context.baseConfig.OTGPath.length
+            context.baseConfig.oTGPath.length
         ).replace("/", "%2F")
     }"
 
-fun String.isWebP() = endsWith(".webp", true)
-
 fun String.isGif() = endsWith(".gif", true)
-
-fun String.isPng() = endsWith(".png", true)
-
-fun String.isApng() = endsWith(".apng", true)
-
-fun String.isJpg() = endsWith(".jpg", true) or endsWith(".jpeg", true)
 
 fun String.isSvg() = endsWith(".svg", true)
 
@@ -823,93 +799,6 @@ fun String.isRawFast() = rawExtensions.any { endsWith(it, true) }
 
 fun String.canModifyEXIF() = extensionsSupportingEXIF.any { endsWith(it, true) }
 
-fun String.getCompressionFormat() = when (getFilenameExtension().lowercase()) {
-    "png" -> Bitmap.CompressFormat.PNG
-    "webp" -> Bitmap.CompressFormat.WEBP
-    else -> Bitmap.CompressFormat.JPEG
-}
-
-fun String.areLettersOnly() = matches(Regex("[a-zA-Z]+"))
-
-fun String.getGenericMimeType(): String {
-    if (!contains("/"))
-        return this
-
-    val type = substring(0, indexOf("/"))
-    return "$type/*"
-}
-
-fun String.relativizeWith(path: String) = this.substring(path.length)
-
-fun String.containsNoMedia() = File(this).containsNoMedia()
-
-
-fun String.getImageResolution(context: Context): Point? {
-    val options = BitmapFactory.Options()
-    options.inJustDecodeBounds = true
-    if (context.isRestrictedSAFOnlyRoot(this)) {
-        BitmapFactory.decodeStream(
-            context.contentResolver.openInputStream(
-                context.getAndroidSAFUri(
-                    this
-                )
-            ), null, options
-        )
-    } else {
-        BitmapFactory.decodeFile(this, options)
-    }
-
-    val width = options.outWidth
-    val height = options.outHeight
-    return if (width > 0 && height > 0) {
-        Point(options.outWidth, options.outHeight)
-    } else {
-        null
-    }
-}
-
-fun String.getPublicUri(context: Context) = context.getDocumentFile(this)?.uri ?: ""
-
-fun String.substringTo(cnt: Int): String {
-    return if (isEmpty()) {
-        ""
-    } else {
-        substring(0, Math.min(length, cnt))
-    }
-}
-
-fun String.searchMatches(textToHighlight: String): ArrayList<Int> {
-    val indexes = arrayListOf<Int>()
-    var indexOf = indexOf(textToHighlight, 0, true)
-
-    var offset = 0
-    while (offset < length && indexOf != -1) {
-        indexOf = indexOf(textToHighlight, offset, true)
-
-        if (indexOf == -1) {
-            break
-        } else {
-            indexes.add(indexOf)
-        }
-
-        offset = indexOf + 1
-    }
-
-    return indexes
-}
-
-fun String.getFileSignature(lastModified: Long? = null) = ObjectKey(getFileKey(lastModified))
-
-fun String.getFileKey(lastModified: Long? = null): String {
-    val file = File(this)
-    val modified = if (lastModified != null && lastModified > 0) {
-        lastModified
-    } else {
-        file.lastModified()
-    }
-
-    return "${file.absolutePath}$modified"
-}
 
 fun String.getAvailableStorageB(): Long {
     return try {
@@ -921,75 +810,4 @@ fun String.getAvailableStorageB(): Long {
     }
 }
 
-// checks if string is a phone number
-fun String.isPhoneNumber(): Boolean {
-    return this.matches("^[0-9+\\-\\)\\( *#]+\$".toRegex())
-}
-
-// if we are comparing phone numbers, compare just the last 9 digits
-fun String.trimToComparableNumber(): String {
-    // don't trim if it's not a phone number
-    if (!this.isPhoneNumber()) {
-        return this
-    }
-    val normalizedNumber = this.normalizeString()
-    val startIndex = Math.max(0, normalizedNumber.length - 9)
-    return normalizedNumber.substring(startIndex)
-}
-
-fun String.normalizePhoneNumber() = PhoneNumberUtils.normalizeNumber(this)
-
-fun String.highlightTextFromNumbers(textToHighlight: String, primaryColor: Int): SpannableString {
-    val spannableString = SpannableString(this)
-    val digits = PhoneNumberUtils.convertKeypadLettersToDigits(this)
-    if (digits.contains(textToHighlight)) {
-        val startIndex = digits.indexOf(textToHighlight, 0, true)
-        val endIndex = Math.min(startIndex + textToHighlight.length, length)
-        try {
-            spannableString.setSpan(
-                ForegroundColorSpan(primaryColor),
-                startIndex,
-                endIndex,
-                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-            )
-        } catch (ignored: IndexOutOfBoundsException) {
-        }
-    }
-
-    return spannableString
-}
-
-fun String.getDateTimeFromDateString(
-    showYearsSince: Boolean,
-    viewToUpdate: TextView? = null
-): DateTime {
-    val dateFormats = getDateFormats()
-    var date = DateTime()
-    for (format in dateFormats) {
-        try {
-            date = DateTime.parse(this, DateTimeFormat.forPattern(format))
-
-            val formatter = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
-            var localPattern = (formatter as SimpleDateFormat).toLocalizedPattern()
-
-            val hasYear = format.contains("y")
-            if (!hasYear) {
-                localPattern = localPattern.replace("y", "").replace(",", "").trim()
-                date = date.withYear(DateTime().year)
-            }
-
-            var formattedString = date.toString(localPattern)
-            if (showYearsSince && hasYear) {
-                formattedString += " (${Years.yearsBetween(date, DateTime.now()).years})"
-            }
-
-            viewToUpdate?.text = formattedString
-            break
-        } catch (ignored: Exception) {
-        }
-    }
-    return date
-}
-
-fun String.isBlockedNumberPattern() = contains("*")
 

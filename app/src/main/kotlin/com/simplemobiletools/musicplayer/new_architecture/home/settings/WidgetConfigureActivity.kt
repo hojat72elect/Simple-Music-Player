@@ -54,7 +54,7 @@ class WidgetConfigureActivity : SimpleActivity() {
         binding.configTextColor.setOnClickListener { pickTextColor() }
 
         val primaryColor = getProperPrimaryColor()
-        binding.configBgSeekbar.setColors(mTextColor, primaryColor, primaryColor)
+        binding.configBgSeekbar.setColors(primaryColor)
         binding.configPlayer.apply {
             val currSong = PlaybackService.currentMediaItem?.mediaMetadata
             if (currSong != null) {

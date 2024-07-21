@@ -1,5 +1,7 @@
 package com.simplemobiletools.musicplayer.dialogs
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogExportSettingsBinding
@@ -16,8 +18,11 @@ import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
+@RequiresApi(Build.VERSION_CODES.O)
 class ExportSettingsDialog(
-    val activity: BaseSimpleActivity, val defaultFilename: String, val hidePath: Boolean,
+    val activity: BaseSimpleActivity,
+    private val defaultFilename: String,
+    private val hidePath: Boolean,
     callback: (path: String, filename: String) -> Unit
 ) {
     init {

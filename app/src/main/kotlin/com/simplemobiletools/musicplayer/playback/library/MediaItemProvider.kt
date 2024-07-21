@@ -149,7 +149,7 @@ internal class MediaItemProvider(private val context: Context) {
         }
     }
 
-    fun getRecentItemsWithStartPosition(): MediaItemsWithStartPosition {
+    private fun getRecentItemsWithStartPosition(): MediaItemsWithStartPosition {
         val recentItems = context.queueDAO.getAll().mapNotNull { getMediaItemFromQueueItem(it) }
         var startPosition = 0L
         val currentItem = context.queueDAO.getCurrent()?.let {

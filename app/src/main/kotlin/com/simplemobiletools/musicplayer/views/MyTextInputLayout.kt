@@ -17,7 +17,7 @@ class MyTextInputLayout : TextInputLayout {
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
     // we need to use reflection to make some colors work well
-    fun setColors(textColor: Int, accentColor: Int, backgroundColor: Int) {
+    fun setColors(textColor: Int, accentColor: Int) {
         try {
             editText!!.setTextColor(textColor)
             editText!!.backgroundTintList = ColorStateList.valueOf(accentColor)
@@ -47,7 +47,7 @@ class MyTextInputLayout : TextInputLayout {
             setBoxStrokeColorStateList(boxColorState)
             defaultTextColor.set(this, ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(defaultHintTextColor)))
             setHelperTextColor(ColorStateList.valueOf(textColor))
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }
 }

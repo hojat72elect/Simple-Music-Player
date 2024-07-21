@@ -1,20 +1,5 @@
 package com.simplemobiletools.musicplayer.compose.system_ui_controller
 
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 import android.app.Activity
 import android.content.Context
@@ -65,16 +50,6 @@ interface SystemUiController {
      */
     var isNavigationBarVisible: Boolean
 
-    /**
-     * Property which holds the status & navigation bar visibility. If set to true, show both bars,
-     * otherwise hide both bars.
-     */
-    var isSystemBarsVisible: Boolean
-        get() = isNavigationBarVisible && isStatusBarVisible
-        set(value) {
-            isStatusBarVisible = value
-            isNavigationBarVisible = value
-        }
 
     /**
      * Set the status bar color.
@@ -148,15 +123,6 @@ interface SystemUiController {
      */
     var navigationBarDarkContentEnabled: Boolean
 
-    /**
-     * Property which holds whether the status & navigation bar icons + content are 'dark' or not.
-     */
-    var systemBarsDarkContentEnabled: Boolean
-        get() = statusBarDarkContentEnabled && navigationBarDarkContentEnabled
-        set(value) {
-            statusBarDarkContentEnabled = value
-            navigationBarDarkContentEnabled = value
-        }
 
     /**
      * Property which holds whether the system is ensuring that the navigation bar has enough
@@ -227,6 +193,7 @@ internal class AndroidSystemUiController(
                 // contrast
                 transformColorForLightContent(color)
             }
+
             else -> color
         }.toArgb()
     }
@@ -247,6 +214,7 @@ internal class AndroidSystemUiController(
                 // contrast
                 transformColorForLightContent(color)
             }
+
             else -> color
         }.toArgb()
     }

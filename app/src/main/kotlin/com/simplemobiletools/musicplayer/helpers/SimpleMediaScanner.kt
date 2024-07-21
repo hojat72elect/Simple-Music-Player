@@ -255,15 +255,15 @@ class SimpleMediaScanner(private val context: Application) {
             val title = cursor.getStringValue(Audio.Media.TITLE)
             val duration = cursor.getIntValue(Audio.Media.DURATION) / 1000
             val trackId = cursor.getIntValue(Audio.Media.TRACK) % 1000
-            val path = cursor.getStringValue(Audio.Media.DATA).orEmpty()
-            val artist = cursor.getStringValue(Audio.Media.ARTIST) ?: MediaStore.UNKNOWN_STRING
+            val path = cursor.getStringValue(Audio.Media.DATA)
+            val artist = cursor.getStringValue(Audio.Media.ARTIST)
             val folderName = if (isQPlus()) {
-                cursor.getStringValue(Audio.Media.BUCKET_DISPLAY_NAME) ?: MediaStore.UNKNOWN_STRING
+                cursor.getStringValue(Audio.Media.BUCKET_DISPLAY_NAME)
             } else {
                 ""
             }
 
-            val album = cursor.getStringValue(Audio.Media.ALBUM) ?: folderName
+            val album = cursor.getStringValue(Audio.Media.ALBUM)
             val albumId = cursor.getLongValue(Audio.Media.ALBUM_ID)
             val artistId = cursor.getLongValue(Audio.Media.ARTIST_ID)
             val year = cursor.getIntValue(Audio.Media.YEAR)
@@ -274,14 +274,14 @@ class SimpleMediaScanner(private val context: Application) {
             val genre: String
             val genreId: Long
             if (isRPlus()) {
-                genre = cursor.getStringValue(Audio.Media.GENRE).orEmpty()
+                genre = cursor.getStringValue(Audio.Media.GENRE)
                 genreId = cursor.getLongValue(Audio.Media.GENRE_ID)
             } else {
                 genre = ""
                 genreId = 0
             }
 
-            if (!title.isNullOrEmpty()) {
+            if (title.isNotEmpty()) {
                 val track = Track(
                     id = 0,
                     mediaStoreId = id,
@@ -321,7 +321,7 @@ class SimpleMediaScanner(private val context: Application) {
 
         context.queryCursor(uri, projection, showErrors = true) { cursor ->
             val id = cursor.getLongValue(Audio.Artists._ID)
-            val title = cursor.getStringValue(Audio.Artists.ARTIST) ?: MediaStore.UNKNOWN_STRING
+            val title = cursor.getStringValue(Audio.Artists.ARTIST)
             val albumCnt = cursor.getIntValue(Audio.Artists.NUMBER_OF_TRACKS)
             val trackCnt = cursor.getIntValue(Audio.Artists.NUMBER_OF_ALBUMS)
             val artist = Artist(
@@ -362,8 +362,8 @@ class SimpleMediaScanner(private val context: Application) {
             showErrors = true
         ) { cursor ->
             val id = cursor.getLongValue(Audio.Albums._ID)
-            val artistName = cursor.getStringValue(Audio.Albums.ARTIST) ?: MediaStore.UNKNOWN_STRING
-            val title = cursor.getStringValue(Audio.Albums.ALBUM) ?: MediaStore.UNKNOWN_STRING
+            val artistName = cursor.getStringValue(Audio.Albums.ARTIST)
+            val title = cursor.getStringValue(Audio.Albums.ALBUM)
             val coverArt = ContentUris.withAppendedId(artworkUri, id).toString()
             val year = cursor.getIntValue(Audio.Albums.FIRST_YEAR)
             val trackCnt = cursor.getIntValue(Audio.Albums.NUMBER_OF_SONGS)
@@ -399,7 +399,7 @@ class SimpleMediaScanner(private val context: Application) {
             val id = cursor.getLongValue(Audio.Genres._ID)
             val title = cursor.getStringValue(Audio.Genres.NAME)
 
-            if (!title.isNullOrEmpty()) {
+            if (title.isNotEmpty()) {
                 val genre = Genre(id = id, title = title, trackCnt = 0, albumArt = "")
                 genres.add(genre)
             }

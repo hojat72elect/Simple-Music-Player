@@ -74,7 +74,7 @@ class AudioHelper(private val context: Context) {
         context.tracksDAO.updateSongInfo(newPath, artist, title, oldPath)
     }
 
-    fun deleteTrack(mediaStoreId: Long) {
+    private fun deleteTrack(mediaStoreId: Long) {
         context.tracksDAO.removeTrack(mediaStoreId)
     }
 
@@ -299,7 +299,7 @@ class AudioHelper(private val context: Context) {
         }
     }
 
-    fun initQueue(): ArrayList<Track> {
+    private fun initQueue(): ArrayList<Track> {
         val tracks = getAllTracks()
         val queueItems = tracks.mapIndexed { index, mediaItem ->
             QueueItem(

@@ -41,31 +41,28 @@ import com.simplemobiletools.musicplayer.compose.alert_dialog.rememberAlertDialo
 import com.simplemobiletools.musicplayer.compose.extensions.MyDevices
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
-import com.simplemobiletools.musicplayer.extensions.toHex
-import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogLineColorPickerBinding
 import com.simplemobiletools.musicplayer.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.copyToClipboard
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.toHex
 import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.interfaces.LineColorPickerListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 class LineColorPickerDialog(
     val activity: BaseSimpleActivity,
     val color: Int,
-    val isPrimaryColorPicker: Boolean,
-    val primaryColors: Int = R.array.md_primary_colors,
-    val appIconIDs: ArrayList<Int>? = null,
+    private val isPrimaryColorPicker: Boolean,
+    private val primaryColors: Int = R.array.md_primary_colors,
+    private val appIconIDs: ArrayList<Int>? = null,
     val toolbar: MaterialToolbar? = null,
     val callback: (wasPositivePressed: Boolean, color: Int) -> Unit
 ) {
-    private val PRIMARY_COLORS_COUNT = 19
-    private val DEFAULT_PRIMARY_COLOR_INDEX = 14
-    private val DEFAULT_SECONDARY_COLOR_INDEX = 6
-    private val DEFAULT_COLOR_VALUE = activity.resources.getColor(R.color.color_primary)
 
+    private  val defaultColorValue = activity.resources.getColor(R.color.color_primary)
     private var wasDimmedBackgroundRemoved = false
     private var dialog: AlertDialog? = null
     private var view = DialogLineColorPickerBinding.inflate(activity.layoutInflater, null, false)
@@ -107,8 +104,8 @@ class LineColorPickerDialog(
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed() }
-            .setNegativeButton(R.string.cancel) { dialog, which -> dialogDismissed() }
+            .setPositiveButton(R.string.ok) { _, _ -> dialogConfirmed() }
+            .setNegativeButton(R.string.cancel) { _, _ -> dialogDismissed() }
             .setOnCancelListener { dialogDismissed() }
             .apply {
                 activity.setupDialogStuff(view.root, this) { alertDialog ->
@@ -135,7 +132,7 @@ class LineColorPickerDialog(
     }
 
     private fun getColorIndexes(color: Int): Pair<Int, Int> {
-        if (color == DEFAULT_COLOR_VALUE) {
+        if (color == defaultColorValue) {
             return getDefaultColorPair()
         }
 
@@ -192,6 +189,13 @@ class LineColorPickerDialog(
     }
 
     private fun getColors(id: Int) = activity.resources.getIntArray(id).toCollection(ArrayList())
+
+    companion object{
+        private const val PRIMARY_COLORS_COUNT = 19
+        private const val DEFAULT_PRIMARY_COLOR_INDEX = 14
+        private const val DEFAULT_SECONDARY_COLOR_INDEX = 6
+
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -14,7 +14,6 @@ import androidx.media3.session.MediaSessionService
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.extensions.hasPermission
 import com.simplemobiletools.musicplayer.extensions.showErrorToast
-import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.isReallyPlaying
 import com.simplemobiletools.musicplayer.extensions.nextMediaItem
 import com.simplemobiletools.musicplayer.helpers.NotificationHelper
@@ -39,8 +38,7 @@ class PlaybackService : MediaLibraryService(), MediaSessionService.Listener {
         setListener(this)
         initializeSessionAndPlayer(
             handleAudioFocus = true,
-            handleAudioBecomingNoisy = true,
-            skipSilence = config.gaplessPlayback
+            handleAudioBecomingNoisy = true
         )
         initializeLibrary()
     }

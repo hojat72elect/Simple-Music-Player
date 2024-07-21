@@ -18,7 +18,7 @@ class MyEditText : AppCompatEditText {
         defStyle
     )
 
-    fun setColors(textColor: Int, accentColor: Int, backgroundColor: Int) {
+    fun setColors(textColor: Int, accentColor: Int) {
         background?.mutate()?.applyColorFilter(accentColor)
 
         // requires android:textCursorDrawable="@null" in xml to color the cursor too

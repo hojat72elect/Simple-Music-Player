@@ -14,7 +14,6 @@ import com.simplemobiletools.musicplayer.helpers.AlphanumericComparator
 import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
 import com.simplemobiletools.musicplayer.extensions.sortSafely
 import com.simplemobiletools.musicplayer.extensions.toMediaItem
-import com.simplemobiletools.musicplayer.helpers.FLAG_IS_CURRENT
 import com.simplemobiletools.musicplayer.helpers.FLAG_MANUAL_CACHE
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ARTIST_TITLE
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_CUSTOM
@@ -53,7 +52,6 @@ data class Track(
 ) : Serializable, ListItem() {
 
     companion object {
-        private const val serialVersionUID = 6717978793256852245L
 
         fun getComparator(sorting: Int) = Comparator<Track> { first, second ->
             var result = when {
@@ -113,7 +111,6 @@ data class Track(
         ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, mediaStoreId)
     }
 
-    fun isCurrent() = flags and FLAG_IS_CURRENT != 0
 }
 
 fun ArrayList<Track>.sortSafely(sorting: Int) = sortSafely(Track.getComparator(sorting))

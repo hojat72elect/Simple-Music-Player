@@ -3,35 +3,41 @@ package com.simplemobiletools.musicplayer.dialogs
 import android.app.Activity
 import android.view.ViewGroup
 import android.widget.RadioGroup
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
-import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogChangeSortingBinding
 import com.simplemobiletools.musicplayer.databinding.SmallRadioButtonBinding
+import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
-import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
-import com.simplemobiletools.musicplayer.helpers.TAB_GENRES
-import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TITLE
-import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TRACK_COUNT
+import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.helpers.ACTIVITY_PLAYLIST_FOLDER
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ALBUM_COUNT
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ARTIST_TITLE
-import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_YEAR
-import com.simplemobiletools.musicplayer.helpers.ACTIVITY_PLAYLIST_FOLDER
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_CUSTOM
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_DATE_ADDED
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_DURATION
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TITLE
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TRACK_COUNT
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TRACK_ID
+import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_YEAR
+import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
+import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
+import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
 import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
+import com.simplemobiletools.musicplayer.helpers.TAB_GENRES
 import com.simplemobiletools.musicplayer.helpers.TAB_PLAYLISTS
 import com.simplemobiletools.musicplayer.helpers.TAB_TRACKS
 import com.simplemobiletools.musicplayer.models.Playlist
+import com.simplemobiletools.musicplayer.models.RadioItem
 
-class ChangeSortingDialog(val activity: Activity, val location: Int, val playlist: Playlist? = null, val path: String? = null, val callback: () -> Unit) {
+class ChangeSortingDialog(
+    val activity: Activity,
+    private val location: Int,
+    val playlist: Playlist? = null,
+    val path: String? = null,
+    val callback: () -> Unit
+) {
     private val config = activity.config
     private var currSorting = 0
     private val binding by activity.viewBinding(DialogChangeSortingBinding::inflate)
@@ -80,45 +86,171 @@ class ChangeSortingDialog(val activity: Activity, val location: Int, val playlis
         val radioItems = ArrayList<RadioItem>()
         when (location) {
             TAB_PLAYLISTS, TAB_FOLDERS -> {
-                radioItems.add(RadioItem(0, activity.getString(R.string.title), PLAYER_SORT_BY_TITLE))
-                radioItems.add(RadioItem(1, activity.getString(R.string.track_count), PLAYER_SORT_BY_TRACK_COUNT))
+                radioItems.add(
+                    RadioItem(
+                        0,
+                        activity.getString(R.string.title),
+                        PLAYER_SORT_BY_TITLE
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        1,
+                        activity.getString(R.string.track_count),
+                        PLAYER_SORT_BY_TRACK_COUNT
+                    )
+                )
             }
 
             TAB_ARTISTS -> {
-                radioItems.add(RadioItem(0, activity.getString(R.string.title), PLAYER_SORT_BY_TITLE))
-                radioItems.add(RadioItem(1, activity.getString(R.string.album_count), PLAYER_SORT_BY_ALBUM_COUNT))
-                radioItems.add(RadioItem(2, activity.getString(R.string.track_count), PLAYER_SORT_BY_TRACK_COUNT))
+                radioItems.add(
+                    RadioItem(
+                        0,
+                        activity.getString(R.string.title),
+                        PLAYER_SORT_BY_TITLE
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        1,
+                        activity.getString(R.string.album_count),
+                        PLAYER_SORT_BY_ALBUM_COUNT
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        2,
+                        activity.getString(R.string.track_count),
+                        PLAYER_SORT_BY_TRACK_COUNT
+                    )
+                )
             }
 
             TAB_ALBUMS -> {
-                radioItems.add(RadioItem(0, activity.getString(R.string.title), PLAYER_SORT_BY_TITLE))
-                radioItems.add(RadioItem(1, activity.getString(R.string.artist_name), PLAYER_SORT_BY_ARTIST_TITLE))
+                radioItems.add(
+                    RadioItem(
+                        0,
+                        activity.getString(R.string.title),
+                        PLAYER_SORT_BY_TITLE
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        1,
+                        activity.getString(R.string.artist_name),
+                        PLAYER_SORT_BY_ARTIST_TITLE
+                    )
+                )
                 radioItems.add(RadioItem(2, activity.getString(R.string.year), PLAYER_SORT_BY_YEAR))
-                radioItems.add(RadioItem(4, activity.getString(R.string.date_added), PLAYER_SORT_BY_DATE_ADDED))
+                radioItems.add(
+                    RadioItem(
+                        4,
+                        activity.getString(R.string.date_added),
+                        PLAYER_SORT_BY_DATE_ADDED
+                    )
+                )
             }
 
             TAB_TRACKS -> {
-                radioItems.add(RadioItem(0, activity.getString(R.string.title), PLAYER_SORT_BY_TITLE))
-                radioItems.add(RadioItem(1, activity.getString(R.string.artist), PLAYER_SORT_BY_ARTIST_TITLE))
-                radioItems.add(RadioItem(2, activity.getString(R.string.duration), PLAYER_SORT_BY_DURATION))
-                radioItems.add(RadioItem(3, activity.getString(R.string.track_number), PLAYER_SORT_BY_TRACK_ID))
-                radioItems.add(RadioItem(4, activity.getString(R.string.date_added), PLAYER_SORT_BY_DATE_ADDED))
+                radioItems.add(
+                    RadioItem(
+                        0,
+                        activity.getString(R.string.title),
+                        PLAYER_SORT_BY_TITLE
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        1,
+                        activity.getString(R.string.artist),
+                        PLAYER_SORT_BY_ARTIST_TITLE
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        2,
+                        activity.getString(R.string.duration),
+                        PLAYER_SORT_BY_DURATION
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        3,
+                        activity.getString(R.string.track_number),
+                        PLAYER_SORT_BY_TRACK_ID
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        4,
+                        activity.getString(R.string.date_added),
+                        PLAYER_SORT_BY_DATE_ADDED
+                    )
+                )
             }
 
             TAB_GENRES -> {
-                radioItems.add(RadioItem(0, activity.getString(R.string.title), PLAYER_SORT_BY_TITLE))
-                radioItems.add(RadioItem(2, activity.getString(R.string.track_count), PLAYER_SORT_BY_TRACK_COUNT))
+                radioItems.add(
+                    RadioItem(
+                        0,
+                        activity.getString(R.string.title),
+                        PLAYER_SORT_BY_TITLE
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        2,
+                        activity.getString(R.string.track_count),
+                        PLAYER_SORT_BY_TRACK_COUNT
+                    )
+                )
             }
 
             ACTIVITY_PLAYLIST_FOLDER -> {
-                radioItems.add(RadioItem(0, activity.getString(R.string.title), PLAYER_SORT_BY_TITLE))
-                radioItems.add(RadioItem(1, activity.getString(R.string.artist), PLAYER_SORT_BY_ARTIST_TITLE))
-                radioItems.add(RadioItem(2, activity.getString(R.string.duration), PLAYER_SORT_BY_DURATION))
-                radioItems.add(RadioItem(3, activity.getString(R.string.track_number), PLAYER_SORT_BY_TRACK_ID))
-                radioItems.add(RadioItem(4, activity.getString(R.string.date_added), PLAYER_SORT_BY_DATE_ADDED))
+                radioItems.add(
+                    RadioItem(
+                        0,
+                        activity.getString(R.string.title),
+                        PLAYER_SORT_BY_TITLE
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        1,
+                        activity.getString(R.string.artist),
+                        PLAYER_SORT_BY_ARTIST_TITLE
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        2,
+                        activity.getString(R.string.duration),
+                        PLAYER_SORT_BY_DURATION
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        3,
+                        activity.getString(R.string.track_number),
+                        PLAYER_SORT_BY_TRACK_ID
+                    )
+                )
+                radioItems.add(
+                    RadioItem(
+                        4,
+                        activity.getString(R.string.date_added),
+                        PLAYER_SORT_BY_DATE_ADDED
+                    )
+                )
 
                 if (playlist != null) {
-                    radioItems.add(RadioItem(4, activity.getString(R.string.custom), PLAYER_SORT_BY_CUSTOM))
+                    radioItems.add(
+                        RadioItem(
+                            4,
+                            activity.getString(R.string.custom),
+                            PLAYER_SORT_BY_CUSTOM
+                        )
+                    )
                 }
             }
         }
@@ -138,7 +270,10 @@ class ChangeSortingDialog(val activity: Activity, val location: Int, val playlis
 
                 binding.sortingDialogRadioSorting.addView(
                     smallRadioButton,
-                    RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                    RadioGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                    )
                 )
             }
         }

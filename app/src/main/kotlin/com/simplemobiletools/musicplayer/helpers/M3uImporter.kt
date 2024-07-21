@@ -12,8 +12,8 @@ class M3uImporter(
     val activity: SimpleActivity,
     val callback: (result: ImportResult) -> Unit
 ) {
-    var failedEvents = 0
-    var exportedEvents = 0
+    private var failedEvents = 0
+    private var exportedEvents = 0
 
     enum class ImportResult {
         IMPORT_FAIL, IMPORT_OK, IMPORT_PARTIAL

@@ -63,9 +63,7 @@ abstract class SongsDatabase : RoomDatabase() {
             return db!!
         }
 
-        fun destroyInstance() {
-            db = null
-        }
+
 
         // removing the "type" value of Song
         private val MIGRATION_1_2 = object : Migration(1, 2) {

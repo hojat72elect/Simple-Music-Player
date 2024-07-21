@@ -13,8 +13,8 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.content.pm.ShortcutManager
 import android.content.res.Configuration
 import android.database.Cursor
 import android.graphics.Bitmap
@@ -43,7 +43,6 @@ import android.provider.MediaStore.MediaColumns
 import android.provider.MediaStore.Video
 import android.provider.OpenableColumns
 import android.provider.Settings
-import android.telecom.TelecomManager
 import android.text.TextUtils
 import android.util.Size
 import android.view.View
@@ -116,7 +115,6 @@ import com.simplemobiletools.musicplayer.helpers.TIME_FORMAT_24
 import com.simplemobiletools.musicplayer.helpers.TRACK_STATE_CHANGED
 import com.simplemobiletools.musicplayer.helpers.appIconColorStrings
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.helpers.isNougatPlus
 import com.simplemobiletools.musicplayer.helpers.isOnMainThread
 import com.simplemobiletools.musicplayer.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.helpers.isQPlus
@@ -177,7 +175,8 @@ val DIRS_ACCESSIBLE_ONLY_WITH_SAF = listOf(
     ANDROID_OBB_DIR
 )
 
-fun Context.getPermissionString(id: Int) = when (id) {
+
+fun getPermissionString(id: Int) = when (id) {
     PERMISSION_READ_STORAGE -> Manifest.permission.READ_EXTERNAL_STORAGE
     PERMISSION_WRITE_STORAGE -> Manifest.permission.WRITE_EXTERNAL_STORAGE
     PERMISSION_CAMERA -> Manifest.permission.CAMERA
@@ -242,7 +241,7 @@ fun Context.getMediaContent(path: String, uri: Uri): Uri? {
 
 fun Context.getStorageDirectories(): Array<String> {
     val paths = HashSet<String>()
-    val rawExternalStorage = System.getenv("EXTERNAL_STORAGE")
+
     val rawSecondaryStoragesStr = System.getenv("SECONDARY_STORAGE")
     val rawEmulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET")
     if (TextUtils.isEmpty(rawEmulatedStorageTarget)) {
@@ -431,10 +430,10 @@ fun Context.createDirectorySync(directory: String): Boolean {
 // http://stackoverflow.com/a/40582634/1967672
 fun Context.getSDCardPath(): String {
     val directories = getStorageDirectories().filter {
-        !it.equals(getInternalStoragePath()) && !it.equals(
+        it != getInternalStoragePath() && !it.equals(
             "/storage/emulated/0",
             true
-        ) && (baseConfig.OTGPartition.isEmpty() || !it.endsWith(baseConfig.OTGPartition))
+        ) && (baseConfig.oTGPartition.isEmpty() || !it.endsWith(baseConfig.oTGPartition))
     }
 
     val fullSDpattern = Pattern.compile(SD_OTG_PATTERN)
@@ -505,6 +504,7 @@ fun Context.createDocumentUriFromRootTree(fullPath: String): Uri {
 fun Context.isSAFOnlyRoot(path: String): Boolean {
     return getSAFOnlyDirs().any { "${path.trimEnd('/')}/".startsWith(it) }
 }
+
 
 fun Context.hasPermission(permId: Int) = ContextCompat.checkSelfPermission(
     this,
@@ -716,7 +716,7 @@ fun Context.createSAFDirectorySdk30(path: String): Boolean {
         DocumentsContract.createDocument(
             contentResolver,
             parentUri,
-            DocumentsContract.Document.MIME_TYPE_DIR,
+            Document.MIME_TYPE_DIR,
             path.getFilenameFromPath()
         ) != null
     } catch (e: IllegalStateException) {
@@ -847,7 +847,7 @@ fun Context.rescanPaths(paths: List<String>, callback: (() -> Unit)? = null) {
     }
 
     var cnt = paths.size
-    MediaScannerConnection.scanFile(applicationContext, paths.toTypedArray(), null) { s, uri ->
+    MediaScannerConnection.scanFile(applicationContext, paths.toTypedArray(), null) { _, _ ->
         if (--cnt == 0) {
             callback?.invoke()
         }
@@ -942,7 +942,7 @@ fun Context.isBiometricIdAvailable(): Boolean = when (BiometricManager.from(this
     else -> false
 }
 
-fun Context.isFingerPrintSensorAvailable() = Reprint.isHardwarePresent()
+fun isFingerPrintSensorAvailable() = Reprint.isHardwarePresent()
 
 val Context.isRTLLayout: Boolean get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
@@ -959,7 +959,8 @@ fun Context.createFirstParentTreeUri(fullPath: String): Uri {
     )
 }
 
-fun Context.getSharedPrefs() = getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
+fun Context.getSharedPrefs(): SharedPreferences =
+    getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
 
 fun Context.getAlbum(path: String): String? {
     val projection = arrayOf(
@@ -1016,7 +1017,7 @@ fun Context.isRestrictedWithSAFSdk30(path: String): Boolean {
 }
 
 
-val Context.otgPath: String get() = baseConfig.OTGPath
+val Context.otgPath: String get() = baseConfig.oTGPath
 
 fun Context.createSAFFileSdk30(path: String): Boolean {
     return try {
@@ -1042,8 +1043,7 @@ fun Context.createSAFFileSdk30(path: String): Boolean {
 
 fun Context.humanizePath(path: String): String {
     val trimmedPath = path.trimEnd('/')
-    val basePath = path.getBasePath(this)
-    return when (basePath) {
+    return when (val basePath = path.getBasePath(this)) {
         "/" -> "${getHumanReadablePath(basePath)}$trimmedPath"
         else -> trimmedPath.replaceFirst(basePath, getHumanReadablePath(basePath))
     }
@@ -1204,46 +1204,46 @@ fun Context.updateTextColors(viewGroup: ViewGroup) {
     val cnt = viewGroup.childCount
     (0 until cnt).map { viewGroup.getChildAt(it) }.forEach {
         when (it) {
-            is MyTextView -> it.setColors(textColor, accentColor, backgroundColor)
-            is MyAppCompatSpinner -> it.setColors(textColor, accentColor, backgroundColor)
-            is MyCompatRadioButton -> it.setColors(textColor, accentColor, backgroundColor)
-            is MyAppCompatCheckbox -> it.setColors(textColor, accentColor, backgroundColor)
-            is MyEditText -> it.setColors(textColor, accentColor, backgroundColor)
-            is MyAutoCompleteTextView -> it.setColors(textColor, accentColor, backgroundColor)
-            is MyFloatingActionButton -> it.setColors(textColor, accentColor, backgroundColor)
-            is MySeekBar -> it.setColors(textColor, accentColor, backgroundColor)
-            is MyButton -> it.setColors(textColor, accentColor, backgroundColor)
-            is MyTextInputLayout -> it.setColors(textColor, accentColor, backgroundColor)
+            is MyTextView -> it.setColors(textColor, accentColor)
+            is MyAppCompatSpinner -> it.setColors(textColor, backgroundColor)
+            is MyCompatRadioButton -> it.setColors(textColor, accentColor)
+            is MyAppCompatCheckbox -> it.setColors(textColor, accentColor)
+            is MyEditText -> it.setColors(textColor, accentColor)
+            is MyAutoCompleteTextView -> it.setColors(textColor, accentColor)
+            is MyFloatingActionButton -> it.setColors(accentColor)
+            is MySeekBar -> it.setColors(accentColor)
+            is MyButton -> it.setColors(textColor)
+            is MyTextInputLayout -> it.setColors(textColor, accentColor)
             is ViewGroup -> updateTextColors(it)
         }
     }
 }
 
 fun Context.updateOTGPathFromPartition() {
-    val otgPath = "/storage/${baseConfig.OTGPartition}"
-    baseConfig.OTGPath = if (getOTGFastDocumentFile(otgPath, otgPath)?.exists() == true) {
-        "/storage/${baseConfig.OTGPartition}"
+    val otgPath = "/storage/${baseConfig.oTGPartition}"
+    baseConfig.oTGPath = if (getOTGFastDocumentFile(otgPath, otgPath)?.exists() == true) {
+        "/storage/${baseConfig.oTGPartition}"
     } else {
-        "/mnt/media_rw/${baseConfig.OTGPartition}"
+        "/mnt/media_rw/${baseConfig.oTGPartition}"
     }
 }
 
 val Context.baseConfig: BaseConfig get() = BaseConfig.newInstance(this)
 
 fun Context.getOTGFastDocumentFile(path: String, otgPathToUse: String? = null): DocumentFile? {
-    if (baseConfig.OTGTreeUri.isEmpty()) {
+    if (baseConfig.oTGTreeUri.isEmpty()) {
         return null
     }
 
-    val otgPath = otgPathToUse ?: baseConfig.OTGPath
-    if (baseConfig.OTGPartition.isEmpty()) {
-        baseConfig.OTGPartition =
-            baseConfig.OTGTreeUri.removeSuffix("%3A").substringAfterLast('/').trimEnd('/')
+    val otgPath = otgPathToUse ?: baseConfig.oTGPath
+    if (baseConfig.oTGPartition.isEmpty()) {
+        baseConfig.oTGPartition =
+            baseConfig.oTGTreeUri.removeSuffix("%3A").substringAfterLast('/').trimEnd('/')
         updateOTGPathFromPartition()
     }
 
     val relativePath = Uri.encode(path.substring(otgPath.length).trim('/'))
-    val fullUri = "${baseConfig.OTGTreeUri}/document/${baseConfig.OTGPartition}%3A$relativePath"
+    val fullUri = "${baseConfig.oTGTreeUri}/document/${baseConfig.oTGPartition}%3A$relativePath"
     return DocumentFile.fromSingleUri(this, Uri.parse(fullUri))
 }
 
@@ -1487,7 +1487,7 @@ fun Context.getProperTextColor() = if (baseConfig.isUsingSystemTheme) {
 fun Context.getCustomizeColorsString(): String = getString(R.string.customize_colors)
 
 
-fun Context.getCurrentFormattedDateTime(): String {
+fun getCurrentFormattedDateTime(): String {
     val simpleDateFormat = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.getDefault())
     return simpleDateFormat.format(Date(System.currentTimeMillis()))
 }
@@ -1537,7 +1537,7 @@ fun Context.getDuration(path: String): Int? {
 }
 
 fun Context.getDoesFilePathExist(path: String, otgPathToUse: String? = null): Boolean {
-    val otgPath = otgPathToUse ?: baseConfig.OTGPath
+    val otgPath = otgPathToUse ?: baseConfig.oTGPath
     return when {
         isRestrictedSAFOnlyRoot(path) -> getFastAndroidSAFDocument(path)?.exists() ?: false
         otgPath.isNotEmpty() && path.startsWith(otgPath) -> getOTGFastDocumentFile(path)?.exists()
@@ -1555,7 +1555,7 @@ fun Context.getDocumentFile(path: String): DocumentFile? {
     }
 
     return try {
-        val treeUri = Uri.parse(if (isOTG) baseConfig.OTGTreeUri else baseConfig.sdTreeUri)
+        val treeUri = Uri.parse(if (isOTG) baseConfig.oTGTreeUri else baseConfig.sdTreeUri)
         var document = DocumentFile.fromTreeUri(applicationContext, treeUri)
         val parts = relativePath.split("/").filter { it.isNotEmpty() }
         for (part in parts) {
@@ -1630,7 +1630,7 @@ fun Context.getFileUrisFromFileDirItems(fileDirItems: List<FileDirItem>): List<U
     return fileUris
 }
 
-fun Context.getFileUri(path: String) = when {
+fun getFileUri(path: String): Uri = when {
     path.isImageSlow() -> Images.Media.EXTERNAL_CONTENT_URI
     path.isVideoSlow() -> Video.Media.EXTERNAL_CONTENT_URI
     path.isAudioSlow() -> Audio.Media.EXTERNAL_CONTENT_URI
@@ -1685,7 +1685,7 @@ fun Context.getColoredMaterialStatusBarColor(): Int {
 fun Context.isUsingSystemDarkTheme() =
     resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_YES != 0
 
-fun Context.getSharedThemeSync(cursorLoader: CursorLoader): SharedTheme? {
+fun getSharedThemeSync(cursorLoader: CursorLoader): SharedTheme? {
     val cursor = cursorLoader.loadInBackground()
     cursor?.use {
         if (cursor.moveToFirst()) {
@@ -1723,11 +1723,11 @@ fun Context.getSharedTheme(callback: (sharedTheme: SharedTheme?) -> Unit) {
 }
 
 fun Context.hasProperStoredTreeUri(isOTG: Boolean): Boolean {
-    val uri = if (isOTG) baseConfig.OTGTreeUri else baseConfig.sdTreeUri
+    val uri = if (isOTG) baseConfig.oTGTreeUri else baseConfig.sdTreeUri
     val hasProperUri = contentResolver.persistedUriPermissions.any { it.uri.toString() == uri }
     if (!hasProperUri) {
         if (isOTG) {
-            baseConfig.OTGTreeUri = ""
+            baseConfig.oTGTreeUri = ""
         } else {
             baseConfig.sdTreeUri = ""
         }
@@ -1789,7 +1789,7 @@ fun Context.getMediaStoreIdFromPath(path: String): Long {
     )
 
     val uri = getFileUri(path)
-    val selection = "${MediaStore.MediaColumns.DATA} = ?"
+    val selection = "${MediaColumns.DATA} = ?"
     val selectionArgs = arrayOf(path)
 
     try {
@@ -1926,7 +1926,7 @@ fun Context.loadTrackCoverArt(track: Track?): Bitmap? {
     val artworkUri = track.coverArt
     if (artworkUri.startsWith("content://")) {
         try {
-            return MediaStore.Images.Media.getBitmap(contentResolver, artworkUri.toUri())
+            return Images.Media.getBitmap(contentResolver, artworkUri.toUri())
         } catch (ignored: Exception) {
         }
     }
@@ -2029,24 +2029,12 @@ fun Context.getPlaybackSetting(repeatMode: @Player.RepeatMode Int): PlaybackSett
     }
 }
 
-
 fun Context.getSomeDocumentFile(path: String) = getFastDocumentFile(path) ?: getDocumentFile(path)
-
-fun Context.scanFileRecursively(file: File, callback: (() -> Unit)? = null) {
-    scanFilesRecursively(arrayListOf(file), callback)
-}
 
 fun Context.scanPathRecursively(path: String, callback: (() -> Unit)? = null) {
     scanPathsRecursively(arrayListOf(path), callback)
 }
 
-fun Context.scanFilesRecursively(files: List<File>, callback: (() -> Unit)? = null) {
-    val allPaths = java.util.ArrayList<String>()
-    for (file in files) {
-        allPaths.addAll(getPaths(file))
-    }
-    rescanPaths(allPaths, callback)
-}
 
 fun Context.scanPathsRecursively(paths: List<String>, callback: (() -> Unit)? = null) {
     val allPaths = java.util.ArrayList<String>()
@@ -2055,7 +2043,6 @@ fun Context.scanPathsRecursively(paths: List<String>, callback: (() -> Unit)? = 
     }
     rescanPaths(allPaths, callback)
 }
-
 
 fun getPaths(file: File): java.util.ArrayList<String> {
     val paths = arrayListOf<String>(file.absolutePath)
@@ -2071,7 +2058,6 @@ fun getPaths(file: File): java.util.ArrayList<String> {
 // no need to use DocumentFile if an SD card is set as the default storage
 fun Context.needsStupidWritePermissions(path: String) =
     (!isRPlus() && isPathOnSD(path) && !isSDCardSetAsDefaultStorage()) || isPathOnOTG(path)
-
 
 val Context.internalStoragePath: String get() = baseConfig.internalStoragePath
 
@@ -2132,14 +2118,14 @@ fun Context.getOTGItems(
     callback: (java.util.ArrayList<FileDirItem>) -> Unit
 ) {
     val items = java.util.ArrayList<FileDirItem>()
-    val OTGTreeUri = baseConfig.OTGTreeUri
+    val OTGTreeUri = baseConfig.oTGTreeUri
     var rootUri = try {
         DocumentFile.fromTreeUri(applicationContext, Uri.parse(OTGTreeUri))
     } catch (e: Exception) {
         showErrorToast(e)
-        baseConfig.OTGPath = ""
-        baseConfig.OTGTreeUri = ""
-        baseConfig.OTGPartition = ""
+        baseConfig.oTGPath = ""
+        baseConfig.oTGTreeUri = ""
+        baseConfig.oTGPartition = ""
         null
     }
 
@@ -2166,7 +2152,7 @@ fun Context.getOTGItems(
 
     val files = rootUri!!.listFiles().filter { it.exists() }
 
-    val basePath = "${baseConfig.OTGTreeUri}/document/${baseConfig.OTGPartition}%3A"
+    val basePath = "${baseConfig.oTGTreeUri}/document/${baseConfig.oTGPartition}%3A"
     for (file in files) {
         val name = file.name ?: continue
         if (!shouldShowHidden && name.startsWith(".")) {
@@ -2374,13 +2360,6 @@ fun Context.getAndroidSAFDocument(path: String): DocumentFile? {
 fun Context.getSomeAndroidSAFDocument(path: String): DocumentFile? =
     getFastAndroidSAFDocument(path) ?: getAndroidSAFDocument(path)
 
-
-fun Context.getAndroidSAFChildrenUri(path: String): Uri {
-    val treeUri = getAndroidTreeUri(path).toUri()
-    val documentId = createAndroidSAFDocumentId(path)
-    return DocumentsContract.buildChildDocumentsUriUsingTree(treeUri, documentId)
-}
-
 fun Context.getAndroidSAFFileSize(path: String): Long {
     val treeUri = getAndroidTreeUri(path).toUri()
     val documentId = createAndroidSAFDocumentId(path)
@@ -2459,7 +2438,7 @@ fun Context.getSizeFromContentUri(uri: Uri): Long {
                 return cursor.getLongValue(OpenableColumns.SIZE)
             }
         }
-    } catch (e: Exception) {
+    } catch (_: Exception) {
     }
     return 0L
 }
@@ -2630,14 +2609,6 @@ fun Context.isAStorageRootFolder(path: String): Boolean {
     ) || trimmed.equals(otgPath, true)
 }
 
-fun Context.getMyFileUri(file: File): Uri {
-    return if (isNougatPlus()) {
-        FileProvider.getUriForFile(this, "$packageName.provider", file)
-    } else {
-        Uri.fromFile(file)
-    }
-}
-
 fun Context.tryFastDocumentDelete(path: String, allowDeleteFolder: Boolean): Boolean {
     val document = getFastDocumentFile(path)
     return if (document?.isFile == true || allowDeleteFolder) {
@@ -2651,13 +2622,9 @@ fun Context.tryFastDocumentDelete(path: String, allowDeleteFolder: Boolean): Boo
     }
 }
 
-
 fun Context.getCanAppBeUpgraded() = proPackages.contains(
     baseConfig.appId.removeSuffix(".debug").removePrefix("com.simplemobiletools.")
 )
-
-fun Context.getProUrl() =
-    "https://play.google.com/store/apps/details?id=${baseConfig.appId.removeSuffix(".debug")}.pro"
 
 fun Context.getStoreUrl() =
     "https://play.google.com/store/apps/details?id=${packageName.removeSuffix(".debug")}"
@@ -2706,18 +2673,12 @@ fun Context.getImageResolution(path: String): Point? {
     }
 }
 
-val Context.telecomManager: TelecomManager get() = getSystemService(Context.TELECOM_SERVICE) as TelecomManager
+
 val Context.windowManager: WindowManager get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 val Context.notificationManager: NotificationManager get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-val Context.shortcutManager: ShortcutManager
-    @RequiresApi(Build.VERSION_CODES.N_MR1)
-    get() = getSystemService(ShortcutManager::class.java) as ShortcutManager
-
-val Context.portrait get() = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
 val Context.navigationBarOnSide: Boolean get() = usableScreenSize.x < realScreenSize.x && usableScreenSize.x > usableScreenSize.y
 val Context.navigationBarOnBottom: Boolean get() = usableScreenSize.y < realScreenSize.y
 val Context.navigationBarHeight: Int get() = if (navigationBarOnBottom && navigationBarSize.y != usableScreenSize.y) navigationBarSize.y else 0
-val Context.navigationBarWidth: Int get() = if (navigationBarOnSide) navigationBarSize.x else 0
 
 
 fun Context.launchActivityIntent(intent: Intent) {
