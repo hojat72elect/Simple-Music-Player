@@ -17,6 +17,7 @@ import com.simplemobiletools.musicplayer.extensions.queryCursor
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Track
 import java.io.File
+import kotlin.math.max
 import kotlin.math.min
 import org.greenrobot.eventbus.EventBus
 
@@ -57,7 +58,7 @@ class RoomHelper(val context: Context) {
         val pathsMap = HashSet<String>()
         paths.mapTo(pathsMap) { it }
 
-        val ITEMS_PER_GROUP = 50
+
         val songs = ArrayList<Track>(paths.size)
         val showFilename = context.config.showFilename
 
@@ -89,7 +90,6 @@ class RoomHelper(val context: Context) {
                 val dateAdded = cursor.getIntValueOrNull(Audio.Media.DATE_ADDED) ?: 0
                 val folderName = if (isQPlus()) {
                     cursor.getStringValue(Audio.Media.BUCKET_DISPLAY_NAME)
-                        ?: MediaStore.UNKNOWN_STRING
                 } else {
                     ""
                 }
@@ -167,5 +167,9 @@ class RoomHelper(val context: Context) {
         return songs
     }
 
-    private fun getQuestionMarks(cnt: Int) = "?" + ",?".repeat(Math.max(cnt - 1, 0))
+    private fun getQuestionMarks(cnt: Int) = "?" + ",?".repeat(max(cnt - 1, 0))
+
+    companion object {
+        private const val ITEMS_PER_GROUP = 50
+    }
 }

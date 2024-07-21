@@ -1,6 +1,9 @@
 package com.simplemobiletools.musicplayer.dialogs
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -58,6 +61,8 @@ import com.simplemobiletools.musicplayer.helpers.isRPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import java.io.File
 
+@SuppressLint("SetTextI18n")
+@RequiresApi(Build.VERSION_CODES.O)
 class CreateNewFolderDialog(
     val activity: BaseSimpleActivity,
     val path: String,
@@ -98,6 +103,7 @@ class CreateNewFolderDialog(
                 }
             }
     }
+
 
     private fun createFolder(path: String, alertDialog: AlertDialog) {
         try {

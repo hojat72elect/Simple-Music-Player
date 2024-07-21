@@ -38,7 +38,7 @@ abstract class MyRecyclerViewAdapter(
     protected var textColor = activity.getProperTextColor()
     protected var backgroundColor = activity.getProperBackgroundColor()
     protected var properPrimaryColor = activity.getProperPrimaryColor()
-    protected var contrastColor = properPrimaryColor.getContrastColor()
+    private var contrastColor = properPrimaryColor.getContrastColor()
     protected var actModeCallback: MyActionModeCallback
     protected var selectedKeys = LinkedHashSet<Int>()
     protected var positionOffset = 0
@@ -169,7 +169,7 @@ abstract class MyRecyclerViewAdapter(
 
     private fun updateTitle() {
         val selectableItemCount = getSelectableItemCount()
-        val selectedCount = Math.min(selectedKeys.size, selectableItemCount)
+        val selectedCount = selectedKeys.size.coerceAtMost(selectableItemCount)
         val oldTitle = actBarTextView?.text
         val newTitle = "$selectedCount / $selectableItemCount"
         if (oldTitle != newTitle) {
@@ -218,8 +218,8 @@ abstract class MyRecyclerViewAdapter(
         updateTitle()
     }
 
-    protected fun setupDragListener(enable: Boolean) {
-        if (enable) {
+    protected fun setupDragListener() {
+
             recyclerView.setupDragListener(object : MyRecyclerView.MyDragListener {
                 override fun selectItem(position: Int) {
                     toggleItemSelection(true, position, true)
@@ -233,8 +233,8 @@ abstract class MyRecyclerViewAdapter(
                 ) {
                     selectItemRange(
                         initialSelection,
-                        Math.max(0, lastDraggedIndex - positionOffset),
-                        Math.max(0, minReached - positionOffset),
+                        0.coerceAtLeast(lastDraggedIndex - positionOffset),
+                        0.coerceAtLeast(minReached - positionOffset),
                         maxReached - positionOffset
                     )
                     if (minReached != maxReached) {
@@ -242,9 +242,7 @@ abstract class MyRecyclerViewAdapter(
                     }
                 }
             })
-        } else {
-            recyclerView.setupDragListener(null)
-        }
+
     }
 
     protected fun selectItemRange(from: Int, to: Int, min: Int, max: Int) {
@@ -366,7 +364,7 @@ abstract class MyRecyclerViewAdapter(
             }
         }
 
-        fun viewClicked(any: Any) {
+        private fun viewClicked(any: Any) {
             if (actModeCallback.isSelectable) {
                 val currentPosition = adapterPosition - positionOffset
                 val isSelected = selectedKeys.contains(getItemSelectionKey(currentPosition))
@@ -377,7 +375,7 @@ abstract class MyRecyclerViewAdapter(
             lastLongPressedItem = -1
         }
 
-        fun viewLongClicked() {
+        private fun viewLongClicked() {
             val currentPosition = adapterPosition - positionOffset
             if (!actModeCallback.isSelectable) {
                 activity.startActionMode(actModeCallback)

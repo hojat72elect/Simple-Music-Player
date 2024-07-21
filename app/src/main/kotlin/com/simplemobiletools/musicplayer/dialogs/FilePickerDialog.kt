@@ -1,18 +1,20 @@
 package com.simplemobiletools.musicplayer.dialogs
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Environment
 import android.os.Parcelable
 import android.view.KeyEvent
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.adapters.FilepickerFavoritesAdapter
-import com.simplemobiletools.musicplayer.adapters.FilepickerItemsAdapter
+import com.simplemobiletools.musicplayer.adapters.FilePickerFavoritesAdapter
+import com.simplemobiletools.musicplayer.adapters.FilePickerItemsAdapter
 import com.simplemobiletools.musicplayer.databinding.DialogFilepickerBinding
 import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.extensions.baseConfig
@@ -62,15 +64,16 @@ import java.io.File
  * @param showFAB toggle the displaying of a Floating Action Button for creating new folders
  * @param callback the callback used for returning the selected file/folder
  */
+@RequiresApi(Build.VERSION_CODES.O)
 class FilePickerDialog(
     val activity: BaseSimpleActivity,
-    var currPath: String = Environment.getExternalStorageDirectory().toString(),
+    private var currPath: String = Environment.getExternalStorageDirectory().toString(),
     val pickFile: Boolean = true,
-    var showHidden: Boolean = false,
+    private var showHidden: Boolean = false,
     val showFAB: Boolean = false,
-    val canAddShowHiddenButton: Boolean = false,
-    val forceShowRoot: Boolean = false,
-    val showFavoritesButton: Boolean = false,
+    private val canAddShowHiddenButton: Boolean = false,
+    private val forceShowRoot: Boolean = false,
+    private val showFavoritesButton: Boolean = false,
     private val enforceStorageRestrictions: Boolean = true,
     val callback: (pickedPath: String) -> Unit
 ) : Breadcrumbs.BreadcrumbsListener {
@@ -107,7 +110,7 @@ class FilePickerDialog(
 
         val builder = activity.getAlertDialogBuilder()
             .setNegativeButton(R.string.cancel, null)
-            .setOnKeyListener { dialogInterface, i, keyEvent ->
+            .setOnKeyListener { _, i, keyEvent ->
                 if (keyEvent.action == KeyEvent.ACTION_UP && i == KeyEvent.KEYCODE_BACK) {
                     val breadcrumbs = mDialogView.filepickerBreadcrumbs
                     if (breadcrumbs.getItemCount() > 1) {
@@ -204,7 +207,7 @@ class FilePickerDialog(
         }
 
         val sortedItems = items.sortedWith(compareBy({ !it.isDirectory }, { it.name.lowercase() }))
-        val adapter = FilepickerItemsAdapter(activity, sortedItems, mDialogView.filepickerList) {
+        val adapter = FilePickerItemsAdapter(activity, sortedItems, mDialogView.filepickerList) {
             if ((it as FileDirItem).isDirectory) {
                 activity.handleLockedFolderOpening(it.path) { success ->
                     if (success) {
@@ -359,7 +362,7 @@ class FilePickerDialog(
     private fun containsDirectory(items: List<FileDirItem>) = items.any { it.isDirectory }
 
     private fun setupFavorites() {
-        FilepickerFavoritesAdapter(
+        FilePickerFavoritesAdapter(
             activity,
             activity.baseConfig.favorites.toMutableList(),
             mDialogView.filepickerFavoritesList

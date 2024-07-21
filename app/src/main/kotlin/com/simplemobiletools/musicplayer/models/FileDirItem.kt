@@ -19,7 +19,6 @@ import com.simplemobiletools.musicplayer.extensions.getDuration
 import com.simplemobiletools.musicplayer.extensions.getFastDocumentFile
 import com.simplemobiletools.musicplayer.extensions.getFileCount
 import com.simplemobiletools.musicplayer.extensions.getFormattedDuration
-import com.simplemobiletools.musicplayer.extensions.getImageResolution
 import com.simplemobiletools.musicplayer.extensions.getItemSize
 import com.simplemobiletools.musicplayer.extensions.getMediaStoreLastModified
 import com.simplemobiletools.musicplayer.extensions.getParentPath
@@ -27,7 +26,6 @@ import com.simplemobiletools.musicplayer.extensions.getProperSize
 import com.simplemobiletools.musicplayer.extensions.getResolution
 import com.simplemobiletools.musicplayer.extensions.getSizeFromContentUri
 import com.simplemobiletools.musicplayer.extensions.getTitle
-import com.simplemobiletools.musicplayer.extensions.getVideoResolution
 import com.simplemobiletools.musicplayer.extensions.isImageFast
 import com.simplemobiletools.musicplayer.extensions.isPathOnOTG
 import com.simplemobiletools.musicplayer.extensions.isRestrictedSAFOnlyRoot
@@ -106,7 +104,7 @@ open class FileDirItem(
         }
     }
 
-    fun getExtension() = if (isDirectory) name else path.substringAfterLast('.', "")
+    private fun getExtension() = if (isDirectory) name else path.substringAfterLast('.', "")
 
     fun getBubbleText(context: Context, dateFormat: String? = null, timeFormat: String? = null) =
         when {
@@ -185,8 +183,6 @@ open class FileDirItem(
 
     fun getDuration(context: Context) = context.getDuration(path)?.getFormattedDuration()
 
-    fun getFileDurationSeconds(context: Context) = context.getDuration(path)
-
     fun getArtist(context: Context) = context.getArtist(path)
 
     fun getAlbum(context: Context) = context.getAlbum(path)
@@ -195,13 +191,7 @@ open class FileDirItem(
 
     fun getResolution(context: Context) = context.getResolution(path)
 
-    fun getVideoResolution(context: Context) = context.getVideoResolution(path)
-
-    fun getImageResolution(context: Context) = context.getImageResolution(path)
-
-    fun getPublicUri(context: Context) = context.getDocumentFile(path)?.uri ?: ""
-
-    fun getSignature(): String {
+    private fun getSignature(): String {
         val lastModified = if (modified > 1) {
             modified
         } else {
@@ -222,27 +212,19 @@ open class FileDirItem(
 
         return Uri.withAppendedPath(uri, mediaStoreId.toString())
     }
+
+    fun asReadOnly() = FileDirItemReadOnly(
+        path = path,
+        name = name,
+        isDirectory = isDirectory,
+        children = children,
+        size = size,
+        modified = modified,
+        mediaStoreId = mediaStoreId
+    )
+
 }
 
-fun FileDirItem.asReadOnly() = FileDirItemReadOnly(
-    path = path,
-    name = name,
-    isDirectory = isDirectory,
-    children = children,
-    size = size,
-    modified = modified,
-    mediaStoreId = mediaStoreId
-)
-
-fun FileDirItemReadOnly.asFileDirItem() = FileDirItem(
-    path = path,
-    name = name,
-    isDirectory = isDirectory,
-    children = children,
-    size = size,
-    modified = modified,
-    mediaStoreId = mediaStoreId
-)
 
 @Immutable
 class FileDirItemReadOnly(

@@ -32,8 +32,8 @@ import com.simplemobiletools.musicplayer.extensions.isRestrictedSAFOnlyRoot
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import java.util.Locale
 
-class FilepickerItemsAdapter(
-    activity: BaseSimpleActivity, val fileDirItems: List<FileDirItem>, recyclerView: MyRecyclerView,
+class FilePickerItemsAdapter(
+    activity: BaseSimpleActivity, private val fileDirItems: List<FileDirItem>, recyclerView: MyRecyclerView,
     itemClick: (Any) -> Unit
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick),
     RecyclerViewFastScroller.OnPopupTextUpdate {
@@ -63,7 +63,7 @@ class FilepickerItemsAdapter(
             fileDirItem,
             allowSingleClick = true,
             allowLongClick = false
-        ) { itemView, adapterPosition ->
+        ) { itemView, _ ->
             setupView(ItemFilepickerListBinding.bind(itemView), fileDirItem)
         }
         bindViewHolder(holder)

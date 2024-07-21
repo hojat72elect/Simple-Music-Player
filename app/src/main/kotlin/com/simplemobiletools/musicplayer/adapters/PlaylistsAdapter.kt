@@ -11,7 +11,7 @@ import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ItemPlaylistBinding
-import com.simplemobiletools.musicplayer.dialogs.NewPlaylistDialog
+import com.simplemobiletools.musicplayer.dialogs.PlaylistDialog
 import com.simplemobiletools.musicplayer.dialogs.RemovePlaylistDialog
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
@@ -87,7 +87,7 @@ class PlaylistsAdapter(
     }
 
     private fun showRenameDialog() {
-        NewPlaylistDialog(context, items[getItemKeyPosition(selectedKeys.first())]) {
+        PlaylistDialog(context, items[getItemKeyPosition(selectedKeys.first())]) {
             context.runOnUiThread {
                 finishActMode()
             }

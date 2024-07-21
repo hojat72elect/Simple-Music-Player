@@ -1,7 +1,6 @@
 package com.simplemobiletools.musicplayer.helpers
 
 import android.content.Context
-import java.util.Arrays
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -19,10 +18,6 @@ class Config(context: Context) : BaseConfig(context) {
         )]
         set(playbackSetting) = prefs.edit().putInt(PLAYBACK_SETTING, playbackSetting.ordinal)
             .apply()
-
-    var autoplay: Boolean
-        get() = prefs.getBoolean(AUTOPLAY, true)
-        set(autoplay) = prefs.edit().putBoolean(AUTOPLAY, autoplay).apply()
 
     var showFilename: Int
         get() = prefs.getInt(SHOW_FILENAME, SHOW_FILENAME_IF_UNAVAILABLE)
@@ -54,7 +49,7 @@ class Config(context: Context) : BaseConfig(context) {
         prefs.edit().putInt(SORT_PLAYLIST_PREFIX + playlistId, value).apply()
     }
 
-    fun getCustomPlaylistSorting(playlistId: Int) =
+    private fun getCustomPlaylistSorting(playlistId: Int) =
         prefs.getInt(SORT_PLAYLIST_PREFIX + playlistId, sorting)
 
     fun removeCustomPlaylistSorting(playlistId: Int) {
@@ -138,10 +133,10 @@ class Config(context: Context) : BaseConfig(context) {
             .putStringSet(EXCLUDED_FOLDERS, excludedFolders).apply()
 
     fun addExcludedFolder(path: String) {
-        addExcludedFolders(HashSet(Arrays.asList(path)))
+        addExcludedFolders(HashSet(listOf(path)))
     }
 
-    fun addExcludedFolders(paths: Set<String>) {
+    private fun addExcludedFolders(paths: Set<String>) {
         val currExcludedFolders = HashSet(excludedFolders)
         currExcludedFolders.addAll(paths.map { it.removeSuffix("/") })
         excludedFolders = currExcludedFolders.filter { it.isNotEmpty() }.toHashSet()

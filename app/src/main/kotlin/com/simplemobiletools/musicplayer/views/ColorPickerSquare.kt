@@ -9,13 +9,12 @@ import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.Shader
-import android.graphics.Shader.TileMode
 import android.util.AttributeSet
 import android.view.View
 
 class ColorPickerSquare(context: Context, attrs: AttributeSet) : View(context, attrs) {
-    var paint: Paint? = null
-    var luar: Shader = LinearGradient(
+    private var paint: Paint? = null
+    private var luar: Shader = LinearGradient(
         0f,
         0f,
         0f,
@@ -38,12 +37,12 @@ class ColorPickerSquare(context: Context, attrs: AttributeSet) : View(context, a
                 measuredHeight.toFloat(),
                 Color.WHITE,
                 Color.BLACK,
-                TileMode.CLAMP
+                Shader.TileMode.CLAMP
             )
         }
         val rgb = Color.HSVToColor(color)
         val dalam =
-            LinearGradient(0f, 0f, measuredWidth.toFloat(), 0f, Color.WHITE, rgb, TileMode.CLAMP)
+            LinearGradient(0f, 0f, measuredWidth.toFloat(), 0f, Color.WHITE, rgb, Shader.TileMode.CLAMP)
         val shader = ComposeShader(luar, dalam, PorterDuff.Mode.MULTIPLY)
         paint!!.shader = shader
         canvas.drawRect(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(), paint!!)

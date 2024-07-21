@@ -4,14 +4,16 @@ import android.util.TypedValue
 import android.view.Menu
 import android.view.ViewGroup
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.FilepickerFavoriteBinding
 import com.simplemobiletools.musicplayer.extensions.getTextSize
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 
-class FilepickerFavoritesAdapter(
-    activity: BaseSimpleActivity, val paths: List<String>, recyclerView: MyRecyclerView,
-    itemClick: (Any) -> Unit
+class FilePickerFavoritesAdapter(
+    activity: BaseSimpleActivity,
+    private val paths: List<String>,
+    recyclerView: MyRecyclerView,
+    itemClick: (Any) -> Unit,
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
 
     private var fontSize = 0f
@@ -22,11 +24,16 @@ class FilepickerFavoritesAdapter(
 
     override fun getActionMenuId() = 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.filepicker_favorite, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        createViewHolder(R.layout.filepicker_favorite, parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val path = paths[position]
-        holder.bindView(path, allowSingleClick = true, allowLongClick = false) { itemView, adapterPosition ->
+        holder.bindView(
+            path,
+            allowSingleClick = true,
+            allowLongClick = false
+        ) { itemView, _ ->
             setupView(FilepickerFavoriteBinding.bind(itemView), path)
         }
         bindViewHolder(holder)

@@ -659,7 +659,7 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
         } else if (requestCode == OPEN_DOCUMENT_TREE_FOR_ANDROID_DATA_OR_OBB) {
             if (resultCode == Activity.RESULT_OK && resultData != null && resultData.data != null) {
                 if (isProperAndroidRoot(checkedDocumentPath, resultData.data!!)) {
-                    if (resultData.dataString == baseConfig.OTGTreeUri || resultData.dataString == baseConfig.sdTreeUri) {
+                    if (resultData.dataString == baseConfig.oTGTreeUri || resultData.dataString == baseConfig.sdTreeUri) {
                         val pathToSelect = createAndroidDataOrObbPath(checkedDocumentPath)
                         toast(getString(R.string.wrong_folder_selected, pathToSelect))
                         return
@@ -707,7 +707,7 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
                     .matches() || (sdOtgPattern.matcher(partition)
                     .matches() && resultData.dataString!!.contains(partition))
                 if (isProperSDRootFolder(resultData.data!!) && isProperPartition) {
-                    if (resultData.dataString == baseConfig.OTGTreeUri) {
+                    if (resultData.dataString == baseConfig.oTGTreeUri) {
                         toast(R.string.sd_card_usb_same)
                         return
                     }
@@ -739,9 +739,9 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
                         toast(R.string.sd_card_usb_same)
                         return
                     }
-                    baseConfig.OTGTreeUri = resultData.dataString!!
-                    baseConfig.OTGPartition =
-                        baseConfig.OTGTreeUri.removeSuffix("%3A").substringAfterLast('/')
+                    baseConfig.oTGTreeUri = resultData.dataString!!
+                    baseConfig.oTGPartition =
+                        baseConfig.oTGTreeUri.removeSuffix("%3A").substringAfterLast('/')
                             .trimEnd('/')
                     updateOTGPathFromPartition()
 
@@ -970,7 +970,7 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
 
     fun handleOTGPermission(callback: (success: Boolean) -> Unit) {
         hideKeyboard()
-        if (baseConfig.OTGTreeUri.isNotEmpty()) {
+        if (baseConfig.oTGTreeUri.isNotEmpty()) {
             callback(true)
             return
         }
@@ -1590,7 +1590,7 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
 
     private fun isShowingOTGDialog(path: String): Boolean {
 
-        return if (!isRPlus() && isPathOnOTG(path) && (baseConfig.OTGTreeUri.isEmpty() || !hasProperStoredTreeUri(
+        return if (!isRPlus() && isPathOnOTG(path) && (baseConfig.oTGTreeUri.isEmpty() || !hasProperStoredTreeUri(
                 true
             ))
         ) {

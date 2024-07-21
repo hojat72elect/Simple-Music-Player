@@ -26,16 +26,13 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LifecycleEventEffect
-import androidx.lifecycle.compose.LifecycleResumeEffect
-import androidx.lifecycle.compose.LifecycleStartEffect
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.darkenColor
-import com.simplemobiletools.musicplayer.extensions.launchViewIntent
 import com.simplemobiletools.musicplayer.compose.system_ui_controller.rememberSystemUiController
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.compose.theme.isLitWell
+import com.simplemobiletools.musicplayer.extensions.darkenColor
+import com.simplemobiletools.musicplayer.extensions.launchViewIntent
 
 fun Context.getActivity(): Activity {
     return when (this) {
@@ -44,8 +41,6 @@ fun Context.getActivity(): Activity {
         else -> getActivity()
     }
 }
-
-fun Context.getComponentActivity(): ComponentActivity = getActivity() as ComponentActivity
 
 @Composable
 fun rememberMutableInteractionSource() = remember { MutableInteractionSource() }
@@ -76,41 +71,6 @@ fun <T : Any> onEventValue(event: Lifecycle.Event = Lifecycle.Event.ON_START, va
     }
     return rememberedValue
 }
-
-@Composable
-fun <T : Any> onStartEventValue(
-    vararg keys: Any?,
-    onStopOrDispose: (LifecycleOwner.() -> Unit)? = null,
-    value: () -> T
-): T {
-    val rememberLatestUpdateState by rememberUpdatedState(newValue = value)
-    var rememberedValue by remember { mutableStateOf(value()) }
-    LifecycleStartEffect(keys = keys, effects = {
-        rememberedValue = rememberLatestUpdateState()
-        onStopOrDispose {
-            onStopOrDispose?.invoke(this)
-        }
-    })
-    return rememberedValue
-}
-
-@Composable
-fun <T : Any> onResumeEventValue(
-    vararg keys: Any?,
-    onPauseOrDispose: (LifecycleOwner.() -> Unit)? = null,
-    value: () -> T
-): T {
-    val rememberLatestUpdateState by rememberUpdatedState(newValue = value)
-    var rememberedValue by remember { mutableStateOf(value()) }
-    LifecycleResumeEffect(keys = keys, effects = {
-        rememberedValue = rememberLatestUpdateState()
-        onPauseOrDispose {
-            onPauseOrDispose?.invoke(this)
-        }
-    })
-    return rememberedValue
-}
-
 
 @Composable
 operator fun PaddingValues.plus(otherPaddingValues: PaddingValues): PaddingValues {

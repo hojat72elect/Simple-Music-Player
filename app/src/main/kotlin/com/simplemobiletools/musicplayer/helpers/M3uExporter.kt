@@ -9,8 +9,8 @@ import com.simplemobiletools.musicplayer.models.Track
 import java.io.OutputStream
 
 class M3uExporter(val activity: BaseSimpleActivity) {
-    var failedEvents = 0
-    var exportedEvents = 0
+    private var failedEvents = 0
+    private var exportedEvents = 0
 
     enum class ExportResult {
         EXPORT_FAIL, EXPORT_OK, EXPORT_PARTIAL

@@ -13,7 +13,7 @@ class MyTextView : TextView {
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
-    fun setColors(textColor: Int, accentColor: Int, backgroundColor: Int) {
+    fun setColors(textColor: Int, accentColor: Int) {
         setTextColor(textColor)
         setLinkTextColor(accentColor)
     }

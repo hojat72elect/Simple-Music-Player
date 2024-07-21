@@ -6,21 +6,31 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.simplemobiletools.musicplayer.interfaces.AlbumsDao
 import com.simplemobiletools.musicplayer.interfaces.ArtistsDao
+import com.simplemobiletools.musicplayer.interfaces.GenresDao
 import com.simplemobiletools.musicplayer.interfaces.PlaylistsDao
 import com.simplemobiletools.musicplayer.interfaces.QueueItemsDao
-import com.simplemobiletools.musicplayer.interfaces.GenresDao
-import com.simplemobiletools.musicplayer.interfaces.AlbumsDao
 import com.simplemobiletools.musicplayer.interfaces.SongsDao
-import com.simplemobiletools.musicplayer.models.Artist
-import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.models.Album
+import com.simplemobiletools.musicplayer.models.Artist
 import com.simplemobiletools.musicplayer.models.Genre
+import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.models.QueueItem
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.objects.MyExecutor
 
-@Database(entities = [Track::class, Playlist::class, QueueItem::class, Artist::class, Album::class, Genre::class], version = 13)
+@Database(
+    entities = [
+        Track::class,
+        Playlist::class,
+        QueueItem::class,
+        Artist::class,
+        Album::class,
+        Genre::class
+    ],
+    version = 13
+)
 abstract class SongsDatabase : RoomDatabase() {
 
     abstract fun SongsDao(): SongsDao
@@ -42,7 +52,11 @@ abstract class SongsDatabase : RoomDatabase() {
             if (db == null) {
                 synchronized(SongsDatabase::class) {
                     if (db == null) {
-                        db = Room.databaseBuilder(context.applicationContext, SongsDatabase::class.java, "songs.db")
+                        db = Room.databaseBuilder(
+                            context.applicationContext,
+                            SongsDatabase::class.java,
+                            "songs.db"
+                        )
                             .setQueryExecutor(MyExecutor.myExecutor)
                             .addMigrations(MIGRATION_1_2)
                             .addMigrations(MIGRATION_2_3)
@@ -63,22 +77,18 @@ abstract class SongsDatabase : RoomDatabase() {
             return db!!
         }
 
-        fun destroyInstance() {
-            db = null
-        }
-
         // removing the "type" value of Song
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.apply {
                     execSQL(
                         "CREATE TABLE songs_new (media_store_id INTEGER NOT NULL, title TEXT NOT NULL, artist TEXT NOT NULL, path TEXT NOT NULL, duration INTEGER NOT NULL, " +
-                            "album TEXT NOT NULL, playlist_id INTEGER NOT NULL, PRIMARY KEY(path, playlist_id))"
+                                "album TEXT NOT NULL, playlist_id INTEGER NOT NULL, PRIMARY KEY(path, playlist_id))"
                     )
 
                     execSQL(
                         "INSERT INTO songs_new (media_store_id, title, artist, path, duration, album, playlist_id) " +
-                            "SELECT media_store_id, title, artist, path, duration, album, playlist_id FROM songs"
+                                "SELECT media_store_id, title, artist, path, duration, album, playlist_id FROM songs"
                     )
 
                     execSQL("DROP TABLE songs")
@@ -108,12 +118,12 @@ abstract class SongsDatabase : RoomDatabase() {
                 database.apply {
                     execSQL(
                         "CREATE TABLE songs_new (media_store_id INTEGER NOT NULL, title TEXT NOT NULL, artist TEXT NOT NULL, path TEXT NOT NULL, duration INTEGER NOT NULL, " +
-                            "album TEXT NOT NULL, cover_art TEXT default '' NOT NULL, playlist_id INTEGER NOT NULL, track_id INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(media_store_id, playlist_id))"
+                                "album TEXT NOT NULL, cover_art TEXT default '' NOT NULL, playlist_id INTEGER NOT NULL, track_id INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(media_store_id, playlist_id))"
                     )
 
                     execSQL(
                         "INSERT OR IGNORE INTO songs_new (media_store_id, title, artist, path, duration, album, cover_art, playlist_id, track_id) " +
-                            "SELECT media_store_id, title, artist, path, duration, album, cover_art, playlist_id, track_id FROM songs"
+                                "SELECT media_store_id, title, artist, path, duration, album, cover_art, playlist_id, track_id FROM songs"
                     )
 
                     execSQL("DROP TABLE songs")
@@ -122,18 +132,18 @@ abstract class SongsDatabase : RoomDatabase() {
             }
         }
 
-        // adding an autoincrementing "id" field, replace primary keys with indices
+        // adding an auto-incrementing "id" field, replace primary keys with indices
         private val MIGRATION_5_6 = object : Migration(5, 6) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.apply {
                     execSQL(
                         "CREATE TABLE tracks_new (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `media_store_id` INTEGER NOT NULL, `title` TEXT NOT NULL, `artist` TEXT NOT NULL, `path` TEXT NOT NULL, `duration` INTEGER NOT NULL, " +
-                            "`album` TEXT NOT NULL, `cover_art` TEXT default '' NOT NULL, `playlist_id` INTEGER NOT NULL, `track_id` INTEGER NOT NULL DEFAULT 0)"
+                                "`album` TEXT NOT NULL, `cover_art` TEXT default '' NOT NULL, `playlist_id` INTEGER NOT NULL, `track_id` INTEGER NOT NULL DEFAULT 0)"
                     )
 
                     execSQL(
                         "INSERT OR IGNORE INTO tracks_new (media_store_id, title, artist, path, duration, album, cover_art, playlist_id, track_id) " +
-                            "SELECT media_store_id, title, artist, path, duration, album, cover_art, playlist_id, track_id FROM tracks"
+                                "SELECT media_store_id, title, artist, path, duration, album, cover_art, playlist_id, track_id FROM tracks"
                     )
 
                     execSQL("DROP TABLE tracks")

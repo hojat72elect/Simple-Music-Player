@@ -51,7 +51,6 @@ const val EXTRA_SHUFFLE_INDICES = "EXTRA_SHUFFLE_INDICES"
 // shared preferences
 const val SHUFFLE = "shuffle"
 const val PLAYBACK_SETTING = "playback_setting"
-const val AUTOPLAY = "autoplay"
 const val SHOW_FILENAME = "show_filename"
 const val SWAP_PREV_NEXT = "swap_prev_next"
 const val LAST_SLEEP_TIMER_SECONDS = "last_sleep_timer_seconds"
@@ -128,30 +127,21 @@ const val APP_VERSION_NAME = "app_version_name"
 const val APP_ICON_IDS = "app_icon_ids"
 const val APP_ID = "app_id"
 const val APP_LAUNCHER_NAME = "app_launcher_name"
-const val REAL_FILE_PATH = "real_file_path_2"
-const val IS_FROM_GALLERY = "is_from_gallery"
-const val BROADCAST_REFRESH_MEDIA = "com.simplemobiletools.REFRESH_MEDIA"
-const val REFRESH_PATH = "refresh_path"
+
 const val IS_CUSTOMIZING_COLORS = "is_customizing_colors"
-const val BLOCKED_NUMBERS_EXPORT_DELIMITER = ","
-const val BLOCKED_NUMBERS_EXPORT_EXTENSION = ".txt"
+
 const val NOMEDIA = ".nomedia"
-const val YOUR_ALARM_SOUNDS_MIN_ID = 1000
+
 const val SHOW_FAQ_BEFORE_MAIL = "show_faq_before_mail"
-const val CHOPPED_LIST_DEFAULT_SIZE = 50
+
 const val SAVE_DISCARD_PROMPT_INTERVAL = 1000L
 const val SD_OTG_PATTERN = "^/storage/[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$"
 const val SD_OTG_SHORT = "^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$"
-const val KEY_PHONE = "phone"
-const val KEY_MAILTO = "mailto"
-const val CONTACT_ID = "contact_id"
-const val IS_PRIVATE = "is_private"
-const val SMT_PRIVATE =
-    "smt_private"   // used at the contact source of local contacts hidden from other apps
-const val FIRST_GROUP_ID = 10000L
+
+
 const val MD5 = "MD5"
 const val SHORT_ANIMATION_DURATION = 150L
-val DARK_GREY = 0xFF333333.toInt()
+const val DARK_GREY = 0xFF333333.toInt()
 
 const val LOWER_ALPHA = 0.25f
 const val MEDIUM_ALPHA = 0.5f
@@ -169,8 +159,7 @@ const val OPEN_DOCUMENT_TREE_FOR_ANDROID_DATA_OR_OBB = 1000
 const val OPEN_DOCUMENT_TREE_OTG = 1001
 const val OPEN_DOCUMENT_TREE_SD = 1002
 const val OPEN_DOCUMENT_TREE_FOR_SDK_30 = 1003
-const val REQUEST_SET_AS = 1004
-const val REQUEST_EDIT_IMAGE = 1005
+
 const val SELECT_EXPORT_SETTINGS_FILE_INTENT = 1006
 const val REQUEST_CODE_SET_DEFAULT_DIALER = 1007
 const val CREATE_DOCUMENT_SDK_30 = 1008
@@ -238,21 +227,6 @@ val extensionsSupportingEXIF: Array<String>
 
 
 val normalizeRegex = "\\p{InCombiningDiacriticalMarks}+".toRegex()
-
-fun getDateFormats() = arrayListOf(
-    "--MM-dd",
-    "yyyy-MM-dd",
-    "yyyyMMdd",
-    "yyyy.MM.dd",
-    "yy-MM-dd",
-    "yyMMdd",
-    "yy.MM.dd",
-    "yy/MM/dd",
-    "MM-dd",
-    "MMdd",
-    "MM/dd",
-    "MM.dd"
-)
 
 // licenses
 internal const val LICENSE_KOTLIN = 1L
@@ -332,19 +306,6 @@ fun getPermissionToRequest() =
 const val FONT_SIZE_SMALL = 0
 const val FONT_SIZE_MEDIUM = 1
 const val FONT_SIZE_LARGE = 2
-const val FONT_SIZE_EXTRA_LARGE = 3
-
-const val MONDAY_BIT = 1
-const val TUESDAY_BIT = 2
-const val WEDNESDAY_BIT = 4
-const val THURSDAY_BIT = 8
-const val FRIDAY_BIT = 16
-const val SATURDAY_BIT = 32
-const val SUNDAY_BIT = 64
-const val EVERY_DAY_BIT =
-    MONDAY_BIT or TUESDAY_BIT or WEDNESDAY_BIT or THURSDAY_BIT or FRIDAY_BIT or SATURDAY_BIT or SUNDAY_BIT
-const val WEEK_DAYS_BIT = MONDAY_BIT or TUESDAY_BIT or WEDNESDAY_BIT or THURSDAY_BIT or FRIDAY_BIT
-const val WEEKENDS_BIT = SATURDAY_BIT or SUNDAY_BIT
 
 const val SIDELOADING_UNCHECKED = 0
 const val SIDELOADING_TRUE = 1
@@ -382,17 +343,8 @@ const val PERMISSION_READ_SYNC_SETTINGS = 24
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.N)
 fun isNougatPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
 
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.N_MR1)
-fun isNougatMR1Plus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1
-
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.O)
 fun isOreoPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.O_MR1)
-fun isOreoMr1Plus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.P)
-fun isPiePlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
 
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.Q)
 fun isQPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
@@ -409,19 +361,6 @@ fun isTiramisuPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 fun isUpsideDownCakePlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
 
-
-const val HOUR_MINUTES = 60
-const val DAY_MINUTES = 24 * HOUR_MINUTES
-const val WEEK_MINUTES = DAY_MINUTES * 7
-const val MONTH_MINUTES = DAY_MINUTES * 30
-const val YEAR_MINUTES = DAY_MINUTES * 365
-
-const val MINUTE_SECONDS = 60
-const val HOUR_SECONDS = HOUR_MINUTES * 60
-const val DAY_SECONDS = DAY_MINUTES * 60
-const val WEEK_SECONDS = WEEK_MINUTES * 60
-const val MONTH_SECONDS = MONTH_MINUTES * 60
-const val YEAR_SECONDS = YEAR_MINUTES * 60
 
 // shared preferences
 const val PREFS_KEY = "Prefs"
@@ -443,7 +382,9 @@ const val BACKGROUND_COLOR = "background_color"
 const val PRIMARY_COLOR = "primary_color_2"
 const val ACCENT_COLOR = "accent_color"
 const val APP_ICON_COLOR = "app_icon_color"
-const val LAST_HANDLED_SHORTCUT_COLOR = "last_handled_shortcut_color"
+
+
+
 const val LAST_ICON_COLOR = "last_icon_color"
 const val CUSTOM_TEXT_COLOR = "custom_text_color"
 const val CUSTOM_BACKGROUND_COLOR = "custom_background_color"
@@ -455,13 +396,7 @@ const val WIDGET_TEXT_COLOR = "widget_text_color"
 const val PASSWORD_PROTECTION = "password_protection"
 const val PASSWORD_HASH = "password_hash"
 const val PROTECTION_TYPE = "protection_type"
-const val APP_PASSWORD_PROTECTION = "app_password_protection"
-const val APP_PASSWORD_HASH = "app_password_hash"
-const val APP_PROTECTION_TYPE = "app_protection_type"
-const val DELETE_PASSWORD_PROTECTION = "delete_password_protection"
-const val DELETE_PASSWORD_HASH = "delete_password_hash"
-const val DELETE_PROTECTION_TYPE = "delete_protection_type"
-const val PROTECTED_FOLDER_PATH = "protected_folder_path_"
+
 const val PROTECTED_FOLDER_HASH = "protected_folder_hash_"
 const val PROTECTED_FOLDER_TYPE = "protected_folder_type_"
 const val KEEP_LAST_MODIFIED = "keep_last_modified"
@@ -474,25 +409,15 @@ const val IS_USING_SYSTEM_THEME = "is_using_system_theme"
 const val SHOULD_USE_SHARED_THEME = "should_use_shared_theme"
 const val WAS_SHARED_THEME_FORCED = "was_shared_theme_forced"
 const val WAS_CUSTOM_THEME_SWITCH_DESCRIPTION_SHOWN = "was_custom_theme_switch_description_shown"
-const val SHOW_INFO_BUBBLE = "show_info_bubble"
+
 const val LAST_CONFLICT_RESOLUTION = "last_conflict_resolution"
 const val LAST_CONFLICT_APPLY_TO_ALL = "last_conflict_apply_to_all"
-const val LAST_COPY_PATH = "last_copy_path"
-const val HAD_THANK_YOU_INSTALLED = "had_thank_you_installed"
-const val SKIP_DELETE_CONFIRMATION = "skip_delete_confirmation"
-const val ENABLE_PULL_TO_REFRESH = "enable_pull_to_refresh"
-const val SCROLL_HORIZONTALLY = "scroll_horizontally"
-const val PREVENT_PHONE_FROM_SLEEPING = "prevent_phone_from_sleeping"
+
+
 const val LAST_USED_VIEW_PAGER_PAGE = "last_used_view_pager_page"
 const val USE_24_HOUR_FORMAT = "use_24_hour_format"
-const val SUNDAY_FIRST = "sunday_first"
-const val WAS_ALARM_WARNING_SHOWN = "was_alarm_warning_shown"
-const val WAS_REMINDER_WARNING_SHOWN = "was_reminder_warning_shown"
-const val USE_SAME_SNOOZE = "use_same_snooze"
-const val SNOOZE_TIME = "snooze_delay"
-const val VIBRATE_ON_BUTTON_PRESS = "vibrate_on_button_press"
-const val YOUR_ALARM_SOUNDS = "your_alarm_sounds"
-const val SILENT = "silent"
+
+
 const val OTG_PARTITION = "otg_partition_2"
 const val IS_USING_MODIFIED_APP_ICON = "is_using_modified_app_icon"
 const val INITIAL_WIDGET_HEIGHT = "initial_widget_height"
@@ -501,52 +426,28 @@ const val WAS_ORANGE_ICON_CHECKED = "was_orange_icon_checked"
 const val WAS_APP_ON_SD_SHOWN = "was_app_on_sd_shown"
 const val WAS_BEFORE_ASKING_SHOWN = "was_before_asking_shown"
 const val WAS_BEFORE_RATE_SHOWN = "was_before_rate_shown"
-const val WAS_INITIAL_UPGRADE_TO_PRO_SHOWN = "was_initial_upgrade_to_pro_shown"
+
+
+
 const val WAS_APP_ICON_CUSTOMIZATION_WARNING_SHOWN = "was_app_icon_customization_warning_shown"
 const val APP_SIDELOADING_STATUS = "app_sideloading_status"
 const val DATE_FORMAT = "date_format"
-const val WAS_OTG_HANDLED = "was_otg_handled_2"
-const val WAS_UPGRADED_FROM_FREE_SHOWN = "was_upgraded_from_free_shown"
-const val WAS_RATE_US_PROMPT_SHOWN = "was_rate_us_prompt_shown"
+
 const val WAS_APP_RATED = "was_app_rated"
-const val WAS_SORTING_BY_NUMERIC_VALUE_ADDED = "was_sorting_by_numeric_value_added"
-const val WAS_FOLDER_LOCKING_NOTICE_SHOWN = "was_folder_locking_notice_shown"
-const val LAST_RENAME_USED = "last_rename_used"
-const val LAST_RENAME_PATTERN_USED = "last_rename_pattern_used"
+
 const val LAST_EXPORTED_SETTINGS_FOLDER = "last_exported_settings_folder"
-const val LAST_EXPORTED_SETTINGS_FILE = "last_exported_settings_file"
-const val LAST_BLOCKED_NUMBERS_EXPORT_PATH = "last_blocked_numbers_export_path"
-const val BLOCK_UNKNOWN_NUMBERS = "block_unknown_numbers"
-const val BLOCK_HIDDEN_NUMBERS = "block_hidden_numbers"
+
 const val FONT_SIZE = "font_size"
-const val WAS_MESSENGER_RECORDER_SHOWN = "was_messenger_recorder_shown"
-const val DEFAULT_TAB = "default_tab"
-const val START_NAME_WITH_SURNAME = "start_name_with_surname"
+
+
 const val FAVORITES = "favorites"
-const val SHOW_CALL_CONFIRMATION = "show_call_confirmation"
+
 const val COLOR_PICKER_RECENT_COLORS = "color_picker_recent_colors"
-const val SHOW_CONTACT_THUMBNAILS = "show_contact_thumbnails"
-const val SHOW_PHONE_NUMBERS = "show_phone_numbers"
-const val SHOW_ONLY_CONTACTS_WITH_NUMBERS = "show_only_contacts_with_numbers"
-const val IGNORED_CONTACT_SOURCES = "ignored_contact_sources_2"
-const val LAST_USED_CONTACT_SOURCE = "last_used_contact_source"
-const val ON_CONTACT_CLICK = "on_contact_click"
-const val SHOW_CONTACT_FIELDS = "show_contact_fields"
+
 const val SHOW_TABS = "show_tabs"
-const val SHOW_DIALPAD_BUTTON = "show_dialpad_button"
-const val SPEED_DIAL = "speed_dial"
+
 const val LAST_EXPORT_PATH = "last_export_path"
-const val WAS_LOCAL_ACCOUNT_INITIALIZED = "was_local_account_initialized"
-const val SHOW_PRIVATE_CONTACTS = "show_private_contacts"
-const val MERGE_DUPLICATE_CONTACTS = "merge_duplicate_contacts"
-const val FAVORITES_CONTACTS_ORDER = "favorites_contacts_order"
-const val FAVORITES_CUSTOM_ORDER_SELECTED = "favorites_custom_order_selected"
-const val VIEW_TYPE = "view_type"
-const val CONTACTS_GRID_COLUMN_COUNT = "contacts_grid_column_count"
-const val AUTO_BACKUP = "auto_backup"
-const val AUTO_BACKUP_FOLDER = "auto_backup_folder"
-const val AUTO_BACKUP_FILENAME = "auto_backup_filename"
-const val LAST_AUTO_BACKUP_TIME = "last_auto_backup_time"
+
 const val PASSWORD_RETRY_COUNT = "password_retry_count"
 const val PASSWORD_COUNTDOWN_START_MS = "password_count_down_start_ms"
 
@@ -563,71 +464,16 @@ const val DATE_FORMAT_FIVE = "d MMMM yyyy"
 const val DATE_FORMAT_SIX = "MMMM d yyyy"
 const val DATE_FORMAT_SEVEN = "MM-dd-yyyy"
 const val DATE_FORMAT_EIGHT = "dd-MM-yyyy"
-const val DATE_FORMAT_NINE = "yyyyMMdd"
-const val DATE_FORMAT_TEN = "yyyy.MM.dd"
-const val DATE_FORMAT_ELEVEN = "yy-MM-dd"
-const val DATE_FORMAT_TWELVE = "yyMMdd"
-const val DATE_FORMAT_THIRTEEN = "yy.MM.dd"
-const val DATE_FORMAT_FOURTEEN = "yy/MM/dd"
 
-
-// contact photo changes
-const val PHOTO_ADDED = 1
-const val PHOTO_REMOVED = 2
-const val PHOTO_CHANGED = 3
-const val PHOTO_UNCHANGED = 4
-
-const val ON_CLICK_CALL_CONTACT = 1
-const val ON_CLICK_VIEW_CONTACT = 2
-const val ON_CLICK_EDIT_CONTACT = 3
-
-// apps with special handling
-const val TELEGRAM_PACKAGE = "org.telegram.messenger"
-const val SIGNAL_PACKAGE = "org.thoughtcrime.securesms"
-const val WHATSAPP_PACKAGE = "com.whatsapp"
-const val VIBER_PACKAGE = "com.viber.voip"
-const val THREEMA_PACKAGE = "ch.threema.app"
-
-const val SOCIAL_VOICE_CALL = 0
-const val SOCIAL_VIDEO_CALL = 1
-const val SOCIAL_MESSAGE = 2
 
 
 // security
-const val WAS_PROTECTION_HANDLED = "was_protection_handled"
 const val PROTECTION_NONE = -1
 const val PROTECTION_PATTERN = 0
 const val PROTECTION_PIN = 1
 const val PROTECTION_FINGERPRINT = 2
 
-// renaming
-const val RENAME_SIMPLE = 0
-const val RENAME_PATTERN = 1
-
 const val SHOW_ALL_TABS = -1
-const val SHOW_PATTERN = 0
-const val SHOW_PIN = 1
-const val SHOW_FINGERPRINT = 2
-
-
-// visible fields filtering
-const val SHOW_PREFIX_FIELD = 1
-const val SHOW_FIRST_NAME_FIELD = 2
-const val SHOW_MIDDLE_NAME_FIELD = 4
-const val SHOW_SURNAME_FIELD = 8
-const val SHOW_SUFFIX_FIELD = 16
-const val SHOW_PHONE_NUMBERS_FIELD = 32
-const val SHOW_EMAILS_FIELD = 64
-const val SHOW_ADDRESSES_FIELD = 128
-const val SHOW_EVENTS_FIELD = 256
-const val SHOW_NOTES_FIELD = 512
-const val SHOW_ORGANIZATION_FIELD = 1024
-const val SHOW_GROUPS_FIELD = 2048
-const val SHOW_CONTACT_SOURCE_FIELD = 4096
-const val SHOW_WEBSITES_FIELD = 8192
-const val SHOW_NICKNAME_FIELD = 16384
-const val SHOW_IMS_FIELD = 32768
-const val SHOW_RINGTONE_FIELD = 65536
 
 
 // sorting
@@ -637,38 +483,12 @@ const val SORT_FOLDER_PREFIX =
 const val SORT_BY_NAME = 1
 const val SORT_BY_DATE_MODIFIED = 2
 const val SORT_BY_SIZE = 4
-const val SORT_BY_DATE_TAKEN = 8
+
 const val SORT_BY_EXTENSION = 16
-const val SORT_BY_PATH = 32
-const val SORT_BY_NUMBER = 64
-const val SORT_BY_FIRST_NAME = 128
-const val SORT_BY_MIDDLE_NAME = 256
-const val SORT_BY_SURNAME = 512
+
 const val SORT_DESCENDING = 1024
-const val SORT_BY_TITLE = 2048
-const val SORT_BY_ARTIST = 4096
-const val SORT_BY_DURATION = 8192
-const val SORT_BY_RANDOM = 16384
+
 const val SORT_USE_NUMERIC_VALUE = 32768
-const val SORT_BY_FULL_NAME = 65536
-const val SORT_BY_CUSTOM = 131072
-const val SORT_BY_DATE_CREATED = 262144
-
-// default tabs
-const val TAB_LAST_USED = 0
-const val TAB_CONTACTS = 1
-const val TAB_FAVORITES = 2
-const val TAB_CALL_HISTORY = 4
-const val TAB_GROUPS = 8
-const val TAB_FILES = 16
-const val TAB_RECENT_FILES = 32
-const val TAB_STORAGE_ANALYSIS = 64
-
-
-// view types
-const val VIEW_TYPE_GRID = 1
-const val VIEW_TYPE_LIST = 2
-const val VIEW_TYPE_UNEVEN_GRID = 3
 
 val appIconColorStrings = arrayListOf(
     ".Red",

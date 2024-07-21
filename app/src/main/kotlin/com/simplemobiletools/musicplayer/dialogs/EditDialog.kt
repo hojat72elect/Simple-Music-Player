@@ -1,5 +1,7 @@
 package com.simplemobiletools.musicplayer.dialogs
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.helpers.isRPlus
@@ -21,6 +23,7 @@ import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.TagHelper
 import com.simplemobiletools.musicplayer.models.Track
 
+@RequiresApi(Build.VERSION_CODES.O)
 class EditDialog(
     val activity: BaseSimpleActivity,
     val track: Track,

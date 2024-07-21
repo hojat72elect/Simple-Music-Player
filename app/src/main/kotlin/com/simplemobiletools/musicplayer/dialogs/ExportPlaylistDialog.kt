@@ -1,9 +1,9 @@
 package com.simplemobiletools.musicplayer.dialogs
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogExportPlaylistBinding
 import com.simplemobiletools.musicplayer.extensions.beGone
 import com.simplemobiletools.musicplayer.extensions.config
@@ -18,12 +18,15 @@ import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import java.io.File
 
+@RequiresApi(Build.VERSION_CODES.O)
 class ExportPlaylistDialog(
     val activity: SimpleActivity,
     val path: String,
-    val hidePath: Boolean,
+    private val hidePath: Boolean,
     private val callback: (file: File) -> Unit
 ) {
     private var ignoreClicks = false
@@ -34,7 +37,7 @@ class ExportPlaylistDialog(
         binding.apply {
             exportPlaylistFolder.text = activity.humanizePath(realPath)
 
-            val fileName = "playlist_${activity.getCurrentFormattedDateTime()}"
+            val fileName = "playlist_${getCurrentFormattedDateTime()}"
             exportPlaylistFilename.setText(fileName)
 
             if (hidePath) {
@@ -55,7 +58,11 @@ class ExportPlaylistDialog(
             .setPositiveButton(R.string.ok, null)
             .setNegativeButton(R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this, R.string.export_playlist) { alertDialog ->
+                activity.setupDialogStuff(
+                    binding.root,
+                    this,
+                    R.string.export_playlist
+                ) { alertDialog ->
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val filename = binding.exportPlaylistFilename.value
                         when {
@@ -69,7 +76,8 @@ class ExportPlaylistDialog(
 
                                 ignoreClicks = true
                                 ensureBackgroundThread {
-                                    activity.config.lastExportPath = file.absolutePath.getParentPath()
+                                    activity.config.lastExportPath =
+                                        file.absolutePath.getParentPath()
                                     callback(file)
                                     alertDialog.dismiss()
                                 }

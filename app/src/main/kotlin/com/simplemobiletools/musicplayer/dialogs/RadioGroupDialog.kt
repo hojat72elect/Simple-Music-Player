@@ -1,5 +1,6 @@
 package com.simplemobiletools.musicplayer.dialogs
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
@@ -45,13 +46,14 @@ import com.simplemobiletools.musicplayer.models.RadioItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
+@SuppressLint("InflateParams")
 class RadioGroupDialog(
     val activity: Activity,
     val items: ArrayList<RadioItem>,
-    val checkedItemId: Int = -1,
-    val titleId: Int = 0,
+    private val checkedItemId: Int = -1,
+    private val titleId: Int = 0,
     showOKButton: Boolean = false,
-    val cancelCallback: (() -> Unit)? = null,
+    private val cancelCallback: (() -> Unit)? = null,
     val callback: (newValue: Any) -> Unit
 ) {
     private var dialog: AlertDialog? = null
@@ -90,7 +92,7 @@ class RadioGroupDialog(
             .setOnCancelListener { cancelCallback?.invoke() }
 
         if (selectedItemId != -1 && showOKButton) {
-            builder.setPositiveButton(R.string.ok) { dialog, which -> itemSelected(selectedItemId) }
+            builder.setPositiveButton(R.string.ok) { _, _ -> itemSelected(selectedItemId) }
         }
 
         builder.apply {

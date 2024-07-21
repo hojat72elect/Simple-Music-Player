@@ -12,12 +12,12 @@ import androidx.media3.common.C
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaLibraryService
-import com.simplemobiletools.musicplayer.new_architecture.MainActivity
 import com.simplemobiletools.musicplayer.extensions.broadcastUpdateWidgetState
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.currentMediaItems
 import com.simplemobiletools.musicplayer.extensions.setRepeatMode
 import com.simplemobiletools.musicplayer.helpers.SEEK_INTERVAL_MS
+import com.simplemobiletools.musicplayer.new_architecture.MainActivity
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 import com.simplemobiletools.musicplayer.playback.PlaybackService.Companion.updatePlaybackInfo
 import com.simplemobiletools.musicplayer.playback.SimpleEqualizer
@@ -32,14 +32,18 @@ private const val PLAYER_THREAD = "PlayerThread"
  * All player operations are handled on a separate handler thread to avoid slowing down the main thread.
  * See https://developer.android.com/guide/topics/media/exoplayer/hello-world#a-note-on-threading for more info.
  */
-internal fun PlaybackService.initializeSessionAndPlayer(handleAudioFocus: Boolean, handleAudioBecomingNoisy: Boolean, skipSilence: Boolean) {
+internal fun PlaybackService.initializeSessionAndPlayer(
+    handleAudioFocus: Boolean,
+    handleAudioBecomingNoisy: Boolean
+) {
     playerThread = HandlerThread(PLAYER_THREAD).also { it.start() }
     playerHandler = Handler(playerThread.looper)
-    player = initializePlayer(handleAudioFocus, handleAudioBecomingNoisy, skipSilence)
+    player = initializePlayer(handleAudioFocus, handleAudioBecomingNoisy)
     playerListener = getPlayerListener()
-    mediaSession = MediaLibraryService.MediaLibrarySession.Builder(this, player, getMediaSessionCallback())
-        .setSessionActivity(getSessionActivityIntent())
-        .build()
+    mediaSession =
+        MediaLibraryService.MediaLibrarySession.Builder(this, player, getMediaSessionCallback())
+            .setSessionActivity(getSessionActivityIntent())
+            .build()
 
     withPlayer {
         addListener(playerListener)
@@ -51,7 +55,10 @@ internal fun PlaybackService.initializeSessionAndPlayer(handleAudioFocus: Boolea
     }
 }
 
-private fun PlaybackService.initializePlayer(handleAudioFocus: Boolean, handleAudioBecomingNoisy: Boolean, skipSilence: Boolean): SimpleMusicPlayer {
+private fun PlaybackService.initializePlayer(
+    handleAudioFocus: Boolean,
+    handleAudioBecomingNoisy: Boolean
+): SimpleMusicPlayer {
     val renderersFactory = AudioOnlyRenderersFactory(context = this)
     return SimpleMusicPlayer(
         ExoPlayer.Builder(this, renderersFactory)

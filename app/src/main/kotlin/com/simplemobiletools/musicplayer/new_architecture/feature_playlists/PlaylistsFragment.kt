@@ -17,7 +17,7 @@ import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksA
 import com.simplemobiletools.musicplayer.adapters.PlaylistsAdapter
 import com.simplemobiletools.musicplayer.databinding.FragmentPlaylistsBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
-import com.simplemobiletools.musicplayer.dialogs.NewPlaylistDialog
+import com.simplemobiletools.musicplayer.dialogs.PlaylistDialog
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.extensions.config
 import com.simplemobiletools.musicplayer.extensions.mediaScanner
@@ -38,7 +38,7 @@ class PlaylistsFragment(context: Context, attributeSet: AttributeSet) :
     override fun setupFragment(activity: BaseSimpleActivity) {
         binding.playlistsPlaceholder2.underlineText()
         binding.playlistsPlaceholder2.setOnClickListener {
-            NewPlaylistDialog(activity) {
+            PlaylistDialog(activity) {
                 EventBus.getDefault().post(Events.PlaylistsUpdated())
             }
         }

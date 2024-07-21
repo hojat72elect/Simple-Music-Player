@@ -7,8 +7,10 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.viewpager.widget.ViewPager
 import com.simplemobiletools.musicplayer.databinding.BottomTablayoutItemBinding
 import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
@@ -29,7 +31,7 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.ViewPagerAdapter
 import com.simplemobiletools.musicplayer.databinding.ActivityMainBinding
 import com.simplemobiletools.musicplayer.dialogs.FilePickerDialog
-import com.simplemobiletools.musicplayer.dialogs.NewPlaylistDialog
+import com.simplemobiletools.musicplayer.dialogs.PlaylistDialog
 import com.simplemobiletools.musicplayer.dialogs.SelectPlaylistDialog
 import com.simplemobiletools.musicplayer.dialogs.SleepTimerCustomDialog
 import com.simplemobiletools.musicplayer.extensions.adjustAlpha
@@ -83,6 +85,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
+@RequiresApi(Build.VERSION_CODES.O)
 class MainActivity : SimpleMusicActivity() {
     private val PICK_IMPORT_SOURCE_INTENT = 1
 
@@ -161,6 +164,7 @@ class MainActivity : SimpleMusicActivity() {
         bus?.unregister(this)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.mainMenu.isSearchOpen) {
             binding.mainMenu.closeSearch()
@@ -362,7 +366,7 @@ class MainActivity : SimpleMusicActivity() {
     }
 
     private fun createNewPlaylist() {
-        NewPlaylistDialog(this) {
+        PlaylistDialog(this) {
             EventBus.getDefault().post(Events.PlaylistsUpdated())
         }
     }
@@ -377,7 +381,7 @@ class MainActivity : SimpleMusicActivity() {
         ensureBackgroundThread {
             getFolderTracks(path, true) { tracks ->
                 runOnUiThread {
-                    NewPlaylistDialog(this) { playlistId ->
+                    PlaylistDialog(this) { playlistId ->
                         tracks.forEach {
                             it.playListId = playlistId
                         }
@@ -447,6 +451,7 @@ class MainActivity : SimpleMusicActivity() {
             }
         }
     }
+
 
     private fun showFilePickerDialog() {
         FilePickerDialog(this, enforceStorageRestrictions = false) { path ->

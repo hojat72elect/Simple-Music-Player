@@ -48,7 +48,7 @@ class QueueAdapter(
     private var startReorderDragListener: StartReorderDragListener
 
     init {
-        setupDragListener(true)
+        setupDragListener()
 
         val touchHelper = ItemTouchHelper(ItemMoveCallback(this))
         touchHelper.attachToRecyclerView(recyclerView)

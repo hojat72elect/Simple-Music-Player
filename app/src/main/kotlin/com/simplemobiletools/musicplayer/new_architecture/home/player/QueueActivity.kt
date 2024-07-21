@@ -16,7 +16,7 @@ import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivityQueueBinding
-import com.simplemobiletools.musicplayer.dialogs.NewPlaylistDialog
+import com.simplemobiletools.musicplayer.dialogs.PlaylistDialog
 import com.simplemobiletools.musicplayer.extensions.currentMediaItemsShuffled
 import com.simplemobiletools.musicplayer.extensions.toTracks
 import com.simplemobiletools.musicplayer.extensions.toTrack
@@ -164,7 +164,7 @@ class QueueActivity : SimpleControllerActivity() {
     }
 
     private fun createPlaylistFromQueue() {
-        NewPlaylistDialog(this) { newPlaylistId ->
+        PlaylistDialog(this) { newPlaylistId ->
             val tracks = ArrayList<Track>()
             getAdapter()?.items?.forEach {
                 it.playListId = newPlaylistId

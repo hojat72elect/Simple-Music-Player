@@ -35,13 +35,13 @@ abstract class BaseMusicAdapter<Type>(
     val context = activity as SimpleControllerActivity
 
     var textToHighlight = ""
-    val tagHelper by lazy { TagHelper(context) }
+    private val tagHelper by lazy { TagHelper(context) }
     var placeholder = resources.getSmallPlaceholder(textColor)
     var placeholderBig = resources.getBiggerPlaceholder(textColor)
     open val cornerRadius by lazy { resources.getDimension(R.dimen.rounded_corner_radius_small).toInt() }
 
     init {
-        setupDragListener(true)
+        setupDragListener()
     }
 
     override fun getItemCount() = items.size
