@@ -18,6 +18,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.TransactionTooLargeException
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -589,12 +590,6 @@ fun Activity.showLocationOnMap(coordinates: String) {
     launchActivityIntent(intent)
 }
 
-fun Activity.showDonateOrUpgradeDialog() {
-    if (getCanAppBeUpgraded()) {
-        UpgradeToProDialog(this)
-    }
-}
-
 fun Activity.rescanPaths(paths: List<String>, callback: (() -> Unit)? = null) {
     applicationContext.rescanPaths(paths, callback)
 }
@@ -693,11 +688,9 @@ fun Activity.appLaunched(appId: String) {
     }
 
     baseConfig.appRunCount++
-    if (baseConfig.appRunCount % 3 == 0 && !isAProApp()) {
+    if (baseConfig.appRunCount % 30 == 0 && !isAProApp()) {
         // Ask user to update
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            showDonateOrUpgradeDialog()
-        }
+        Log.d("Activity", "Ask user to update the app to pro version.")
     }
 
     if (baseConfig.appRunCount % 4 == 0 && !baseConfig.wasAppRated) {

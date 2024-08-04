@@ -15,7 +15,7 @@ import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.models.Playlist
 
-class NewPlaylistDialog(
+class PlaylistDialog(
     val activity: Activity,
     var playlist: Playlist? = null,
     val callback: (playlistId: Int) -> Unit

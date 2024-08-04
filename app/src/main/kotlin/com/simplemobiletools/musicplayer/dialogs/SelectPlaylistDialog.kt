@@ -65,7 +65,7 @@ class SelectPlaylistDialog(val activity: Activity, val callback: (playlistId: In
     }
 
     private fun showNewPlaylistDialog() {
-        NewPlaylistDialog(activity) {
+        PlaylistDialog(activity) {
             callback(it)
             dialog?.dismiss()
         }

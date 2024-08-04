@@ -10,16 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
+import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.musicplayer.compose.alert_dialog.dialogBorder
 import com.simplemobiletools.musicplayer.compose.alert_dialog.dialogContainerColor
 import com.simplemobiletools.musicplayer.compose.alert_dialog.dialogElevation
 import com.simplemobiletools.musicplayer.compose.alert_dialog.dialogShape
 import com.simplemobiletools.musicplayer.compose.alert_dialog.dialogTextColor
-import com.simplemobiletools.musicplayer.compose.alert_dialog.rememberAlertDialogState
-import com.simplemobiletools.musicplayer.compose.extensions.MyDevices
-import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
-import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogMessageBinding
 import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
@@ -127,12 +124,4 @@ fun ConfirmationAdvancedAlertDialog(
     )
 }
 
-@Composable
-@MyDevices
-private fun ConfirmationAdvancedAlertDialogPreview() {
-    AppThemeSurface {
-        ConfirmationAdvancedAlertDialog(
-            alertDialogState = rememberAlertDialogState()
-        ) {}
-    }
-}
+
