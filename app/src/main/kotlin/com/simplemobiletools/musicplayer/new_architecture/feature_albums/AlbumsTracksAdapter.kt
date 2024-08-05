@@ -1,8 +1,10 @@
 package com.simplemobiletools.musicplayer.new_architecture.feature_albums
 
+import android.os.Build
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.extensions.beGone
@@ -13,7 +15,6 @@ import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.ItemAlbumBinding
 import com.simplemobiletools.musicplayer.databinding.ItemSectionBinding
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding
@@ -26,10 +27,11 @@ import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.AlbumSection
 import com.simplemobiletools.musicplayer.models.ListItem
 import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 // we show both albums and individual tracks here
 class AlbumsTracksAdapter(
-    activity: SimpleActivity, items: ArrayList<ListItem>, recyclerView: MyRecyclerView,
+    activity: BaseSimpleActivity, items: ArrayList<ListItem>, recyclerView: MyRecyclerView,
     itemClick: (Any) -> Unit
 ) : BaseMusicAdapter<ListItem>(items, activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {
 
@@ -77,6 +79,7 @@ class AlbumsTracksAdapter(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun actionItemPressed(id: Int) {
         if (selectedKeys.isEmpty()) {
             return
@@ -185,9 +188,10 @@ class AlbumsTracksAdapter(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun displayEditDialog() {
         getSelectedTracks().firstOrNull()?.let { selectedTrack ->
-            EditDialog(context as SimpleActivity, selectedTrack) { track ->
+            EditDialog(context as BaseSimpleActivity, selectedTrack) { track ->
                 val trackIndex = items.indexOfFirst { (it as? Track)?.mediaStoreId == track.mediaStoreId }
                 if (trackIndex != -1) {
                     items[trackIndex] = track

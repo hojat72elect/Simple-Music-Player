@@ -11,7 +11,6 @@ import com.simplemobiletools.musicplayer.dialogs.ColorPickerDialog
 import com.simplemobiletools.musicplayer.dialogs.FeatureLockedDialog
 import com.simplemobiletools.musicplayer.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.WidgetConfigBinding
 import com.simplemobiletools.musicplayer.extensions.adjustAlpha
 import com.simplemobiletools.musicplayer.extensions.applyColorFilter
@@ -22,9 +21,10 @@ import com.simplemobiletools.musicplayer.extensions.onSeekBarChangeListener
 import com.simplemobiletools.musicplayer.extensions.setFillWithStroke
 import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.MyWidgetProvider
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 
-class WidgetConfigureActivity : SimpleActivity() {
+class WidgetConfigureActivity : BaseSimpleActivity() {
     private var mBgAlpha = 0f
     private var mWidgetId = 0
     private var mBgColor = 0

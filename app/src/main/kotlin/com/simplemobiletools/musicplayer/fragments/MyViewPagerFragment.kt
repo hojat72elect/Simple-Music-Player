@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.models.Track
 
@@ -17,7 +16,7 @@ abstract class MyViewPagerFragment(context: Context, attributeSet: AttributeSet)
 
     abstract fun onSearchClosed()
 
-    abstract fun onSortOpen(activity: SimpleActivity)
+    abstract fun onSortOpen(activity: BaseSimpleActivity)
 
     abstract fun setupColors(textColor: Int, adjustedPrimaryColor: Int)
 

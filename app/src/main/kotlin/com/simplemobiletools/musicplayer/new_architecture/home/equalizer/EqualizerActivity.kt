@@ -14,7 +14,6 @@ import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.views.MySeekBar
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.ActivityEqualizerBinding
 import com.simplemobiletools.musicplayer.databinding.EqualizerBandBinding
 import com.simplemobiletools.musicplayer.extensions.config
@@ -26,13 +25,14 @@ import com.simplemobiletools.musicplayer.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.EQUALIZER_PRESET_CUSTOM
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.playback.SimpleEqualizer
 import java.text.DecimalFormat
 import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
-class EqualizerActivity : SimpleActivity() {
+class EqualizerActivity : BaseSimpleActivity() {
     private var bands = HashMap<Short, Int>()
     private var bandSeekBars = ArrayList<MySeekBar>()
 

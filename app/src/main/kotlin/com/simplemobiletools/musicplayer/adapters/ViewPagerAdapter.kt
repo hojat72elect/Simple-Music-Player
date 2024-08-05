@@ -3,28 +3,28 @@ package com.simplemobiletools.musicplayer.adapters
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentAlbumsBinding
 import com.simplemobiletools.musicplayer.databinding.FragmentArtistsBinding
-import com.simplemobiletools.musicplayer.databinding.FragmentTracksBinding
 import com.simplemobiletools.musicplayer.databinding.FragmentFoldersBinding
 import com.simplemobiletools.musicplayer.databinding.FragmentGenresBinding
 import com.simplemobiletools.musicplayer.databinding.FragmentPlaylistsBinding
+import com.simplemobiletools.musicplayer.databinding.FragmentTracksBinding
+import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.extensions.getVisibleTabs
 import com.simplemobiletools.musicplayer.fragments.MyViewPagerFragment
-import com.simplemobiletools.musicplayer.new_architecture.feature_playlists.PlaylistsFragment
-import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksFragment
+import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
+import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
+import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
 import com.simplemobiletools.musicplayer.helpers.TAB_GENRES
 import com.simplemobiletools.musicplayer.helpers.TAB_PLAYLISTS
-import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
-import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
-import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
 import com.simplemobiletools.musicplayer.helpers.TAB_TRACKS
+import com.simplemobiletools.musicplayer.new_architecture.feature_playlists.PlaylistsFragment
+import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksFragment
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 
-class ViewPagerAdapter(val activity: SimpleActivity) : PagerAdapter() {
+class ViewPagerAdapter(val activity: BaseSimpleActivity) : PagerAdapter() {
     private val fragments = arrayListOf<MyViewPagerFragment>()
     private var primaryItem: MyViewPagerFragment? = null
 

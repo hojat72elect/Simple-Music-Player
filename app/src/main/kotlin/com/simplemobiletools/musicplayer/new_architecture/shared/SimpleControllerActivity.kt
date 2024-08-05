@@ -37,7 +37,7 @@ import java.io.File
 /**
  * Base class for activities that want to control the [Player].
  */
-abstract class SimpleControllerActivity : SimpleActivity(), Player.Listener {
+abstract class SimpleControllerActivity : BaseSimpleActivity(), Player.Listener {
     private lateinit var controller: SimpleMediaController
 
     override fun onCreate(savedInstanceState: Bundle?) {

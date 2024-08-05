@@ -7,7 +7,6 @@ import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentTracksBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
 import com.simplemobiletools.musicplayer.extensions.areSystemAnimationsEnabled
@@ -102,7 +101,7 @@ class TracksFragment(context: Context, attributeSet: AttributeSet) :
         binding.tracksPlaceholder.beGoneIf(tracks.isNotEmpty())
     }
 
-    override fun onSortOpen(activity: SimpleActivity) {
+    override fun onSortOpen(activity: BaseSimpleActivity) {
         ChangeSortingDialog(activity, TAB_TRACKS) {
             val adapter = getAdapter() ?: return@ChangeSortingDialog
             tracks.sortSafely(activity.config.trackSorting)

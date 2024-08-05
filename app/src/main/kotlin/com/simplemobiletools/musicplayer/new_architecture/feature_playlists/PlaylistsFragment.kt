@@ -12,7 +12,6 @@ import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.extensions.underlineText
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
 import com.simplemobiletools.musicplayer.adapters.PlaylistsAdapter
 import com.simplemobiletools.musicplayer.databinding.FragmentPlaylistsBinding
@@ -102,7 +101,7 @@ class PlaylistsFragment(context: Context, attributeSet: AttributeSet) :
         binding.playlistsPlaceholder2.beGoneIf(playlists.isNotEmpty())
     }
 
-    override fun onSortOpen(activity: SimpleActivity) {
+    override fun onSortOpen(activity: BaseSimpleActivity) {
         ChangeSortingDialog(activity, TAB_PLAYLISTS) {
             val adapter = getAdapter() ?: return@ChangeSortingDialog
             playlists.sortSafely(activity.config.playlistSorting)

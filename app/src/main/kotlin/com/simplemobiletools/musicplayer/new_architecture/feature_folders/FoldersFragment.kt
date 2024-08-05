@@ -13,7 +13,6 @@ import com.simplemobiletools.musicplayer.extensions.underlineText
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.home.settings.ExcludedFoldersActivity
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentFoldersBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
@@ -92,7 +91,7 @@ class FoldersFragment(context: Context, attributeSet: AttributeSet) :
         binding.foldersPlaceholder.beGoneIf(folders.isNotEmpty())
     }
 
-    override fun onSortOpen(activity: SimpleActivity) {
+    override fun onSortOpen(activity: BaseSimpleActivity) {
         ChangeSortingDialog(activity, TAB_FOLDERS) {
             val adapter = getAdapter() ?: return@ChangeSortingDialog
             folders.sortSafely(activity.config.folderSorting)

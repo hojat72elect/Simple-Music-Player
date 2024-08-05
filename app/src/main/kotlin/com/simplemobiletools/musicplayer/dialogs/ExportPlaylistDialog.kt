@@ -19,12 +19,12 @@ import com.simplemobiletools.musicplayer.extensions.toast
 import com.simplemobiletools.musicplayer.extensions.value
 import com.simplemobiletools.musicplayer.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import java.io.File
 
 @RequiresApi(Build.VERSION_CODES.O)
 class ExportPlaylistDialog(
-    val activity: SimpleActivity,
+    val activity: BaseSimpleActivity,
     val path: String,
     private val hidePath: Boolean,
     private val callback: (file: File) -> Unit

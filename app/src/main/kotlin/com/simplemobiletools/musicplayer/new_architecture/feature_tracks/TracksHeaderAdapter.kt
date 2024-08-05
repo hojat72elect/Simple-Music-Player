@@ -1,9 +1,11 @@
 package com.simplemobiletools.musicplayer.new_architecture.feature_tracks
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
@@ -22,11 +24,11 @@ import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.models.AlbumHeader
 import com.simplemobiletools.musicplayer.models.ListItem
 import com.simplemobiletools.musicplayer.models.Track
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 
 class TracksHeaderAdapter(
-    activity: SimpleActivity,
+    activity: BaseSimpleActivity,
     items: ArrayList<ListItem>,
     recyclerView: MyRecyclerView,
     itemClick: (Any) -> Unit
@@ -76,6 +78,7 @@ class TracksHeaderAdapter(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun actionItemPressed(id: Int) {
         if (selectedKeys.isEmpty()) {
             return
@@ -191,6 +194,7 @@ class TracksHeaderAdapter(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun displayEditDialog() {
         getSelectedTracks().firstOrNull()?.let { selectedTrack ->
             EditDialog(context, selectedTrack) { track ->

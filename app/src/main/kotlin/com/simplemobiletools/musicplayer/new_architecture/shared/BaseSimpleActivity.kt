@@ -12,7 +12,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.net.Uri
@@ -41,7 +40,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.new_architecture.home.settings.CustomizationActivity
 import com.simplemobiletools.musicplayer.compose.extensions.DEVELOPER_PLAY_STORE_URL
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationAdvancedDialog
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
@@ -141,8 +139,6 @@ import com.simplemobiletools.musicplayer.extensions.updateLastModified
 import com.simplemobiletools.musicplayer.extensions.updateOTGPathFromPartition
 import com.simplemobiletools.musicplayer.extensions.writeLn
 import com.simplemobiletools.musicplayer.helpers.APP_FAQ
-import com.simplemobiletools.musicplayer.helpers.APP_ICON_IDS
-import com.simplemobiletools.musicplayer.helpers.APP_LAUNCHER_NAME
 import com.simplemobiletools.musicplayer.helpers.APP_LICENSES
 import com.simplemobiletools.musicplayer.helpers.APP_NAME
 import com.simplemobiletools.musicplayer.helpers.APP_VERSION_NAME
@@ -182,6 +178,7 @@ import com.simplemobiletools.musicplayer.models.FAQItem
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import com.simplemobiletools.musicplayer.models.Release
 import com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity
+import com.simplemobiletools.musicplayer.new_architecture.home.settings.CustomizationActivity
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -190,7 +187,7 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.util.regex.Pattern
 
-abstract class BaseSimpleActivity : AppCompatActivity() {
+open class BaseSimpleActivity : AppCompatActivity() {
     private var materialScrollColorAnimation: ValueAnimator? = null
     var copyMoveCallback: ((destinationPath: String) -> Unit)? = null
     private var actionOnPermission: ((granted: Boolean) -> Unit)? = null
@@ -199,7 +196,7 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
     var showTransparentTop = false
     var isMaterialActivity =
         false      // by material activity we mean translucent navigation bar and opaque status and action bars
-    var checkedDocumentPath = ""
+    private var checkedDocumentPath = ""
     private var currentScrollY = 0
     private var configItemsToExport = LinkedHashMap<String, Any>()
 
@@ -228,10 +225,6 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
         var funRecoverableSecurity: ((success: Boolean) -> Unit)? = null
         var funAfterManageMediaPermission: (() -> Unit)? = null
     }
-
-    abstract fun getAppIconIDs(): ArrayList<Int>
-
-    abstract fun getAppLauncherName(): String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (useDynamicTheme) {
@@ -276,8 +269,6 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
 
             updateActionbarColor(color)
         }
-
-        updateRecentsAppIcon()
 
         var navBarColor = getProperBackgroundColor()
         if (isMaterialActivity) {
@@ -543,24 +534,6 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
                 ?.apply {
                     background.setColorFilter(contrastColor, PorterDuff.Mode.MULTIPLY)
                 }
-        }
-    }
-
-    private fun updateRecentsAppIcon() {
-        if (baseConfig.isUsingModifiedAppIcon) {
-            val appIconIDs = getAppIconIDs()
-            val currentAppIconColorIndex = getCurrentAppIconColorIndex()
-            if (appIconIDs.size - 1 < currentAppIconColorIndex) {
-                return
-            }
-
-            val recentsIcon =
-                BitmapFactory.decodeResource(resources, appIconIDs[currentAppIconColorIndex])
-            val title = getAppLauncherName()
-            val color = baseConfig.primaryColor
-
-            val description = ActivityManager.TaskDescription(title, recentsIcon, color)
-            setTaskDescription(description)
         }
     }
 
@@ -838,8 +811,6 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
     ) {
         hideKeyboard()
         Intent(applicationContext, AboutActivity::class.java).apply {
-            putExtra(APP_ICON_IDS, getAppIconIDs())
-            putExtra(APP_LAUNCHER_NAME, getAppLauncherName())
             putExtra(APP_NAME, getString(appNameId))
             putExtra(APP_LICENSES, licenseMask)
             putExtra(APP_VERSION_NAME, versionName)
@@ -862,8 +833,6 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
         }
 
         Intent(applicationContext, CustomizationActivity::class.java).apply {
-            putExtra(APP_ICON_IDS, getAppIconIDs())
-            putExtra(APP_LAUNCHER_NAME, getAppLauncherName())
             startActivity(this)
         }
     }
@@ -1471,6 +1440,7 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun exportSettings(configItems: LinkedHashMap<String, Any>) {
         if (isQPlus()) {
             configItemsToExport = configItems

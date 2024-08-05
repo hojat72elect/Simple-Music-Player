@@ -9,13 +9,10 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ProvidableCompositionLocal
-import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import com.simplemobiletools.musicplayer.compose.extensions.config
 import com.simplemobiletools.musicplayer.compose.theme.model.Theme
 import com.simplemobiletools.musicplayer.compose.theme.model.Theme.Companion.systemDefaultMaterialYou
 import com.simplemobiletools.musicplayer.helpers.isSPlus
@@ -27,7 +24,7 @@ internal fun Theme(
 ) {
     val view = LocalView.current
     val context = LocalContext.current
-    val baseConfig = remember { context.config }
+
     val isSystemInDarkTheme = isSystemInDarkTheme()
 
     val colorScheme = if (!view.isInEditMode) {
@@ -64,10 +61,6 @@ internal fun Theme(
         }
     } else {
         previewColorScheme()
-    }
-
-    SideEffect {
-        updateRecentsAppIcon(baseConfig, context)
     }
 
     val dimensions = CommonDimensions

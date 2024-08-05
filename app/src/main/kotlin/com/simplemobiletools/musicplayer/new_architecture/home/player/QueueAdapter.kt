@@ -31,12 +31,12 @@ import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
 import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
 import com.simplemobiletools.musicplayer.models.Track
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 
 class QueueAdapter(
-    activity: SimpleActivity,
+    activity: BaseSimpleActivity,
     items: ArrayList<Track>,
     var currentTrack: Track? = null,
     recyclerView: MyRecyclerView,

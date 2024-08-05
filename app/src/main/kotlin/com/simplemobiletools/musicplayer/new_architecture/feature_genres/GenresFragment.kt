@@ -11,7 +11,6 @@ import com.simplemobiletools.musicplayer.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentGenresBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
@@ -89,7 +88,7 @@ class GenresFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         binding.genresPlaceholder.beGoneIf(genres.isNotEmpty())
     }
 
-    override fun onSortOpen(activity: SimpleActivity) {
+    override fun onSortOpen(activity: BaseSimpleActivity) {
         ChangeSortingDialog(activity, TAB_GENRES) {
             val adapter = getAdapter() ?: return@ChangeSortingDialog
             genres.sortSafely(activity.config.genreSorting)

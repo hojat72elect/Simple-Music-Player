@@ -12,7 +12,6 @@ import com.simplemobiletools.musicplayer.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.feature_albums.AlbumsActivity
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentArtistsBinding
 import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
 import com.simplemobiletools.musicplayer.extensions.audioHelper
@@ -89,7 +88,7 @@ class ArtistsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
         binding.artistsPlaceholder.beGoneIf(artists.isNotEmpty())
     }
 
-    override fun onSortOpen(activity: SimpleActivity) {
+    override fun onSortOpen(activity: BaseSimpleActivity) {
         ChangeSortingDialog(activity, TAB_ARTISTS) {
             val adapter = getAdapter() ?: return@ChangeSortingDialog
             artists.sortSafely(activity.config.artistSorting)

@@ -1,15 +1,15 @@
 package com.simplemobiletools.musicplayer.helpers
 
 import com.simplemobiletools.musicplayer.extensions.showErrorToast
-import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleActivity
 import com.simplemobiletools.musicplayer.extensions.audioHelper
 import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import java.io.File
 import net.bjoernpetersen.m3u.M3uParser
 import net.bjoernpetersen.m3u.model.M3uEntry
 
 class M3uImporter(
-    val activity: SimpleActivity,
+    val activity: BaseSimpleActivity,
     val callback: (result: ImportResult) -> Unit
 ) {
     private var failedEvents = 0

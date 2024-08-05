@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Bundle
+import android.util.Log
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivityCustomizationBinding
 import com.simplemobiletools.musicplayer.dialogs.ColorPickerDialog
@@ -71,10 +72,6 @@ class CustomizationActivity : BaseSimpleActivity() {
     private var predefinedThemes = LinkedHashMap<Int, MyTheme>()
     private var curPrimaryLineColorPicker: LineColorPickerDialog? = null
     private var storedSharedTheme: SharedTheme? = null
-
-    override fun getAppIconIDs() = intent.getIntegerArrayListExtra(APP_ICON_IDS) ?: ArrayList()
-
-    override fun getAppLauncherName() = intent.getStringExtra(APP_LAUNCHER_NAME) ?: ""
 
     private val binding by viewBinding(ActivityCustomizationBinding::inflate)
 
@@ -557,14 +554,7 @@ class CustomizationActivity : BaseSimpleActivity() {
         }
 
         binding.customizationAppIconColorHolder.setOnClickListener {
-            if (baseConfig.wasAppIconCustomizationWarningShown) {
-                pickAppIconColor()
-            } else {
-                ConfirmationDialog(this, "", R.string.app_icon_color_warning, R.string.ok, 0) {
-                    baseConfig.wasAppIconCustomizationWarningShown = true
-                    pickAppIconColor()
-                }
-            }
+            Log.d("CustomizationActivity", "User wants")
         }
     }
 
@@ -697,23 +687,6 @@ class CustomizationActivity : BaseSimpleActivity() {
         }
     }
 
-    private fun pickAppIconColor() {
-        LineColorPickerDialog(
-            this,
-            curAppIconColor,
-            false,
-            R.array.md_app_icon_colors,
-            getAppIconIDs()
-        ) { wasPositivePressed, color ->
-            if (wasPositivePressed) {
-                if (hasColorChanged(curAppIconColor, color)) {
-                    curAppIconColor = color
-                    colorChanged()
-                    updateColorTheme(getUpdatedTheme())
-                }
-            }
-        }
-    }
 
     private fun getUpdatedTheme() =
         if (curSelectedThemeId == THEME_SHARED) THEME_SHARED else getCurrentThemeId()
