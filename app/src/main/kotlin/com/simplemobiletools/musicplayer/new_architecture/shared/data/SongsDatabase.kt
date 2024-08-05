@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.databases
+package com.simplemobiletools.musicplayer.new_architecture.shared.data
 
 import android.content.Context
 import androidx.room.Database

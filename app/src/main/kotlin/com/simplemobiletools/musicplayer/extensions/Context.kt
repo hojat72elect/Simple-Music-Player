@@ -68,7 +68,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.github.ajalt.reprint.core.Reprint
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.databases.SongsDatabase
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.SongsDatabase
 import com.simplemobiletools.musicplayer.helpers.AudioHelper
 import com.simplemobiletools.musicplayer.helpers.BaseConfig
 import com.simplemobiletools.musicplayer.helpers.Config
