@@ -18,7 +18,8 @@ import com.simplemobiletools.musicplayer.models.Genre
 import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.models.QueueItem
 import com.simplemobiletools.musicplayer.models.Track
-import com.simplemobiletools.musicplayer.objects.MyExecutor
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 @Database(
     entities = [
@@ -222,4 +223,9 @@ abstract class SongsDatabase : RoomDatabase() {
             }
         }
     }
+}
+
+
+object MyExecutor {
+    val myExecutor: ExecutorService = Executors.newSingleThreadExecutor()
 }
