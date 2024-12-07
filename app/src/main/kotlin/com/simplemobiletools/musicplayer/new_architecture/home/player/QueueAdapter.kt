@@ -12,7 +12,7 @@ import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemTrackQueueBinding
-import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config

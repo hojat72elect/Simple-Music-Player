@@ -13,7 +13,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.helpers.isOreoPlus
@@ -25,9 +25,9 @@ import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksA
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksAdapter.Companion.TYPE_PLAYLIST
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksAdapter.Companion.TYPE_TRACKS
 import com.simplemobiletools.musicplayer.databinding.ActivityTracksBinding
-import com.simplemobiletools.musicplayer.dialogs.ChangeSortingDialog
-import com.simplemobiletools.musicplayer.dialogs.ExportPlaylistDialog
-import com.simplemobiletools.musicplayer.dialogs.FilePickerDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ChangeSortingDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ExportPlaylistDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.FilePickerDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone

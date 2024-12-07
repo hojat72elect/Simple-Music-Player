@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.openNotificationSettings
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.areSystemAnimationsEnabled

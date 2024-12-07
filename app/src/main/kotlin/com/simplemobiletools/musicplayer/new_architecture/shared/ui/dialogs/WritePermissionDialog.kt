@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.dialogs
+package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs
 
 import android.app.Activity
 import android.text.Html

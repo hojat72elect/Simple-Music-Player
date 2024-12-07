@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.dialogs
+package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs
 
 import com.simplemobiletools.musicplayer.helpers.isQPlus
 import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox

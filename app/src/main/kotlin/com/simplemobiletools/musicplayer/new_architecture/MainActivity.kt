@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.viewpager.widget.ViewPager
 import com.simplemobiletools.musicplayer.databinding.BottomTablayoutItemBinding
-import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.RadioGroupDialog
 import com.simplemobiletools.musicplayer.helpers.LICENSE_AUTOFITTEXTVIEW
 import com.simplemobiletools.musicplayer.helpers.LICENSE_EVENT_BUS
 import com.simplemobiletools.musicplayer.helpers.LICENSE_GLIDE
@@ -30,10 +30,10 @@ import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.ViewPagerAdapter
 import com.simplemobiletools.musicplayer.databinding.ActivityMainBinding
-import com.simplemobiletools.musicplayer.dialogs.FilePickerDialog
-import com.simplemobiletools.musicplayer.dialogs.PlaylistDialog
-import com.simplemobiletools.musicplayer.dialogs.SelectPlaylistDialog
-import com.simplemobiletools.musicplayer.dialogs.SleepTimerCustomDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.FilePickerDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PlaylistDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.SelectPlaylistDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.SleepTimerCustomDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.appLaunched
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
-import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.RadioGroupDialog
 import com.simplemobiletools.musicplayer.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.helpers.isQPlus
@@ -13,7 +13,7 @@ import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.databinding.ActivitySettingsBinding
-import com.simplemobiletools.musicplayer.dialogs.ManageVisibleTabsDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ManageVisibleTabsDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config

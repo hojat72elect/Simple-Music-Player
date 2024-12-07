@@ -16,7 +16,7 @@ import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivityQueueBinding
-import com.simplemobiletools.musicplayer.dialogs.PlaylistDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PlaylistDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.currentMediaItemsShuffled
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toTracks
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toTrack

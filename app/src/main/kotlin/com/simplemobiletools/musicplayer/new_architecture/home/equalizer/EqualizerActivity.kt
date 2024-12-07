@@ -8,7 +8,7 @@ import androidx.annotation.OptIn
 import androidx.media3.common.util.UnstableApi
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.simplemobiletools.musicplayer.dialogs.RadioGroupDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.RadioGroupDialog
 import com.simplemobiletools.musicplayer.helpers.DARK_GREY
 import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.models.RadioItem

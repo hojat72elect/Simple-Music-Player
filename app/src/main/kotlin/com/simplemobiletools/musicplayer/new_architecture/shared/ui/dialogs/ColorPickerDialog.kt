@@ -1,6 +1,6 @@
 @file:SuppressLint("ClickableViewAccessibility")
 
-package com.simplemobiletools.musicplayer.dialogs
+package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs
 
 import android.annotation.SuppressLint
 import android.app.Activity

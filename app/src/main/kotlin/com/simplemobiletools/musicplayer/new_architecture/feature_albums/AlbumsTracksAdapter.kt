@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisible
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getFormattedDuration
@@ -18,7 +18,7 @@ import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemAlbumBinding
 import com.simplemobiletools.musicplayer.databinding.ItemSectionBinding
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding
-import com.simplemobiletools.musicplayer.dialogs.EditDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.EditDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlbumCoverArt
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getTrackCoverArt
