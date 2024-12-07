@@ -48,10 +48,10 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogWritePermissionBinding
 import com.simplemobiletools.musicplayer.databinding.DialogWritePermissionOtgBinding
-import com.simplemobiletools.musicplayer.extensions.fromHtml
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.humanizePath
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.fromHtml
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.humanizePath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 
 class WritePermissionDialog(
     activity: Activity,

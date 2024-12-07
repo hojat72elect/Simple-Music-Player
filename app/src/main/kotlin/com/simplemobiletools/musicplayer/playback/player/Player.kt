@@ -12,10 +12,10 @@ import androidx.media3.common.C
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaLibraryService
-import com.simplemobiletools.musicplayer.extensions.broadcastUpdateWidgetState
-import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.extensions.currentMediaItems
-import com.simplemobiletools.musicplayer.extensions.setRepeatMode
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.broadcastUpdateWidgetState
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.currentMediaItems
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setRepeatMode
 import com.simplemobiletools.musicplayer.helpers.SEEK_INTERVAL_MS
 import com.simplemobiletools.musicplayer.new_architecture.MainActivity
 import com.simplemobiletools.musicplayer.playback.PlaybackService

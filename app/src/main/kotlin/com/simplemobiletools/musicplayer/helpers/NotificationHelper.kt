@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.MainActivity
-import com.simplemobiletools.musicplayer.extensions.notificationManager
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.notificationManager
 
 /** Helper class to manage all-things-notification. */
 @SuppressLint("NewApi")

@@ -18,8 +18,8 @@ import com.simplemobiletools.musicplayer.compose.alert_dialog.dialogElevation
 import com.simplemobiletools.musicplayer.compose.alert_dialog.dialogShape
 import com.simplemobiletools.musicplayer.compose.alert_dialog.dialogTextColor
 import com.simplemobiletools.musicplayer.databinding.DialogMessageBinding
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 
 // similar fo ConfirmationDialog, but has a callback for negative button too
 class ConfirmationAdvancedDialog(

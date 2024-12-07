@@ -26,12 +26,12 @@ import com.simplemobiletools.musicplayer.compose.extensions.composeDonateIntent
 import com.simplemobiletools.musicplayer.compose.extensions.config
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.databinding.DialogPurchaseThankYouBinding
-import com.simplemobiletools.musicplayer.extensions.baseConfig
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.launchPurchaseThankYouIntent
-import com.simplemobiletools.musicplayer.extensions.removeUnderlines
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.fromHtml
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchPurchaseThankYouIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.removeUnderlines
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.fromHtml
 
 class PurchaseThankYouDialog(val activity: Activity) {
     init {

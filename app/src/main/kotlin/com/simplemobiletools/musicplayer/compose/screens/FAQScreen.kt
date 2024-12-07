@@ -20,7 +20,7 @@ import com.simplemobiletools.musicplayer.compose.settings.SettingsHorizontalDivi
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.fromHtml
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.fromHtml
 import com.simplemobiletools.musicplayer.models.FAQItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList

@@ -2,7 +2,7 @@ package com.simplemobiletools.musicplayer.models
 
 import com.simplemobiletools.musicplayer.helpers.AlphanumericComparator
 import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
-import com.simplemobiletools.musicplayer.extensions.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.sortSafely
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TITLE
 
 data class Folder(val title: String, val trackCount: Int, val path: String) {

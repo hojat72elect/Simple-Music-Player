@@ -7,14 +7,14 @@ import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogRadioGroupBinding
 import com.simplemobiletools.musicplayer.databinding.RadioButtonBinding
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.getBasePath
-import com.simplemobiletools.musicplayer.extensions.hasExternalSDCard
-import com.simplemobiletools.musicplayer.extensions.hasOTGConnected
-import com.simplemobiletools.musicplayer.extensions.internalStoragePath
-import com.simplemobiletools.musicplayer.extensions.otgPath
-import com.simplemobiletools.musicplayer.extensions.sdCardPath
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getBasePath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hasExternalSDCard
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hasOTGConnected
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.internalStoragePath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.otgPath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.sdCardPath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 /**

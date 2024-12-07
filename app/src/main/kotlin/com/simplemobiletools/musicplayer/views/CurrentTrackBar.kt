@@ -12,18 +12,18 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.simplemobiletools.musicplayer.extensions.fadeIn
-import com.simplemobiletools.musicplayer.extensions.fadeOut
-import com.simplemobiletools.musicplayer.extensions.getColoredDrawableWithColor
-import com.simplemobiletools.musicplayer.extensions.getProperBackgroundColor
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.fadeIn
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.fadeOut
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getColoredDrawableWithColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperBackgroundColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ViewCurrentTrackBarBinding
-import com.simplemobiletools.musicplayer.extensions.ensureActivityNotDestroyed
-import com.simplemobiletools.musicplayer.extensions.getTrackCoverArt
-import com.simplemobiletools.musicplayer.extensions.toTrack
-import com.simplemobiletools.musicplayer.extensions.updatePlayPauseIcon
-import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.ensureActivityNotDestroyed
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getTrackCoverArt
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toTrack
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updatePlayPauseIcon
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 
 class CurrentTrackBar(context: Context, attributeSet: AttributeSet) :
     RelativeLayout(context, attributeSet) {

@@ -5,11 +5,11 @@ import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogManageVisibleTabsBinding
-import com.simplemobiletools.musicplayer.extensions.beGone
-import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
 import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
 import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS

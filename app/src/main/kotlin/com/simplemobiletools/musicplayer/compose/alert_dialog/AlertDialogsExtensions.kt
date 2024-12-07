@@ -19,7 +19,7 @@ import com.simplemobiletools.musicplayer.compose.theme.Shapes
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.compose.theme.light_grey_stroke
 import com.simplemobiletools.musicplayer.compose.theme.model.Theme
-import com.simplemobiletools.musicplayer.extensions.baseConfig
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
 import com.simplemobiletools.musicplayer.helpers.isSPlus
 import kotlinx.coroutines.android.awaitFrame
 

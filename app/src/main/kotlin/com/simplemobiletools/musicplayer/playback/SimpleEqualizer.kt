@@ -6,8 +6,8 @@ import androidx.media3.common.util.UnstableApi
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.toast
-import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 import com.simplemobiletools.musicplayer.helpers.EQUALIZER_PRESET_CUSTOM
 import com.simplemobiletools.musicplayer.playback.player.SimpleMusicPlayer
 

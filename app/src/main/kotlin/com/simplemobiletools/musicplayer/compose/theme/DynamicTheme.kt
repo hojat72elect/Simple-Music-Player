@@ -5,9 +5,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import com.simplemobiletools.musicplayer.compose.extensions.config
 import com.simplemobiletools.musicplayer.compose.theme.model.Theme
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.extensions.isBlackAndWhiteTheme
-import com.simplemobiletools.musicplayer.extensions.isWhiteTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isBlackAndWhiteTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isWhiteTheme
 
 fun getTheme(context: Context, materialYouTheme: Theme.SystemDefaultMaterialYou): Theme {
     val baseConfig = context.config

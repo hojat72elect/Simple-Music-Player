@@ -6,11 +6,11 @@ import android.widget.RadioGroup
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogChangeSortingBinding
 import com.simplemobiletools.musicplayer.databinding.SmallRadioButtonBinding
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
-import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.ACTIVITY_PLAYLIST_FOLDER
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ALBUM_COUNT
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ARTIST_TITLE

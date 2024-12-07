@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationDialog
-import com.simplemobiletools.musicplayer.extensions.highlightTextPart
-import com.simplemobiletools.musicplayer.extensions.setupViewBackground
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.highlightTextPart
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemAlbumBinding
-import com.simplemobiletools.musicplayer.extensions.audioHelper
-import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.extensions.getAlbumCoverArt
-import com.simplemobiletools.musicplayer.inlines.indexOfFirstOrNull
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlbumCoverArt
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.indexOfFirstOrNull
 import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.Track
 

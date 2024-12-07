@@ -14,8 +14,8 @@ import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 import com.google.common.util.concurrent.SettableFuture
-import com.simplemobiletools.musicplayer.extensions.addRemainingMediaItems
-import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.addRemainingMediaItems
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 import com.simplemobiletools.musicplayer.helpers.EXTRA_NEXT_MEDIA_ID
 import com.simplemobiletools.musicplayer.helpers.EXTRA_SHUFFLE_INDICES
 import com.simplemobiletools.musicplayer.playback.player.updatePlaybackState

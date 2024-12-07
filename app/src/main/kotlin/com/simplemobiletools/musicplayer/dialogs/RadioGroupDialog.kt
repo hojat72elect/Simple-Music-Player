@@ -39,9 +39,9 @@ import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.databinding.DialogRadioGroupBinding
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.onGlobalLayout
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onGlobalLayout
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.models.RadioItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList

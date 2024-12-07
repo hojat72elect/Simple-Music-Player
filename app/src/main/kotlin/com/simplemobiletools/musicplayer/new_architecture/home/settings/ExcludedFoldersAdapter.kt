@@ -10,14 +10,14 @@ import android.widget.PopupMenu
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.extensions.getPopupMenuTheme
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.extensions.humanizePath
-import com.simplemobiletools.musicplayer.extensions.setupViewBackground
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getPopupMenuTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.humanizePath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.interfaces.RefreshRecyclerViewListener
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.databinding.ItemExcludedFolderBinding
-import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 
 class ExcludedFoldersAdapter(
     activity: BaseSimpleActivity,

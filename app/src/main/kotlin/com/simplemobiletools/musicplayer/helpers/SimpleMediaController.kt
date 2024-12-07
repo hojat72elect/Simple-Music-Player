@@ -9,8 +9,8 @@ import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
-import com.simplemobiletools.musicplayer.extensions.getOrNull
-import com.simplemobiletools.musicplayer.extensions.runOnPlayerThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getOrNull
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.runOnPlayerThread
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 import java.util.concurrent.Executors
 

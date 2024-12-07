@@ -12,10 +12,10 @@ import androidx.media3.session.MediaLibraryService
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.hasPermission
-import com.simplemobiletools.musicplayer.extensions.showErrorToast
-import com.simplemobiletools.musicplayer.extensions.isReallyPlaying
-import com.simplemobiletools.musicplayer.extensions.nextMediaItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hasPermission
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showErrorToast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isReallyPlaying
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.nextMediaItem
 import com.simplemobiletools.musicplayer.helpers.NotificationHelper
 import com.simplemobiletools.musicplayer.helpers.getPermissionToRequest
 import com.simplemobiletools.musicplayer.playback.library.MediaItemProvider

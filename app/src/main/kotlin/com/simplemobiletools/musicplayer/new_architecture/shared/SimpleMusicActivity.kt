@@ -7,9 +7,9 @@ import androidx.media3.common.Player
 import com.simplemobiletools.musicplayer.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.home.player.TrackActivity
-import com.simplemobiletools.musicplayer.extensions.hideKeyboard
-import com.simplemobiletools.musicplayer.extensions.openNotificationSettings
-import com.simplemobiletools.musicplayer.extensions.isReallyPlaying
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hideKeyboard
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.openNotificationSettings
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isReallyPlaying
 import com.simplemobiletools.musicplayer.views.CurrentTrackBar
 
 /**

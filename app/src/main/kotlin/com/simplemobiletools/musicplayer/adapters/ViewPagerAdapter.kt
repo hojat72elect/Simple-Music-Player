@@ -9,9 +9,9 @@ import com.simplemobiletools.musicplayer.databinding.FragmentFoldersBinding
 import com.simplemobiletools.musicplayer.databinding.FragmentGenresBinding
 import com.simplemobiletools.musicplayer.databinding.FragmentPlaylistsBinding
 import com.simplemobiletools.musicplayer.databinding.FragmentTracksBinding
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.extensions.getVisibleTabs
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getVisibleTabs
 import com.simplemobiletools.musicplayer.fragments.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
 import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS

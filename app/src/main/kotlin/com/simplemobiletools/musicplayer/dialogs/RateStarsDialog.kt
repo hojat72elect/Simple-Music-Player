@@ -43,13 +43,13 @@ import com.simplemobiletools.musicplayer.compose.theme.Shapes
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogRateStarsBinding
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.baseConfig
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.redirectToRateUs
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.toast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.redirectToRateUs
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

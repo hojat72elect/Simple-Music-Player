@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.widget.LinearLayout
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.isRTLLayout
-import com.simplemobiletools.musicplayer.extensions.onGlobalLayout
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isRTLLayout
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.interfaces.LineColorPickerListener
 import kotlin.math.max
 import kotlin.math.min

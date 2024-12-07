@@ -7,7 +7,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.simplemobiletools.musicplayer.helpers.AlphanumericComparator
 import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
-import com.simplemobiletools.musicplayer.extensions.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.sortSafely
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ALBUM_COUNT
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TITLE
 

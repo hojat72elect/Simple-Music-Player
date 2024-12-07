@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
 import com.google.android.material.textfield.TextInputLayout
-import com.simplemobiletools.musicplayer.extensions.adjustAlpha
-import com.simplemobiletools.musicplayer.extensions.value
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
 import com.simplemobiletools.musicplayer.helpers.HIGHER_ALPHA
 import com.simplemobiletools.musicplayer.helpers.MEDIUM_ALPHA
 

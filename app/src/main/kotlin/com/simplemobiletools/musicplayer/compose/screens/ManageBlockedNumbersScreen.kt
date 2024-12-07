@@ -95,8 +95,8 @@ import com.simplemobiletools.musicplayer.compose.theme.actionModeColor
 import com.simplemobiletools.musicplayer.compose.theme.iconsColor
 import com.simplemobiletools.musicplayer.compose.theme.isLitWell
 import com.simplemobiletools.musicplayer.compose.theme.model.Theme
-import com.simplemobiletools.musicplayer.extensions.darkenColor
-import com.simplemobiletools.musicplayer.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.darkenColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getContrastColor
 import com.simplemobiletools.musicplayer.models.BlockedNumber
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.compose.extensions.isScrollingUp

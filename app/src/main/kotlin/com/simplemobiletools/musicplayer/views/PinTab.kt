@@ -7,11 +7,11 @@ import android.widget.Toast
 import androidx.biometric.auth.AuthPromptHost
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.TabPinBinding
-import com.simplemobiletools.musicplayer.extensions.performHapticFeedback
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.extensions.toast
-import com.simplemobiletools.musicplayer.extensions.updateTextColors
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.performHapticFeedback
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.helpers.MINIMUM_PIN_LENGTH
 import com.simplemobiletools.musicplayer.helpers.PROTECTION_PIN
 import com.simplemobiletools.musicplayer.interfaces.BaseSecurityTab

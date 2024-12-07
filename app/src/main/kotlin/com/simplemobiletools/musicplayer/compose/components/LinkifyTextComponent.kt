@@ -16,8 +16,8 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.compose.extensions.MyDevices
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
-import com.simplemobiletools.musicplayer.extensions.fromHtml
-import com.simplemobiletools.musicplayer.extensions.removeUnderlines
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.fromHtml
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.removeUnderlines
 
 @Composable
 fun LinkifyTextComponent(

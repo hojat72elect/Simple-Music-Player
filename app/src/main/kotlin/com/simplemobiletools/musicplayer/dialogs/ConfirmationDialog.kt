@@ -22,8 +22,8 @@ import com.simplemobiletools.musicplayer.compose.alert_dialog.rememberAlertDialo
 import com.simplemobiletools.musicplayer.compose.extensions.MyDevices
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.databinding.DialogMessageBinding
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 
 /**
  * A simple dialog without any view, just a messageId, a positive button and optionally a negative button

@@ -11,14 +11,14 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import androidx.media3.common.MediaMetadata
 import androidx.media3.session.MediaController
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.getColoredBitmap
-import com.simplemobiletools.musicplayer.extensions.getLaunchIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getColoredBitmap
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getLaunchIntent
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.home.splash.SplashActivity
-import com.simplemobiletools.musicplayer.extensions.config
-import com.simplemobiletools.musicplayer.extensions.maybePreparePlayer
-import com.simplemobiletools.musicplayer.extensions.togglePlayback
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.maybePreparePlayer
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.togglePlayback
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 
 class MyWidgetProvider : AppWidgetProvider() {

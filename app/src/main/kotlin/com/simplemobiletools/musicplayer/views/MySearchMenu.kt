@@ -8,17 +8,17 @@ import com.google.android.material.appbar.AppBarLayout
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.MenuSearchBinding
-import com.simplemobiletools.musicplayer.extensions.onTextChangeListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onTextChangeListener
 import com.simplemobiletools.musicplayer.helpers.LOWER_ALPHA
 import com.simplemobiletools.musicplayer.helpers.MEDIUM_ALPHA
-import com.simplemobiletools.musicplayer.extensions.adjustAlpha
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.getContrastColor
-import com.simplemobiletools.musicplayer.extensions.getProperBackgroundColor
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.hideKeyboard
-import com.simplemobiletools.musicplayer.extensions.removeBit
-import com.simplemobiletools.musicplayer.extensions.showKeyboard
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperBackgroundColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hideKeyboard
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.removeBit
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showKeyboard
 
 class MySearchMenu(context: Context, attrs: AttributeSet) : AppBarLayout(context, attrs) {
     var isSearchOpen = false

@@ -5,14 +5,14 @@ import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogNewPlaylistBinding
-import com.simplemobiletools.musicplayer.extensions.audioHelper
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.getPlaylistIdWithTitle
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.showKeyboard
-import com.simplemobiletools.musicplayer.extensions.toast
-import com.simplemobiletools.musicplayer.extensions.value
-import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getPlaylistIdWithTitle
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showKeyboard
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.models.Playlist
 
 class PlaylistDialog(

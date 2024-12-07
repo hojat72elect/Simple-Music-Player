@@ -4,12 +4,12 @@ import android.app.Activity
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogCustomSleepTimerPickerBinding
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.hideKeyboard
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.showKeyboard
-import com.simplemobiletools.musicplayer.extensions.value
-import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hideKeyboard
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showKeyboard
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 
 class SleepTimerCustomDialog(val activity: Activity, val callback: (seconds: Int) -> Unit) {
     private var dialog: AlertDialog? = null

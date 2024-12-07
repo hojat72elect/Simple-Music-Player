@@ -4,9 +4,9 @@ import android.content.Context
 import android.text.format.DateFormat
 import androidx.core.content.ContextCompat
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.getInternalStoragePath
-import com.simplemobiletools.musicplayer.extensions.getSDCardPath
-import com.simplemobiletools.musicplayer.extensions.getSharedPrefs
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getInternalStoragePath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getSDCardPath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getSharedPrefs
 import java.text.SimpleDateFormat
 import java.util.LinkedList
 

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatRadioButton
-import com.simplemobiletools.musicplayer.extensions.adjustAlpha
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
 
 class MyCompatRadioButton : AppCompatRadioButton {
     constructor(context: Context) : super(context)

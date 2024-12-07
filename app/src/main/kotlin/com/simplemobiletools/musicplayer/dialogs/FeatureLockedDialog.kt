@@ -36,12 +36,12 @@ import com.simplemobiletools.musicplayer.compose.extensions.rememberMutableInter
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.databinding.DialogFeatureLockedBinding
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.fromHtml
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.extensions.launchPurchaseThankYouIntent
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.fromHtml
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchPurchaseThankYouIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 
 class FeatureLockedDialog(val activity: Activity, val callback: () -> Unit) {
     private var dialog: AlertDialog? = null

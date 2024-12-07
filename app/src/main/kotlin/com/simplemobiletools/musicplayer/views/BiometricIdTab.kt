@@ -4,12 +4,12 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.biometric.auth.AuthPromptHost
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.simplemobiletools.musicplayer.extensions.showBiometricPrompt
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showBiometricPrompt
 import com.simplemobiletools.musicplayer.databinding.TabBiometricIdBinding
-import com.simplemobiletools.musicplayer.extensions.getContrastColor
-import com.simplemobiletools.musicplayer.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.extensions.isWhiteTheme
-import com.simplemobiletools.musicplayer.extensions.updateTextColors
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isWhiteTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.helpers.DARK_GREY
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 import com.simplemobiletools.musicplayer.interfaces.SecurityTab

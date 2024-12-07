@@ -12,11 +12,11 @@ import com.github.ajalt.reprint.core.AuthenticationListener
 import com.github.ajalt.reprint.core.Reprint
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.TabFingerprintBinding
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.extensions.beGoneIf
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.extensions.toast
-import com.simplemobiletools.musicplayer.extensions.updateTextColors
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.helpers.PROTECTION_FINGERPRINT
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 import com.simplemobiletools.musicplayer.interfaces.SecurityTab

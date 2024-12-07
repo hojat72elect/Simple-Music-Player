@@ -1,8 +1,8 @@
 package com.simplemobiletools.musicplayer.compose.extensions
 
 import android.content.Context
-import com.simplemobiletools.musicplayer.extensions.baseConfig
-import com.simplemobiletools.musicplayer.extensions.random
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.random
 
 
 const val DEVELOPER_PLAY_STORE_URL = "https://play.google.com/store/apps/dev?id=9070296388022589266"

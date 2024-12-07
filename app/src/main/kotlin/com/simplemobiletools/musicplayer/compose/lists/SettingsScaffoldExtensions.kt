@@ -27,8 +27,8 @@ import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.compose.theme.isNotLitWell
 import com.simplemobiletools.musicplayer.compose.theme.isSurfaceLitWell
 import com.simplemobiletools.musicplayer.compose.theme.model.Theme
-import com.simplemobiletools.musicplayer.extensions.getColoredMaterialStatusBarColor
-import com.simplemobiletools.musicplayer.extensions.getContrastColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getColoredMaterialStatusBarColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getContrastColor
 
 @Composable
 internal fun SystemUISettingsScaffoldStatusBarColor(scrolledColor: Color) {

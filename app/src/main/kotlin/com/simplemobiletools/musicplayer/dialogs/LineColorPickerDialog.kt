@@ -42,13 +42,13 @@ import com.simplemobiletools.musicplayer.compose.extensions.MyDevices
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.databinding.DialogLineColorPickerBinding
-import com.simplemobiletools.musicplayer.extensions.beGoneIf
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
-import com.simplemobiletools.musicplayer.extensions.copyToClipboard
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.toHex
-import com.simplemobiletools.musicplayer.extensions.value
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGoneIf
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.copyToClipboard
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toHex
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
 import com.simplemobiletools.musicplayer.interfaces.LineColorPickerListener
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 

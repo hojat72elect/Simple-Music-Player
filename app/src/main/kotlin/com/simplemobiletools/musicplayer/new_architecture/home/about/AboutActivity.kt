@@ -40,13 +40,13 @@ import com.simplemobiletools.musicplayer.compose.screens.AboutSection
 import com.simplemobiletools.musicplayer.compose.screens.HelpUsSection
 import com.simplemobiletools.musicplayer.compose.screens.OtherSection
 import com.simplemobiletools.musicplayer.compose.screens.SocialSection
-import com.simplemobiletools.musicplayer.extensions.baseConfig
-import com.simplemobiletools.musicplayer.extensions.getStoreUrl
-import com.simplemobiletools.musicplayer.extensions.launchMoreAppsFromUsIntent
-import com.simplemobiletools.musicplayer.extensions.launchViewIntent
-import com.simplemobiletools.musicplayer.extensions.redirectToRateUs
-import com.simplemobiletools.musicplayer.extensions.showErrorToast
-import com.simplemobiletools.musicplayer.extensions.toast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getStoreUrl
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchMoreAppsFromUsIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchViewIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.redirectToRateUs
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showErrorToast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 
 class AboutActivity : ComponentActivity() {
     private val appName get() = intent.getStringExtra(APP_NAME) ?: ""

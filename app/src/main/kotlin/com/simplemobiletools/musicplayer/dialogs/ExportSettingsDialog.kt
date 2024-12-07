@@ -5,17 +5,17 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogExportSettingsBinding
-import com.simplemobiletools.musicplayer.extensions.baseConfig
-import com.simplemobiletools.musicplayer.extensions.beGone
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.getDoesFilePathExist
-import com.simplemobiletools.musicplayer.extensions.getFilenameFromPath
-import com.simplemobiletools.musicplayer.extensions.humanizePath
-import com.simplemobiletools.musicplayer.extensions.internalStoragePath
-import com.simplemobiletools.musicplayer.extensions.isAValidFilename
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.extensions.toast
-import com.simplemobiletools.musicplayer.extensions.value
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getDoesFilePathExist
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getFilenameFromPath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.humanizePath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.internalStoragePath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isAValidFilename
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 @RequiresApi(Build.VERSION_CODES.O)

@@ -14,11 +14,11 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession.MediaItemsWithStartPosition
 import com.google.common.util.concurrent.MoreExecutors
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.extensions.audioHelper
-import com.simplemobiletools.musicplayer.extensions.buildMediaItem
-import com.simplemobiletools.musicplayer.extensions.isTabVisible
-import com.simplemobiletools.musicplayer.extensions.queueDAO
-import com.simplemobiletools.musicplayer.extensions.toMediaItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.buildMediaItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isTabVisible
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.queueDAO
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toMediaItem
 import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
 import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
 import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS

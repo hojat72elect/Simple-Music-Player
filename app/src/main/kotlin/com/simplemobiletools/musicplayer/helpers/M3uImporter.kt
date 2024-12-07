@@ -1,7 +1,7 @@
 package com.simplemobiletools.musicplayer.helpers
 
-import com.simplemobiletools.musicplayer.extensions.showErrorToast
-import com.simplemobiletools.musicplayer.extensions.audioHelper
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showErrorToast
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import java.io.File

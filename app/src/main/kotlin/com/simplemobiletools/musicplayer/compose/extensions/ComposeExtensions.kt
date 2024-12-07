@@ -31,8 +31,8 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.compose.system_ui_controller.rememberSystemUiController
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.compose.theme.isLitWell
-import com.simplemobiletools.musicplayer.extensions.darkenColor
-import com.simplemobiletools.musicplayer.extensions.launchViewIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.darkenColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchViewIntent
 
 fun Context.getActivity(): Activity {
     return when (this) {

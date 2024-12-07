@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.musicplayer.dialogs.ConfirmationAlertDialog
-import com.simplemobiletools.musicplayer.extensions.launchViewIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchViewIntent
 
 @Composable
 fun FakeVersionCheck() {

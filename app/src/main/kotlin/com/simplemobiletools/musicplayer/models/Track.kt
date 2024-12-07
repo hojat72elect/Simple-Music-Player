@@ -8,12 +8,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.simplemobiletools.musicplayer.extensions.getFilenameFromPath
-import com.simplemobiletools.musicplayer.extensions.getFormattedDuration
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getFilenameFromPath
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getFormattedDuration
 import com.simplemobiletools.musicplayer.helpers.AlphanumericComparator
 import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
-import com.simplemobiletools.musicplayer.extensions.sortSafely
-import com.simplemobiletools.musicplayer.extensions.toMediaItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toMediaItem
 import com.simplemobiletools.musicplayer.helpers.FLAG_MANUAL_CACHE
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ARTIST_TITLE
 import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_CUSTOM

@@ -1,13 +1,13 @@
 package com.simplemobiletools.musicplayer.new_architecture.home.settings
 
 import android.os.Bundle
-import com.simplemobiletools.musicplayer.extensions.beVisibleIf
-import com.simplemobiletools.musicplayer.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.extensions.viewBinding
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.interfaces.RefreshRecyclerViewListener
 import com.simplemobiletools.musicplayer.databinding.ActivityExcludedFoldersBinding
-import com.simplemobiletools.musicplayer.extensions.config
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 class ExcludedFoldersActivity : BaseSimpleActivity(), RefreshRecyclerViewListener {

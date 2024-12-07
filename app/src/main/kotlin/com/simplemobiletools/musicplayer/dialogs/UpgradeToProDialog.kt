@@ -29,10 +29,10 @@ import com.simplemobiletools.musicplayer.compose.extensions.andThen
 import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.databinding.DialogUpgradeToProBinding
-import com.simplemobiletools.musicplayer.extensions.getAlertDialogBuilder
-import com.simplemobiletools.musicplayer.extensions.launchUpgradeToProIntent
-import com.simplemobiletools.musicplayer.extensions.launchViewIntent
-import com.simplemobiletools.musicplayer.extensions.setupDialogStuff
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchUpgradeToProIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchViewIntent
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 
 class UpgradeToProDialog(val activity: Activity) {
 

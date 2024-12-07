@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.AutoCompleteTextView
-import com.simplemobiletools.musicplayer.extensions.adjustAlpha
-import com.simplemobiletools.musicplayer.extensions.applyColorFilter
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
 
 @SuppressLint("AppCompatCustomView")
 class MyAutoCompleteTextView : AutoCompleteTextView {
