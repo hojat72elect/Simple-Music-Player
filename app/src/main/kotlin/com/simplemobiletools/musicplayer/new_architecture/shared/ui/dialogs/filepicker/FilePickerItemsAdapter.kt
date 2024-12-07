@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withC
 import com.bumptech.glide.request.RequestOptions
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.musicplayer.views.MyRecyclerViewAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemFilepickerListBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.formatSize
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hasOTGConnected

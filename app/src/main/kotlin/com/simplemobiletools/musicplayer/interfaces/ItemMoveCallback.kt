@@ -2,7 +2,7 @@ package com.simplemobiletools.musicplayer.interfaces
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter
+import com.simplemobiletools.musicplayer.views.MyRecyclerViewAdapter
 
 open class ItemMoveCallback(private val mAdapter: ItemTouchHelperContract, private val allowHorizontalDrag: Boolean = false) : ItemTouchHelper.Callback() {
     override fun isLongPressDragEnabled() = false

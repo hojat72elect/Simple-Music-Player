@@ -28,7 +28,7 @@ import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.models.Release
 import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.adapters.ViewPagerAdapter
+import com.simplemobiletools.musicplayer.views.ViewPagerAdapter
 import com.simplemobiletools.musicplayer.databinding.ActivityMainBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.filepicker.FilePickerDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PlaylistDialog

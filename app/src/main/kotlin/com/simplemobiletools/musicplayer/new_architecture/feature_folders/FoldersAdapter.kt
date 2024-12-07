@@ -8,7 +8,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.high
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
+import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemFolderBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config

@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.views
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -22,7 +22,6 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.interfaces.MyActionModeCallback
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import kotlin.math.max
 import kotlin.math.min
 

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.adapters.BaseMusicAdapter
+import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemPlaylistBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PlaylistDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.RemovePlaylistDialog

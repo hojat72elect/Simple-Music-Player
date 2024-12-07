@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.views
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
@@ -12,7 +12,6 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.addTracksToPlaylist
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getBiggerPlaceholder

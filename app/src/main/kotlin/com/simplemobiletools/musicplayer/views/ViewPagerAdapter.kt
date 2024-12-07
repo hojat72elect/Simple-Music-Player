@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.views
 
 import android.view.View
 import android.view.ViewGroup

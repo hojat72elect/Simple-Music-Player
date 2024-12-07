@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.views
 
 import android.content.Context
 import android.util.SparseArray
@@ -13,7 +13,6 @@ import com.simplemobiletools.musicplayer.helpers.PROTECTION_PIN
 import com.simplemobiletools.musicplayer.helpers.isRPlus
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 import com.simplemobiletools.musicplayer.interfaces.SecurityTab
-import com.simplemobiletools.musicplayer.views.MyScrollView
 import com.simplemobiletools.musicplayer.R
 
 

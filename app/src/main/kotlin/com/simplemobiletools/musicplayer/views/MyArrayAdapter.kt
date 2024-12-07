@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.views
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
