@@ -7,8 +7,8 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.compose.extensions.enableEdgeToEdgeSimple
-import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.extensions.enableEdgeToEdgeSimple
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.launchViewIntent
 import com.simplemobiletools.musicplayer.helpers.APP_LICENSES
 import com.simplemobiletools.musicplayer.helpers.LICENSE_ANDROID_LAME
@@ -45,7 +45,7 @@ import com.simplemobiletools.musicplayer.helpers.LICENSE_STETHO
 import com.simplemobiletools.musicplayer.helpers.LICENSE_SUBSAMPLING
 import com.simplemobiletools.musicplayer.helpers.LICENSE_ZIP4J
 import com.simplemobiletools.musicplayer.models.License
-import com.simplemobiletools.musicplayer.compose.screens.LicenseScreen
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.screens.LicenseScreen
 import com.simplemobiletools.musicplayer.helpers.LICENSE_KOTLIN
 import kotlinx.collections.immutable.toImmutableList
 

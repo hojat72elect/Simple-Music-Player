@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.remember
-import com.simplemobiletools.musicplayer.compose.extensions.enableEdgeToEdgeSimple
-import com.simplemobiletools.musicplayer.compose.theme.AppThemeSurface
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.extensions.enableEdgeToEdgeSimple
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.AppThemeSurface
 import com.simplemobiletools.musicplayer.models.LanguageContributor
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.compose.screens.ContributorsScreen
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.screens.ContributorsScreen
 import kotlinx.collections.immutable.toImmutableList
 
 class ContributorsActivity : AppCompatActivity() {

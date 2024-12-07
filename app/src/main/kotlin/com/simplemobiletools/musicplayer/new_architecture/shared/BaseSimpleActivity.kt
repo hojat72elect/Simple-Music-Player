@@ -40,7 +40,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.compose.extensions.DEVELOPER_PLAY_STORE_URL
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.extensions.DEVELOPER_PLAY_STORE_URL
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationAdvancedDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ExportSettingsDialog
