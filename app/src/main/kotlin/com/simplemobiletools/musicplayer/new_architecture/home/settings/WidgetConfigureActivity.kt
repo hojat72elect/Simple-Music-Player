@@ -22,7 +22,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setF
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MyWidgetProvider
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.playback.PlaybackService
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService
 
 class WidgetConfigureActivity : BaseSimpleActivity() {
     private var mBgAlpha = 0f

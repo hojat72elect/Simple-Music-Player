@@ -29,8 +29,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SimpleM
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.toMediaItems
-import com.simplemobiletools.musicplayer.playback.CustomCommands
-import com.simplemobiletools.musicplayer.playback.PlaybackService.Companion.updatePlaybackInfo
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.CustomCommands
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService.Companion.updatePlaybackInfo
 import org.greenrobot.eventbus.EventBus
 import java.io.File
 

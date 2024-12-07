@@ -182,7 +182,7 @@
             android:parentActivityName="com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity" />
 
         <service
-            android:name=".playback.PlaybackService"
+            android:name="com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService"
             android:exported="true"
             android:foregroundServiceType="mediaPlayback">
             <intent-filter>

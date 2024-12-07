@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.playback
+package com.simplemobiletools.musicplayer.new_architecture.shared.playback
 
 import android.os.Bundle
 import android.os.ConditionVariable
@@ -39,10 +39,10 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_S
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NotificationHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PlaybackSetting
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.getPermissionToRequest
-import com.simplemobiletools.musicplayer.playback.library.MediaItemProvider
-import com.simplemobiletools.musicplayer.playback.player.SimpleMusicPlayer
-import com.simplemobiletools.musicplayer.playback.player.initializeSessionAndPlayer
-import com.simplemobiletools.musicplayer.playback.player.updatePlaybackState
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.library.MediaItemProvider
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.player.SimpleMusicPlayer
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.player.initializeSessionAndPlayer
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.player.updatePlaybackState
 import java.util.concurrent.Executors
 import org.greenrobot.eventbus.EventBus
 

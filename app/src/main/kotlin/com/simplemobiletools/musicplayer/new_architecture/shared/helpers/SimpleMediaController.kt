@@ -11,7 +11,7 @@ import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.MoreExecutors
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getOrNull
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.runOnPlayerThread
-import com.simplemobiletools.musicplayer.playback.PlaybackService
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService
 import java.util.concurrent.Executors
 
 class SimpleMediaController(val context: Application) {

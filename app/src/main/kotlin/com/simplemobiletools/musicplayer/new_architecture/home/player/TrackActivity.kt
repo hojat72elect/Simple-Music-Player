@@ -60,8 +60,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SEEK_IN
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.PlaybackSpeedListener
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
-import com.simplemobiletools.musicplayer.playback.CustomCommands
-import com.simplemobiletools.musicplayer.playback.PlaybackService
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.CustomCommands
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService
 import java.text.DecimalFormat
 import kotlin.math.min
 import kotlin.time.Duration.Companion.milliseconds

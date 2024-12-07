@@ -19,7 +19,7 @@ import com.simplemobiletools.musicplayer.new_architecture.home.splash.SplashActi
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.maybePreparePlayer
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.togglePlayback
-import com.simplemobiletools.musicplayer.playback.PlaybackService
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService
 
 class MyWidgetProvider : AppWidgetProvider() {
 

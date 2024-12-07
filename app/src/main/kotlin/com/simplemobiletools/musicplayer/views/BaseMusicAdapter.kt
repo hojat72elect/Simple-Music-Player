@@ -22,7 +22,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.show
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.ensureActivityNotDestroyed
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TagHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
-import com.simplemobiletools.musicplayer.playback.PlaybackService
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService
 
 abstract class BaseMusicAdapter<Type>(
     var items: ArrayList<Type>,

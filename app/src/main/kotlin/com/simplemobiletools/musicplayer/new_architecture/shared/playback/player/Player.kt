@@ -1,6 +1,6 @@
 @file:UnstableApi
 
-package com.simplemobiletools.musicplayer.playback.player
+package com.simplemobiletools.musicplayer.new_architecture.shared.playback.player
 
 import android.app.PendingIntent
 import android.content.Context
@@ -19,9 +19,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setR
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SEEK_INTERVAL_MS
 import com.simplemobiletools.musicplayer.new_architecture.MainActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getCustomLayout
-import com.simplemobiletools.musicplayer.playback.PlaybackService
-import com.simplemobiletools.musicplayer.playback.PlaybackService.Companion.updatePlaybackInfo
-import com.simplemobiletools.musicplayer.playback.SimpleEqualizer
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService.Companion.updatePlaybackInfo
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.SimpleEqualizer
 
 private const val PLAYER_THREAD = "PlayerThread"
 

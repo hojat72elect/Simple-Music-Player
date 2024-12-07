@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.playback
+package com.simplemobiletools.musicplayer.new_architecture.shared.playback
 
 import android.os.Bundle
 import androidx.media3.session.SessionCommand

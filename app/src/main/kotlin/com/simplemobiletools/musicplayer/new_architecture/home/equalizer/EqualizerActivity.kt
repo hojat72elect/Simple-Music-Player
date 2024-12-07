@@ -26,7 +26,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.upda
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EQUALIZER_PRESET_CUSTOM
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.playback.SimpleEqualizer
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.SimpleEqualizer
 import java.text.DecimalFormat
 import kotlin.math.log10
 import kotlin.math.pow

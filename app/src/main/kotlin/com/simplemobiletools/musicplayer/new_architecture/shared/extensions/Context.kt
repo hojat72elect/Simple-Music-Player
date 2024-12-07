@@ -135,7 +135,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isSPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.proPackages
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.tabsList
-import com.simplemobiletools.musicplayer.playback.CustomCommands
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.CustomCommands
 import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.views.MyAppCompatSpinner
 import com.simplemobiletools.musicplayer.views.MyAutoCompleteTextView

@@ -78,7 +78,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Eve
 import com.simplemobiletools.musicplayer.new_architecture.home.equalizer.EqualizerActivity
 import com.simplemobiletools.musicplayer.new_architecture.home.settings.SettingsActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleMusicActivity
-import com.simplemobiletools.musicplayer.playback.CustomCommands
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.CustomCommands
 import java.io.FileOutputStream
 import me.grantland.widget.AutofitHelper
 import org.greenrobot.eventbus.EventBus

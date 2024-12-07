@@ -32,7 +32,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemTouchH
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.StartReorderDragListener
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.playback.CustomCommands
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.CustomCommands
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 
 class QueueAdapter(

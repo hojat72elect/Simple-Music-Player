@@ -26,7 +26,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.view
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHOW_FILENAME_ALWAYS
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHOW_FILENAME_IF_UNAVAILABLE
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHOW_FILENAME_NEVER
-import com.simplemobiletools.musicplayer.playback.CustomCommands
+import com.simplemobiletools.musicplayer.new_architecture.shared.playback.CustomCommands
 import java.util.Locale
 import kotlin.system.exitProcess
 
