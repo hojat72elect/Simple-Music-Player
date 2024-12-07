@@ -27,7 +27,7 @@ import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksA
 import com.simplemobiletools.musicplayer.databinding.ActivityTracksBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ChangeSortingDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ExportPlaylistDialog
-import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.FilePickerDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.filepicker.FilePickerDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone

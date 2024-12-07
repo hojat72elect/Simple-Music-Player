@@ -1,9 +1,10 @@
-package com.simplemobiletools.musicplayer.adapters
+package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.filepicker
 
 import android.util.TypedValue
 import android.view.Menu
 import android.view.ViewGroup
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.adapters.MyRecyclerViewAdapter
 import com.simplemobiletools.musicplayer.databinding.FilepickerFavoriteBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getTextSize
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity

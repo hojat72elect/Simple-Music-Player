@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs
+package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.filepicker
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -13,8 +13,6 @@ import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.adapters.FilePickerFavoritesAdapter
-import com.simplemobiletools.musicplayer.adapters.FilePickerItemsAdapter
 import com.simplemobiletools.musicplayer.databinding.DialogFilepickerBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.areSystemAnimationsEnabled
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
@@ -51,6 +49,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setu
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.CreateNewFolderDialog
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.StoragePickerDialog
 import com.simplemobiletools.musicplayer.views.Breadcrumbs
 import java.io.File
 
