@@ -7,7 +7,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActiv
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getFilenameExtension
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getFilenameFromPath
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getTempFile
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import org.jaudiotagger.audio.AudioFileIO
 import org.jaudiotagger.audio.SupportedFileFormat
 import org.jaudiotagger.tag.FieldKey

@@ -26,9 +26,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toMe
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.indexOfTrackOrNull
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_NEXT_MEDIA_ID
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SimpleMediaController
-import com.simplemobiletools.musicplayer.models.Events
-import com.simplemobiletools.musicplayer.models.Track
-import com.simplemobiletools.musicplayer.models.toMediaItems
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.toMediaItems
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 import com.simplemobiletools.musicplayer.playback.PlaybackService.Companion.updatePlaybackInfo
 import org.greenrobot.eventbus.EventBus

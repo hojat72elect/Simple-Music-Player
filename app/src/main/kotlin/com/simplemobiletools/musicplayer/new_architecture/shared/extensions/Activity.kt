@@ -31,8 +31,8 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogTitleBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.*
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.*
-import com.simplemobiletools.musicplayer.models.SharedTheme
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.SharedTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.views.MyTextView
 
 fun Activity.launchViewIntent(url: String) {

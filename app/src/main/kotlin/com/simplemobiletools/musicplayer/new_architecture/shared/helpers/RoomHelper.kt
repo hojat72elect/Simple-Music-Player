@@ -14,8 +14,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getL
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getStringValue
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getTitle
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.queryCursor
-import com.simplemobiletools.musicplayer.models.Events
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import java.io.File
 import kotlin.math.max
 import kotlin.math.min

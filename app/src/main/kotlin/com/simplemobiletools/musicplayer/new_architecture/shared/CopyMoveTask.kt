@@ -41,7 +41,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLIC
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.getConflictResolution
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.CopyMoveListener
-import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream

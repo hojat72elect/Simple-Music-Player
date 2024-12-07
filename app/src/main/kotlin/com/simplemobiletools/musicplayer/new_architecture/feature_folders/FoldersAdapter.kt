@@ -12,9 +12,9 @@ import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemFolderBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
-import com.simplemobiletools.musicplayer.models.Events
-import com.simplemobiletools.musicplayer.models.Folder
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Folder
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import org.greenrobot.eventbus.EventBus
 
 class FoldersAdapter(

@@ -21,8 +21,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.view
 import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ARTIST
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_ARTISTS
-import com.simplemobiletools.musicplayer.models.Artist
-import com.simplemobiletools.musicplayer.models.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.sortSafely
 
 // Artists -> Albums -> Tracks
 class ArtistsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {

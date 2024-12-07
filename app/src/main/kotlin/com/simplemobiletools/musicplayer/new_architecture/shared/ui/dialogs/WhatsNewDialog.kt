@@ -29,7 +29,7 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogWhatsNewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.models.Release
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Release
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

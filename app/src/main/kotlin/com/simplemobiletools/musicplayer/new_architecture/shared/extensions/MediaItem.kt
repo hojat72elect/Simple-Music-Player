@@ -25,12 +25,12 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_P
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_TITLE
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_TRACK_ID
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_YEAR
-import com.simplemobiletools.musicplayer.models.Album
-import com.simplemobiletools.musicplayer.models.Artist
-import com.simplemobiletools.musicplayer.models.Folder
-import com.simplemobiletools.musicplayer.models.Genre
-import com.simplemobiletools.musicplayer.models.Playlist
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Folder
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 
 fun buildMediaItem(
     mediaId: String,

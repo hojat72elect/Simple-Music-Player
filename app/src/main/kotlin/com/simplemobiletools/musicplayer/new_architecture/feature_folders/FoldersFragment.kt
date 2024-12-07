@@ -23,8 +23,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.view
 import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.FOLDER
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_FOLDERS
-import com.simplemobiletools.musicplayer.models.Folder
-import com.simplemobiletools.musicplayer.models.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Folder
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.sortSafely
 
 class FoldersFragment(context: Context, attributeSet: AttributeSet) :
     MyViewPagerFragment(context, attributeSet) {

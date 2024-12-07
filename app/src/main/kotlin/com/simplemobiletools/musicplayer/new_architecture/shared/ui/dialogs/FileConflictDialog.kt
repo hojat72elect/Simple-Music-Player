@@ -11,7 +11,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLIC
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_MERGE
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_OVERWRITE
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_SKIP
-import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
 
 class FileConflictDialog(
     val activity: Activity, private val fileDirItem: FileDirItem, private val showApplyToAllCheckbox: Boolean,

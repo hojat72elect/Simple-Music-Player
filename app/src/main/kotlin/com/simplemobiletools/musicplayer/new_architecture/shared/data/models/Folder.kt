@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.models
+package com.simplemobiletools.musicplayer.new_architecture.shared.data.models
 
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.AlphanumericComparator
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SORT_DESCENDING

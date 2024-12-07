@@ -42,7 +42,7 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.models.RadioItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.RadioItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 

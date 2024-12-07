@@ -6,12 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.simplemobiletools.musicplayer.models.Album
-import com.simplemobiletools.musicplayer.models.Artist
-import com.simplemobiletools.musicplayer.models.Genre
-import com.simplemobiletools.musicplayer.models.Playlist
-import com.simplemobiletools.musicplayer.models.QueueItem
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.QueueItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 

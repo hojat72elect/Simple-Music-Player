@@ -16,8 +16,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audi
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getGenreCoverArt
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.indexOfFirstOrNull
-import com.simplemobiletools.musicplayer.models.Genre
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 
 class GenresAdapter(activity: BaseSimpleActivity, items: ArrayList<Genre>, recyclerView: MyRecyclerView, itemClick: (Any) -> Unit) :
     BaseMusicAdapter<Genre>(items, activity, recyclerView, itemClick), RecyclerViewFastScroller.OnPopupTextUpdate {

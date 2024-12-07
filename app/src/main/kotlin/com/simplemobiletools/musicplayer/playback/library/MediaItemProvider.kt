@@ -25,8 +25,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_FOL
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_GENRES
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_PLAYLISTS
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_TRACKS
-import com.simplemobiletools.musicplayer.models.QueueItem
-import com.simplemobiletools.musicplayer.models.toMediaItems
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.QueueItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.toMediaItems
 import java.util.concurrent.Executors
 
 private const val STATE_CREATED = 1

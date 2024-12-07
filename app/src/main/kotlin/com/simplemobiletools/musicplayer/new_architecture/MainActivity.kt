@@ -23,9 +23,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PERMISS
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isQPlus
-import com.simplemobiletools.musicplayer.models.FAQItem
-import com.simplemobiletools.musicplayer.models.RadioItem
-import com.simplemobiletools.musicplayer.models.Release
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FAQItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.RadioItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Release
 import com.simplemobiletools.musicplayer.BuildConfig
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.views.ViewPagerAdapter
@@ -74,7 +74,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_GEN
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_PLAYLISTS
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.getPermissionToRequest
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.tabsList
-import com.simplemobiletools.musicplayer.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
 import com.simplemobiletools.musicplayer.new_architecture.home.equalizer.EqualizerActivity
 import com.simplemobiletools.musicplayer.new_architecture.home.settings.SettingsActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleMusicActivity

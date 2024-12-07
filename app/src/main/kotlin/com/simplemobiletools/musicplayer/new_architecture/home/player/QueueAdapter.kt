@@ -30,7 +30,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_S
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemMoveCallback
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemTouchHelperContract
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.StartReorderDragListener
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 import com.simplemobiletools.musicplayer.views.MyRecyclerView

@@ -21,8 +21,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.view
 import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.GENRE
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_GENRES
-import com.simplemobiletools.musicplayer.models.Genre
-import com.simplemobiletools.musicplayer.models.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.sortSafely
 
 class GenresFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet) {
     private var genres = ArrayList<Genre>()

@@ -39,9 +39,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.Navigat
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SAVE_DISCARD_PROMPT_INTERVAL
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isSPlus
-import com.simplemobiletools.musicplayer.models.MyTheme
-import com.simplemobiletools.musicplayer.models.RadioItem
-import com.simplemobiletools.musicplayer.models.SharedTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.MyTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.RadioItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.SharedTheme
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 class CustomizationActivity : BaseSimpleActivity() {

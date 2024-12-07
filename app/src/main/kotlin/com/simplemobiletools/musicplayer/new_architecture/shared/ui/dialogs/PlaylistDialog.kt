@@ -13,7 +13,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.show
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
 
 class PlaylistDialog(
     val activity: Activity,

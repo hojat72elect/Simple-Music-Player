@@ -12,14 +12,14 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.play
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.queueDAO
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.tracksDAO
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.indexOfFirstOrNull
-import com.simplemobiletools.musicplayer.models.Album
-import com.simplemobiletools.musicplayer.models.Artist
-import com.simplemobiletools.musicplayer.models.Folder
-import com.simplemobiletools.musicplayer.models.Genre
-import com.simplemobiletools.musicplayer.models.Playlist
-import com.simplemobiletools.musicplayer.models.QueueItem
-import com.simplemobiletools.musicplayer.models.Track
-import com.simplemobiletools.musicplayer.models.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Folder
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.QueueItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.sortSafely
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 

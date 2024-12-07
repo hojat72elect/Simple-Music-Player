@@ -21,8 +21,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.open
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_TRACKS
-import com.simplemobiletools.musicplayer.models.Track
-import com.simplemobiletools.musicplayer.models.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.sortSafely
 
 // Artists -> Albums -> Tracks
 class TracksFragment(context: Context, attributeSet: AttributeSet) :

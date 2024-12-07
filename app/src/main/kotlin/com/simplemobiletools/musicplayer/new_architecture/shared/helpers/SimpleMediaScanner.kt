@@ -32,11 +32,11 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.quer
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.rescanPaths
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.sdCardPath
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
-import com.simplemobiletools.musicplayer.models.Album
-import com.simplemobiletools.musicplayer.models.Artist
-import com.simplemobiletools.musicplayer.models.Genre
-import com.simplemobiletools.musicplayer.models.Playlist
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import java.io.File
 import java.io.FileInputStream
 

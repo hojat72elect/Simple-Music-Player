@@ -44,7 +44,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.LICENSE
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.LICENSE_STETHO
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.LICENSE_SUBSAMPLING
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.LICENSE_ZIP4J
-import com.simplemobiletools.musicplayer.models.License
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.License
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.screens.LicenseScreen
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.LICENSE_KOTLIN
 import kotlinx.collections.immutable.toImmutableList

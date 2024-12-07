@@ -26,7 +26,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.shuf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isReallyPlaying
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.lazySmoothScroll
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.RoomHelper
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 
 class QueueActivity : SimpleControllerActivity() {

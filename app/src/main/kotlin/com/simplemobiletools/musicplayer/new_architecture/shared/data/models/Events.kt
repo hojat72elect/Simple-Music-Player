@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.models
+package com.simplemobiletools.musicplayer.new_architecture.shared.data.models
 
 class Events {
     class SleepTimerChanged(val seconds: Int)

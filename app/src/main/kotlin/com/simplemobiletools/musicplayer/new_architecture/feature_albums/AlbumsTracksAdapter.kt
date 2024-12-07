@@ -23,10 +23,10 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audi
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlbumCoverArt
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getTrackCoverArt
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.indexOfFirstOrNull
-import com.simplemobiletools.musicplayer.models.Album
-import com.simplemobiletools.musicplayer.models.AlbumSection
-import com.simplemobiletools.musicplayer.models.ListItem
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.AlbumSection
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.ListItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 // we show both albums and individual tracks here

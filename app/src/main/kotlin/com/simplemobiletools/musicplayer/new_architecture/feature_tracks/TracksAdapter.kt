@@ -31,9 +31,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.inde
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemMoveCallback
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemTouchHelperContract
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.StartReorderDragListener
-import com.simplemobiletools.musicplayer.models.Events
-import com.simplemobiletools.musicplayer.models.Playlist
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import org.greenrobot.eventbus.EventBus

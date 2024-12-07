@@ -173,10 +173,10 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isTiram
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isUpsideDownCakePlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.sumByLong
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.CopyMoveListener
-import com.simplemobiletools.musicplayer.models.Android30RenameFormat
-import com.simplemobiletools.musicplayer.models.FAQItem
-import com.simplemobiletools.musicplayer.models.FileDirItem
-import com.simplemobiletools.musicplayer.models.Release
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Android30RenameFormat
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FAQItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Release
 import com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity
 import com.simplemobiletools.musicplayer.new_architecture.home.settings.CustomizationActivity
 import java.io.File

@@ -4,7 +4,7 @@ import android.content.Context
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MD5
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NOMEDIA
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.audioExtensions
-import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
 import java.io.File
 
 fun File.toFileDirItem(context: Context) = FileDirItem(absolutePath, name, context.getIsPathDirectory(absolutePath), 0, length(), lastModified())

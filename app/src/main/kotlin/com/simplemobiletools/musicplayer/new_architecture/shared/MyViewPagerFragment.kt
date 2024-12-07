@@ -3,7 +3,7 @@ package com.simplemobiletools.musicplayer.new_architecture.shared
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 
 abstract class MyViewPagerFragment(context: Context, attributeSet: AttributeSet) : RelativeLayout(context, attributeSet) {
     abstract fun setupFragment(activity: BaseSimpleActivity)

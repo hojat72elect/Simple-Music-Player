@@ -11,7 +11,7 @@ import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.RadioGroupDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.DARK_GREY
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NavigationIcon
-import com.simplemobiletools.musicplayer.models.RadioItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.RadioItem
 import com.simplemobiletools.musicplayer.views.MySeekBar
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivityEqualizerBinding

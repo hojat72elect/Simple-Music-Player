@@ -23,9 +23,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.view
 import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PLAYLIST
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_PLAYLISTS
-import com.simplemobiletools.musicplayer.models.Events
-import com.simplemobiletools.musicplayer.models.Playlist
-import com.simplemobiletools.musicplayer.models.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.sortSafely
 import org.greenrobot.eventbus.EventBus
 
 class PlaylistsFragment(context: Context, attributeSet: AttributeSet) :

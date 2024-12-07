@@ -21,7 +21,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toas
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TagHelper
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 
 @RequiresApi(Build.VERSION_CODES.O)
 class EditDialog(

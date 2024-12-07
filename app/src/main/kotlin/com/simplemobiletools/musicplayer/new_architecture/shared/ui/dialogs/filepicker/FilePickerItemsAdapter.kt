@@ -30,7 +30,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getT
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isGif
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isPathOnOTG
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isRestrictedSAFOnlyRoot
-import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
 import java.util.Locale
 
 class FilePickerItemsAdapter(

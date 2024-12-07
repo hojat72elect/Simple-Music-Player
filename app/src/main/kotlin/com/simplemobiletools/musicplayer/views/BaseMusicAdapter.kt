@@ -21,7 +21,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.shar
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showTrackProperties
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.ensureActivityNotDestroyed
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TagHelper
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 
 abstract class BaseMusicAdapter<Type>(

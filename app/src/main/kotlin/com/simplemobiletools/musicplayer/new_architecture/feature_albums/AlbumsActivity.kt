@@ -20,11 +20,11 @@ import com.simplemobiletools.musicplayer.databinding.ActivityAlbumsBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ALBUM
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ARTIST
-import com.simplemobiletools.musicplayer.models.Artist
-import com.simplemobiletools.musicplayer.models.ListItem
-import com.simplemobiletools.musicplayer.models.AlbumSection
-import com.simplemobiletools.musicplayer.models.Album
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.ListItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.AlbumSection
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 
 
 class AlbumsActivity : SimpleMusicActivity() {

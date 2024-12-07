@@ -48,7 +48,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isVi
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.CreateNewFolderDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.StoragePickerDialog
 import com.simplemobiletools.musicplayer.views.Breadcrumbs

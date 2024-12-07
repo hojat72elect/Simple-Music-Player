@@ -9,7 +9,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.IS_CUST
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isQPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isTiramisuPlus
-import com.simplemobiletools.musicplayer.models.RadioItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.RadioItem
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.databinding.ActivitySettingsBinding

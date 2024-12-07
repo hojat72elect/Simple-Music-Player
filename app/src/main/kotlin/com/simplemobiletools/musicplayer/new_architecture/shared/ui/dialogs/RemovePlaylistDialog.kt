@@ -6,7 +6,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setu
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogRemovePlaylistBinding
-import com.simplemobiletools.musicplayer.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
 
 class RemovePlaylistDialog(val activity: Activity, val playlist: Playlist? = null, val callback: (deleteFiles: Boolean) -> Unit) {
     private val binding by activity.viewBinding(DialogRemovePlaylistBinding::inflate)

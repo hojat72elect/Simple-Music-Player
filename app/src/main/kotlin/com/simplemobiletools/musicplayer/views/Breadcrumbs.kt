@@ -22,7 +22,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.humanizePath
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onGlobalLayout
-import com.simplemobiletools.musicplayer.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
 
 class Breadcrumbs(context: Context, attrs: AttributeSet) : HorizontalScrollView(context, attrs) {
     private val inflater =

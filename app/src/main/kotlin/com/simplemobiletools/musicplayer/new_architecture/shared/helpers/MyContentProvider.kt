@@ -2,7 +2,7 @@ package com.simplemobiletools.musicplayer.new_architecture.shared.helpers
 
 import android.content.ContentValues
 import android.net.Uri
-import com.simplemobiletools.musicplayer.models.SharedTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.SharedTheme
 
 class MyContentProvider {
     companion object {

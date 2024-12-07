@@ -97,7 +97,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.them
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.model.Theme
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.darkenColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getContrastColor
-import com.simplemobiletools.musicplayer.models.BlockedNumber
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.BlockedNumber
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.extensions.isScrollingUp
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.extensions.listDragHandlerLongKey

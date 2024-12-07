@@ -28,8 +28,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_FOL
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_GENRES
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_PLAYLISTS
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_TRACKS
-import com.simplemobiletools.musicplayer.models.Playlist
-import com.simplemobiletools.musicplayer.models.RadioItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.RadioItem
 
 class ChangeSortingDialog(
     val activity: Activity,

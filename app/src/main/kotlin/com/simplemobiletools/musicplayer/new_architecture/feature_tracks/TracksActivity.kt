@@ -56,14 +56,14 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MIME_TY
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PLAYLIST
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.RoomHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.getPermissionToRequest
-import com.simplemobiletools.musicplayer.models.Album
-import com.simplemobiletools.musicplayer.models.AlbumHeader
-import com.simplemobiletools.musicplayer.models.Events
-import com.simplemobiletools.musicplayer.models.Genre
-import com.simplemobiletools.musicplayer.models.ListItem
-import com.simplemobiletools.musicplayer.models.Playlist
-import com.simplemobiletools.musicplayer.models.Track
-import com.simplemobiletools.musicplayer.models.sortSafely
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.AlbumHeader
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.ListItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.sortSafely
 import java.io.OutputStream
 import org.greenrobot.eventbus.EventBus
 

@@ -11,7 +11,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureB
 import com.simplemobiletools.musicplayer.databinding.DialogSelectPlaylistBinding
 import com.simplemobiletools.musicplayer.databinding.ItemSelectPlaylistBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
-import com.simplemobiletools.musicplayer.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
 
 class SelectPlaylistDialog(val activity: Activity, val callback: (playlistId: Int) -> Unit) {
     private var dialog: AlertDialog? = null

@@ -58,7 +58,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.view
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PlaybackSetting
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SEEK_INTERVAL_S
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.PlaybackSpeedListener
-import com.simplemobiletools.musicplayer.models.Track
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 import com.simplemobiletools.musicplayer.playback.PlaybackService

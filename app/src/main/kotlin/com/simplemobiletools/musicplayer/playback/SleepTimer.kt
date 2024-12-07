@@ -2,7 +2,7 @@ package com.simplemobiletools.musicplayer.playback
 
 import android.os.CountDownTimer
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
-import com.simplemobiletools.musicplayer.models.Events
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Events
 import org.greenrobot.eventbus.EventBus
 
 private var isActive = false

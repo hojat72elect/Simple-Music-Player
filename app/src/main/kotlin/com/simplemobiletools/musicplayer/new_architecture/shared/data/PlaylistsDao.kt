@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.simplemobiletools.musicplayer.models.Playlist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
 
 @Dao
 interface PlaylistsDao {

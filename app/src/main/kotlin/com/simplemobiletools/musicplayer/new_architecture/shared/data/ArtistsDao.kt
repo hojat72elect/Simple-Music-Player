@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.simplemobiletools.musicplayer.models.Artist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
 
 @Dao
 interface ArtistsDao {

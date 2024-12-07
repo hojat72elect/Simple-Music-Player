@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.models
+package com.simplemobiletools.musicplayer.new_architecture.shared.data.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

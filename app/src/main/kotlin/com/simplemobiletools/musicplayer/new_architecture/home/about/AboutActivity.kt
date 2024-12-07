@@ -33,7 +33,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.APP_LIC
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.APP_NAME
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.APP_VERSION_NAME
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHOW_FAQ_BEFORE_MAIL
-import com.simplemobiletools.musicplayer.models.FAQItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FAQItem
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.screens.AboutScreen
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.screens.AboutSection

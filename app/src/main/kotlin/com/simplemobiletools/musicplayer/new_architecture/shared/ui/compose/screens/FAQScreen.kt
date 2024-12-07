@@ -21,7 +21,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.them
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.SimpleTheme
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.fromHtml
-import com.simplemobiletools.musicplayer.models.FAQItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FAQItem
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
