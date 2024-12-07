@@ -8,7 +8,7 @@ import android.view.ScaleGestureDetector
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.interfaces.RecyclerScrollCallback
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.RecyclerScrollCallback
 
 // drag selection is based on https://github.com/afollestad/drag-select-recyclerview
 open class MyRecyclerView : RecyclerView {

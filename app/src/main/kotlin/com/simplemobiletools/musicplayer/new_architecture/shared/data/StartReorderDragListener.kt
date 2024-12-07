@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.interfaces
+package com.simplemobiletools.musicplayer.new_architecture.shared.data
 
 import androidx.recyclerview.widget.RecyclerView
 

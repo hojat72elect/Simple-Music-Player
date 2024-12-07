@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isRTLLayout
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onGlobalLayout
-import com.simplemobiletools.musicplayer.interfaces.LineColorPickerListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.LineColorPickerListener
 import kotlin.math.max
 import kotlin.math.min
 

@@ -11,7 +11,7 @@ import com.simplemobiletools.musicplayer.databinding.DialogSecurityBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isBiometricIdAvailable
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isFingerPrintSensorAvailable
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onPageChangeListener
-import com.simplemobiletools.musicplayer.interfaces.HashListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.HashListener
 import com.simplemobiletools.musicplayer.views.MyDialogViewPager
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone

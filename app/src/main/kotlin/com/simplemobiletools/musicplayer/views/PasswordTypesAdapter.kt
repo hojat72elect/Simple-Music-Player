@@ -11,8 +11,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECT
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PATTERN
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PIN
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
-import com.simplemobiletools.musicplayer.interfaces.HashListener
-import com.simplemobiletools.musicplayer.interfaces.SecurityTab
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.HashListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.SecurityTab
 import com.simplemobiletools.musicplayer.R
 
 

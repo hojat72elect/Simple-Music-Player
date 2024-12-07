@@ -21,7 +21,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onGlobalLayout
-import com.simplemobiletools.musicplayer.interfaces.MyActionModeCallback
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.MyActionModeCallback
 import kotlin.math.max
 import kotlin.math.min
 

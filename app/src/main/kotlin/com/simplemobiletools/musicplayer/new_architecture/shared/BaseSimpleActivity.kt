@@ -172,7 +172,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isTiramisuPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isUpsideDownCakePlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.sumByLong
-import com.simplemobiletools.musicplayer.interfaces.CopyMoveListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.CopyMoveListener
 import com.simplemobiletools.musicplayer.models.Android30RenameFormat
 import com.simplemobiletools.musicplayer.models.FAQItem
 import com.simplemobiletools.musicplayer.models.FileDirItem

@@ -40,7 +40,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLIC
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_SKIP
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.getConflictResolution
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isOreoPlus
-import com.simplemobiletools.musicplayer.interfaces.CopyMoveListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.CopyMoveListener
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import java.io.File
 import java.io.InputStream

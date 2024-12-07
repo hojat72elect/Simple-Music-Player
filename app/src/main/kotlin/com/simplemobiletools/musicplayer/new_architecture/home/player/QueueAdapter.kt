@@ -27,9 +27,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.shuf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.swap
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toTrack
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_SHUFFLE_INDICES
-import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
-import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
-import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemMoveCallback
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemTouchHelperContract
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.StartReorderDragListener
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.playback.CustomCommands

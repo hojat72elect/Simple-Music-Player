@@ -14,7 +14,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.humanizePath
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupViewBackground
-import com.simplemobiletools.musicplayer.interfaces.RefreshRecyclerViewListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.RefreshRecyclerViewListener
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.databinding.ItemExcludedFolderBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config

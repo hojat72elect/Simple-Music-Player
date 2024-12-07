@@ -49,7 +49,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getA
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toHex
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
-import com.simplemobiletools.musicplayer.interfaces.LineColorPickerListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.LineColorPickerListener
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 
 class LineColorPickerDialog(

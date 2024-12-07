@@ -5,7 +5,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVi
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NavigationIcon
-import com.simplemobiletools.musicplayer.interfaces.RefreshRecyclerViewListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.RefreshRecyclerViewListener
 import com.simplemobiletools.musicplayer.databinding.ActivityExcludedFoldersBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity

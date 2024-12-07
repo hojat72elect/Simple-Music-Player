@@ -19,8 +19,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PATTERN
-import com.simplemobiletools.musicplayer.interfaces.BaseSecurityTab
-import com.simplemobiletools.musicplayer.interfaces.HashListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.BaseSecurityTab
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.HashListener
 
 class PatternTab(context: Context, attrs: AttributeSet) : BaseSecurityTab(context, attrs) {
     private var scrollView: MyScrollView? = null

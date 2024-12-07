@@ -28,9 +28,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ALL_TRA
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PLAYER_SORT_BY_CUSTOM
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.indexOfFirstOrNull
-import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
-import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
-import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemMoveCallback
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.ItemTouchHelperContract
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.StartReorderDragListener
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.models.Track

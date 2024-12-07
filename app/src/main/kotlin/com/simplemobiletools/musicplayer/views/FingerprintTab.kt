@@ -18,8 +18,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_FINGERPRINT
-import com.simplemobiletools.musicplayer.interfaces.HashListener
-import com.simplemobiletools.musicplayer.interfaces.SecurityTab
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.HashListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.SecurityTab
 
 class FingerprintTab(context: Context, attrs: AttributeSet) : RelativeLayout(context, attrs),
     SecurityTab {

@@ -6,12 +6,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.simplemobiletools.musicplayer.interfaces.AlbumsDao
-import com.simplemobiletools.musicplayer.interfaces.ArtistsDao
-import com.simplemobiletools.musicplayer.interfaces.GenresDao
-import com.simplemobiletools.musicplayer.interfaces.PlaylistsDao
-import com.simplemobiletools.musicplayer.interfaces.QueueItemsDao
-import com.simplemobiletools.musicplayer.interfaces.SongsDao
 import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.Artist
 import com.simplemobiletools.musicplayer.models.Genre

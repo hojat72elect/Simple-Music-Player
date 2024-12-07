@@ -11,8 +11,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isWhiteTheme
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.DARK_GREY
-import com.simplemobiletools.musicplayer.interfaces.HashListener
-import com.simplemobiletools.musicplayer.interfaces.SecurityTab
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.HashListener
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.SecurityTab
 
 class BiometricIdTab(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs),
     SecurityTab {
