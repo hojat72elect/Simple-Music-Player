@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.addTracksToPlaylist
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getBiggerPlaceholder
@@ -20,7 +20,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isSa
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.shareFiles
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showTrackProperties
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.ensureActivityNotDestroyed
-import com.simplemobiletools.musicplayer.helpers.TagHelper
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TagHelper
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 

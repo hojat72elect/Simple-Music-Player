@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PermissionRequiredDialog
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentTracksBinding
@@ -20,7 +20,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.medi
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.openNotificationSettings
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
-import com.simplemobiletools.musicplayer.helpers.TAB_TRACKS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_TRACKS
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.models.sortSafely
 

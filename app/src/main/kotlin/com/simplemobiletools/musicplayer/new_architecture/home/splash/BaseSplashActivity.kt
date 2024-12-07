@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.checkAppIconColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.checkAppSideloading
-import com.simplemobiletools.musicplayer.helpers.SIDELOADING_TRUE
-import com.simplemobiletools.musicplayer.helpers.SIDELOADING_UNCHECKED
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SIDELOADING_TRUE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SIDELOADING_UNCHECKED
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getSharedTheme
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isThankYouInstalled

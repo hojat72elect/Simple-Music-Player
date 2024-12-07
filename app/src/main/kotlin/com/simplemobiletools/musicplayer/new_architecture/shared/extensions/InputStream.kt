@@ -1,6 +1,6 @@
 package com.simplemobiletools.musicplayer.new_architecture.shared.extensions
 
-import com.simplemobiletools.musicplayer.helpers.MD5
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MD5
 import java.io.InputStream
 import java.security.MessageDigest
 

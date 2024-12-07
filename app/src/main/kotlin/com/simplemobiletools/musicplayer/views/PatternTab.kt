@@ -18,7 +18,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.appl
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_PATTERN
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PATTERN
 import com.simplemobiletools.musicplayer.interfaces.BaseSecurityTab
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 

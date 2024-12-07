@@ -10,7 +10,7 @@ import androidx.compose.ui.res.colorResource
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.extensions.config
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.isInDarkThemeAndSurfaceIsNotLitWell
-import com.simplemobiletools.musicplayer.helpers.isSPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isSPlus
 
 @Stable
 sealed class Theme : CommonTheme {

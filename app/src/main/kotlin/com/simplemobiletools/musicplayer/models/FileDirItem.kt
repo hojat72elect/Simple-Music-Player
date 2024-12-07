@@ -31,14 +31,14 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isPa
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isRestrictedSAFOnlyRoot
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isVideoFast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.normalizeString
-import com.simplemobiletools.musicplayer.helpers.AlphanumericComparator
-import com.simplemobiletools.musicplayer.helpers.SORT_BY_DATE_MODIFIED
-import com.simplemobiletools.musicplayer.helpers.SORT_BY_EXTENSION
-import com.simplemobiletools.musicplayer.helpers.SORT_BY_NAME
-import com.simplemobiletools.musicplayer.helpers.SORT_BY_SIZE
-import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
-import com.simplemobiletools.musicplayer.helpers.SORT_USE_NUMERIC_VALUE
-import com.simplemobiletools.musicplayer.helpers.isNougatPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.AlphanumericComparator
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SORT_BY_DATE_MODIFIED
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SORT_BY_EXTENSION
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SORT_BY_NAME
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SORT_BY_SIZE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SORT_DESCENDING
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SORT_USE_NUMERIC_VALUE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isNougatPlus
 import java.io.File
 
 open class FileDirItem(

@@ -1,6 +1,6 @@
 package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs
 
-import com.simplemobiletools.musicplayer.helpers.isQPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isQPlus
 import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
@@ -10,13 +10,13 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.conf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
-import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
-import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
-import com.simplemobiletools.musicplayer.helpers.TAB_GENRES
-import com.simplemobiletools.musicplayer.helpers.TAB_PLAYLISTS
-import com.simplemobiletools.musicplayer.helpers.TAB_TRACKS
-import com.simplemobiletools.musicplayer.helpers.allTabsMask
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_ALBUMS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_ARTISTS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_FOLDERS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_GENRES
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_PLAYLISTS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_TRACKS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.allTabsMask
 
 
 class ManageVisibleTabsDialog(

@@ -13,7 +13,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.conf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getArtistCoverArt
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.highlightTextPart
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupViewBackground
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.indexOfFirstOrNull
 import com.simplemobiletools.musicplayer.models.Artist
 import com.simplemobiletools.musicplayer.models.Track

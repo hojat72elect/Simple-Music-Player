@@ -7,10 +7,10 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.base
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.helpers.CONFLICT_KEEP_BOTH
-import com.simplemobiletools.musicplayer.helpers.CONFLICT_MERGE
-import com.simplemobiletools.musicplayer.helpers.CONFLICT_OVERWRITE
-import com.simplemobiletools.musicplayer.helpers.CONFLICT_SKIP
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_KEEP_BOTH
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_MERGE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_OVERWRITE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_SKIP
 import com.simplemobiletools.musicplayer.models.FileDirItem
 
 class FileConflictDialog(

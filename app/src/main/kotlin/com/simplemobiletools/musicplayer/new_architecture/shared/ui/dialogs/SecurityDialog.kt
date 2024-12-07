@@ -22,11 +22,11 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onGlobalLayout
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onTabSelectionChanged
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_FINGERPRINT
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_PATTERN
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_PIN
-import com.simplemobiletools.musicplayer.helpers.SHOW_ALL_TABS
-import com.simplemobiletools.musicplayer.helpers.isRPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_FINGERPRINT
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PATTERN
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PIN
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHOW_ALL_TABS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
 
 class SecurityDialog(
     private val activity: Activity,

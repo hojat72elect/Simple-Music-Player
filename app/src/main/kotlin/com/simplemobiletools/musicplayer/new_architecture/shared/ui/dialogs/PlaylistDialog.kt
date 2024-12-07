@@ -2,7 +2,7 @@ package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs
 
 import android.app.Activity
 import androidx.appcompat.app.AlertDialog
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.DialogNewPlaylistBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper

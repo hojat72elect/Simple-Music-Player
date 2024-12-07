@@ -26,7 +26,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setu
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.shuffledMediaItemsIndices
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.swap
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toTrack
-import com.simplemobiletools.musicplayer.helpers.EXTRA_SHUFFLE_INDICES
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_SHUFFLE_INDICES
 import com.simplemobiletools.musicplayer.interfaces.ItemMoveCallback
 import com.simplemobiletools.musicplayer.interfaces.ItemTouchHelperContract
 import com.simplemobiletools.musicplayer.interfaces.StartReorderDragListener

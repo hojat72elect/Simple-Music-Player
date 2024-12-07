@@ -9,7 +9,7 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getPlaybackSetting
-import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PlaybackSetting
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 
 @UnstableApi

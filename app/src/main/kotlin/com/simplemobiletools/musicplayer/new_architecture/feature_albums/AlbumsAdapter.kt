@@ -7,7 +7,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActiv
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.highlightTextPart
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupViewBackground
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.views.BaseMusicAdapter

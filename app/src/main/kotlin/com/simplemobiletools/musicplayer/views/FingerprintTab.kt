@@ -17,7 +17,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGo
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_FINGERPRINT
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_FINGERPRINT
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 import com.simplemobiletools.musicplayer.interfaces.SecurityTab
 

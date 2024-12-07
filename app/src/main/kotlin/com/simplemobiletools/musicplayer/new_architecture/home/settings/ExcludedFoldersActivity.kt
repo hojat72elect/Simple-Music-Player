@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.NavigationIcon
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.interfaces.RefreshRecyclerViewListener
 import com.simplemobiletools.musicplayer.databinding.ActivityExcludedFoldersBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config

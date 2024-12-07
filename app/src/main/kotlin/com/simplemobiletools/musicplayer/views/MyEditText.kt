@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
-import com.simplemobiletools.musicplayer.helpers.MEDIUM_ALPHA
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MEDIUM_ALPHA
 
 class MyEditText : AppCompatEditText {
     constructor(context: Context) : super(context)

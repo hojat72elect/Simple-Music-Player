@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.biometric.auth.AuthPromptHost
 import androidx.viewpager.widget.PagerAdapter
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_FINGERPRINT
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_PATTERN
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_PIN
-import com.simplemobiletools.musicplayer.helpers.isRPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_FINGERPRINT
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PATTERN
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PIN
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 import com.simplemobiletools.musicplayer.interfaces.SecurityTab
 import com.simplemobiletools.musicplayer.R

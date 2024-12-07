@@ -5,12 +5,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.simplemobiletools.musicplayer.helpers.AlphanumericComparator
-import com.simplemobiletools.musicplayer.helpers.SORT_DESCENDING
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.AlphanumericComparator
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SORT_DESCENDING
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.sortSafely
-import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_ARTIST_TITLE
-import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_DATE_ADDED
-import com.simplemobiletools.musicplayer.helpers.PLAYER_SORT_BY_TITLE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PLAYER_SORT_BY_ARTIST_TITLE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PLAYER_SORT_BY_DATE_ADDED
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PLAYER_SORT_BY_TITLE
 
 @Entity(tableName = "albums", indices = [(Index(value = ["id"], unique = true))])
 data class Album(

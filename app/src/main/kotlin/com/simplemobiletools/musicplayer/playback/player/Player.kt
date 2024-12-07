@@ -16,7 +16,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.broa
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.currentMediaItems
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setRepeatMode
-import com.simplemobiletools.musicplayer.helpers.SEEK_INTERVAL_MS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SEEK_INTERVAL_MS
 import com.simplemobiletools.musicplayer.new_architecture.MainActivity
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 import com.simplemobiletools.musicplayer.playback.PlaybackService.Companion.updatePlaybackInfo

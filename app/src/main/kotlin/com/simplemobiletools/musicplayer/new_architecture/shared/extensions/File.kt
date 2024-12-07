@@ -1,9 +1,9 @@
 package com.simplemobiletools.musicplayer.new_architecture.shared.extensions
 
 import android.content.Context
-import com.simplemobiletools.musicplayer.helpers.MD5
-import com.simplemobiletools.musicplayer.helpers.NOMEDIA
-import com.simplemobiletools.musicplayer.helpers.audioExtensions
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MD5
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NOMEDIA
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.audioExtensions
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import java.io.File
 

@@ -12,8 +12,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.appl
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
-import com.simplemobiletools.musicplayer.helpers.MINIMUM_PIN_LENGTH
-import com.simplemobiletools.musicplayer.helpers.PROTECTION_PIN
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MINIMUM_PIN_LENGTH
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PROTECTION_PIN
 import com.simplemobiletools.musicplayer.interfaces.BaseSecurityTab
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 import java.math.BigInteger

@@ -36,10 +36,10 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.noti
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.rescanPath
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toFileDirItem
-import com.simplemobiletools.musicplayer.helpers.CONFLICT_KEEP_BOTH
-import com.simplemobiletools.musicplayer.helpers.CONFLICT_SKIP
-import com.simplemobiletools.musicplayer.helpers.getConflictResolution
-import com.simplemobiletools.musicplayer.helpers.isOreoPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_KEEP_BOTH
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.CONFLICT_SKIP
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.getConflictResolution
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isOreoPlus
 import com.simplemobiletools.musicplayer.interfaces.CopyMoveListener
 import com.simplemobiletools.musicplayer.models.FileDirItem
 import java.io.File

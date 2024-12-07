@@ -6,8 +6,8 @@ import android.util.AttributeSet
 import com.google.android.material.textfield.TextInputLayout
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
-import com.simplemobiletools.musicplayer.helpers.HIGHER_ALPHA
-import com.simplemobiletools.musicplayer.helpers.MEDIUM_ALPHA
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.HIGHER_ALPHA
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MEDIUM_ALPHA
 
 class MyTextInputLayout : TextInputLayout {
     constructor(context: Context) : super(context)

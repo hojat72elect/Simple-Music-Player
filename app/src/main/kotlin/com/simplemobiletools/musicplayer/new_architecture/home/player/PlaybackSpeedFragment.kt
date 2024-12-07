@@ -16,7 +16,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onSeekBarChangeListener
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
-import com.simplemobiletools.musicplayer.helpers.Config
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.Config
 import com.simplemobiletools.musicplayer.interfaces.PlaybackSpeedListener
 import com.simplemobiletools.musicplayer.views.MySeekBar
 import com.simplemobiletools.musicplayer.views.MyTextView

@@ -40,12 +40,12 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isVi
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupDialogStuff
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
-import com.simplemobiletools.musicplayer.helpers.PERMISSION_WRITE_STORAGE
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.helpers.isNougatPlus
-import com.simplemobiletools.musicplayer.helpers.isRPlus
-import com.simplemobiletools.musicplayer.helpers.sumByInt
-import com.simplemobiletools.musicplayer.helpers.sumByLong
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PERMISSION_WRITE_STORAGE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isNougatPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.sumByInt
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.sumByLong
 import java.io.File
 
 

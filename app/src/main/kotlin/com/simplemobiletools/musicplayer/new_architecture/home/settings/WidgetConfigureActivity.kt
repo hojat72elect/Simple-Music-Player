@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ColorPickerDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.FeatureLockedDialog
-import com.simplemobiletools.musicplayer.helpers.IS_CUSTOMIZING_COLORS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.WidgetConfigBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
@@ -20,7 +20,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onSeekBarChangeListener
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setFillWithStroke
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.MyWidgetProvider
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MyWidgetProvider
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 

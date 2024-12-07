@@ -16,8 +16,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hasP
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isReallyPlaying
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.nextMediaItem
-import com.simplemobiletools.musicplayer.helpers.NotificationHelper
-import com.simplemobiletools.musicplayer.helpers.getPermissionToRequest
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NotificationHelper
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.getPermissionToRequest
 import com.simplemobiletools.musicplayer.playback.library.MediaItemProvider
 import com.simplemobiletools.musicplayer.playback.player.SimpleMusicPlayer
 import com.simplemobiletools.musicplayer.playback.player.initializeSessionAndPlayer

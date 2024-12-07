@@ -15,7 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.model.Theme
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.model.Theme.Companion.systemDefaultMaterialYou
-import com.simplemobiletools.musicplayer.helpers.isSPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isSPlus
 
 @Composable
 internal fun Theme(

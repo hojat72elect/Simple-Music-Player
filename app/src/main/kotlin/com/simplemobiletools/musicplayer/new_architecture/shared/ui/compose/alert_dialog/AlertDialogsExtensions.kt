@@ -20,7 +20,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.them
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.light_grey_stroke
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.compose.theme.model.Theme
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
-import com.simplemobiletools.musicplayer.helpers.isSPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isSPlus
 import kotlinx.coroutines.android.awaitFrame
 
 val dialogContainerColor

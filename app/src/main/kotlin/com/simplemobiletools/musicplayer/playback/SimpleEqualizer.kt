@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
-import com.simplemobiletools.musicplayer.helpers.EQUALIZER_PRESET_CUSTOM
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EQUALIZER_PRESET_CUSTOM
 import com.simplemobiletools.musicplayer.playback.player.SimpleMusicPlayer
 
 @UnstableApi

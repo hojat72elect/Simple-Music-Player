@@ -5,10 +5,10 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.RadioGroupDialog
-import com.simplemobiletools.musicplayer.helpers.IS_CUSTOMIZING_COLORS
-import com.simplemobiletools.musicplayer.helpers.NavigationIcon
-import com.simplemobiletools.musicplayer.helpers.isQPlus
-import com.simplemobiletools.musicplayer.helpers.isTiramisuPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.IS_CUSTOMIZING_COLORS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NavigationIcon
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isQPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isTiramisuPlus
 import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
@@ -23,9 +23,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.laun
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.sendCommand
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.SHOW_FILENAME_ALWAYS
-import com.simplemobiletools.musicplayer.helpers.SHOW_FILENAME_IF_UNAVAILABLE
-import com.simplemobiletools.musicplayer.helpers.SHOW_FILENAME_NEVER
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHOW_FILENAME_ALWAYS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHOW_FILENAME_IF_UNAVAILABLE
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHOW_FILENAME_NEVER
 import com.simplemobiletools.musicplayer.playback.CustomCommands
 import java.util.Locale
 import kotlin.system.exitProcess

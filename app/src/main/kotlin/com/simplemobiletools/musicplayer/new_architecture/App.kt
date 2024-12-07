@@ -5,7 +5,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.checkUseEnglish
-import com.simplemobiletools.musicplayer.helpers.SimpleMediaController
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SimpleMediaController
 
 class App : Application() {
     override fun onCreate() {

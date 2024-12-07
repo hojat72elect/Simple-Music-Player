@@ -12,8 +12,8 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.countdown
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
-import com.simplemobiletools.musicplayer.helpers.DEFAULT_PASSWORD_COUNTDOWN
-import com.simplemobiletools.musicplayer.helpers.MAX_PASSWORD_RETRY_COUNT
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.DEFAULT_PASSWORD_COUNTDOWN
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MAX_PASSWORD_RETRY_COUNT
 
 abstract class BaseSecurityTab(context: Context, attrs: AttributeSet) :
     RelativeLayout(context, attrs), SecurityTab {

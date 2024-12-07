@@ -10,7 +10,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getC
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isWhiteTheme
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
-import com.simplemobiletools.musicplayer.helpers.DARK_GREY
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.DARK_GREY
 import com.simplemobiletools.musicplayer.interfaces.HashListener
 import com.simplemobiletools.musicplayer.interfaces.SecurityTab
 

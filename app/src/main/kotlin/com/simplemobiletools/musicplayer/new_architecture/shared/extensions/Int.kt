@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import androidx.core.os.postDelayed
-import com.simplemobiletools.musicplayer.helpers.DARK_GREY
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.DARK_GREY
 import java.util.Locale
 
 private fun hsv2hsl(hsv: FloatArray): FloatArray {

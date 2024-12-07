@@ -8,8 +8,8 @@ import androidx.core.os.bundleOf
 import androidx.media3.common.Player
 import androidx.media3.session.MediaController
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.helpers.isRPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.home.player.TrackActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.prepareUsingTracks
@@ -24,8 +24,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isRe
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.togglePlayback
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toMediaItem
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.indexOfTrackOrNull
-import com.simplemobiletools.musicplayer.helpers.EXTRA_NEXT_MEDIA_ID
-import com.simplemobiletools.musicplayer.helpers.SimpleMediaController
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EXTRA_NEXT_MEDIA_ID
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SimpleMediaController
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.models.toMediaItems

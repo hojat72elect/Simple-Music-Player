@@ -18,7 +18,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setu
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.filepicker.FilePickerDialog
 import java.io.File

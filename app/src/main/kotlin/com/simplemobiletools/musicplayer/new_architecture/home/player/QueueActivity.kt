@@ -12,8 +12,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.areS
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.NavigationIcon
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NavigationIcon
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivityQueueBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PlaylistDialog
@@ -25,7 +25,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.inde
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.shuffledMediaItemsIndices
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isReallyPlaying
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.lazySmoothScroll
-import com.simplemobiletools.musicplayer.helpers.RoomHelper
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.RoomHelper
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity
 

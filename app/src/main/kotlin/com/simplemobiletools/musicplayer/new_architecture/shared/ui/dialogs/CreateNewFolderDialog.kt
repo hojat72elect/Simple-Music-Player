@@ -57,7 +57,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.show
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showKeyboard
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
-import com.simplemobiletools.musicplayer.helpers.isRPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import java.io.File
 

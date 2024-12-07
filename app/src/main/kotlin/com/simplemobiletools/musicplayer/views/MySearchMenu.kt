@@ -9,8 +9,8 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.MenuSearchBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onTextChangeListener
-import com.simplemobiletools.musicplayer.helpers.LOWER_ALPHA
-import com.simplemobiletools.musicplayer.helpers.MEDIUM_ALPHA
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.LOWER_ALPHA
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MEDIUM_ALPHA
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.adjustAlpha
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getContrastColor

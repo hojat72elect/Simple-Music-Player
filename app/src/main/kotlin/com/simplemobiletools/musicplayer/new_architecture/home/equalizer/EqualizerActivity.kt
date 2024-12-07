@@ -9,8 +9,8 @@ import androidx.media3.common.util.UnstableApi
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.RadioGroupDialog
-import com.simplemobiletools.musicplayer.helpers.DARK_GREY
-import com.simplemobiletools.musicplayer.helpers.NavigationIcon
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.DARK_GREY
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.NavigationIcon
 import com.simplemobiletools.musicplayer.models.RadioItem
 import com.simplemobiletools.musicplayer.views.MySeekBar
 import com.simplemobiletools.musicplayer.R
@@ -24,7 +24,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isWh
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.EQUALIZER_PRESET_CUSTOM
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.EQUALIZER_PRESET_CUSTOM
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.playback.SimpleEqualizer
 import java.text.DecimalFormat

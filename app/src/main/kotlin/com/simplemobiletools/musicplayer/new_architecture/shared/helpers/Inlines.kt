@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.helpers
+package com.simplemobiletools.musicplayer.new_architecture.shared.helpers
 
 inline fun <T> Iterable<T>.sumByLong(selector: (T) -> Long) = this.sumOf { selector(it) }
 

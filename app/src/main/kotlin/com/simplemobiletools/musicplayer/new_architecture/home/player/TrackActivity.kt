@@ -28,7 +28,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.real
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.statusBarHeight
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
-import com.simplemobiletools.musicplayer.helpers.MEDIUM_ALPHA
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MEDIUM_ALPHA
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.databinding.ActivityTrackBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone
@@ -55,8 +55,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toTr
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updatePlayPauseIcon
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
-import com.simplemobiletools.musicplayer.helpers.SEEK_INTERVAL_S
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PlaybackSetting
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SEEK_INTERVAL_S
 import com.simplemobiletools.musicplayer.interfaces.PlaybackSpeedListener
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.SimpleControllerActivity

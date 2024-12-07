@@ -10,7 +10,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGo
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.underlineText
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentPlaylistsBinding
@@ -21,8 +21,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.conf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.mediaScanner
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
-import com.simplemobiletools.musicplayer.helpers.PLAYLIST
-import com.simplemobiletools.musicplayer.helpers.TAB_PLAYLISTS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PLAYLIST
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_PLAYLISTS
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.models.sortSafely

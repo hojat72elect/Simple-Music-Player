@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PlaybackSetting
 import com.simplemobiletools.musicplayer.models.Track
 import com.simplemobiletools.musicplayer.models.toMediaItemsFast
 

@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.helpers
+package com.simplemobiletools.musicplayer.new_architecture.shared.helpers
 
 import android.content.Context
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.addBit

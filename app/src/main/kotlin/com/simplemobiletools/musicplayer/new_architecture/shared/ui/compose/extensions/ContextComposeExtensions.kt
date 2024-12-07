@@ -6,7 +6,7 @@ import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.redirectToRateUs
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toast
-import com.simplemobiletools.musicplayer.helpers.BaseConfig
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.BaseConfig
 
 val Context.config: BaseConfig get() = BaseConfig.newInstance(applicationContext)
 

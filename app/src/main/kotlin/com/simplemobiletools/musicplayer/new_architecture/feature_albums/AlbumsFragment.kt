@@ -9,7 +9,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.areS
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGoneIf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVisibleIf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hideKeyboard
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.feature_tracks.TracksActivity
 import com.simplemobiletools.musicplayer.databinding.FragmentAlbumsBinding
@@ -19,8 +19,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.conf
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.mediaScanner
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
-import com.simplemobiletools.musicplayer.helpers.ALBUM
-import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ALBUM
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.TAB_ALBUMS
 import com.simplemobiletools.musicplayer.models.Album
 import com.simplemobiletools.musicplayer.models.sortSafely
 

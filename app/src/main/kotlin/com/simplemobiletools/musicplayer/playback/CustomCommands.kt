@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.media3.session.CommandButton
 import androidx.media3.session.SessionCommand
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.helpers.PATH
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.PATH
 
 /**
  * Enum class representing custom commands that are used within the app and by media controller clients (e.g. system media controls).

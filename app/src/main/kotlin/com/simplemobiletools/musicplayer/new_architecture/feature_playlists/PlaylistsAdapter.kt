@@ -9,7 +9,7 @@ import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemPlaylistBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.PlaylistDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.RemovePlaylistDialog
-import com.simplemobiletools.musicplayer.helpers.ensureBackgroundThread
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
 import com.simplemobiletools.musicplayer.models.Events
 import com.simplemobiletools.musicplayer.models.Playlist
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity

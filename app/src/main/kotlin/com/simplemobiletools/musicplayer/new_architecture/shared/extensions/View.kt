@@ -6,7 +6,7 @@ import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.viewbinding.ViewBinding
-import com.simplemobiletools.musicplayer.helpers.SHORT_ANIMATION_DURATION
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SHORT_ANIMATION_DURATION
 import com.simplemobiletools.musicplayer.R
 
 fun View.beVisibleIf(beVisible: Boolean) = if (beVisible) beVisible() else beGone()

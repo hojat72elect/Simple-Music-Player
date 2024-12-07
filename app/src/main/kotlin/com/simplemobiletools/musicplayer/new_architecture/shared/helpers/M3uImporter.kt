@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.helpers
+package com.simplemobiletools.musicplayer.new_architecture.shared.helpers
 
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.showErrorToast
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper

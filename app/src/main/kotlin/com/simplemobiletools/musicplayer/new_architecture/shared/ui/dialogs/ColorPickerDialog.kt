@@ -65,7 +65,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setu
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toHex
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.value
-import com.simplemobiletools.musicplayer.helpers.isQPlus
+import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isQPlus
 import java.util.LinkedList
 
 private const val RECENT_COLORS_NUMBER = 5
