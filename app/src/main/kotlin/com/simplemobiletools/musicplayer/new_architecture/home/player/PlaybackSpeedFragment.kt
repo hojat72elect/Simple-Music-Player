@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.fragments
+package com.simplemobiletools.musicplayer.new_architecture.home.player
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.LayerDrawable

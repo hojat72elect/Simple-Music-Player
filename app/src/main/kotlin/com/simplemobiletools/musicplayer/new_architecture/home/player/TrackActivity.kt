@@ -55,7 +55,6 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.toTr
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updatePlayPauseIcon
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.viewBinding
-import com.simplemobiletools.musicplayer.fragments.PlaybackSpeedFragment
 import com.simplemobiletools.musicplayer.helpers.PlaybackSetting
 import com.simplemobiletools.musicplayer.helpers.SEEK_INTERVAL_S
 import com.simplemobiletools.musicplayer.interfaces.PlaybackSpeedListener

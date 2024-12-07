@@ -12,7 +12,7 @@ import com.simplemobiletools.musicplayer.databinding.FragmentTracksBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperPrimaryColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getVisibleTabs
-import com.simplemobiletools.musicplayer.fragments.MyViewPagerFragment
+import com.simplemobiletools.musicplayer.new_architecture.shared.MyViewPagerFragment
 import com.simplemobiletools.musicplayer.helpers.TAB_ALBUMS
 import com.simplemobiletools.musicplayer.helpers.TAB_ARTISTS
 import com.simplemobiletools.musicplayer.helpers.TAB_FOLDERS
