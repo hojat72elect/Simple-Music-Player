@@ -46,7 +46,7 @@ private const val SMP_GENRES_ROOT_ID = "__GENRES__"
  * This is not (yet) used internally and currently only required (mostly) for media browser's outside the app.
  */
 @UnstableApi
-internal class MediaItemProvider(private val context: Context) {
+ class MediaItemProvider(private val context: Context) {
     private val executor by lazy {
         MoreExecutors.listeningDecorator(Executors.newSingleThreadExecutor())
     }

@@ -18,11 +18,10 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.curr
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setRepeatMode
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.SEEK_INTERVAL_MS
 import com.simplemobiletools.musicplayer.new_architecture.MainActivity
+import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getCustomLayout
 import com.simplemobiletools.musicplayer.playback.PlaybackService
 import com.simplemobiletools.musicplayer.playback.PlaybackService.Companion.updatePlaybackInfo
 import com.simplemobiletools.musicplayer.playback.SimpleEqualizer
-import com.simplemobiletools.musicplayer.playback.getCustomLayout
-import com.simplemobiletools.musicplayer.playback.getMediaSessionCallback
 
 private const val PLAYER_THREAD = "PlayerThread"
 

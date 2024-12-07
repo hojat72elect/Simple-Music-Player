@@ -60,6 +60,7 @@ import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import androidx.loader.content.CursorLoader
 import androidx.media3.common.Player
+import androidx.media3.session.CommandButton
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -68,7 +69,19 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.github.ajalt.reprint.core.Reprint
 import com.simplemobiletools.musicplayer.R
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.AlbumsDao
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.ArtistsDao
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.GenresDao
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.PlaylistsDao
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.QueueItemsDao
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.SongsDao
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.SongsDatabase
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.SharedTheme
+import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.AudioHelper
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.BaseConfig
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.Config
@@ -122,18 +135,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isRPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isSPlus
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.proPackages
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.tabsList
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.AlbumsDao
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.ArtistsDao
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.GenresDao
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.PlaylistsDao
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.QueueItemsDao
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.SongsDao
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Album
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Genre
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.SharedTheme
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
+import com.simplemobiletools.musicplayer.playback.CustomCommands
 import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.views.MyAppCompatSpinner
 import com.simplemobiletools.musicplayer.views.MyAutoCompleteTextView
@@ -174,7 +176,6 @@ val DIRS_ACCESSIBLE_ONLY_WITH_SAF = listOf(
     ANDROID_DATA_DIR,
     ANDROID_OBB_DIR
 )
-
 
 fun getPermissionString(id: Int) = when (id) {
     PERMISSION_READ_STORAGE -> Manifest.permission.READ_EXTERNAL_STORAGE
@@ -220,7 +221,6 @@ val Context.navigationBarSize: Point
         navigationBarOnBottom -> Point(usableScreenSize.x, newNavigationBarHeight)
         else -> Point()
     }
-
 
 fun Context.getMediaContent(path: String, uri: Uri): Uri? {
     val projection = arrayOf(Images.Media._ID)
@@ -334,7 +334,6 @@ fun Context.getSomeDocumentSdk30(path: String): DocumentFile? =
 
 fun Context.hasExternalSDCard() = sdCardPath.isNotEmpty()
 
-
 fun Context.getDocumentSdk30(path: String): DocumentFile? {
     val level = getFirstParentLevel(path)
     val firstParentPath = path.getFirstParentPath(this, level)
@@ -355,7 +354,6 @@ fun Context.getDocumentSdk30(path: String): DocumentFile? {
         null
     }
 }
-
 
 fun Context.getHumanReadablePath(path: String): String {
     return getString(
@@ -500,11 +498,9 @@ fun Context.createDocumentUriFromRootTree(fullPath: String): Uri {
     return DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId)
 }
 
-
 fun Context.isSAFOnlyRoot(path: String): Boolean {
     return getSAFOnlyDirs().any { "${path.trimEnd('/')}/".startsWith(it) }
 }
-
 
 fun Context.hasPermission(permId: Int) = ContextCompat.checkSelfPermission(
     this,
@@ -539,7 +535,6 @@ val Context.usableScreenSize: Point
         windowManager.defaultDisplay.getSize(size)
         return size
     }
-
 
 val Context.realScreenSize: Point
     get() {
@@ -805,7 +800,6 @@ fun Context.ensurePublicUri(path: String, applicationId: String): Uri? {
         }
     }
 }
-
 
 fun Context.queryCursor(
     uri: Uri,
@@ -1133,7 +1127,6 @@ fun Context.getUriMimeType(path: String, newUri: Uri): String {
 
 fun Context.getAppIconColors() =
     resources.getIntArray(R.array.md_app_icon_colors).toCollection(ArrayList())
-
 
 fun isAndroidDataDir(path: String): Boolean {
     val resolvedPath = "${path.trimEnd('/')}/"
@@ -2035,7 +2028,6 @@ fun Context.scanPathRecursively(path: String, callback: (() -> Unit)? = null) {
     scanPathsRecursively(arrayListOf(path), callback)
 }
 
-
 fun Context.scanPathsRecursively(paths: List<String>, callback: (() -> Unit)? = null) {
     val allPaths = java.util.ArrayList<String>()
     for (path in paths) {
@@ -2673,13 +2665,11 @@ fun Context.getImageResolution(path: String): Point? {
     }
 }
 
-
 val Context.windowManager: WindowManager get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 val Context.notificationManager: NotificationManager get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 val Context.navigationBarOnSide: Boolean get() = usableScreenSize.x < realScreenSize.x && usableScreenSize.x > usableScreenSize.y
 val Context.navigationBarOnBottom: Boolean get() = usableScreenSize.y < realScreenSize.y
 val Context.navigationBarHeight: Int get() = if (navigationBarOnBottom && navigationBarSize.y != usableScreenSize.y) navigationBarSize.y else 0
-
 
 fun Context.launchActivityIntent(intent: Intent) {
     try {
@@ -2751,4 +2741,14 @@ fun Context.getVideoResolution(path: String): Point? {
     }
 
     return point
+}
+
+fun Context.getCustomLayout(): List<CommandButton> {
+    return listOf(
+        CommandButton.Builder()
+            .setDisplayName(getString(R.string.close))
+            .setSessionCommand(CustomCommands.CLOSE_PLAYER.sessionCommand)
+            .setIconResId(R.drawable.ic_cross_vector)
+            .build()
+    )
 }
