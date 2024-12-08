@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemAlbumHeaderBinding
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationDialog
@@ -25,7 +25,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Alb
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.ListItem
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
 
 class TracksHeaderAdapter(
     activity: BaseSimpleActivity,

@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_margin"
     android:paddingRight="@dimen/activity_margin">
 
-    <com.simplemobiletools.musicplayer.views.MyTextView
+    <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
         android:id="@+id/remove_playlist_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:text="@string/remove_playlist_description"
         android:textSize="@dimen/bigger_text_size" />
 
-    <com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
+    <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyAppCompatCheckbox
         android:id="@+id/remove_playlist_checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

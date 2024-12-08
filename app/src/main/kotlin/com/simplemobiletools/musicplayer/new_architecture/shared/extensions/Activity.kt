@@ -33,7 +33,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.*
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.*
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.SharedTheme
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
-import com.simplemobiletools.musicplayer.views.MyTextView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
 
 fun Activity.launchViewIntent(url: String) {
     hideKeyboard()

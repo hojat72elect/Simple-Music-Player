@@ -10,7 +10,7 @@ import com.simplemobiletools.musicplayer.new_architecture.home.player.TrackActiv
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.hideKeyboard
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.openNotificationSettings
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isReallyPlaying
-import com.simplemobiletools.musicplayer.views.CurrentTrackBar
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.CurrentTrackBar
 
 /**
  * Base class for activities that want to control the player and display a [CurrentTrackBar] at the bottom.

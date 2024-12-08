@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.EditDialog
@@ -35,7 +35,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Eve
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Playlist
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
 import org.greenrobot.eventbus.EventBus
 
 class TracksAdapter(

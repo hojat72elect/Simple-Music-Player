@@ -26,17 +26,17 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.simplemobiletools.musicplayer.views.MyRecyclerView
+            <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
                 android:id="@+id/queue_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:layoutAnimation="@anim/layout_animation"
-                app:layoutManager="com.simplemobiletools.musicplayer.views.MyLinearLayoutManager" />
+                app:layoutManager="com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyLinearLayoutManager" />
 
         </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
 
-        <com.simplemobiletools.musicplayer.views.MyTextView
+        <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
             android:id="@+id/queue_placeholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

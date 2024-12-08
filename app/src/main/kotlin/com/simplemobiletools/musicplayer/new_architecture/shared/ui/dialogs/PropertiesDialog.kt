@@ -17,7 +17,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.md5
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.removeValues
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
-import com.simplemobiletools.musicplayer.views.MyTextView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.canModifyEXIF

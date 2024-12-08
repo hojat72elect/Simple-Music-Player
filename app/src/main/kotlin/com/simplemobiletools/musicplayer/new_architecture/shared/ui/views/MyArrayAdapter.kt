@@ -1,4 +1,4 @@
-package com.simplemobiletools.musicplayer.views
+package com.simplemobiletools.musicplayer.new_architecture.shared.ui.views
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable

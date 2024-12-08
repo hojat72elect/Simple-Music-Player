@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.simplemobiletools.musicplayer.views.MyTextView
+    <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
         android:id="@+id/folders_placeholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:textSize="@dimen/bigger_text_size"
         android:textStyle="italic" />
 
-    <com.simplemobiletools.musicplayer.views.MyTextView
+    <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
         android:id="@+id/folders_placeholder_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,13 +36,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.simplemobiletools.musicplayer.views.MyRecyclerView
+        <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
             android:id="@+id/folders_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:layoutAnimation="@anim/layout_animation"
-            app:layoutManager="com.simplemobiletools.musicplayer.views.MyLinearLayoutManager" />
+            app:layoutManager="com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyLinearLayoutManager" />
 
     </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
 </com.simplemobiletools.musicplayer.new_architecture.feature_folders.FoldersFragment>

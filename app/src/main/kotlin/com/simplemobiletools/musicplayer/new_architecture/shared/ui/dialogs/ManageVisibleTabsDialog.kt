@@ -1,7 +1,7 @@
 package com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs
 
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.isQPlus
-import com.simplemobiletools.musicplayer.views.MyAppCompatCheckbox
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyAppCompatCheckbox
 import com.simplemobiletools.musicplayer.R
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.databinding.DialogManageVisibleTabsBinding

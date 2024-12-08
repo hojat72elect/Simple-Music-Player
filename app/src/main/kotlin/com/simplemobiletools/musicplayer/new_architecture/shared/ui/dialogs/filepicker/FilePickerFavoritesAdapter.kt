@@ -4,11 +4,11 @@ import android.util.TypedValue
 import android.view.Menu
 import android.view.ViewGroup
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.views.MyRecyclerViewAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerViewAdapter
 import com.simplemobiletools.musicplayer.databinding.FilepickerFavoriteBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getTextSize
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
 
 class FilePickerFavoritesAdapter(
     activity: BaseSimpleActivity,

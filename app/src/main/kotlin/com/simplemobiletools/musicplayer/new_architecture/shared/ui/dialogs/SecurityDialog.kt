@@ -6,13 +6,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.biometric.auth.AuthPromptHost
 import androidx.fragment.app.FragmentActivity
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.views.PasswordTypesAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.PasswordTypesAdapter
 import com.simplemobiletools.musicplayer.databinding.DialogSecurityBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isBiometricIdAvailable
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.isFingerPrintSensorAvailable
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onPageChangeListener
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.HashListener
-import com.simplemobiletools.musicplayer.views.MyDialogViewPager
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyDialogViewPager
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.baseConfig
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beGone
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getAlertDialogBuilder

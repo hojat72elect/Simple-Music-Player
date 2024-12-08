@@ -12,9 +12,9 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.beVi
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getFormattedDuration
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureBackgroundThread
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemAlbumBinding
 import com.simplemobiletools.musicplayer.databinding.ItemSectionBinding
 import com.simplemobiletools.musicplayer.databinding.ItemTrackBinding

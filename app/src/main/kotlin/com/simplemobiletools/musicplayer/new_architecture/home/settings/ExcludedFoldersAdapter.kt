@@ -8,14 +8,14 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.views.MyRecyclerViewAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerViewAdapter
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getPopupMenuTheme
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.getProperTextColor
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.humanizePath
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.setupViewBackground
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.RefreshRecyclerViewListener
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
 import com.simplemobiletools.musicplayer.databinding.ItemExcludedFolderBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.config
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemTrackQueueBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.applyColorFilter
@@ -33,7 +33,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.data.StartReord
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
 import com.simplemobiletools.musicplayer.new_architecture.shared.playback.CustomCommands
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
 
 class QueueAdapter(
     activity: BaseSimpleActivity,

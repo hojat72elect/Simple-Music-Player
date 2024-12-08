@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import com.simplemobiletools.musicplayer.R
-import com.simplemobiletools.musicplayer.views.BaseMusicAdapter
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.BaseMusicAdapter
 import com.simplemobiletools.musicplayer.databinding.ItemArtistBinding
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.ConfirmationDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.audioHelper
@@ -18,7 +18,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.inde
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Artist
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.Track
 import com.simplemobiletools.musicplayer.new_architecture.shared.BaseSimpleActivity
-import com.simplemobiletools.musicplayer.views.MyRecyclerView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
 
 class ArtistsAdapter(
     activity: BaseSimpleActivity,

@@ -18,8 +18,8 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.onSe
 import com.simplemobiletools.musicplayer.new_architecture.shared.extensions.updateTextColors
 import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.Config
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.PlaybackSpeedListener
-import com.simplemobiletools.musicplayer.views.MySeekBar
-import com.simplemobiletools.musicplayer.views.MyTextView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MySeekBar
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
 import kotlin.math.max
 import kotlin.math.min
 

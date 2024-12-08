@@ -51,7 +51,7 @@ import com.simplemobiletools.musicplayer.new_architecture.shared.helpers.ensureB
 import com.simplemobiletools.musicplayer.new_architecture.shared.data.models.FileDirItem
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.CreateNewFolderDialog
 import com.simplemobiletools.musicplayer.new_architecture.shared.ui.dialogs.StoragePickerDialog
-import com.simplemobiletools.musicplayer.views.Breadcrumbs
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.Breadcrumbs
 import java.io.File
 
 /**

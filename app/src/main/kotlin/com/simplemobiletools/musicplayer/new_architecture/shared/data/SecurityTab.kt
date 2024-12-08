@@ -1,8 +1,7 @@
 package com.simplemobiletools.musicplayer.new_architecture.shared.data
 
 import androidx.biometric.auth.AuthPromptHost
-import com.simplemobiletools.musicplayer.new_architecture.shared.data.HashListener
-import com.simplemobiletools.musicplayer.views.MyScrollView
+import com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyScrollView
 
 
 interface SecurityTab {
