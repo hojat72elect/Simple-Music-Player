@@ -13,12 +13,6 @@ base {
     archivesName.set("music-player")
 }
 
-val keystorePropertiesFile: File = rootProject.file("keystore.properties")
-val keystoreProperties = Properties()
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-}
-
 android {
     compileSdk = project.libs.versions.app.build.compileSDKVersion.get().toInt()
 
@@ -35,14 +29,7 @@ android {
     }
 
     signingConfigs {
-        if (keystorePropertiesFile.exists()) {
-            register("release") {
-                keyAlias = keystoreProperties["keyAlias"] as String
-                keyPassword = keystoreProperties["keyPassword"] as String
-                storeFile = file(keystoreProperties["storeFile"] as String)
-                storePassword = keystoreProperties["storePassword"] as String
-            }
-        }
+
     }
 
     buildFeatures {
@@ -60,22 +47,8 @@ android {
             applicationIdSuffix = ".debug"
         }
         release {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-            )
-            if (keystorePropertiesFile.exists()) {
-                signingConfig = signingConfigs.getByName("release")
-            }
-        }
-    }
 
-    flavorDimensions.add("variants")
-    productFlavors {
-        register("core")
-        register("fdroid")
-        register("prepaid")
+        }
     }
 
     sourceSets {

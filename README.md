@@ -1,5 +1,4 @@
 # Simple Music Player
-<img alt="Logo" src="graphics/icon.png" width="120" />
 
 🎧 Listen to your music with No Ads 🎧  
 We know very well how important your time is. That is the reason we don't put Ads in our app. Ads are annoying, and people hate ads. Simple like that.
