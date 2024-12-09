@@ -7,11 +7,9 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.RemoteViews
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ColorPickerDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.FeatureLockedDialog
-import ca.hojat.smart.musicplayer.shared.helpers.IS_CUSTOMIZING_COLORS
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.WidgetConfigBinding
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.extensions.adjustAlpha
 import ca.hojat.smart.musicplayer.shared.extensions.applyColorFilter
 import ca.hojat.smart.musicplayer.shared.extensions.config
@@ -20,9 +18,10 @@ import ca.hojat.smart.musicplayer.shared.extensions.getProperPrimaryColor
 import ca.hojat.smart.musicplayer.shared.extensions.onSeekBarChangeListener
 import ca.hojat.smart.musicplayer.shared.extensions.setFillWithStroke
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
+import ca.hojat.smart.musicplayer.shared.helpers.IS_CUSTOMIZING_COLORS
 import ca.hojat.smart.musicplayer.shared.helpers.MyWidgetProvider
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.playback.PlaybackService
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ColorPickerDialog
 
 class WidgetConfigureActivity : BaseSimpleActivity() {
     private var mBgAlpha = 0f
@@ -30,7 +29,6 @@ class WidgetConfigureActivity : BaseSimpleActivity() {
     private var mBgColor = 0
     private var mTextColor = 0
     private var mBgColorWithoutTransparency = 0
-    private var mFeatureLockedDialog: FeatureLockedDialog? = null
 
     private val binding by viewBinding(WidgetConfigBinding::inflate)
 
@@ -66,13 +64,6 @@ class WidgetConfigureActivity : BaseSimpleActivity() {
             }
         }
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (mFeatureLockedDialog != null) {
-            mFeatureLockedDialog?.dismissDialog()
-        }
     }
 
     private fun initVariables() {

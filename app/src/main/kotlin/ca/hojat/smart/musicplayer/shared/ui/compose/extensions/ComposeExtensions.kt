@@ -1,8 +1,5 @@
 package ca.hojat.smart.musicplayer.shared.ui.compose.extensions
 
-import android.app.Activity
-import android.content.Context
-import android.content.ContextWrapper
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -18,29 +15,17 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
-import ca.hojat.smart.musicplayer.R
+import ca.hojat.smart.musicplayer.shared.extensions.darkenColor
 import ca.hojat.smart.musicplayer.shared.ui.compose.system_ui_controller.rememberSystemUiController
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.SimpleTheme
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.isLitWell
-import ca.hojat.smart.musicplayer.shared.extensions.darkenColor
-import ca.hojat.smart.musicplayer.shared.extensions.launchViewIntent
-
-fun Context.getActivity(): Activity {
-    return when (this) {
-        is Activity -> this
-        is ContextWrapper -> baseContext.getActivity()
-        else -> getActivity()
-    }
-}
 
 @Composable
 fun rememberMutableInteractionSource() = remember { MutableInteractionSource() }
@@ -115,7 +100,6 @@ private fun Array<out PaddingValues>.sumOfDps(aggregator: PaddingValues.() -> Dp
         paddingValues.aggregator()
     }.sumOfDps()
 
-
 private fun Sequence<Dp>.sumOfDps(): Dp {
     var sum = 0.dp
     for (element in this) {
@@ -141,12 +125,3 @@ internal fun TransparentSystemBars(darkIcons: Boolean = !isSystemInDarkTheme()) 
     }
 }
 
-@Composable
-fun composeDonateIntent(): () -> Unit {
-    val localContext = LocalContext.current
-    val localView = LocalView.current
-    return {
-        if (localView.isInEditMode) Unit else localContext.getActivity()
-            .launchViewIntent(R.string.thank_you_url)
-    }
-}

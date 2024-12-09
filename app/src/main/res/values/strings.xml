@@ -30,7 +30,6 @@
     <string name="cannot_rename_folder">Cannot rename this folder</string>
     <string name="authenticate">Authenticate</string>
     <string name="could_not_create_folder">Could not create folder %s</string>
-    <string name="thank_you_url">https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou</string>
     <string name="internal">Internal</string>
     <string name="root">Root</string>
     <string name="sd_card">SD Card</string>
@@ -39,12 +38,11 @@
     <string name="send_email">Send email</string>
     <string name="share_text">Hey, come check out %1$s at %2$s</string>
     <string name="invite_via">Invite via</string>
-    <string name="donate_url">https://www.simplemobiletools.com/donate#paypal</string>
     <string name="usb">USB</string>
     <string name="system_service_disabled">System service for selecting files and folders is unavailable</string>
     <string name="confirm_storage_access_android_text">Please allow the app accessing the selected storage on the next screen by pressing \'Use this folder\' at the bottom.</string>
     <string name="ok">OK</string>
-    <string name="my_email">hello@simplemobiletools.com</string>
+    <string name="my_email">hojat72elect@gmail.com</string>
     <string name="no_email_client_found">No email client found</string>
     <string name="kotlin_text">Copyright 2010 – 2018 JetBrains s.r.o.\n\nLicensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.You may obtain a copy of the License at\n\nhttps://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.See the License for the specific language governing permissions and limitations under the License.</string>
     <string name="kotlin_url">https://github.com/JetBrains/kotlin</string>
@@ -258,10 +256,9 @@
     <string name="cropper_title">Android Image Cropper (image crop and rotate)</string>
     <string name="rtl_viewpager_title">RtlViewPager (right to left swiping)</string>
     <string name="skip">Skip</string>
-    <string name="hello">Hello :)</string>
+    <string name="hello">Hello from Canada :)</string>
     <string name="custom">Custom</string>
     <string name="cancel">Cancel</string>
-    <string name="my_fake_email">noreply@simplemobiletools.com</string>
     <string name="pro">Pro</string>
     <string name="before_asking_question_read_faq">Before you ask a question, please check the app settings and read the Frequently Asked Questions first. Maybe the solution is there.</string>
     <string name="make_sure_latest">Also make sure that you are using the latest app version.</string>
@@ -337,10 +334,6 @@
     <!-- FAQ -->
     <string name="faq_1_title">How can I fast-forward songs?</string>
     <string name="faq_1_text">You can click on the current or max duration texts near the seekbar, that will move the song either backward, or forward.</string>
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
     <string name="joda_title">Joda-Time (Java date replacement)</string>
     <string name="stetho_title">Stetho (debugging databases)</string>
     <string name="otto_title">Otto (event bus)</string>
@@ -380,12 +373,7 @@
         just start the selection mode by long pressing one item, then with your finger still down drag it across other items for selecting. The third way of selecting multiple items is long pressing one item, then long pressing another one and everything in between gets selected. If you
         want to select all items, just long press one item, then click at the selected item counter at the top left corner. That will select or unselect all everything.</string>
     <string name="faq_2_title_commons">I want to support you, but I cannot donate money. Is there anything else I can do?</string>
-    <string name="faq_2_text_commons">
-        <![CDATA[
-            Yes, of course. You can spread the word about the apps or give good feedback and ratings. You can also help by translating the apps in a new language, or just update some existing translations.
-            The guide to translating is at <a href="https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file">this website</a>, or just contact us at <a href="mailto:hello@simplemobiletools.com">hello@simplemobiletools.com</a> if you have any questions.
-        ]]>
-    </string>
+    <string name="faq_2_text_commons">Yes, of course. You can spread the word about the apps or give good feedback and ratings.</string>
     <string name="faq_6_title_commons">The app launcher icon disappeared. What can I do?</string>
     <string name="faq_6_text_commons">It is caused by your launcher not supporting icon customization properly. Try launching the app via Google Play or some widget, if available.
         Once launched, just set back the default orange icon #F57C00. You might have to reinstall the app in the worst case.</string>
@@ -439,11 +427,7 @@
     <string name="accent_color_black_and_white">Accent color of Black &amp; White theme</string>
     <string name="share_colors_success">Colors updated successfully. A new Theme called \'Shared\' has been added, please use that for updating all app colors in the future.</string>
     <string name="material_you">Material You</string>
-    <string name="purchase_thank_you">
-        <![CDATA[
-            Please purchase <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Simple Thank You</a> to unlock this function and support the development. Thanks!
-        ]]>
-    </string>
+    <string name="purchase_thank_you">Please give me some money!</string>
     <string name="shared_theme_note">Note that even though you are using the Pro app version, you still need Simple Thank You for technical reasons. It takes care of the color synchronization.</string>
     <string name="purchase">Purchase</string>
     <string name="later">Later</string>
@@ -476,14 +460,13 @@
     <string name="upgrade">Upgrade</string>
     <string name="more_info">More info</string>
     <string name="upgrade_to_pro">Upgrade to Pro</string>
-    <string name="features_locked">This feature is locked, please purchase &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou&gt;Simple Thank You&lt;/a&gt; for unlocking the full app.&lt;br&gt;&lt;br&gt;It is a one time payment only and if you won\'t be satisfied, we can refund you.</string>
     <string name="export_settings">Export settings</string>
     <string name="filename_cannot_be_empty">Filename cannot be empty</string>
     <string name="filename_invalid_characters">Filename contains invalid characters</string>
     <string name="file_already_exists_overwrite">File \"%s\" already exists. Overwrite?</string>
     <string name="thank_you">Thank you</string>
     <string name="rate_our_app">Rate our app please :)</string>
-    <string name="donate_short">Support us by purchasing &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou&gt;Simple Thank You&lt;/a&gt; please, it will also unlock all app features including color customization.</string>
+    <string name="donate_short">Please give us some money!</string>
     <string name="favorites">Favorites</string>
     <string name="select_file">Select a file</string>
     <string name="select_folder">Select a folder</string>
@@ -495,7 +478,6 @@
     <string name="name">Name</string>
     <string name="size">Size</string>
     <string name="altitude">Altitude</string>
-
     <string name="direct_children_count">Direct children count</string>
     <string name="files_count">Total files count</string>
     <string name="resolution">Resolution</string>
@@ -516,7 +498,7 @@
     <string name="grant_permission">Grant Permission</string>
     <string name="permission_required">Permission Required</string>
     <string name="about">About</string>
-    <string name="about_footer">Made with &#10084;&#65039; in Slovakia</string>
+    <string name="about_footer">Made with &#10084;&#65039; in Canada</string>
     <string name="help_us">Help us</string>
     <string name="rate_us">Rate us</string>
     <string name="invite_friends">Invite friends</string>

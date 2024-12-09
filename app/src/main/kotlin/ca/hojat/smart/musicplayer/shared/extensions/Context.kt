@@ -61,13 +61,6 @@ import androidx.documentfile.provider.DocumentFile
 import androidx.loader.content.CursorLoader
 import androidx.media3.common.Player
 import androidx.media3.session.CommandButton
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
-import com.github.ajalt.reprint.core.Reprint
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.shared.data.AlbumsDao
 import ca.hojat.smart.musicplayer.shared.data.ArtistsDao
@@ -133,7 +126,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
 import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
 import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
 import ca.hojat.smart.musicplayer.shared.helpers.isSPlus
-import ca.hojat.smart.musicplayer.shared.helpers.proPackages
 import ca.hojat.smart.musicplayer.shared.helpers.tabsList
 import ca.hojat.smart.musicplayer.shared.playback.CustomCommands
 import ca.hojat.smart.musicplayer.shared.ui.views.MyAppCompatCheckbox
@@ -146,6 +138,13 @@ import ca.hojat.smart.musicplayer.shared.ui.views.MyFloatingActionButton
 import ca.hojat.smart.musicplayer.shared.ui.views.MySeekBar
 import ca.hojat.smart.musicplayer.shared.ui.views.MyTextInputLayout
 import ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
+import com.github.ajalt.reprint.core.Reprint
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -2612,10 +2611,6 @@ fun Context.tryFastDocumentDelete(path: String, allowDeleteFolder: Boolean): Boo
     }
 }
 
-fun Context.getCanAppBeUpgraded() = proPackages.contains(
-    baseConfig.appId.removeSuffix(".debug").removePrefix("com.simplemobiletools.")
-)
-
 fun Context.getStoreUrl() =
     "https://play.google.com/store/apps/details?id=${packageName.removeSuffix(".debug")}"
 
@@ -2680,8 +2675,7 @@ fun Context.launchActivityIntent(intent: Intent) {
 }
 
 fun Context.getFilePublicUri(file: File, applicationId: String): Uri {
-    // for images/videos/gifs try getting a media content uri first, like content://media/external/images/media/438
-    // if media content uri is null, get our custom uri like content://com.simplemobiletools.gallery.provider/external_files/emulated/0/DCIM/IMG_20171104_233915.jpg
+
     var uri = if (file.isMediaFile()) {
         getMediaContentUri(file.absolutePath)
     } else {

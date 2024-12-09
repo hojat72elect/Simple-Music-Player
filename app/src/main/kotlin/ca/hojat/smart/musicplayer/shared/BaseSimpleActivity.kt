@@ -852,10 +852,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun handleSAFDialogSdk30(path: String, callback: (success: Boolean) -> Unit): Boolean {
         hideKeyboard()
-        return if (!packageName.startsWith("com.simplemobiletools")) {
-            callback(true)
-            false
-        } else if (isShowingSAFDialogSdk30(path)) {
+        return if (isShowingSAFDialogSdk30(path)) {
             funAfterSdk30Action = callback
             true
         } else {
@@ -884,10 +881,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         callback: (success: Boolean) -> Unit
     ): Boolean {
         hideKeyboard()
-        return if (!packageName.startsWith("com.simplemobiletools")) {
-            callback(true)
-            false
-        } else if (isShowingSAFCreateDocumentDialogSdk30(path)) {
+        return if (isShowingSAFCreateDocumentDialogSdk30(path)) {
             funAfterSdk30Action = callback
             true
         } else {
@@ -898,10 +892,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
 
     fun handleAndroidSAFDialog(path: String, callback: (success: Boolean) -> Unit): Boolean {
         hideKeyboard()
-        return if (!packageName.startsWith("com.simplemobiletools")) {
-            callback(true)
-            false
-        } else if (isShowingAndroidSAFDialog(path)) {
+        return if (isShowingAndroidSAFDialog(path)) {
             funAfterSAFPermission = callback
             true
         } else {
@@ -1472,7 +1463,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
 
     private fun getExportSettingsFilename(): String {
         val appName = baseConfig.appId.removeSuffix(".debug").removeSuffix(".pro")
-            .removePrefix("com.simplemobiletools.")
+            .removePrefix("ca.hojat.smart.")
         return "$appName-settings_${getCurrentFormattedDateTime()}"
     }
 

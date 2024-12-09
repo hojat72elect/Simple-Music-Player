@@ -940,24 +940,6 @@ fun Activity.shareFiles(tracks: List<Track>) {
     sharePathsIntent(paths, BuildConfig.APPLICATION_ID)
 }
 
-fun Activity.launchPurchaseThankYouIntent() {
-    hideKeyboard()
-    try {
-        launchViewIntent("market://details?id=com.simplemobiletools.thankyou")
-    } catch (ignored: Exception) {
-        launchViewIntent(getString(R.string.thank_you_url))
-    }
-}
-
-fun Activity.launchUpgradeToProIntent() {
-    hideKeyboard()
-    try {
-        launchViewIntent("market://details?id=${baseConfig.appId.removeSuffix(".debug")}.pro")
-    } catch (ignored: Exception) {
-        launchViewIntent(getStoreUrl())
-    }
-}
-
 fun Activity.redirectToRateUs() {
     hideKeyboard()
     try {

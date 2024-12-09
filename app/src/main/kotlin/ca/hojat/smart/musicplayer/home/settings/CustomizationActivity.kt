@@ -9,12 +9,10 @@ import android.os.Bundle
 import android.util.Log
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.ActivityCustomizationBinding
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ColorPickerDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationAdvancedDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.LineColorPickerDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.PurchaseThankYouDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.RadioGroupDialog
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
+import ca.hojat.smart.musicplayer.shared.data.models.MyTheme
+import ca.hojat.smart.musicplayer.shared.data.models.RadioItem
+import ca.hojat.smart.musicplayer.shared.data.models.SharedTheme
 import ca.hojat.smart.musicplayer.shared.extensions.applyColorFilter
 import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
@@ -26,7 +24,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.getMyContentProviderCursorLo
 import ca.hojat.smart.musicplayer.shared.extensions.getProperTextColor
 import ca.hojat.smart.musicplayer.shared.extensions.getSharedThemeSync
 import ca.hojat.smart.musicplayer.shared.extensions.getThemeId
-import ca.hojat.smart.musicplayer.shared.extensions.isThankYouInstalled
 import ca.hojat.smart.musicplayer.shared.extensions.isUsingSystemDarkTheme
 import ca.hojat.smart.musicplayer.shared.extensions.setFillWithStroke
 import ca.hojat.smart.musicplayer.shared.extensions.toast
@@ -39,22 +36,22 @@ import ca.hojat.smart.musicplayer.shared.helpers.NavigationIcon
 import ca.hojat.smart.musicplayer.shared.helpers.SAVE_DISCARD_PROMPT_INTERVAL
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.isSPlus
-import ca.hojat.smart.musicplayer.shared.data.models.MyTheme
-import ca.hojat.smart.musicplayer.shared.data.models.RadioItem
-import ca.hojat.smart.musicplayer.shared.data.models.SharedTheme
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ColorPickerDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationAdvancedDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.LineColorPickerDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.RadioGroupDialog
 
 class CustomizationActivity : BaseSimpleActivity() {
     private val THEME_LIGHT = 0
     private val THEME_DARK = 1
-    private val THEME_SOLARIZED = 2
     private val THEME_DARK_RED = 3
     private val THEME_BLACK_WHITE = 4
     private val THEME_CUSTOM = 5
     private val THEME_SHARED = 6
     private val THEME_WHITE = 7
     private val THEME_AUTO = 8
-    private val THEME_SYSTEM = 9    // Material You
+    private val THEME_SYSTEM = 9
 
     private var curTextColor = 0
     private var curBackgroundColor = 0
@@ -65,8 +62,7 @@ class CustomizationActivity : BaseSimpleActivity() {
     private var originalAppIconColor = 0
     private var lastSavePromptTS = 0L
     private var hasUnsavedChanges = false
-    private var isThankYou =
-        false      // show "Apply colors to all Simple apps" in Simple Thank You itself even with "Hide Google relations" enabled
+
     private var predefinedThemes = LinkedHashMap<Int, MyTheme>()
     private var curPrimaryLineColorPicker: LineColorPickerDialog? = null
     private var storedSharedTheme: SharedTheme? = null
@@ -88,7 +84,6 @@ class CustomizationActivity : BaseSimpleActivity() {
             useTopSearchMenu = false
         )
 
-        isThankYou = false
         initColorVariables()
 
 
@@ -104,8 +99,7 @@ class CustomizationActivity : BaseSimpleActivity() {
 
                 runOnUiThread {
                     setupThemes()
-                    val hideGoogleRelations =
-                        resources.getBoolean(R.bool.hide_google_relations) && !isThankYou
+                    val hideGoogleRelations = resources.getBoolean(R.bool.hide_google_relations)
                     binding.applyToAllHolder.beVisibleIf(
                         storedSharedTheme == null && curSelectedThemeId != THEME_AUTO && curSelectedThemeId != THEME_SYSTEM && !hideGoogleRelations
                     )
@@ -126,7 +120,7 @@ class CustomizationActivity : BaseSimpleActivity() {
         updateLabelColors(textColor)
         originalAppIconColor = baseConfig.appIconColor
 
-        if (resources.getBoolean(R.bool.hide_google_relations) && !isThankYou) {
+        if (resources.getBoolean(R.bool.hide_google_relations) ) {
             binding.applyToAllHolder.beGone()
         }
     }
@@ -273,10 +267,6 @@ class CustomizationActivity : BaseSimpleActivity() {
         }
 
         RadioGroupDialog(this@CustomizationActivity, items, curSelectedThemeId) {
-            if (it == THEME_SHARED && !isThankYouInstalled()) {
-                PurchaseThankYouDialog(this)
-                return@RadioGroupDialog
-            }
 
             updateColorTheme(it as Int, true)
             if (it != THEME_CUSTOM && it != THEME_SHARED && it != THEME_AUTO && it != THEME_SYSTEM && !baseConfig.wasCustomThemeSwitchDescriptionShown) {
@@ -284,8 +274,7 @@ class CustomizationActivity : BaseSimpleActivity() {
                 toast(R.string.changing_color_description)
             }
 
-            val hideGoogleRelations =
-                resources.getBoolean(R.bool.hide_google_relations) && !isThankYou
+            val hideGoogleRelations = resources.getBoolean(R.bool.hide_google_relations)
             binding.applyToAllHolder.beVisibleIf(
                 curSelectedThemeId != THEME_AUTO && curSelectedThemeId != THEME_SYSTEM && curSelectedThemeId != THEME_SHARED && !hideGoogleRelations
             )
@@ -679,25 +668,23 @@ class CustomizationActivity : BaseSimpleActivity() {
         if (curSelectedThemeId == THEME_SHARED) THEME_SHARED else getCurrentThemeId()
 
     private fun applyToAll() {
-        if (isThankYouInstalled()) {
-            ConfirmationDialog(this, "", R.string.share_colors_success, R.string.ok, 0) {
-                Intent().apply {
-                    action = MyContentProvider.SHARED_THEME_ACTIVATED
-                    sendBroadcast(this)
-                }
 
-                if (!predefinedThemes.containsKey(THEME_SHARED)) {
-                    predefinedThemes[THEME_SHARED] = MyTheme(getString(R.string.shared), 0, 0, 0, 0)
-                }
-
-                baseConfig.wasSharedThemeEverActivated = true
-                binding.applyToAllHolder.beGone()
-                updateColorTheme(THEME_SHARED)
-                saveChanges(false)
+        ConfirmationDialog(this, "", R.string.share_colors_success, R.string.ok, 0) {
+            Intent().apply {
+                action = MyContentProvider.SHARED_THEME_ACTIVATED
+                sendBroadcast(this)
             }
-        } else {
-            PurchaseThankYouDialog(this)
+
+            if (!predefinedThemes.containsKey(THEME_SHARED)) {
+                predefinedThemes[THEME_SHARED] = MyTheme(getString(R.string.shared), 0, 0, 0, 0)
+            }
+
+            baseConfig.wasSharedThemeEverActivated = true
+            binding.applyToAllHolder.beGone()
+            updateColorTheme(THEME_SHARED)
+            saveChanges(false)
         }
+
     }
 
     private fun updateLabelColors(textColor: Int) {
