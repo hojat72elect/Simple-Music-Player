@@ -14,6 +14,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
@@ -253,11 +254,7 @@ class AboutActivity : ComponentActivity() {
         val separator = "------------------------------"
         val body = "$appVersion$newline$deviceOS$newline$separator$newline$newline"
 
-        val address = if (packageName.startsWith("com.simplemobiletools")) {
-            getString(R.string.my_email)
-        } else {
-            getString(R.string.my_fake_email)
-        }
+        val address = "hojat72elect@gmail.com"
 
         val selectorIntent = Intent(ACTION_SENDTO)
             .setData("mailto:$address".toUri())
@@ -322,43 +319,33 @@ class AboutActivity : ComponentActivity() {
 
 
     private fun onDonateClick() {
-        launchViewIntent(getString(R.string.donate_url))
+       toast("User wants to donate to the app!")
     }
 
     private fun onFacebookClick() {
-        var link = "https://www.facebook.com/simplemobiletools"
-        try {
-            packageManager.getPackageInfo("com.facebook.katana", 0)
-            link = "fb://page/150270895341774"
-        } catch (ignored: Exception) {
-        }
-
-        launchViewIntent(link)
+      // user wants to follow us on FB
     }
 
     private fun onGithubClick() {
-        launchViewIntent("https://github.com/SimpleMobileTools")
+        launchViewIntent("https://github.com/hojat72elect")
     }
 
     private fun onRedditClick() {
-        launchViewIntent("https://www.reddit.com/r/SimpleMobileTools")
+     // our subreddit
     }
 
 
     private fun onTelegramClick() {
-        launchViewIntent("https://t.me/SimpleMobileTools")
+        launchViewIntent("https://t.me/hojat72elect")
     }
 
 
     private fun onWebsiteClick() {
-        launchViewIntent("https://simplemobiletools.com/")
+        launchViewIntent("https://hojat72elect.github.io/")
     }
 
     private fun onPrivacyPolicyClick() {
-        val appId = baseConfig.appId.removeSuffix(".debug").removeSuffix(".pro")
-            .removePrefix("com.simplemobiletools.")
-        val url = "https://simplemobiletools.com/privacy/$appId.txt"
-        launchViewIntent(url)
+       // We gotta have a specific privacy policy for our app.
     }
 
     private fun onLicenseClick() {

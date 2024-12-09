@@ -249,27 +249,27 @@ class PropertiesDialog : BasePropertiesDialog {
                 return
             }
 
-            if (mActivity.baseConfig.appId.removeSuffix(".debug") == "com.simplemobiletools.filemanager.pro") {
-                addProperty(R.string.md5, "…", R.id.properties_md5)
-                ensureBackgroundThread {
-                    val md5 = if (mActivity.isRestrictedSAFOnlyRoot(path)) {
-                        mActivity.contentResolver.openInputStream(mActivity.getAndroidSAFUri(path))
-                            ?.md5()
-                    } else {
-                        File(path).md5()
-                    }
 
-                    mActivity.runOnUiThread {
-                        if (md5 != null) {
-                            (mDialogView.propertiesHolder.findViewById<LinearLayout>(R.id.properties_md5)
-                                .findViewById<MyTextView>(R.id.property_value)).text = md5
-                        } else {
-                            mDialogView.propertiesHolder.findViewById<LinearLayout>(R.id.properties_md5)
-                                .beGone()
-                        }
+            addProperty(R.string.md5, "…", R.id.properties_md5)
+            ensureBackgroundThread {
+                val md5 = if (mActivity.isRestrictedSAFOnlyRoot(path)) {
+                    mActivity.contentResolver.openInputStream(mActivity.getAndroidSAFUri(path))
+                        ?.md5()
+                } else {
+                    File(path).md5()
+                }
+
+                mActivity.runOnUiThread {
+                    if (md5 != null) {
+                        (mDialogView.propertiesHolder.findViewById<LinearLayout>(R.id.properties_md5)
+                            .findViewById<MyTextView>(R.id.property_value)).text = md5
+                    } else {
+                        mDialogView.propertiesHolder.findViewById<LinearLayout>(R.id.properties_md5)
+                            .beGone()
                     }
                 }
             }
+
         }
     }
 

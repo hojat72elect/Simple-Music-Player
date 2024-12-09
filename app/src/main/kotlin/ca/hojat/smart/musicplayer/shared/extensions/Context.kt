@@ -514,7 +514,7 @@ fun Context.getDoesFilePathExistSdk30(path: String): Boolean {
     }
 }
 
-fun Context.isThankYouInstalled() = isPackageInstalled("com.simplemobiletools.thankyou")
+fun Context.isThankYouInstalled() = true
 
 fun Context.openNotificationSettings() {
     if (isOreoPlus()) {
@@ -1068,9 +1068,7 @@ fun Context.isBlackAndWhiteTheme() =
 fun Context.isWhiteTheme() =
     baseConfig.textColor == DARK_GREY && baseConfig.primaryColor == Color.WHITE && baseConfig.backgroundColor == Color.WHITE
 
-fun Context.isAProApp() =
-    packageName.startsWith("com.simplemobiletools.") && packageName.removeSuffix(".debug")
-        .endsWith(".pro")
+fun Context.isAProApp() =true
 
 
 fun Context.isAccessibleWithSAFSdk30(path: String): Boolean {

@@ -21,6 +21,7 @@ import ca.hojat.smart.musicplayer.shared.extensions.getCustomizeColorsString
 import ca.hojat.smart.musicplayer.shared.extensions.getProperPrimaryColor
 import ca.hojat.smart.musicplayer.shared.extensions.launchPurchaseThankYouIntent
 import ca.hojat.smart.musicplayer.shared.extensions.sendCommand
+import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.SHOW_FILENAME_ALWAYS
@@ -77,7 +78,7 @@ class SettingsActivity : SimpleControllerActivity() {
     private fun setupPurchaseThankYou() = binding.apply {
         settingsPurchaseThankYouHolder.beGone()
         settingsPurchaseThankYouHolder.setOnClickListener {
-            launchPurchaseThankYouIntent()
+           toast("User wants to donate money!")
         }
     }
 

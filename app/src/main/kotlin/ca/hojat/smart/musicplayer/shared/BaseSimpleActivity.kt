@@ -40,15 +40,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.ui.compose.extensions.DEVELOPER_PLAY_STORE_URL
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationAdvancedDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ExportSettingsDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.FileConflictDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.PermissionRequiredDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.WhatsNewDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.WritePermissionDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.WritePermissionDialog.WritePermissionDialogMode
+import ca.hojat.smart.musicplayer.home.about.AboutActivity
+import ca.hojat.smart.musicplayer.home.settings.CustomizationActivity
+import ca.hojat.smart.musicplayer.shared.data.CopyMoveListener
+import ca.hojat.smart.musicplayer.shared.data.models.Android30RenameFormat
+import ca.hojat.smart.musicplayer.shared.data.models.FAQItem
+import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
+import ca.hojat.smart.musicplayer.shared.data.models.Release
 import ca.hojat.smart.musicplayer.shared.extensions.addBit
 import ca.hojat.smart.musicplayer.shared.extensions.adjustAlpha
 import ca.hojat.smart.musicplayer.shared.extensions.applyColorFilter
@@ -112,13 +110,11 @@ import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedWithSAFSdk30
 import ca.hojat.smart.musicplayer.shared.extensions.isSDCardSetAsDefaultStorage
 import ca.hojat.smart.musicplayer.shared.extensions.isUsingGestureNavigation
-import ca.hojat.smart.musicplayer.shared.extensions.launchViewIntent
 import ca.hojat.smart.musicplayer.shared.extensions.navigationBarHeight
 import ca.hojat.smart.musicplayer.shared.extensions.needsStupidWritePermissions
 import ca.hojat.smart.musicplayer.shared.extensions.onApplyWindowInsets
 import ca.hojat.smart.musicplayer.shared.extensions.openDeviceSettings
 import ca.hojat.smart.musicplayer.shared.extensions.openNotificationSettings
-import ca.hojat.smart.musicplayer.shared.extensions.random
 import ca.hojat.smart.musicplayer.shared.extensions.removeBit
 import ca.hojat.smart.musicplayer.shared.extensions.renameAndroidSAFDocument
 import ca.hojat.smart.musicplayer.shared.extensions.renameDocumentSdk30
@@ -172,13 +168,14 @@ import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
 import ca.hojat.smart.musicplayer.shared.helpers.isTiramisuPlus
 import ca.hojat.smart.musicplayer.shared.helpers.isUpsideDownCakePlus
 import ca.hojat.smart.musicplayer.shared.helpers.sumByLong
-import ca.hojat.smart.musicplayer.shared.data.CopyMoveListener
-import ca.hojat.smart.musicplayer.shared.data.models.Android30RenameFormat
-import ca.hojat.smart.musicplayer.shared.data.models.FAQItem
-import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
-import ca.hojat.smart.musicplayer.shared.data.models.Release
-import ca.hojat.smart.musicplayer.home.about.AboutActivity
-import ca.hojat.smart.musicplayer.home.settings.CustomizationActivity
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationAdvancedDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ExportSettingsDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.FileConflictDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.PermissionRequiredDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.WhatsNewDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.WritePermissionDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.WritePermissionDialog.WritePermissionDialogMode
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -230,17 +227,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         if (useDynamicTheme) {
             setTheme(getThemeId(showTransparentTop = showTransparentTop))
         }
-
         super.onCreate(savedInstanceState)
-        if (!packageName.startsWith("com.simplemobiletools.", true)) {
-            if ((0..50).random() == 10 || baseConfig.appRunCount % 100 == 0) {
-                val label =
-                    "You are using a fake version of the app. For your own safety download the original one from www.simplemobiletools.com. Thanks"
-                ConfirmationDialog(this, label, positive = R.string.ok, negative = 0) {
-                    launchViewIntent(DEVELOPER_PLAY_STORE_URL)
-                }
-            }
-        }
     }
 
     @SuppressLint("NewApi")
@@ -821,17 +808,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
     }
 
     private fun startCustomizationActivity() {
-        if (!packageName.contains("slootelibomelpmis".reversed(), true)) {
-            if (baseConfig.appRunCount > 100) {
-                val label =
-                    "You are using a fake version of the app. For your own safety download the original one from www.simplemobiletools.com. Thanks"
-                ConfirmationDialog(this, label, positive = R.string.ok, negative = 0) {
-                    launchViewIntent(DEVELOPER_PLAY_STORE_URL)
-                }
-                return
-            }
-        }
-
         Intent(applicationContext, CustomizationActivity::class.java).apply {
             startActivity(this)
         }
@@ -864,10 +840,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
     // synchronous return value determines only if we are showing the SAF dialog, callback result tells if the SD or OTG permission has been granted
     fun handleSAFDialog(path: String, callback: (success: Boolean) -> Unit): Boolean {
         hideKeyboard()
-        return if (!packageName.startsWith("com.simplemobiletools")) {
-            callback(true)
-            false
-        } else if (isShowingSAFDialog(path) || isShowingOTGDialog(path)) {
+        return  if (isShowingSAFDialog(path) || isShowingOTGDialog(path)) {
             funAfterSAFPermission = callback
             true
         } else {

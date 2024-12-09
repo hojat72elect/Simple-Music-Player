@@ -88,37 +88,34 @@ class CustomizationActivity : BaseSimpleActivity() {
             useTopSearchMenu = false
         )
 
-        isThankYou = packageName.removeSuffix(".debug") == "com.simplemobiletools.thankyou"
+        isThankYou = false
         initColorVariables()
 
-        if (isThankYouInstalled()) {
-            val cursorLoader = getMyContentProviderCursorLoader()
-            ensureBackgroundThread {
-                try {
-                    storedSharedTheme = getSharedThemeSync(cursorLoader)
-                    if (storedSharedTheme == null) {
-                        baseConfig.isUsingSharedTheme = false
-                    } else {
-                        baseConfig.wasSharedThemeEverActivated = true
-                    }
 
-                    runOnUiThread {
-                        setupThemes()
-                        val hideGoogleRelations =
-                            resources.getBoolean(R.bool.hide_google_relations) && !isThankYou
-                        binding.applyToAllHolder.beVisibleIf(
-                            storedSharedTheme == null && curSelectedThemeId != THEME_AUTO && curSelectedThemeId != THEME_SYSTEM && !hideGoogleRelations
-                        )
-                    }
-                } catch (e: Exception) {
-                    toast(R.string.update_thank_you)
-                    finish()
+        val cursorLoader = getMyContentProviderCursorLoader()
+        ensureBackgroundThread {
+            try {
+                storedSharedTheme = getSharedThemeSync(cursorLoader)
+                if (storedSharedTheme == null) {
+                    baseConfig.isUsingSharedTheme = false
+                } else {
+                    baseConfig.wasSharedThemeEverActivated = true
                 }
+
+                runOnUiThread {
+                    setupThemes()
+                    val hideGoogleRelations =
+                        resources.getBoolean(R.bool.hide_google_relations) && !isThankYou
+                    binding.applyToAllHolder.beVisibleIf(
+                        storedSharedTheme == null && curSelectedThemeId != THEME_AUTO && curSelectedThemeId != THEME_SYSTEM && !hideGoogleRelations
+                    )
+                }
+            } catch (e: Exception) {
+                toast(R.string.update_thank_you)
+                finish()
             }
-        } else {
-            setupThemes()
-            baseConfig.isUsingSharedTheme = false
         }
+
 
         val textColor = if (baseConfig.isUsingSystemTheme) {
             getProperTextColor()
@@ -635,14 +632,6 @@ class CustomizationActivity : BaseSimpleActivity() {
     }
 
     private fun pickPrimaryColor() {
-        if (!packageName.startsWith(
-                "com.simplemobiletools.",
-                true
-            ) && baseConfig.appRunCount > 50
-        ) {
-            finish()
-            return
-        }
 
         curPrimaryLineColorPicker = LineColorPickerDialog(
             this,

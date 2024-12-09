@@ -2,13 +2,16 @@ package ca.hojat.smart.musicplayer.shared.ui.compose.theme
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
-import ca.hojat.smart.musicplayer.shared.ui.compose.extensions.FakeVersionCheck
 import ca.hojat.smart.musicplayer.shared.ui.compose.extensions.TransparentSystemBars
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.model.Theme
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.model.Theme.Companion.systemDefaultMaterialYou
@@ -37,9 +40,6 @@ fun AppTheme(
     TransparentSystemBars()
     Theme(theme = currentTheme) {
         content()
-        if (!view.isInEditMode) {
-            OnContentDisplayed()
-        }
     }
 }
 
@@ -55,7 +55,4 @@ fun AppThemeSurface(
     }
 }
 
-@Composable
-private fun OnContentDisplayed() {
-    FakeVersionCheck()
-}
+
