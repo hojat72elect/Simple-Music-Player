@@ -56,7 +56,7 @@ app-build-minimumSDK = "23"
 app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
-app-version-appId = "com.simplemobiletools.musicplayer"
+app-version-appId = "ca.hojat.smart.musicplayer"
 app-version-versionCode = "119"
 app-version-versionName = "5.18.3"
 uiAndroid = "1.6.8"

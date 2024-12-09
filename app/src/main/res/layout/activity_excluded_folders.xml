@@ -21,15 +21,15 @@
         android:fillViewport="true"
         android:scrollbars="none">
 
-        <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
+        <ca.hojat.smart.musicplayer.shared.ui.views.MyRecyclerView
             android:id="@+id/excluded_folders_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:scrollbars="vertical"
-            app:layoutManager="com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyLinearLayoutManager" />
+            app:layoutManager="ca.hojat.smart.musicplayer.shared.ui.views.MyLinearLayoutManager" />
 
-        <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
+        <ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
             android:id="@+id/excluded_folders_placeholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

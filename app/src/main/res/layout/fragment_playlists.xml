@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.simplemobiletools.musicplayer.new_architecture.feature_playlists.PlaylistsFragment xmlns:android="http://schemas.android.com/apk/res/android"
+<ca.hojat.smart.musicplayer.feature_playlists.PlaylistsFragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/playlists_fragment_holder"
     android:layout_width="match_parent"
@@ -10,17 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyRecyclerView
+        <ca.hojat.smart.musicplayer.shared.ui.views.MyRecyclerView
             android:id="@+id/playlists_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:layoutAnimation="@anim/layout_animation"
-            app:layoutManager="com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyLinearLayoutManager" />
+            app:layoutManager="ca.hojat.smart.musicplayer.shared.ui.views.MyLinearLayoutManager" />
 
     </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
 
-    <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
+    <ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
         android:id="@+id/playlists_placeholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,4 +47,4 @@
         android:textSize="@dimen/bigger_text_size"
         android:visibility="gone" />
 
-</com.simplemobiletools.musicplayer.new_architecture.feature_playlists.PlaylistsFragment>
+</ca.hojat.smart.musicplayer.feature_playlists.PlaylistsFragment>

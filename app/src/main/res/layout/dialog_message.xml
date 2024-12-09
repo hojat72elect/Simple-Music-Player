@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.simplemobiletools.musicplayer.new_architecture.shared.ui.views.MyTextView
+    <ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -30,7 +30,7 @@
         android:required="false" />
 
     <application
-        android:name=".new_architecture.App"
+        android:name=".App"
         android:allowBackup="true"
         android:appCategory="audio"
         android:enabled="true"
@@ -42,20 +42,19 @@
         tools:targetApi="o">
 
 
-
         <activity
-            android:name=".new_architecture.home.splash.SplashActivity"
+            android:name=".home.splash.SplashActivity"
             android:exported="false"
             android:theme="@style/SplashTheme" />
 
         <activity
-            android:name=".new_architecture.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask" />
 
         <activity
-            android:name=".new_architecture.home.settings.WidgetConfigureActivity"
+            android:name=".home.settings.WidgetConfigureActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/MyWidgetConfigTheme">
@@ -65,32 +64,32 @@
         </activity>
 
         <activity
-            android:name="com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity"
+            android:name="ca.hojat.smart.musicplayer.home.about.AboutActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/about"
-            android:parentActivityName=".new_architecture.MainActivity" />
+            android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name="com.simplemobiletools.musicplayer.new_architecture.home.about.ContributorsActivity"
+            android:name="ca.hojat.smart.musicplayer.home.about.ContributorsActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/contributors"
-            android:parentActivityName="com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity" />
+            android:parentActivityName="ca.hojat.smart.musicplayer.home.about.AboutActivity" />
 
         <activity
-            android:name="com.simplemobiletools.musicplayer.new_architecture.home.settings.CustomizationActivity"
+            android:name="ca.hojat.smart.musicplayer.home.settings.CustomizationActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/customize_colors"
-            android:parentActivityName=".new_architecture.home.settings.SettingsActivity" />
+            android:parentActivityName=".home.settings.SettingsActivity" />
 
         <activity
-            android:name=".new_architecture.home.settings.SettingsActivity"
+            android:name=".home.settings.SettingsActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:label="@string/settings"
-            android:parentActivityName=".new_architecture.MainActivity">
+            android:parentActivityName=".MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -99,41 +98,39 @@
         </activity>
 
         <activity
-            android:name=".new_architecture.home.settings.ExcludedFoldersActivity"
+            android:name=".home.settings.ExcludedFoldersActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/excluded_folders"
-            android:parentActivityName=".new_architecture.home.settings.SettingsActivity" />
+            android:parentActivityName=".home.settings.SettingsActivity" />
 
         <activity
-            android:name=".new_architecture.home.equalizer.EqualizerActivity"
+            android:name=".home.equalizer.EqualizerActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/equalizer"
-            android:parentActivityName=".new_architecture.MainActivity" />
+            android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".new_architecture.feature_albums.AlbumsActivity"
+            android:name=".feature_albums.AlbumsActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/artist"
-            android:parentActivityName=".new_architecture.MainActivity" />
+            android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".new_architecture.feature_tracks.TracksActivity"
+            android:name=".feature_tracks.TracksActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/artist"
-            android:parentActivityName=".new_architecture.feature_albums.AlbumsActivity" />
+            android:parentActivityName=".feature_albums.AlbumsActivity" />
 
         <activity
-            android:name=".new_architecture.home.player.TrackActivity"
+            android:name=".home.player.TrackActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:parentActivityName=".new_architecture.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/TranslucentTheme">
-
-
 
 
             <intent-filter>
@@ -161,28 +158,28 @@
         </activity>
 
         <activity
-            android:name="com.simplemobiletools.musicplayer.new_architecture.home.about.FAQActivity"
+            android:name="ca.hojat.smart.musicplayer.home.about.FAQActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/frequently_asked_questions"
-            android:parentActivityName="com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity" />
+            android:parentActivityName="ca.hojat.smart.musicplayer.home.about.AboutActivity" />
 
         <activity
-            android:name=".new_architecture.home.player.QueueActivity"
+            android:name=".home.player.QueueActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/track_queue"
-            android:parentActivityName=".new_architecture.home.player.TrackActivity" />
+            android:parentActivityName=".home.player.TrackActivity" />
 
         <activity
-            android:name="com.simplemobiletools.musicplayer.new_architecture.home.about.LicenseActivity"
+            android:name="ca.hojat.smart.musicplayer.home.about.LicenseActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/third_party_licences"
-            android:parentActivityName="com.simplemobiletools.musicplayer.new_architecture.home.about.AboutActivity" />
+            android:parentActivityName="ca.hojat.smart.musicplayer.home.about.AboutActivity" />
 
         <service
-            android:name="com.simplemobiletools.musicplayer.new_architecture.shared.playback.PlaybackService"
+            android:name="ca.hojat.smart.musicplayer.shared.playback.PlaybackService"
             android:exported="true"
             android:foregroundServiceType="mediaPlayback">
             <intent-filter>
@@ -192,7 +189,7 @@
         </service>
 
         <receiver
-            android:name="com.simplemobiletools.musicplayer.new_architecture.shared.helpers.MyWidgetProvider"
+            android:name="ca.hojat.smart.musicplayer.shared.helpers.MyWidgetProvider"
             android:exported="true"
             android:icon="@drawable/img_widget_preview">
             <intent-filter>
@@ -227,7 +224,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_red"
             android:roundIcon="@mipmap/ic_launcher_red"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -241,7 +238,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_pink"
             android:roundIcon="@mipmap/ic_launcher_pink"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -255,7 +252,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_purple"
             android:roundIcon="@mipmap/ic_launcher_purple"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -269,7 +266,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_deep_purple"
             android:roundIcon="@mipmap/ic_launcher_deep_purple"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -283,7 +280,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_indigo"
             android:roundIcon="@mipmap/ic_launcher_indigo"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -297,7 +294,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_blue"
             android:roundIcon="@mipmap/ic_launcher_blue"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -311,7 +308,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_light_blue"
             android:roundIcon="@mipmap/ic_launcher_light_blue"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -325,7 +322,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_cyan"
             android:roundIcon="@mipmap/ic_launcher_cyan"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -339,7 +336,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_teal"
             android:roundIcon="@mipmap/ic_launcher_teal"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -353,7 +350,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_green"
             android:roundIcon="@mipmap/ic_launcher_green"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -367,7 +364,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_light_green"
             android:roundIcon="@mipmap/ic_launcher_light_green"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -381,7 +378,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_lime"
             android:roundIcon="@mipmap/ic_launcher_lime"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -395,7 +392,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_yellow"
             android:roundIcon="@mipmap/ic_launcher_yellow"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -409,7 +406,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_amber"
             android:roundIcon="@mipmap/ic_launcher_amber"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -423,7 +420,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -436,7 +433,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_deep_orange"
             android:roundIcon="@mipmap/ic_launcher_deep_orange"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -450,7 +447,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_brown"
             android:roundIcon="@mipmap/ic_launcher_brown"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -464,7 +461,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_blue_grey"
             android:roundIcon="@mipmap/ic_launcher_blue_grey"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -478,7 +475,7 @@
             android:exported="true"
             android:icon="@mipmap/ic_launcher_grey_black"
             android:roundIcon="@mipmap/ic_launcher_grey_black"
-            android:targetActivity=".new_architecture.home.splash.SplashActivity">
+            android:targetActivity=".home.splash.SplashActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
