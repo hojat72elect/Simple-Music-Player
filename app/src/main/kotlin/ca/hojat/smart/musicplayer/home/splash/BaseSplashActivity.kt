@@ -3,16 +3,15 @@ package ca.hojat.smart.musicplayer.home.splash
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.extensions.checkAppIconColor
 import ca.hojat.smart.musicplayer.shared.extensions.checkAppSideloading
-import ca.hojat.smart.musicplayer.shared.helpers.SIDELOADING_TRUE
-import ca.hojat.smart.musicplayer.shared.helpers.SIDELOADING_UNCHECKED
-import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.shared.extensions.getSharedTheme
-import ca.hojat.smart.musicplayer.shared.extensions.isThankYouInstalled
 import ca.hojat.smart.musicplayer.shared.extensions.isUsingSystemDarkTheme
 import ca.hojat.smart.musicplayer.shared.extensions.showSideloadingDialog
+import ca.hojat.smart.musicplayer.shared.helpers.SIDELOADING_TRUE
+import ca.hojat.smart.musicplayer.shared.helpers.SIDELOADING_UNCHECKED
 
 @SuppressLint("CustomSplashScreen")
 abstract class BaseSplashActivity : AppCompatActivity() {
@@ -41,7 +40,7 @@ abstract class BaseSplashActivity : AppCompatActivity() {
             }
         }
 
-        if (!baseConfig.isUsingAutoTheme && !baseConfig.isUsingSystemTheme && isThankYouInstalled()) {
+        if (!baseConfig.isUsingAutoTheme && !baseConfig.isUsingSystemTheme) {
             getSharedTheme {
                 if (it != null) {
                     baseConfig.apply {

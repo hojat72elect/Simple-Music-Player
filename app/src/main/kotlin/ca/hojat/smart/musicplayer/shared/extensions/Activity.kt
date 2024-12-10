@@ -665,10 +665,6 @@ fun Activity.appLaunched(appId: String) {
     }
 
     baseConfig.appRunCount++
-    if (baseConfig.appRunCount % 30 == 0 && !isAProApp()) {
-        // Ask user to update
-        Log.d("Activity", "Ask user to update the app to pro version.")
-    }
 
     if (baseConfig.appRunCount % 4 == 0 && !baseConfig.wasAppRated) {
         if (!resources.getBoolean(R.bool.hide_google_relations)) {

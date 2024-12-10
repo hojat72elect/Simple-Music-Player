@@ -164,7 +164,6 @@ private val DIRS_INACCESSIBLE_WITH_SAF_SDK_30 = listOf(DOWNLOAD_DIR, ANDROID_DIR
 private const val ANDROID_OBB_DIR = "/Android/obb/"
 private const val ANDROID_DATA_DIR = "/Android/data/"
 
-
 fun Context.getSAFDocumentId(path: String): String {
     val basePath = path.getBasePath(this)
     val relativePath = path.substring(basePath.length).trim('/')
@@ -309,7 +308,6 @@ fun Context.isSDCardSetAsDefaultStorage() =
         true
     )
 
-
 fun Context.isUsingGestureNavigation(): Boolean {
     return try {
         val resourceId =
@@ -424,7 +422,6 @@ fun Context.createDirectorySync(directory: String): Boolean {
     return File(directory).mkdirs()
 }
 
-
 // http://stackoverflow.com/a/40582634/1967672
 fun Context.getSDCardPath(): String {
     val directories = getStorageDirectories().filter {
@@ -464,7 +461,6 @@ fun Context.getSDCardPath(): String {
     baseConfig.sdCardPath = finalPath
     return finalPath
 }
-
 
 fun Context.getFastDocumentFile(path: String): DocumentFile? {
     if (isPathOnOTG(path)) {
@@ -513,8 +509,6 @@ fun Context.getDoesFilePathExistSdk30(path: String): Boolean {
         else -> File(path).exists()
     }
 }
-
-fun Context.isThankYouInstalled() = true
 
 fun Context.openNotificationSettings() {
     if (isOreoPlus()) {
@@ -697,7 +691,6 @@ fun Context.getFileOutputStreamSync(
     }
 }
 
-
 fun Context.createSAFDirectorySdk30(path: String): Boolean {
     return try {
         val treeUri = createFirstParentTreeUri(path)
@@ -719,7 +712,6 @@ fun Context.createSAFDirectorySdk30(path: String): Boolean {
         false
     }
 }
-
 
 fun Context.rescanPath(path: String, callback: (() -> Unit)? = null) {
     rescanPaths(arrayListOf(path), callback)
@@ -887,7 +879,6 @@ fun Context.deleteDocumentWithSAFSdk30(
     }
 }
 
-
 fun Context.createDocumentUriUsingFirstParentTreeUri(fullPath: String): Uri {
     val storageId = getSAFStorageId(fullPath)
     val relativePath = when {
@@ -986,7 +977,6 @@ fun Context.getAlbum(path: String): String? {
     }
 }
 
-
 fun Context.copyToClipboard(text: String) {
     val clip = ClipData.newPlainText(getString(R.string.simple_commons), text)
     (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)
@@ -1009,7 +999,6 @@ fun Context.isRestrictedWithSAFSdk30(path: String): Boolean {
         DIRS_INACCESSIBLE_WITH_SAF_SDK_30.any { firstParentDir.equals(it, true) }
     return isRPlus() && (isInvalidName || (isDirectory && isARestrictedDirectory))
 }
-
 
 val Context.otgPath: String get() = baseConfig.oTGPath
 
@@ -1043,15 +1032,6 @@ fun Context.humanizePath(path: String): String {
     }
 }
 
-fun Context.isPackageInstalled(pkgName: String): Boolean {
-    return try {
-        packageManager.getPackageInfo(pkgName, 0)
-        true
-    } catch (e: Exception) {
-        false
-    }
-}
-
 fun Context.isRestrictedSAFOnlyRoot(path: String): Boolean {
     return isRPlus() && isSAFOnlyRoot(path)
 }
@@ -1060,16 +1040,11 @@ fun Context.isPathOnSD(path: String) = sdCardPath.isNotEmpty() && path.startsWit
 
 fun Context.isPathOnOTG(path: String) = otgPath.isNotEmpty() && path.startsWith(otgPath)
 
-
 fun Context.isBlackAndWhiteTheme() =
     baseConfig.textColor == Color.WHITE && baseConfig.primaryColor == Color.BLACK && baseConfig.backgroundColor == Color.BLACK
 
-
 fun Context.isWhiteTheme() =
     baseConfig.textColor == DARK_GREY && baseConfig.primaryColor == Color.WHITE && baseConfig.backgroundColor == Color.WHITE
-
-fun Context.isAProApp() =true
-
 
 fun Context.isAccessibleWithSAFSdk30(path: String): Boolean {
     if (path.startsWith(recycleBinPath) || isExternalStorageManager()) {
@@ -1574,7 +1549,6 @@ fun Context.isInAndroidDir(path: String): Boolean {
     return firstParentDir.equals(ANDROID_DIR, true)
 }
 
-
 fun Context.isInSubFolderInDownloadDir(path: String): Boolean {
     if (path.startsWith(recycleBinPath)) {
         return false
@@ -1703,13 +1677,9 @@ fun getSharedThemeSync(cursorLoader: CursorLoader): SharedTheme? {
 }
 
 fun Context.getSharedTheme(callback: (sharedTheme: SharedTheme?) -> Unit) {
-    if (!isThankYouInstalled()) {
-        callback(null)
-    } else {
-        val cursorLoader = getMyContentProviderCursorLoader()
-        ensureBackgroundThread {
-            callback(getSharedThemeSync(cursorLoader))
-        }
+    val cursorLoader = getMyContentProviderCursorLoader()
+    ensureBackgroundThread {
+        callback(getSharedThemeSync(cursorLoader))
     }
 }
 
@@ -1725,7 +1695,6 @@ fun Context.hasProperStoredTreeUri(isOTG: Boolean): Boolean {
     }
     return hasProperUri
 }
-
 
 fun Context.isInDownloadDir(path: String): Boolean {
     if (path.startsWith(recycleBinPath)) {
@@ -1759,7 +1728,6 @@ fun Context.getProperStatusBarColor() = when {
 
 fun Context.hasAllPermissions(permIds: Collection<Int>) = permIds.all(this::hasPermission)
 
-
 fun Context.openDeviceSettings() {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
         data = Uri.fromParts("package", packageName, null)
@@ -1771,7 +1739,6 @@ fun Context.openDeviceSettings() {
         showErrorToast(e)
     }
 }
-
 
 fun Context.getMediaStoreIdFromPath(path: String): Long {
     var id = 0L
@@ -2544,7 +2511,6 @@ private val physicalPaths = arrayListOf(
     "/storage/usbdisk2"
 )
 
-
 fun Context.storeAndroidTreeUri(path: String, treeUri: String) {
     return when {
         isPathOnOTG(path) -> if (isAndroidDataDir(path)) baseConfig.otgAndroidDataTreeUri =
@@ -2568,7 +2534,6 @@ fun Context.getSAFStorageId(fullPath: String): String {
         fullPath.substringBefore(':', "").substringAfterLast('/')
     }
 }
-
 
 fun Context.createAndroidDataOrObbPath(fullPath: String): String {
     return if (isAndroidDataDir(fullPath)) {
