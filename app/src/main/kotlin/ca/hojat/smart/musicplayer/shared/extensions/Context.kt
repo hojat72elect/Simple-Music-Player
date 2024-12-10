@@ -52,6 +52,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.annotation.StringRes
 import androidx.biometric.BiometricManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -1086,7 +1087,7 @@ fun Context.isAccessibleWithSAFSdk30(path: String): Boolean {
     return isRPlus() && isValidName && isDirectory && isAnAccessibleDirectory
 }
 
-fun Context.toast(id: Int, length: Int = Toast.LENGTH_SHORT) {
+fun Context.toast(@StringRes id: Int, length: Int = Toast.LENGTH_SHORT) {
     toast(getString(id), length)
 }
 
