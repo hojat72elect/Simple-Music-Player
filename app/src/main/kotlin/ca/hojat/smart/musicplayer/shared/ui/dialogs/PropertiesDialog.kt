@@ -9,23 +9,19 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.exifinterface.media.ExifInterface
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.extensions.formatAsResolution
-import ca.hojat.smart.musicplayer.shared.extensions.getExifCameraModel
-import ca.hojat.smart.musicplayer.shared.extensions.getExifDateTaken
-import ca.hojat.smart.musicplayer.shared.extensions.getExifProperties
-import ca.hojat.smart.musicplayer.shared.extensions.md5
-import ca.hojat.smart.musicplayer.shared.extensions.removeValues
 import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
-import ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
-import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
 import ca.hojat.smart.musicplayer.shared.extensions.canModifyEXIF
+import ca.hojat.smart.musicplayer.shared.extensions.formatAsResolution
 import ca.hojat.smart.musicplayer.shared.extensions.formatDate
 import ca.hojat.smart.musicplayer.shared.extensions.formatSize
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
 import ca.hojat.smart.musicplayer.shared.extensions.getAndroidSAFUri
 import ca.hojat.smart.musicplayer.shared.extensions.getDoesFilePathExist
+import ca.hojat.smart.musicplayer.shared.extensions.getExifCameraModel
+import ca.hojat.smart.musicplayer.shared.extensions.getExifDateTaken
+import ca.hojat.smart.musicplayer.shared.extensions.getExifProperties
 import ca.hojat.smart.musicplayer.shared.extensions.getFileInputStreamSync
 import ca.hojat.smart.musicplayer.shared.extensions.getFilenameFromPath
 import ca.hojat.smart.musicplayer.shared.extensions.getIsPathDirectory
@@ -37,15 +33,18 @@ import ca.hojat.smart.musicplayer.shared.extensions.isPathOnInternalStorage
 import ca.hojat.smart.musicplayer.shared.extensions.isPathOnOTG
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
 import ca.hojat.smart.musicplayer.shared.extensions.isVideoSlow
+import ca.hojat.smart.musicplayer.shared.extensions.md5
+import ca.hojat.smart.musicplayer.shared.extensions.removeValues
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.helpers.PERMISSION_WRITE_STORAGE
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.isNougatPlus
 import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
 import ca.hojat.smart.musicplayer.shared.helpers.sumByInt
 import ca.hojat.smart.musicplayer.shared.helpers.sumByLong
+import ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.File
 
 
@@ -63,12 +62,7 @@ class PropertiesDialog : BasePropertiesDialog {
         activity
     ) {
         if (!activity.getDoesFilePathExist(path) && !path.startsWith("content://")) {
-            activity.toast(
-                String.format(
-                    activity.getString(R.string.source_file_doesnt_exist),
-                    path
-                )
-            )
+            ShowToastUseCase(activity, String.format(activity.getString(R.string.source_file_doesnt_exist), path))
             return
         }
 
@@ -393,7 +387,7 @@ class PropertiesDialog : BasePropertiesDialog {
         ConfirmationDialog(mActivity, "", R.string.remove_exif_confirmation) {
             try {
                 ExifInterface(path).removeValues()
-                mActivity.toast(R.string.exif_removed)
+                ShowToastUseCase(mActivity, R.string.exif_removed)
                 mPropertyView.findViewById<LinearLayout>(R.id.properties_holder).removeAllViews()
                 addProperties(path)
             } catch (e: Exception) {
@@ -409,7 +403,7 @@ class PropertiesDialog : BasePropertiesDialog {
                     .forEach {
                         ExifInterface(it).removeValues()
                     }
-                mActivity.toast(R.string.exif_removed)
+                ShowToastUseCase(mActivity, R.string.exif_removed)
             } catch (e: Exception) {
                 mActivity.showErrorToast(e)
             }

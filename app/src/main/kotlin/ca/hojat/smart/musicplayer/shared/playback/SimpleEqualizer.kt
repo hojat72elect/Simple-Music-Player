@@ -3,13 +3,13 @@ package ca.hojat.smart.musicplayer.shared.playback
 import android.content.Context
 import android.media.audiofx.Equalizer
 import androidx.media3.common.util.UnstableApi
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.config
 import ca.hojat.smart.musicplayer.shared.helpers.EQUALIZER_PRESET_CUSTOM
 import ca.hojat.smart.musicplayer.shared.playback.player.SimpleMusicPlayer
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 @UnstableApi
 object SimpleEqualizer {
@@ -39,7 +39,7 @@ object SimpleEqualizer {
                 }
             }
         } catch (ignored: Exception) {
-            context.toast(R.string.unknown_error_occurred)
+            ShowToastUseCase(context, R.string.unknown_error_occurred)
         }
     }
 

@@ -47,7 +47,8 @@ import ca.hojat.smart.musicplayer.shared.extensions.launchMoreAppsFromUsIntent
 import ca.hojat.smart.musicplayer.shared.extensions.launchViewIntent
 import ca.hojat.smart.musicplayer.shared.extensions.redirectToRateUs
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
-import ca.hojat.smart.musicplayer.shared.extensions.toast
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase.invoke
 
 class AboutActivity : ComponentActivity() {
     private val appName get() = intent.getStringExtra(APP_NAME) ?: ""
@@ -272,7 +273,7 @@ class AboutActivity : ComponentActivity() {
             try {
                 startActivity(chooser)
             } catch (e: Exception) {
-                toast(R.string.no_email_client_found)
+                ShowToastUseCase(this ,R.string.no_email_client_found)
             }
         } catch (e: Exception) {
             showErrorToast(e)
@@ -319,7 +320,7 @@ class AboutActivity : ComponentActivity() {
 
 
     private fun onDonateClick() {
-       toast("User wants to donate to the app!")
+       ShowToastUseCase(this ,"User wants to donate to the app!")
     }
 
     private fun onFacebookClick() {
@@ -371,7 +372,7 @@ class AboutActivity : ComponentActivity() {
 
         clicksSinceFirstClick++
         if (clicksSinceFirstClick >= EASTER_EGG_REQUIRED_CLICKS) {
-            toast(R.string.hello)
+            ShowToastUseCase(this ,R.string.hello)
             firstVersionClickTS = 0L
             clicksSinceFirstClick = 0
         }

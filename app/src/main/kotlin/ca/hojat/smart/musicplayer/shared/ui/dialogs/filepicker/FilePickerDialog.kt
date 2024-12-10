@@ -12,8 +12,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.databinding.DialogFilepickerBinding
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
+import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
 import ca.hojat.smart.musicplayer.shared.extensions.areSystemAnimationsEnabled
 import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
@@ -46,12 +47,11 @@ import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedWithSAFSdk30
 import ca.hojat.smart.musicplayer.shared.extensions.isVisible
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.CreateNewFolderDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.StoragePickerDialog
 import ca.hojat.smart.musicplayer.shared.ui.views.Breadcrumbs
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.File
 
 /**
@@ -270,7 +270,7 @@ class FilePickerDialog(
                     if (activity.isInDownloadDir(currPath)) {
                         sendSuccessForDirectFile()
                     } else {
-                        activity.toast(R.string.system_folder_restriction, Toast.LENGTH_LONG)
+                        ShowToastUseCase(activity, R.string.system_folder_restriction, Toast.LENGTH_LONG)
                     }
                 } else {
                     sendSuccessForDirectFile()

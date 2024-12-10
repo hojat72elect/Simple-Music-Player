@@ -11,23 +11,21 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.PermissionRequiredDialog
-import ca.hojat.smart.musicplayer.shared.helpers.NavigationIcon
-import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.SimpleMusicActivity
+import ca.hojat.smart.musicplayer.databinding.ActivityTracksBinding
 import ca.hojat.smart.musicplayer.feature_tracks.TracksAdapter.Companion.TYPE_ALBUM
 import ca.hojat.smart.musicplayer.feature_tracks.TracksAdapter.Companion.TYPE_FOLDER
 import ca.hojat.smart.musicplayer.feature_tracks.TracksAdapter.Companion.TYPE_PLAYLIST
 import ca.hojat.smart.musicplayer.feature_tracks.TracksAdapter.Companion.TYPE_TRACKS
-import ca.hojat.smart.musicplayer.databinding.ActivityTracksBinding
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ChangeSortingDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ExportPlaylistDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker.FilePickerDialog
+import ca.hojat.smart.musicplayer.shared.SimpleMusicActivity
+import ca.hojat.smart.musicplayer.shared.data.models.Album
+import ca.hojat.smart.musicplayer.shared.data.models.AlbumHeader
+import ca.hojat.smart.musicplayer.shared.data.models.Events
+import ca.hojat.smart.musicplayer.shared.data.models.Genre
+import ca.hojat.smart.musicplayer.shared.data.models.ListItem
+import ca.hojat.smart.musicplayer.shared.data.models.Playlist
+import ca.hojat.smart.musicplayer.shared.data.models.Track
+import ca.hojat.smart.musicplayer.shared.data.models.sortSafely
 import ca.hojat.smart.musicplayer.shared.extensions.areSystemAnimationsEnabled
 import ca.hojat.smart.musicplayer.shared.extensions.audioHelper
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
@@ -43,7 +41,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.openNotificationSettings
 import ca.hojat.smart.musicplayer.shared.extensions.rescanPaths
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.toFileDirItem
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.underlineText
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.ACTIVITY_PLAYLIST_FOLDER
@@ -53,17 +50,20 @@ import ca.hojat.smart.musicplayer.shared.helpers.GENRE
 import ca.hojat.smart.musicplayer.shared.helpers.M3uExporter
 import ca.hojat.smart.musicplayer.shared.helpers.M3uExporter.ExportResult
 import ca.hojat.smart.musicplayer.shared.helpers.MIME_TYPE_M3U
+import ca.hojat.smart.musicplayer.shared.helpers.NavigationIcon
 import ca.hojat.smart.musicplayer.shared.helpers.PLAYLIST
 import ca.hojat.smart.musicplayer.shared.helpers.RoomHelper
+import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.getPermissionToRequest
-import ca.hojat.smart.musicplayer.shared.data.models.Album
-import ca.hojat.smart.musicplayer.shared.data.models.AlbumHeader
-import ca.hojat.smart.musicplayer.shared.data.models.Events
-import ca.hojat.smart.musicplayer.shared.data.models.Genre
-import ca.hojat.smart.musicplayer.shared.data.models.ListItem
-import ca.hojat.smart.musicplayer.shared.data.models.Playlist
-import ca.hojat.smart.musicplayer.shared.data.models.Track
-import ca.hojat.smart.musicplayer.shared.data.models.sortSafely
+import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
+import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ChangeSortingDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ExportPlaylistDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.PermissionRequiredDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker.FilePickerDialog
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.OutputStream
 import org.greenrobot.eventbus.EventBus
 
@@ -334,7 +334,7 @@ class TracksActivity : SimpleMusicActivity() {
                 if (path.isAudioFast()) {
                     addTrackFromPath(path, true)
                 } else {
-                    toast(R.string.invalid_file_format)
+                    ShowToastUseCase(this, R.string.invalid_file_format)
                 }
             }
         }
@@ -348,7 +348,7 @@ class TracksActivity : SimpleMusicActivity() {
                     addTrackFromPath(path, false)
                 }
             } else {
-                toast(R.string.unknown_error_occurred)
+                ShowToastUseCase(this, R.string.unknown_error_occurred)
             }
         } else {
             var track = audioHelper.getTrack(mediaStoreId)
@@ -438,7 +438,7 @@ class TracksActivity : SimpleMusicActivity() {
                     try {
                         startActivityForResult(this, PICK_EXPORT_FILE_INTENT)
                     } catch (e: ActivityNotFoundException) {
-                        toast(R.string.system_service_disabled, Toast.LENGTH_LONG)
+                        ShowToastUseCase(this@TracksActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
                     } catch (e: Exception) {
                         showErrorToast(e)
                     }
@@ -460,12 +460,13 @@ class TracksActivity : SimpleMusicActivity() {
     private fun exportPlaylistTo(outputStream: OutputStream?) {
         val tracks = getTracksAdapter()?.items
         if (tracks.isNullOrEmpty()) {
-            toast(R.string.no_entries_for_exporting)
+            ShowToastUseCase(this, R.string.no_entries_for_exporting)
             return
         }
 
         M3uExporter(this).exportPlaylist(outputStream, tracks) { result ->
-            toast(
+            ShowToastUseCase(
+                this,
                 when (result) {
                     ExportResult.EXPORT_OK -> R.string.exporting_successful
                     ExportResult.EXPORT_PARTIAL -> R.string.exporting_some_entries_failed

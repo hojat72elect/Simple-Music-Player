@@ -49,7 +49,7 @@ import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
 import ca.hojat.smart.musicplayer.shared.extensions.getProperPrimaryColor
 import ca.hojat.smart.musicplayer.shared.extensions.redirectToRateUs
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
-import ca.hojat.smart.musicplayer.shared.extensions.toast
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -90,7 +90,7 @@ class RateStarsDialog(val activity: Activity) {
     private fun dialogCancelled(showThankYou: Boolean) {
         dialog?.dismiss()
         if (showThankYou) {
-            activity.toast(R.string.thank_you)
+            ShowToastUseCase(activity, R.string.thank_you)
             activity.baseConfig.wasAppRated = true
         }
     }

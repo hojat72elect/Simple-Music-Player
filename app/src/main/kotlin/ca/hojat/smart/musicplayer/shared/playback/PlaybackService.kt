@@ -33,7 +33,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.hasPermission
 import ca.hojat.smart.musicplayer.shared.extensions.isReallyPlaying
 import ca.hojat.smart.musicplayer.shared.extensions.nextMediaItem
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_NEXT_MEDIA_ID
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_SHUFFLE_INDICES
 import ca.hojat.smart.musicplayer.shared.helpers.NotificationHelper
@@ -43,6 +42,8 @@ import ca.hojat.smart.musicplayer.shared.playback.library.MediaItemProvider
 import ca.hojat.smart.musicplayer.shared.playback.player.SimpleMusicPlayer
 import ca.hojat.smart.musicplayer.shared.playback.player.initializeSessionAndPlayer
 import ca.hojat.smart.musicplayer.shared.playback.player.updatePlaybackState
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase.invoke
 import java.util.concurrent.Executors
 import org.greenrobot.eventbus.EventBus
 
@@ -415,7 +416,7 @@ class PlaybackService : MediaLibraryService(), MediaSessionService.Listener {
     @UnstableApi
     internal fun getPlayerListener() = object : Player.Listener {
 
-        override fun onPlayerError(error: PlaybackException) = toast(R.string.unknown_error_occurred, Toast.LENGTH_LONG)
+        override fun onPlayerError(error: PlaybackException) = ShowToastUseCase(this@PlaybackService , R.string.unknown_error_occurred, Toast.LENGTH_LONG)
 
         override fun onEvents(player: Player, events: Player.Events) {
             if (

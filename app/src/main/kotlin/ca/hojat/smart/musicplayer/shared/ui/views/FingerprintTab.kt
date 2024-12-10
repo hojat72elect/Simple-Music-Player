@@ -15,11 +15,11 @@ import ca.hojat.smart.musicplayer.databinding.TabFingerprintBinding
 import ca.hojat.smart.musicplayer.shared.extensions.applyColorFilter
 import ca.hojat.smart.musicplayer.shared.extensions.beGoneIf
 import ca.hojat.smart.musicplayer.shared.extensions.getProperTextColor
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
 import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_FINGERPRINT
 import ca.hojat.smart.musicplayer.shared.data.HashListener
 import ca.hojat.smart.musicplayer.shared.data.SecurityTab
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 
 class FingerprintTab(context: Context, attrs: AttributeSet) : RelativeLayout(context, attrs),
     SecurityTab {
@@ -79,8 +79,8 @@ class FingerprintTab(context: Context, attrs: AttributeSet) : RelativeLayout(con
                 errorCode: Int
             ) {
                 when (failureReason) {
-                    AuthenticationFailureReason.AUTHENTICATION_FAILED -> context.toast(R.string.authentication_failed)
-                    AuthenticationFailureReason.LOCKED_OUT -> context.toast(R.string.authentication_blocked)
+                    AuthenticationFailureReason.AUTHENTICATION_FAILED -> ShowToastUseCase(context, R.string.authentication_failed)
+                    AuthenticationFailureReason.LOCKED_OUT -> ShowToastUseCase(context, R.string.authentication_blocked)
                     else -> {}
                 }
             }

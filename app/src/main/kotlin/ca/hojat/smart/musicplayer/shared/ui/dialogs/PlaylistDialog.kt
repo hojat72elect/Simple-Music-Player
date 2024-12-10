@@ -10,10 +10,10 @@ import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
 import ca.hojat.smart.musicplayer.shared.extensions.getPlaylistIdWithTitle
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.showKeyboard
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.data.models.Playlist
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 
 class PlaylistDialog(
     val activity: Activity,
@@ -48,10 +48,10 @@ class PlaylistDialog(
                             }
 
                             if (title.isEmpty()) {
-                                activity.toast(R.string.empty_name)
+                                ShowToastUseCase(activity, R.string.empty_name)
                                 return@ensureBackgroundThread
                             } else if (isPlaylistTitleTaken) {
-                                activity.toast(R.string.playlist_name_exists)
+                                ShowToastUseCase(activity, R.string.playlist_name_exists)
                                 return@ensureBackgroundThread
                             }
 
@@ -68,7 +68,7 @@ class PlaylistDialog(
                                 alertDialog.dismiss()
                                 callback(eventTypeId)
                             } else {
-                                activity.toast(R.string.unknown_error_occurred)
+                                ShowToastUseCase(activity, R.string.unknown_error_occurred)
                             }
                         }
                     }

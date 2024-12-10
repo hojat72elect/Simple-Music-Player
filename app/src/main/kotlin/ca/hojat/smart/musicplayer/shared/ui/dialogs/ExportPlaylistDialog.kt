@@ -15,12 +15,13 @@ import ca.hojat.smart.musicplayer.shared.extensions.humanizePath
 import ca.hojat.smart.musicplayer.shared.extensions.internalStoragePath
 import ca.hojat.smart.musicplayer.shared.extensions.isAValidFilename
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker.FilePickerDialog
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase.invoke
 import java.io.File
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -67,11 +68,11 @@ class ExportPlaylistDialog(
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val filename = binding.exportPlaylistFilename.value
                         when {
-                            filename.isEmpty() -> activity.toast(R.string.empty_name)
+                            filename.isEmpty() -> ShowToastUseCase(activity ,R.string.empty_name)
                             filename.isAValidFilename() -> {
                                 val file = File(realPath, "$filename.m3u")
                                 if (!hidePath && file.exists()) {
-                                    activity.toast(R.string.name_taken)
+                                    ShowToastUseCase(activity, R.string.name_taken)
                                     return@setOnClickListener
                                 }
 
@@ -84,7 +85,7 @@ class ExportPlaylistDialog(
                                 }
                             }
 
-                            else -> activity.toast(R.string.invalid_name)
+                            else -> ShowToastUseCase(activity, R.string.invalid_name)
                         }
                     }
                 }

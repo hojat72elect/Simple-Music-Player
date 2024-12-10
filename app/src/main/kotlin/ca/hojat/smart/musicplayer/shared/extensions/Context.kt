@@ -2,7 +2,6 @@ package ca.hojat.smart.musicplayer.shared.extensions
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Application
 import android.app.NotificationManager
 import android.content.ActivityNotFoundException
@@ -52,7 +51,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.annotation.StringRes
 import androidx.biometric.BiometricManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -122,7 +120,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.TIME_FORMAT_24
 import ca.hojat.smart.musicplayer.shared.helpers.TRACK_STATE_CHANGED
 import ca.hojat.smart.musicplayer.shared.helpers.appIconColorStrings
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.helpers.isOnMainThread
 import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
 import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
 import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
@@ -139,6 +136,7 @@ import ca.hojat.smart.musicplayer.shared.ui.views.MyFloatingActionButton
 import ca.hojat.smart.musicplayer.shared.ui.views.MySeekBar
 import ca.hojat.smart.musicplayer.shared.ui.views.MyTextInputLayout
 import ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -362,16 +360,6 @@ fun Context.getHumanReadablePath(path: String): String {
             else -> R.string.sd_card
         }
     )
-}
-
-private fun doToast(context: Context, message: String, length: Int) {
-    if (context is Activity) {
-        if (!context.isFinishing && !context.isDestroyed) {
-            Toast.makeText(context, message, length).show()
-        }
-    } else {
-        Toast.makeText(context, message, length).show()
-    }
 }
 
 fun Context.getFirstParentLevel(path: String): Int {
@@ -981,7 +969,7 @@ fun Context.copyToClipboard(text: String) {
     val clip = ClipData.newPlainText(getString(R.string.simple_commons), text)
     (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)
     val toastText = String.format(getString(R.string.value_copied_to_clipboard_show), text)
-    toast(toastText)
+    ShowToastUseCase(this ,toastText)
 }
 
 fun Context.isRestrictedWithSAFSdk30(path: String): Boolean {
@@ -1062,23 +1050,6 @@ fun Context.isAccessibleWithSAFSdk30(path: String): Boolean {
     return isRPlus() && isValidName && isDirectory && isAnAccessibleDirectory
 }
 
-fun Context.toast(@StringRes id: Int, length: Int = Toast.LENGTH_SHORT) {
-    toast(getString(id), length)
-}
-
-fun Context.toast(msg: String, length: Int = Toast.LENGTH_SHORT) {
-    try {
-        if (isOnMainThread()) {
-            doToast(this, msg, length)
-        } else {
-            Handler(Looper.getMainLooper()).post {
-                doToast(this, msg, length)
-            }
-        }
-    } catch (_: Exception) {
-    }
-}
-
 fun Context.getMimeTypeFromUri(uri: Uri): String {
     var mimetype = uri.path?.getMimeType() ?: ""
     if (mimetype.isEmpty()) {
@@ -1132,7 +1103,7 @@ fun Context.showFileCreateError(path: String) {
 }
 
 fun Context.showErrorToast(msg: String, length: Int = Toast.LENGTH_LONG) {
-    toast(String.format(getString(R.string.error), msg), length)
+    ShowToastUseCase(this ,String.format(getString(R.string.error), msg), length)
 }
 
 fun Context.showErrorToast(exception: Exception, length: Int = Toast.LENGTH_LONG) {
@@ -1413,7 +1384,7 @@ fun Context.getTempFile(folderName: String, filename: String): File? {
     val folder = File(cacheDir, folderName)
     if (!folder.exists()) {
         if (!folder.mkdir()) {
-            toast(R.string.unknown_error_occurred)
+            ShowToastUseCase(this ,R.string.unknown_error_occurred)
             return null
         }
     }
@@ -2634,7 +2605,7 @@ fun Context.launchActivityIntent(intent: Intent) {
     try {
         startActivity(intent)
     } catch (e: ActivityNotFoundException) {
-        toast(R.string.no_app_found)
+        ShowToastUseCase(this , R.string.no_app_found)
     } catch (e: Exception) {
         showErrorToast(e)
     }

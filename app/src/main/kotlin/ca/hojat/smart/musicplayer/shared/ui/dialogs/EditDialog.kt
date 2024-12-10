@@ -17,11 +17,11 @@ import ca.hojat.smart.musicplayer.shared.extensions.getParentPath
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.showKeyboard
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.TagHelper
 import ca.hojat.smart.musicplayer.shared.data.models.Track
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 
 @RequiresApi(Build.VERSION_CODES.O)
 class EditDialog(
@@ -61,7 +61,7 @@ class EditDialog(
                         val newFileExtension = binding.extension.value
 
                         if (newTitle.isEmpty() || newArtist.isEmpty() || newFilename.isEmpty() || newFileExtension.isEmpty()) {
-                            activity.toast(R.string.rename_song_empty)
+                            ShowToastUseCase(activity, R.string.rename_song_empty)
                             return@setOnClickListener
                         }
 
@@ -87,7 +87,7 @@ class EditDialog(
                                             track.path = newPath
                                             callback(track)
                                         } else {
-                                            activity.toast(R.string.rename_song_error)
+                                            ShowToastUseCase(activity, R.string.rename_song_error)
                                         }
                                         alertDialog.dismiss()
                                     }
@@ -129,7 +129,7 @@ class EditDialog(
                     }
                 }
             } catch (e: Exception) {
-                activity.toast(R.string.unknown_error_occurred)
+                ShowToastUseCase(activity, R.string.unknown_error_occurred)
             }
         }
     }

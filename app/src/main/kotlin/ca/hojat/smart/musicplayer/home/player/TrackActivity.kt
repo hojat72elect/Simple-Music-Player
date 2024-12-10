@@ -19,22 +19,17 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.postDelayed
 import androidx.core.view.GestureDetectorCompat
 import androidx.media3.common.MediaItem
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
-import ca.hojat.smart.musicplayer.shared.extensions.applyColorFilter
-import ca.hojat.smart.musicplayer.shared.extensions.copyToClipboard
-import ca.hojat.smart.musicplayer.shared.extensions.realScreenSize
-import ca.hojat.smart.musicplayer.shared.extensions.value
-import ca.hojat.smart.musicplayer.shared.extensions.statusBarHeight
-import ca.hojat.smart.musicplayer.shared.extensions.toast
-import ca.hojat.smart.musicplayer.shared.helpers.MEDIUM_ALPHA
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.ActivityTrackBinding
+import ca.hojat.smart.musicplayer.shared.SimpleControllerActivity
+import ca.hojat.smart.musicplayer.shared.data.PlaybackSpeedListener
+import ca.hojat.smart.musicplayer.shared.data.models.Track
+import ca.hojat.smart.musicplayer.shared.extensions.applyColorFilter
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
 import ca.hojat.smart.musicplayer.shared.extensions.beInvisibleIf
 import ca.hojat.smart.musicplayer.shared.extensions.beVisible
 import ca.hojat.smart.musicplayer.shared.extensions.config
+import ca.hojat.smart.musicplayer.shared.extensions.copyToClipboard
 import ca.hojat.smart.musicplayer.shared.extensions.forceSeekToNext
 import ca.hojat.smart.musicplayer.shared.extensions.forceSeekToPrevious
 import ca.hojat.smart.musicplayer.shared.extensions.getColoredDrawableWithColor
@@ -49,19 +44,24 @@ import ca.hojat.smart.musicplayer.shared.extensions.getTrackFromUri
 import ca.hojat.smart.musicplayer.shared.extensions.isReallyPlaying
 import ca.hojat.smart.musicplayer.shared.extensions.loadGlideResource
 import ca.hojat.smart.musicplayer.shared.extensions.nextMediaItem
+import ca.hojat.smart.musicplayer.shared.extensions.realScreenSize
 import ca.hojat.smart.musicplayer.shared.extensions.sendCommand
 import ca.hojat.smart.musicplayer.shared.extensions.setRepeatMode
+import ca.hojat.smart.musicplayer.shared.extensions.statusBarHeight
 import ca.hojat.smart.musicplayer.shared.extensions.toTrack
 import ca.hojat.smart.musicplayer.shared.extensions.updatePlayPauseIcon
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
+import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
+import ca.hojat.smart.musicplayer.shared.helpers.MEDIUM_ALPHA
 import ca.hojat.smart.musicplayer.shared.helpers.PlaybackSetting
 import ca.hojat.smart.musicplayer.shared.helpers.SEEK_INTERVAL_S
-import ca.hojat.smart.musicplayer.shared.data.PlaybackSpeedListener
-import ca.hojat.smart.musicplayer.shared.data.models.Track
-import ca.hojat.smart.musicplayer.shared.SimpleControllerActivity
 import ca.hojat.smart.musicplayer.shared.playback.CustomCommands
 import ca.hojat.smart.musicplayer.shared.playback.PlaybackService
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import java.text.DecimalFormat
 import kotlin.math.min
 import kotlin.time.Duration.Companion.milliseconds
@@ -174,7 +174,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
                 if (track != null) {
                     prepareAndPlay(listOf(track), startActivity = false)
                 } else {
-                    toast(R.string.unknown_error_occurred)
+                    ShowToastUseCase(this, R.string.unknown_error_occurred)
                     finish()
                 }
             }
@@ -299,7 +299,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
     private fun toggleShuffle() {
         val isShuffleEnabled = !config.isShuffleEnabled
         config.isShuffleEnabled = isShuffleEnabled
-        toast(if (isShuffleEnabled) R.string.shuffle_enabled else R.string.shuffle_disabled)
+        ShowToastUseCase(this, if (isShuffleEnabled) R.string.shuffle_enabled else R.string.shuffle_disabled)
         setupShuffleButton()
         withPlayer {
             shuffleModeEnabled = config.isShuffleEnabled
@@ -328,7 +328,7 @@ class TrackActivity : SimpleControllerActivity(), PlaybackSpeedListener {
     private fun togglePlaybackSetting() {
         val newPlaybackSetting = config.playbackSetting.nextPlaybackOption
         config.playbackSetting = newPlaybackSetting
-        toast(newPlaybackSetting.descriptionStringRes)
+        ShowToastUseCase(this, newPlaybackSetting.descriptionStringRes)
         setupPlaybackSettingButton()
         withPlayer {
             setRepeatMode(newPlaybackSetting)

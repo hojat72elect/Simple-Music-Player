@@ -7,15 +7,15 @@ import android.widget.Toast
 import androidx.biometric.auth.AuthPromptHost
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.TabPinBinding
-import ca.hojat.smart.musicplayer.shared.extensions.performHapticFeedback
+import ca.hojat.smart.musicplayer.shared.data.BaseSecurityTab
+import ca.hojat.smart.musicplayer.shared.data.HashListener
 import ca.hojat.smart.musicplayer.shared.extensions.applyColorFilter
 import ca.hojat.smart.musicplayer.shared.extensions.getProperTextColor
-import ca.hojat.smart.musicplayer.shared.extensions.toast
+import ca.hojat.smart.musicplayer.shared.extensions.performHapticFeedback
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
 import ca.hojat.smart.musicplayer.shared.helpers.MINIMUM_PIN_LENGTH
 import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_PIN
-import ca.hojat.smart.musicplayer.shared.data.BaseSecurityTab
-import ca.hojat.smart.musicplayer.shared.data.HashListener
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.util.Locale
@@ -91,16 +91,11 @@ class PinTab(context: Context, attrs: AttributeSet) : BaseSecurityTab(context, a
         if (!isLockedOut()) {
             val newHash = getHashedPin()
             when {
-                pin.isEmpty() -> {
-                    context.toast(id = R.string.please_enter_pin, length = Toast.LENGTH_LONG)
-                }
+                pin.isEmpty() -> ShowToastUseCase(context, R.string.please_enter_pin, Toast.LENGTH_LONG)
 
                 computedHash.isEmpty() && pin.length < MINIMUM_PIN_LENGTH -> {
                     resetPin()
-                    context.toast(
-                        id = R.string.pin_must_be_4_digits_long,
-                        length = Toast.LENGTH_LONG
-                    )
+                    ShowToastUseCase(context, R.string.pin_must_be_4_digits_long, Toast.LENGTH_LONG)
                 }
 
                 computedHash.isEmpty() -> {

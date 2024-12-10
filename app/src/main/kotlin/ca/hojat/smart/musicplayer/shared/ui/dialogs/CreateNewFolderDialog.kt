@@ -28,18 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.AlertDialogState
-import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.ShowKeyboardWhenDialogIsOpenedAndRequestFocus
-import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogBorder
-import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogContainerColor
-import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogElevation
-import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogShape
-import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogTextColor
-import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.rememberAlertDialogState
-import ca.hojat.smart.musicplayer.shared.ui.compose.extensions.MyDevices
-import ca.hojat.smart.musicplayer.shared.ui.compose.theme.AppThemeSurface
-import ca.hojat.smart.musicplayer.shared.ui.compose.theme.SimpleTheme
 import ca.hojat.smart.musicplayer.databinding.DialogCreateNewFolderBinding
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.extensions.createAndroidSAFDirectory
 import ca.hojat.smart.musicplayer.shared.extensions.createSAFDirectorySdk30
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
@@ -55,10 +45,20 @@ import ca.hojat.smart.musicplayer.shared.extensions.needsStupidWritePermissions
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.showKeyboard
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
+import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.AlertDialogState
+import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.ShowKeyboardWhenDialogIsOpenedAndRequestFocus
+import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogBorder
+import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogContainerColor
+import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogElevation
+import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogShape
+import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogTextColor
+import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.rememberAlertDialogState
+import ca.hojat.smart.musicplayer.shared.ui.compose.extensions.MyDevices
+import ca.hojat.smart.musicplayer.shared.ui.compose.theme.AppThemeSurface
+import ca.hojat.smart.musicplayer.shared.ui.compose.theme.SimpleTheme
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.File
 
 @SuppressLint("SetTextI18n")
@@ -86,18 +86,18 @@ class CreateNewFolderDialog(
                         .setOnClickListener(View.OnClickListener {
                             val name = view.folderName.value
                             when {
-                                name.isEmpty() -> activity.toast(R.string.empty_name)
+                                name.isEmpty() -> ShowToastUseCase(activity, R.string.empty_name)
                                 name.isAValidFilename() -> {
                                     val file = File(path, name)
                                     if (file.exists()) {
-                                        activity.toast(R.string.name_taken)
+                                        ShowToastUseCase(activity, R.string.name_taken)
                                         return@OnClickListener
                                     }
 
                                     createFolder("$path/$name", alertDialog)
                                 }
 
-                                else -> activity.toast(R.string.invalid_name)
+                                else -> ShowToastUseCase(activity, R.string.invalid_name)
                             }
                         })
                 }
@@ -128,7 +128,7 @@ class CreateNewFolderDialog(
                             if (newDir != null) {
                                 sendSuccess(alertDialog, path)
                             } else {
-                                activity.toast(R.string.unknown_error_occurred)
+                                ShowToastUseCase(activity, R.string.unknown_error_occurred)
                             }
                         } catch (e: SecurityException) {
                             activity.showErrorToast(e)
@@ -145,12 +145,7 @@ class CreateNewFolderDialog(
                     }
                 }
 
-                else -> activity.toast(
-                    activity.getString(
-                        R.string.could_not_create_folder,
-                        path.getFilenameFromPath()
-                    )
-                )
+                else -> ShowToastUseCase(activity, activity.getString(R.string.could_not_create_folder, path.getFilenameFromPath()))
             }
         } catch (e: Exception) {
             activity.showErrorToast(e)
@@ -188,18 +183,18 @@ fun CreateNewFolderAlertDialog(
                     //add callback
                     val name = title
                     when {
-                        name.isEmpty() -> context.toast(R.string.empty_name)
+                        name.isEmpty() -> ShowToastUseCase(context, R.string.empty_name)
                         name.isAValidFilename() -> {
                             val file = File(path, name)
                             if (file.exists()) {
-                                context.toast(R.string.name_taken)
+                                ShowToastUseCase(context, R.string.name_taken)
                                 return@TextButton
                             }
 
                             callback("$path/$name")
                         }
 
-                        else -> context.toast(R.string.invalid_name)
+                        else -> ShowToastUseCase(context, R.string.invalid_name)
                     }
                 }
             ) {

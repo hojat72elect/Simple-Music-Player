@@ -3,9 +3,9 @@ package ca.hojat.smart.musicplayer.shared.helpers
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.writeLn
 import ca.hojat.smart.musicplayer.shared.data.models.Track
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.OutputStream
 
 class M3uExporter(val activity: BaseSimpleActivity) {
@@ -26,7 +26,7 @@ class M3uExporter(val activity: BaseSimpleActivity) {
             return
         }
 
-        activity.toast(R.string.exporting)
+        ShowToastUseCase(activity, R.string.exporting)
 
         try {
             outputStream.bufferedWriter().use { out ->

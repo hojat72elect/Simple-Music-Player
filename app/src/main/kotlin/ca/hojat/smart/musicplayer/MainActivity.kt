@@ -47,7 +47,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.mediaScanner
 import ca.hojat.smart.musicplayer.shared.extensions.onTabSelectionChanged
 import ca.hojat.smart.musicplayer.shared.extensions.sendCommand
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.updateBottomTabItemColors
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
@@ -77,6 +76,7 @@ import ca.hojat.smart.musicplayer.shared.ui.dialogs.SelectPlaylistDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.SleepTimerCustomDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker.FilePickerDialog
 import ca.hojat.smart.musicplayer.shared.ui.views.ViewPagerAdapter
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.FileOutputStream
 import me.grantland.widget.AutofitHelper
 import org.greenrobot.eventbus.EventBus
@@ -114,7 +114,7 @@ class MainActivity : SimpleMusicActivity() {
             if (it) {
                 initActivity()
             } else {
-                toast(R.string.no_storage_permissions)
+                ShowToastUseCase(this, R.string.no_storage_permissions)
                 finish()
             }
         }
@@ -407,7 +407,7 @@ class MainActivity : SimpleMusicActivity() {
             uri.scheme == "content" -> {
                 val tempFile = getTempFile("imports", uri.path!!.getFilenameFromPath())
                 if (tempFile == null) {
-                    toast(R.string.unknown_error_occurred)
+                    ShowToastUseCase(this, R.string.unknown_error_occurred)
                     return
                 }
 
@@ -422,7 +422,7 @@ class MainActivity : SimpleMusicActivity() {
                 }
             }
 
-            else -> toast(R.string.invalid_file_format)
+            else -> ShowToastUseCase(this, R.string.invalid_file_format)
         }
     }
 
@@ -436,7 +436,7 @@ class MainActivity : SimpleMusicActivity() {
                 try {
                     startActivityForResult(this, PICK_IMPORT_SOURCE_INTENT)
                 } catch (e: ActivityNotFoundException) {
-                    toast(R.string.system_service_disabled, Toast.LENGTH_LONG)
+                    ShowToastUseCase(this@MainActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
                 } catch (e: Exception) {
                     showErrorToast(e)
                 }
@@ -469,7 +469,8 @@ class MainActivity : SimpleMusicActivity() {
         ensureBackgroundThread {
             M3uImporter(this) { result ->
                 runOnUiThread {
-                    toast(
+                    ShowToastUseCase(
+                        this,
                         when (result) {
                             ImportResult.IMPORT_OK -> R.string.importing_successful
                             ImportResult.IMPORT_PARTIAL -> R.string.importing_some_entries_failed

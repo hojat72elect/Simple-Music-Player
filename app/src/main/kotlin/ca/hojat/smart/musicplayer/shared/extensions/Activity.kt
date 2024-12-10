@@ -3,7 +3,11 @@ package ca.hojat.smart.musicplayer.shared.extensions
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
-import android.content.*
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
+import android.content.ContentUris
+import android.content.Context
+import android.content.Intent
 import android.content.Intent.EXTRA_STREAM
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -13,8 +17,12 @@ import android.os.Handler
 import android.os.Looper
 import android.os.TransactionTooLargeException
 import android.provider.MediaStore
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import  ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
+import android.view.Window
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
@@ -25,15 +33,27 @@ import androidx.biometric.auth.Class2BiometricAuthPrompt
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ca.hojat.smart.musicplayer.BuildConfig
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.DialogTitleBinding
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.*
-import ca.hojat.smart.musicplayer.shared.helpers.*
 import ca.hojat.smart.musicplayer.shared.data.models.SharedTheme
 import ca.hojat.smart.musicplayer.shared.data.models.Track
+import ca.hojat.smart.musicplayer.shared.helpers.DARK_GREY
+import ca.hojat.smart.musicplayer.shared.helpers.FLAG_MANUAL_CACHE
+import ca.hojat.smart.musicplayer.shared.helpers.MyContentProvider
+import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_FINGERPRINT
+import ca.hojat.smart.musicplayer.shared.helpers.RoomHelper
+import ca.hojat.smart.musicplayer.shared.helpers.SIDELOADING_FALSE
+import ca.hojat.smart.musicplayer.shared.helpers.SIDELOADING_TRUE
+import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
+import ca.hojat.smart.musicplayer.shared.helpers.isOnMainThread
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.AppSideLoadedDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.PropertiesDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.RateStarsDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.SecurityDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.SelectPlaylistDialog
 import ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 fun Activity.launchViewIntent(url: String) {
     hideKeyboard()
@@ -42,7 +62,7 @@ fun Activity.launchViewIntent(url: String) {
             try {
                 startActivity(this)
             } catch (e: ActivityNotFoundException) {
-                toast(R.string.no_browser_found)
+                ShowToastUseCase(this@launchViewIntent ,R.string.no_browser_found)
             } catch (e: Exception) {
                 showErrorToast(e)
             }
@@ -595,13 +615,13 @@ fun Activity.showBiometricPrompt(
                     val isCanceledByUser =
                         errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON || errorCode == BiometricPrompt.ERROR_USER_CANCELED
                     if (!isCanceledByUser) {
-                        toast(errString.toString())
+                        ShowToastUseCase(this@showBiometricPrompt ,errString.toString())
                     }
                     failureCallback?.invoke()
                 }
 
                 override fun onAuthenticationFailed(activity: FragmentActivity?) {
-                    toast(R.string.authentication_failed)
+                    ShowToastUseCase(this@showBiometricPrompt ,  R.string.authentication_failed)
                     failureCallback?.invoke()
                 }
             }
@@ -621,7 +641,7 @@ fun Activity.getFinalUriFromPath(path: String, applicationId: String): Uri? {
     }
 
     if (uri == null) {
-        toast(R.string.unknown_error_occurred)
+        ShowToastUseCase(this ,R.string.unknown_error_occurred)
         return null
     }
 
@@ -782,10 +802,11 @@ fun Activity.sharePathIntent(path: String, applicationId: String) {
             try {
                 startActivity(Intent.createChooser(this, getString(R.string.share_via)))
             } catch (e: ActivityNotFoundException) {
-                toast(R.string.no_app_found)
+                ShowToastUseCase(this@sharePathIntent ,R.string.no_app_found)
             } catch (e: RuntimeException) {
                 if (e.cause is TransactionTooLargeException) {
-                    toast(R.string.maximum_share_reached)
+                    ShowToastUseCase(this@sharePathIntent ,R.string.maximum_share_reached)
+
                 } else {
                     showErrorToast(e)
                 }
@@ -822,10 +843,10 @@ fun Activity.sharePathsIntent(paths: List<String>, applicationId: String) {
                 try {
                     startActivity(Intent.createChooser(this, getString(R.string.share_via)))
                 } catch (e: ActivityNotFoundException) {
-                    toast(R.string.no_app_found)
+                    ShowToastUseCase(this@sharePathsIntent ,R.string.no_app_found)
                 } catch (e: RuntimeException) {
                     if (e.cause is TransactionTooLargeException) {
-                        toast(R.string.maximum_share_reached)
+                       ShowToastUseCase(this@sharePathsIntent , R.string.maximum_share_reached)
                     } else {
                         showErrorToast(e)
                     }

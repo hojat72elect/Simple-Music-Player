@@ -7,7 +7,6 @@ import android.provider.MediaStore
 import androidx.core.os.bundleOf
 import androidx.media3.common.Player
 import androidx.media3.session.MediaController
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
 import ca.hojat.smart.musicplayer.R
@@ -31,6 +30,7 @@ import ca.hojat.smart.musicplayer.shared.data.models.Track
 import ca.hojat.smart.musicplayer.shared.data.models.toMediaItems
 import ca.hojat.smart.musicplayer.shared.playback.CustomCommands
 import ca.hojat.smart.musicplayer.shared.playback.PlaybackService.Companion.updatePlaybackInfo
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import org.greenrobot.eventbus.EventBus
 import java.io.File
 
@@ -145,7 +145,7 @@ abstract class SimpleControllerActivity : BaseSimpleActivity(), Player.Listener 
                             EventBus.getDefault().post(Events.RefreshFragments())
                             callback()
                         } else {
-                            toast(R.string.unknown_error_occurred)
+                            ShowToastUseCase(this ,R.string.unknown_error_occurred)
                         }
                     }
                 } else {

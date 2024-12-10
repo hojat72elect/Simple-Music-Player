@@ -26,7 +26,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.getSharedThemeSync
 import ca.hojat.smart.musicplayer.shared.extensions.getThemeId
 import ca.hojat.smart.musicplayer.shared.extensions.isUsingSystemDarkTheme
 import ca.hojat.smart.musicplayer.shared.extensions.setFillWithStroke
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.updateSharedTheme
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
@@ -41,6 +40,8 @@ import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationAdvancedDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.LineColorPickerDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.RadioGroupDialog
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase.invoke
 
 class CustomizationActivity : BaseSimpleActivity() {
     private val THEME_LIGHT = 0
@@ -105,7 +106,7 @@ class CustomizationActivity : BaseSimpleActivity() {
                     )
                 }
             } catch (e: Exception) {
-                toast(R.string.update_thank_you)
+                ShowToastUseCase(this ,R.string.update_thank_you)
                 finish()
             }
         }
@@ -271,7 +272,7 @@ class CustomizationActivity : BaseSimpleActivity() {
             updateColorTheme(it as Int, true)
             if (it != THEME_CUSTOM && it != THEME_SHARED && it != THEME_AUTO && it != THEME_SYSTEM && !baseConfig.wasCustomThemeSwitchDescriptionShown) {
                 baseConfig.wasCustomThemeSwitchDescriptionShown = true
-                toast(R.string.changing_color_description)
+                ShowToastUseCase(this ,R.string.changing_color_description)
             }
 
             val hideGoogleRelations = resources.getBoolean(R.bool.hide_google_relations)

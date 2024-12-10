@@ -31,12 +31,12 @@ import ca.hojat.smart.musicplayer.shared.extensions.notificationManager
 import ca.hojat.smart.musicplayer.shared.extensions.queryCursor
 import ca.hojat.smart.musicplayer.shared.extensions.rescanPaths
 import ca.hojat.smart.musicplayer.shared.extensions.sdCardPath
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.data.models.Album
 import ca.hojat.smart.musicplayer.shared.data.models.Artist
 import ca.hojat.smart.musicplayer.shared.data.models.Genre
 import ca.hojat.smart.musicplayer.shared.data.models.Playlist
 import ca.hojat.smart.musicplayer.shared.data.models.Track
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.File
 import java.io.FileInputStream
 
@@ -91,7 +91,7 @@ class SimpleMediaScanner(private val context: Application) {
             } catch (ignored: Exception) {
             } finally {
                 if (showProgress && newTracks.isEmpty()) {
-                    context.toast(R.string.no_items_found)
+                    ShowToastUseCase(context, R.string.no_items_found)
                 }
 
                 newTracks.clear()

@@ -14,10 +14,10 @@ import ca.hojat.smart.musicplayer.shared.extensions.humanizePath
 import ca.hojat.smart.musicplayer.shared.extensions.internalStoragePath
 import ca.hojat.smart.musicplayer.shared.extensions.isAValidFilename
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker.FilePickerDialog
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 
 @RequiresApi(Build.VERSION_CODES.O)
 class ExportSettingsDialog(
@@ -63,14 +63,14 @@ class ExportSettingsDialog(
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         var filename = view.exportSettingsFilename.value
                         if (filename.isEmpty()) {
-                            activity.toast(R.string.filename_cannot_be_empty)
+                            ShowToastUseCase(activity, R.string.filename_cannot_be_empty)
                             return@setOnClickListener
                         }
 
                         filename += ".txt"
                         val newPath = "${folder.trimEnd('/')}/$filename"
                         if (!newPath.getFilenameFromPath().isAValidFilename()) {
-                            activity.toast(R.string.filename_invalid_characters)
+                            ShowToastUseCase(activity, R.string.filename_invalid_characters)
                             return@setOnClickListener
                         }
 

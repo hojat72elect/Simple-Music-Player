@@ -14,7 +14,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.config
 import ca.hojat.smart.musicplayer.shared.extensions.getCustomizeColorsString
 import ca.hojat.smart.musicplayer.shared.extensions.getProperPrimaryColor
 import ca.hojat.smart.musicplayer.shared.extensions.sendCommand
-import ca.hojat.smart.musicplayer.shared.extensions.toast
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.IS_CUSTOMIZING_COLORS
@@ -27,6 +26,7 @@ import ca.hojat.smart.musicplayer.shared.helpers.isTiramisuPlus
 import ca.hojat.smart.musicplayer.shared.playback.CustomCommands
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ManageVisibleTabsDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.RadioGroupDialog
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.util.Locale
 import kotlin.system.exitProcess
 
@@ -77,7 +77,7 @@ class SettingsActivity : SimpleControllerActivity() {
     private fun setupPurchaseThankYou() = binding.apply {
         settingsPurchaseThankYouHolder.beGone()
         settingsPurchaseThankYouHolder.setOnClickListener {
-           toast("User wants to donate money!")
+            ShowToastUseCase(this@SettingsActivity , "User wants to donate money!")
         }
     }
 
