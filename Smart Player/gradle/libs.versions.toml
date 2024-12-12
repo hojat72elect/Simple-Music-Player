@@ -48,7 +48,7 @@ composeMaterial3 = "1.2.0-alpha09"
 glide = "4.16.0"
 glideCompose = "1.0.0-beta01"
 #Gradle
-gradlePlugins-agp = "8.1.1"
+gradlePlugins-agp = "8.7.3"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
