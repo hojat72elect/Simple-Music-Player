@@ -15,7 +15,6 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.DocumentsContract
 import android.provider.MediaStore
@@ -28,7 +27,6 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -366,7 +364,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         this.scrollingView = scrollingView
         this.toolbar = toolbar
         if (scrollingView is RecyclerView) {
-            scrollingView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            scrollingView.setOnScrollChangeListener { _, _, _, _, _ ->
                 val newScrollY = scrollingView.computeVerticalScrollOffset()
                 scrollingChanged(newScrollY, currentScrollY)
                 currentScrollY = newScrollY
@@ -809,7 +807,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         startCustomizationActivity()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun launchCustomizeNotificationsIntent() {
         Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
             putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
@@ -817,7 +814,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun launchChangeAppLanguageIntent() {
         try {
             Intent(Settings.ACTION_APP_LOCALE_SETTINGS).apply {
@@ -1367,7 +1363,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
 
     fun exportSettings(configItems: LinkedHashMap<String, Any>) {
         configItemsToExport = configItems
-        ExportSettingsDialog(this, getExportSettingsFilename(), true) { path, filename ->
+        ExportSettingsDialog(this, getExportSettingsFilename(), true) { _, filename ->
             Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                 type = "text/plain"
                 putExtra(Intent.EXTRA_TITLE, filename)
@@ -1424,7 +1420,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     fun setDefaultCallerIdApp() {
         val roleManager = getSystemService(RoleManager::class.java)
         if (roleManager.isRoleAvailable(RoleManager.ROLE_CALL_SCREENING) && !roleManager.isRoleHeld(
@@ -1490,7 +1485,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun isShowingSAFDialogSdk30(path: String): Boolean {
 
         return if (isAccessibleWithSAFSdk30(path) && !hasProperStoredFirstParentUri(path)) {
@@ -1545,7 +1539,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun isShowingSAFCreateDocumentDialogSdk30(path: String): Boolean {
         return if (!hasProperStoredDocumentUriSdk30(path)) {
             runOnUiThread {
@@ -2076,7 +2069,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun newRenameFile(
         oldPath: String,
         newPath: String,

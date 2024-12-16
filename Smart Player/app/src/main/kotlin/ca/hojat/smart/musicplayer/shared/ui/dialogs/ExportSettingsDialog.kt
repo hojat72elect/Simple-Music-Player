@@ -1,10 +1,9 @@
 package ca.hojat.smart.musicplayer.shared.ui.dialogs
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.DialogExportSettingsBinding
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
@@ -15,11 +14,9 @@ import ca.hojat.smart.musicplayer.shared.extensions.internalStoragePath
 import ca.hojat.smart.musicplayer.shared.extensions.isAValidFilename
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.value
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker.FilePickerDialog
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 
-@RequiresApi(Build.VERSION_CODES.O)
 class ExportSettingsDialog(
     val activity: BaseSimpleActivity,
     private val defaultFilename: String,

@@ -1,10 +1,9 @@
 package ca.hojat.smart.musicplayer.shared.ui.dialogs
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.DialogExportPlaylistBinding
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
 import ca.hojat.smart.musicplayer.shared.extensions.config
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
@@ -18,13 +17,10 @@ import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker.FilePickerDialog
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
-import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase.invoke
 import java.io.File
 
-@RequiresApi(Build.VERSION_CODES.O)
 class ExportPlaylistDialog(
     val activity: BaseSimpleActivity,
     val path: String,
@@ -68,7 +64,7 @@ class ExportPlaylistDialog(
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                         val filename = binding.exportPlaylistFilename.value
                         when {
-                            filename.isEmpty() -> ShowToastUseCase(activity ,R.string.empty_name)
+                            filename.isEmpty() -> ShowToastUseCase(activity, R.string.empty_name)
                             filename.isAValidFilename() -> {
                                 val file = File(realPath, "$filename.m3u")
                                 if (!hidePath && file.exists()) {

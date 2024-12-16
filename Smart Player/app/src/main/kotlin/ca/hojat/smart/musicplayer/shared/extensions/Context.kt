@@ -27,7 +27,6 @@ import android.media.MediaMetadataRetriever
 import android.media.MediaScannerConnection
 import android.media.ThumbnailUtils
 import android.net.Uri
-import android.os.Build
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
@@ -50,7 +49,6 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.biometric.BiometricManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -2096,7 +2094,6 @@ fun Context.getOTGItems(
     callback(items)
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun Context.getAndroidSAFFileItems(
     path: String,
     shouldShowHidden: Boolean,
@@ -2247,7 +2244,6 @@ fun Context.getFileSize(treeUri: Uri, documentId: String): Long {
         }
     } ?: 0L
 }
-
 
 fun Context.getAndroidSAFDocument(path: String): DocumentFile? {
     val basePath = path.getBasePath(this)

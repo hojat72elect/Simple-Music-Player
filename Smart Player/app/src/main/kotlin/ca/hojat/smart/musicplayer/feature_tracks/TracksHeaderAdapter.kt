@@ -1,18 +1,16 @@
 package ca.hojat.smart.musicplayer.feature_tracks
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
-import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.ui.views.BaseMusicAdapter
 import ca.hojat.smart.musicplayer.databinding.ItemAlbumHeaderBinding
 import ca.hojat.smart.musicplayer.databinding.ItemTrackBinding
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.EditDialog
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
+import ca.hojat.smart.musicplayer.shared.data.models.AlbumHeader
+import ca.hojat.smart.musicplayer.shared.data.models.ListItem
+import ca.hojat.smart.musicplayer.shared.data.models.Track
 import ca.hojat.smart.musicplayer.shared.extensions.audioHelper
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
 import ca.hojat.smart.musicplayer.shared.extensions.beVisible
@@ -21,11 +19,11 @@ import ca.hojat.smart.musicplayer.shared.extensions.getAlbumCoverArt
 import ca.hojat.smart.musicplayer.shared.extensions.getFormattedDuration
 import ca.hojat.smart.musicplayer.shared.extensions.setupViewBackground
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.data.models.AlbumHeader
-import ca.hojat.smart.musicplayer.shared.data.models.ListItem
-import ca.hojat.smart.musicplayer.shared.data.models.Track
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
+import ca.hojat.smart.musicplayer.shared.ui.dialogs.EditDialog
+import ca.hojat.smart.musicplayer.shared.ui.views.BaseMusicAdapter
 import ca.hojat.smart.musicplayer.shared.ui.views.MyRecyclerView
+import com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
 
 class TracksHeaderAdapter(
     activity: BaseSimpleActivity,
@@ -78,7 +76,6 @@ class TracksHeaderAdapter(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun actionItemPressed(id: Int) {
         if (selectedKeys.isEmpty()) {
             return
@@ -194,7 +191,6 @@ class TracksHeaderAdapter(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun displayEditDialog() {
         getSelectedTracks().firstOrNull()?.let { selectedTrack ->
             EditDialog(context, selectedTrack) { track ->

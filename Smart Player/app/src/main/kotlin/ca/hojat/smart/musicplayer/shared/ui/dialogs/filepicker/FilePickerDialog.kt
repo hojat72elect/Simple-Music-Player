@@ -1,12 +1,10 @@
 package ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Environment
 import android.os.Parcelable
 import android.view.KeyEvent
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.documentfile.provider.DocumentFile
@@ -64,7 +62,6 @@ import java.io.File
  * @param showFAB toggle the displaying of a Floating Action Button for creating new folders
  * @param callback the callback used for returning the selected file/folder
  */
-@RequiresApi(Build.VERSION_CODES.O)
 class FilePickerDialog(
     val activity: BaseSimpleActivity,
     private var currPath: String = Environment.getExternalStorageDirectory().toString(),
