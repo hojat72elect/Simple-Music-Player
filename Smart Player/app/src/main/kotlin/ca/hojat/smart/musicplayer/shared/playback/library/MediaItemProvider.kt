@@ -18,7 +18,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.audioHelper
 import ca.hojat.smart.musicplayer.shared.extensions.buildMediaItem
 import ca.hojat.smart.musicplayer.shared.extensions.isTabVisible
 import ca.hojat.smart.musicplayer.shared.extensions.queueDAO
-import ca.hojat.smart.musicplayer.shared.extensions.toMediaItem
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_ALBUMS
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_ARTISTS
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_FOLDERS

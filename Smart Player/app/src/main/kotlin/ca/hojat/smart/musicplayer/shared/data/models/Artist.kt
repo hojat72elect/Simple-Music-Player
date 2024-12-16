@@ -1,10 +1,14 @@
 package ca.hojat.smart.musicplayer.shared.data.models
 
 import android.provider.MediaStore
+import androidx.core.net.toUri
+import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import ca.hojat.smart.musicplayer.shared.extensions.buildMediaItem
 import ca.hojat.smart.musicplayer.shared.helpers.AlphanumericComparator
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_DESCENDING
 import ca.hojat.smart.musicplayer.shared.extensions.sortSafely
@@ -46,6 +50,16 @@ data class Artist(
         sorting and PLAYER_SORT_BY_TITLE != 0 -> title
         sorting and PLAYER_SORT_BY_ALBUM_COUNT != 0 -> albumCnt.toString()
         else -> trackCnt.toString()
+    }
+
+    fun toMediaItem(): MediaItem {
+        return buildMediaItem(
+            mediaId = id.toString(),
+            title = title,
+            mediaType = MediaMetadata.MEDIA_TYPE_ARTIST,
+            trackCnt = trackCnt,
+            artworkUri = albumArt.toUri()
+        )
     }
 }
 

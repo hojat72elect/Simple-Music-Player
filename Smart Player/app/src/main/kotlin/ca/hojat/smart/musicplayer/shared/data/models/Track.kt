@@ -3,17 +3,16 @@ package ca.hojat.smart.musicplayer.shared.data.models
 import android.content.ContentUris
 import android.net.Uri
 import android.provider.MediaStore
+import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import ca.hojat.smart.musicplayer.shared.extensions.getFilenameFromPath
-import ca.hojat.smart.musicplayer.shared.extensions.getFormattedDuration
+import ca.hojat.smart.musicplayer.shared.extensions.*
 import ca.hojat.smart.musicplayer.shared.helpers.AlphanumericComparator
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_DESCENDING
-import ca.hojat.smart.musicplayer.shared.extensions.sortSafely
-import ca.hojat.smart.musicplayer.shared.extensions.toMediaItem
 import ca.hojat.smart.musicplayer.shared.helpers.FLAG_MANUAL_CACHE
 import ca.hojat.smart.musicplayer.shared.helpers.PLAYER_SORT_BY_ARTIST_TITLE
 import ca.hojat.smart.musicplayer.shared.helpers.PLAYER_SORT_BY_CUSTOM
@@ -105,10 +104,25 @@ data class Track(
         }
     }
 
-    fun getUri(): Uri = if (mediaStoreId == 0L || flags and FLAG_MANUAL_CACHE != 0) {
+    private fun getUri(): Uri = if (mediaStoreId == 0L || flags and FLAG_MANUAL_CACHE != 0) {
         Uri.fromFile(File(path))
     } else {
         ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, mediaStoreId)
+    }
+
+    fun toMediaItem(): MediaItem {
+        return buildMediaItem(
+            mediaId = mediaStoreId.toString(),
+            title = title,
+            album = album,
+            artist = artist,
+            genre = genre,
+            mediaType = MediaMetadata.MEDIA_TYPE_MUSIC,
+            trackNumber = trackId,
+            sourceUri = getUri(),
+            artworkUri = coverArt.toUri(),
+            track = this
+        )
     }
 
 }

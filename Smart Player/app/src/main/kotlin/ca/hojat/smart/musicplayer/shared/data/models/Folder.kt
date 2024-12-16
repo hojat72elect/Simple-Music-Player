@@ -1,5 +1,8 @@
 package ca.hojat.smart.musicplayer.shared.data.models
 
+import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
+import ca.hojat.smart.musicplayer.shared.extensions.buildMediaItem
 import ca.hojat.smart.musicplayer.shared.helpers.AlphanumericComparator
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_DESCENDING
 import ca.hojat.smart.musicplayer.shared.extensions.sortSafely
@@ -24,6 +27,15 @@ data class Folder(val title: String, val trackCount: Int, val path: String) {
     fun getBubbleText(sorting: Int) = when {
         sorting and PLAYER_SORT_BY_TITLE != 0 -> title
         else -> trackCount.toString()
+    }
+
+    fun toMediaItem(): MediaItem {
+        return buildMediaItem(
+            mediaId = title,
+            title = title,
+            mediaType = MediaMetadata.MEDIA_TYPE_PLAYLIST,
+            trackCnt = trackCount
+        )
     }
 }
 

@@ -1,10 +1,13 @@
 package ca.hojat.smart.musicplayer.shared.data.models
 
+import androidx.media3.common.MediaItem
+import androidx.media3.common.MediaMetadata
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import ca.hojat.smart.musicplayer.shared.extensions.buildMediaItem
 import ca.hojat.smart.musicplayer.shared.helpers.AlphanumericComparator
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_DESCENDING
 import ca.hojat.smart.musicplayer.shared.extensions.sortSafely
@@ -41,6 +44,15 @@ data class Playlist(
     fun getBubbleText(sorting: Int) = when {
         sorting and PLAYER_SORT_BY_TITLE != 0 -> title
         else -> trackCount.toString()
+    }
+
+    fun toMediaItem(): MediaItem {
+        return buildMediaItem(
+            mediaId = id.toString(),
+            title = title,
+            mediaType = MediaMetadata.MEDIA_TYPE_PLAYLIST,
+            trackCnt = trackCount
+        )
     }
 }
 

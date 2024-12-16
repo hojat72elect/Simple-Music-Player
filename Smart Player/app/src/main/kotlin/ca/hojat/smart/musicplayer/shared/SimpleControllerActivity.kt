@@ -21,7 +21,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.currentMediaItems
 import ca.hojat.smart.musicplayer.shared.extensions.indexOfTrack
 import ca.hojat.smart.musicplayer.shared.extensions.isReallyPlaying
 import ca.hojat.smart.musicplayer.shared.extensions.togglePlayback
-import ca.hojat.smart.musicplayer.shared.extensions.toMediaItem
 import ca.hojat.smart.musicplayer.shared.extensions.indexOfTrackOrNull
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_NEXT_MEDIA_ID
 import ca.hojat.smart.musicplayer.shared.helpers.SimpleMediaController
