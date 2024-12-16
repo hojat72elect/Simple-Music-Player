@@ -465,7 +465,6 @@
     <string name="filename_invalid_characters">Filename contains invalid characters</string>
     <string name="file_already_exists_overwrite">File \"%s\" already exists. Overwrite?</string>
     <string name="thank_you">Thank you</string>
-    <string name="rate_our_app">Rate our app please :)</string>
     <string name="donate_short">Please give us some money!</string>
     <string name="favorites">Favorites</string>
     <string name="select_file">Select a file</string>

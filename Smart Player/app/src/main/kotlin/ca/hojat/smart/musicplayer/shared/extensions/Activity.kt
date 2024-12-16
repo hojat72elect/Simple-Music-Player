@@ -49,7 +49,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.isOnMainThread
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.AppSideLoadedDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.PropertiesDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.RateStarsDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.SecurityDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.SelectPlaylistDialog
 import ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
@@ -685,12 +684,6 @@ fun Activity.appLaunched(appId: String) {
     }
 
     baseConfig.appRunCount++
-
-    if (baseConfig.appRunCount % 4 == 0 && !baseConfig.wasAppRated) {
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            RateStarsDialog(this)
-        }
-    }
 }
 
 @SuppressLint("UseCompatLoadingForDrawables")

@@ -14,7 +14,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
@@ -23,10 +22,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.net.toUri
 import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.rememberAlertDialogState
 import ca.hojat.smart.musicplayer.shared.ui.compose.extensions.enableEdgeToEdgeSimple
-import ca.hojat.smart.musicplayer.shared.ui.compose.extensions.rateStarsRedirectAndThankYou
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.AppThemeSurface
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationAdvancedAlertDialog
-import ca.hojat.smart.musicplayer.shared.ui.dialogs.RateStarsAlertDialog
 import ca.hojat.smart.musicplayer.shared.helpers.APP_FAQ
 import ca.hojat.smart.musicplayer.shared.helpers.APP_ICON_IDS
 import ca.hojat.smart.musicplayer.shared.helpers.APP_LAUNCHER_NAME
@@ -45,7 +42,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.extensions.getStoreUrl
 import ca.hojat.smart.musicplayer.shared.extensions.launchMoreAppsFromUsIntent
 import ca.hojat.smart.musicplayer.shared.extensions.launchViewIntent
-import ca.hojat.smart.musicplayer.shared.extensions.redirectToRateUs
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase.invoke
@@ -73,9 +69,8 @@ class AboutActivity : ComponentActivity() {
                 val showGoogleRelations =
                     remember { !resources.getBoolean(R.bool.hide_google_relations) }
                 val onEmailClickAlertDialogState = getOnEmailClickAlertDialogState()
-                val rateStarsAlertDialogState = getRateStarsAlertDialogState()
-                val onRateUsClickAlertDialogState =
-                    getOnRateUsClickAlertDialogState(rateStarsAlertDialogState::show)
+
+
                 AboutScreen(
                     goBack = ::finish,
                     helpUsSection = {
@@ -83,10 +78,7 @@ class AboutActivity : ComponentActivity() {
                             remember { showGoogleRelations || !showExternalLinks }
                         HelpUsSection(
                             onRateUsClick = {
-                                onRateUsClick(
-                                    showConfirmationAdvancedDialog = onRateUsClickAlertDialogState::show,
-                                    showRateStarsDialog = rateStarsAlertDialogState::show
-                                )
+                              ShowToastUseCase(this, "This dialog is not needed yet!")
                             },
                             onInviteClick = ::onInviteClick,
                             onContributorsClick = ::onContributorsClick,
@@ -159,16 +151,7 @@ class AboutActivity : ComponentActivity() {
         return Pair(showWebsite, fullVersion)
     }
 
-    @Composable
-    private fun getRateStarsAlertDialogState() =
-        rememberAlertDialogState().apply {
-            DialogMember {
-                RateStarsAlertDialog(
-                    alertDialogState = this,
-                    onRating = ::rateStarsRedirectAndThankYou
-                )
-            }
-        }
+
 
     @Composable
     private fun getOnEmailClickAlertDialogState() =
@@ -189,30 +172,6 @@ class AboutActivity : ComponentActivity() {
                         launchFAQActivity()
                     } else {
                         launchEmailIntent()
-                    }
-                }
-            }
-        }
-
-    @Composable
-    private fun getOnRateUsClickAlertDialogState(showRateStarsDialog: () -> Unit) =
-        rememberAlertDialogState().apply {
-            DialogMember {
-                ConfirmationAdvancedAlertDialog(
-                    alertDialogState = this,
-                    message = "${getString(R.string.before_asking_question_read_faq)}\n\n${
-                        getString(
-                            R.string.make_sure_latest
-                        )
-                    }",
-                    messageId = null,
-                    positive = R.string.read_faq,
-                    negative = R.string.skip
-                ) { success ->
-                    if (success) {
-                        launchFAQActivity()
-                    } else {
-                        launchRateUsPrompt(showRateStarsDialog)
                     }
                 }
             }
@@ -280,28 +239,6 @@ class AboutActivity : ComponentActivity() {
         }
     }
 
-    private fun onRateUsClick(
-        showConfirmationAdvancedDialog: () -> Unit,
-        showRateStarsDialog: () -> Unit
-    ) {
-        if (baseConfig.wasBeforeRateShown) {
-            launchRateUsPrompt(showRateStarsDialog)
-        } else {
-            baseConfig.wasBeforeRateShown = true
-            showConfirmationAdvancedDialog()
-        }
-    }
-
-    private fun launchRateUsPrompt(
-        showRateStarsDialog: () -> Unit
-    ) {
-        if (baseConfig.wasAppRated) {
-            redirectToRateUs()
-        } else {
-            showRateStarsDialog()
-        }
-    }
-
     private fun onInviteClick() {
         val text = String.format(getString(R.string.share_text), appName, getStoreUrl())
         Intent().apply {
@@ -317,7 +254,6 @@ class AboutActivity : ComponentActivity() {
         val intent = Intent(applicationContext, ContributorsActivity::class.java)
         startActivity(intent)
     }
-
 
     private fun onDonateClick() {
        ShowToastUseCase(this ,"User wants to donate to the app!")
