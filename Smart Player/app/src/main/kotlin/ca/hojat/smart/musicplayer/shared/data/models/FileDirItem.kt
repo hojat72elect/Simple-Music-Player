@@ -38,7 +38,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.SORT_BY_NAME
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_BY_SIZE
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_DESCENDING
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_USE_NUMERIC_VALUE
-import ca.hojat.smart.musicplayer.shared.helpers.isNougatPlus
 import java.io.File
 
 open class FileDirItem(
@@ -125,7 +124,7 @@ open class FileDirItem(
             context.isPathOnOTG(path) -> context.getDocumentFile(path)?.getItemSize(countHidden)
                 ?: 0
 
-            isNougatPlus() && path.startsWith("content://") -> {
+            path.startsWith("content://") -> {
                 try {
                     context.contentResolver.openInputStream(Uri.parse(path))?.available()?.toLong()
                         ?: 0L
@@ -171,9 +170,7 @@ open class FileDirItem(
         return when {
             context.isRestrictedSAFOnlyRoot(path) -> context.getAndroidSAFLastModified(path)
             context.isPathOnOTG(path) -> context.getFastDocumentFile(path)?.lastModified() ?: 0L
-            isNougatPlus() && path.startsWith("content://") -> context.getMediaStoreLastModified(
-                path
-            )
+            path.startsWith("content://") -> context.getMediaStoreLastModified(path)
 
             else -> File(path).lastModified()
         }

@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.biometric.auth.AuthPromptHost
 import androidx.viewpager.widget.PagerAdapter
+import ca.hojat.smart.musicplayer.R
+import ca.hojat.smart.musicplayer.shared.data.HashListener
+import ca.hojat.smart.musicplayer.shared.data.SecurityTab
 import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_FINGERPRINT
 import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_PATTERN
 import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_PIN
-import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
-import ca.hojat.smart.musicplayer.shared.data.HashListener
-import ca.hojat.smart.musicplayer.shared.data.SecurityTab
-import ca.hojat.smart.musicplayer.R
 
 
 class PasswordTypesAdapter(
@@ -47,7 +46,7 @@ class PasswordTypesAdapter(
     private fun layoutSelection(position: Int): Int = when (position) {
         PROTECTION_PATTERN -> R.layout.tab_pattern
         PROTECTION_PIN -> R.layout.tab_pin
-        PROTECTION_FINGERPRINT -> if (isRPlus()) R.layout.tab_biometric_id else R.layout.tab_fingerprint
+        PROTECTION_FINGERPRINT -> R.layout.tab_biometric_id
         else -> throw RuntimeException("Only 3 tabs allowed")
     }
 

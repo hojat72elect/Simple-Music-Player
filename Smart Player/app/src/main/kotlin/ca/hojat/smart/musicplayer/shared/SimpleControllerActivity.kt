@@ -8,7 +8,6 @@ import androidx.core.os.bundleOf
 import androidx.media3.common.Player
 import androidx.media3.session.MediaController
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.home.player.TrackActivity
 import ca.hojat.smart.musicplayer.shared.extensions.prepareUsingTracks
@@ -136,31 +135,15 @@ abstract class SimpleControllerActivity : BaseSimpleActivity(), Player.Listener 
         val contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
         maybeRescanTrackPaths(tracks) { tracksToDelete ->
             if (tracksToDelete.isNotEmpty()) {
-                if (isRPlus()) {
-                    val uris = tracksToDelete.map { ContentUris.withAppendedId(contentUri, it.mediaStoreId) }
-                    deleteSDK30Uris(uris) { success ->
-                        if (success) {
-                            removeQueueItems(tracksToDelete)
-                            EventBus.getDefault().post(Events.RefreshFragments())
-                            callback()
-                        } else {
-                            ShowToastUseCase(this ,R.string.unknown_error_occurred)
-                        }
+                val uris = tracksToDelete.map { ContentUris.withAppendedId(contentUri, it.mediaStoreId) }
+                deleteSDK30Uris(uris) { success ->
+                    if (success) {
+                        removeQueueItems(tracksToDelete)
+                        EventBus.getDefault().post(Events.RefreshFragments())
+                        callback()
+                    } else {
+                        ShowToastUseCase(this, R.string.unknown_error_occurred)
                     }
-                } else {
-                    tracksToDelete.forEach { track ->
-                        try {
-                            val where = "${MediaStore.Audio.Media._ID} = ?"
-                            val args = arrayOf(track.mediaStoreId.toString())
-                            contentResolver.delete(contentUri, where, args)
-                            File(track.path).delete()
-                        } catch (ignored: Exception) {
-                        }
-                    }
-
-                    removeQueueItems(tracksToDelete)
-                    EventBus.getDefault().post(Events.RefreshFragments())
-                    callback()
                 }
             }
         }

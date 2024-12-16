@@ -40,7 +40,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.isAudioFast
 import ca.hojat.smart.musicplayer.shared.extensions.openNotificationSettings
 import ca.hojat.smart.musicplayer.shared.extensions.rescanPaths
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
-import ca.hojat.smart.musicplayer.shared.extensions.toFileDirItem
 import ca.hojat.smart.musicplayer.shared.extensions.underlineText
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.ACTIVITY_PLAYLIST_FOLDER
@@ -54,9 +53,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.NavigationIcon
 import ca.hojat.smart.musicplayer.shared.helpers.PLAYLIST
 import ca.hojat.smart.musicplayer.shared.helpers.RoomHelper
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.helpers.getPermissionToRequest
-import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ChangeSortingDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ExportPlaylistDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.PermissionRequiredDialog
@@ -64,8 +60,8 @@ import ca.hojat.smart.musicplayer.shared.ui.dialogs.filepicker.FilePickerDialog
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.OutputStream
 import org.greenrobot.eventbus.EventBus
+import java.io.OutputStream
 
 // this activity is used for displaying Playlist and Folder tracks, also Album tracks with a possible album header at the top
 // Artists -> Albums -> Tracks
@@ -133,7 +129,7 @@ class TracksActivity : SimpleMusicActivity() {
             findItem(R.id.sort).isVisible = sourceType != TYPE_ALBUM
             findItem(R.id.add_file_to_playlist).isVisible = sourceType == TYPE_PLAYLIST
             findItem(R.id.add_folder_to_playlist).isVisible = sourceType == TYPE_PLAYLIST
-            findItem(R.id.export_playlist).isVisible = sourceType == TYPE_PLAYLIST && isOreoPlus()
+            findItem(R.id.export_playlist).isVisible = sourceType == TYPE_PLAYLIST
         }
     }
 
@@ -428,30 +424,22 @@ class TracksActivity : SimpleMusicActivity() {
     }
 
     private fun tryExportPlaylist() {
-        if (isQPlus()) {
-            ExportPlaylistDialog(this, config.lastExportPath, true) { file ->
-                Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
-                    type = MIME_TYPE_M3U
-                    putExtra(Intent.EXTRA_TITLE, file.name)
-                    addCategory(Intent.CATEGORY_OPENABLE)
+        ExportPlaylistDialog(this, config.lastExportPath, true) { file ->
+            Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
+                type = MIME_TYPE_M3U
+                putExtra(Intent.EXTRA_TITLE, file.name)
+                addCategory(Intent.CATEGORY_OPENABLE)
 
-                    try {
-                        startActivityForResult(this, PICK_EXPORT_FILE_INTENT)
-                    } catch (e: ActivityNotFoundException) {
-                        ShowToastUseCase(this@TracksActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
-                    } catch (e: Exception) {
-                        showErrorToast(e)
-                    }
-                }
-            }
-        } else {
-            handlePermission(getPermissionToRequest()) { granted ->
-                if (granted) {
-                    ExportPlaylistDialog(this, config.lastExportPath, false) { file ->
-                        getFileOutputStream(file.toFileDirItem(this), true) { outputStream ->
-                            exportPlaylistTo(outputStream)
-                        }
-                    }
+                try {
+                    startActivityForResult(this, PICK_EXPORT_FILE_INTENT)
+                } catch (e: ActivityNotFoundException) {
+                    ShowToastUseCase(
+                        this@TracksActivity,
+                        R.string.system_service_disabled,
+                        Toast.LENGTH_LONG
+                    )
+                } catch (e: Exception) {
+                    showErrorToast(e)
                 }
             }
         }

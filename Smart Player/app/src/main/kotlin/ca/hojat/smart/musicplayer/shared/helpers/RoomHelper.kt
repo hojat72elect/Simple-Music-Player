@@ -4,6 +4,8 @@ import android.content.ContentUris
 import android.content.Context
 import android.provider.MediaStore
 import android.provider.MediaStore.Audio
+import ca.hojat.smart.musicplayer.shared.data.models.Events
+import ca.hojat.smart.musicplayer.shared.data.models.Track
 import ca.hojat.smart.musicplayer.shared.extensions.audioHelper
 import ca.hojat.smart.musicplayer.shared.extensions.config
 import ca.hojat.smart.musicplayer.shared.extensions.getArtist
@@ -14,12 +16,10 @@ import ca.hojat.smart.musicplayer.shared.extensions.getLongValue
 import ca.hojat.smart.musicplayer.shared.extensions.getStringValue
 import ca.hojat.smart.musicplayer.shared.extensions.getTitle
 import ca.hojat.smart.musicplayer.shared.extensions.queryCursor
-import ca.hojat.smart.musicplayer.shared.data.models.Events
-import ca.hojat.smart.musicplayer.shared.data.models.Track
+import org.greenrobot.eventbus.EventBus
 import java.io.File
 import kotlin.math.max
 import kotlin.math.min
-import org.greenrobot.eventbus.EventBus
 
 class RoomHelper(val context: Context) {
     fun insertTracksWithPlaylist(tracks: ArrayList<Track>) {
@@ -46,18 +46,13 @@ class RoomHelper(val context: Context) {
             Audio.Media.YEAR
         )
 
-        if (isQPlus()) {
-            projection.add(Audio.Media.BUCKET_DISPLAY_NAME)
-        }
 
-        if (isRPlus()) {
-            projection.add(Audio.Media.GENRE)
-            projection.add(Audio.Media.GENRE_ID)
-        }
+        projection.add(Audio.Media.BUCKET_DISPLAY_NAME)
+        projection.add(Audio.Media.GENRE)
+        projection.add(Audio.Media.GENRE_ID)
 
         val pathsMap = HashSet<String>()
         paths.mapTo(pathsMap) { it }
-
 
         val songs = ArrayList<Track>(paths.size)
         val showFilename = context.config.showFilename
@@ -88,21 +83,10 @@ class RoomHelper(val context: Context) {
                 val coverArt = ContentUris.withAppendedId(artworkUri, albumId).toString()
                 val year = cursor.getIntValueOrNull(Audio.Media.YEAR) ?: 0
                 val dateAdded = cursor.getIntValueOrNull(Audio.Media.DATE_ADDED) ?: 0
-                val folderName = if (isQPlus()) {
-                    cursor.getStringValue(Audio.Media.BUCKET_DISPLAY_NAME)
-                } else {
-                    ""
-                }
+                val folderName = cursor.getStringValue(Audio.Media.BUCKET_DISPLAY_NAME)
+                val genre = cursor.getStringValue(Audio.Media.GENRE)
+                val genreId = cursor.getLongValue(Audio.Media.GENRE_ID)
 
-                val genre: String
-                val genreId: Long
-                if (isRPlus()) {
-                    genre = cursor.getStringValue(Audio.Media.GENRE)
-                    genreId = cursor.getLongValue(Audio.Media.GENRE_ID)
-                } else {
-                    genre = ""
-                    genreId = 0
-                }
 
                 val song = Track(
                     id = 0,

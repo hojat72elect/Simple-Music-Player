@@ -120,10 +120,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.TIME_FORMAT_24
 import ca.hojat.smart.musicplayer.shared.helpers.TRACK_STATE_CHANGED
 import ca.hojat.smart.musicplayer.shared.helpers.appIconColorStrings
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isSPlus
 import ca.hojat.smart.musicplayer.shared.helpers.tabsList
 import ca.hojat.smart.musicplayer.shared.playback.CustomCommands
 import ca.hojat.smart.musicplayer.shared.ui.views.MyAppCompatCheckbox
@@ -190,7 +186,7 @@ fun getPermissionString(id: Int) = when (id) {
     PERMISSION_READ_SMS -> Manifest.permission.READ_SMS
     PERMISSION_SEND_SMS -> Manifest.permission.SEND_SMS
     PERMISSION_READ_PHONE_STATE -> Manifest.permission.READ_PHONE_STATE
-    PERMISSION_MEDIA_LOCATION -> if (isQPlus()) Manifest.permission.ACCESS_MEDIA_LOCATION else ""
+    PERMISSION_MEDIA_LOCATION -> Manifest.permission.ACCESS_MEDIA_LOCATION
     PERMISSION_POST_NOTIFICATIONS -> Manifest.permission.POST_NOTIFICATIONS
     PERMISSION_READ_MEDIA_IMAGES -> Manifest.permission.READ_MEDIA_IMAGES
     PERMISSION_READ_MEDIA_VIDEO -> Manifest.permission.READ_MEDIA_VIDEO
@@ -364,21 +360,19 @@ fun Context.getHumanReadablePath(path: String): String {
 
 fun Context.getFirstParentLevel(path: String): Int {
     return when {
-        isRPlus() && (isInAndroidDir(path) || isInSubFolderInDownloadDir(path)) -> 1
+        isInAndroidDir(path) || isInSubFolderInDownloadDir(path) -> 1
         else -> 0
     }
 }
 
 val Context.recycleBinPath: String get() = filesDir.absolutePath
 
-fun isExternalStorageManager(): Boolean {
-    return isRPlus() && Environment.isExternalStorageManager()
-}
+fun isExternalStorageManager() = Environment.isExternalStorageManager()
 
-// is the app a Media Management App on Android 12+?
-fun Context.canManageMedia(): Boolean {
-    return isSPlus() && MediaStore.canManageMedia(this)
-}
+
+// is the app a Media Management App ?
+fun Context.canManageMedia() = MediaStore.canManageMedia(this)
+
 
 fun Context.getFastDocumentSdk30(path: String): DocumentFile? {
     val uri = createDocumentUriUsingFirstParentTreeUri(path)
@@ -499,16 +493,11 @@ fun Context.getDoesFilePathExistSdk30(path: String): Boolean {
 }
 
 fun Context.openNotificationSettings() {
-    if (isOreoPlus()) {
-        val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-        intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
-        startActivity(intent)
-    } else {
-        // For Android versions below Oreo, you can't directly open the app's notification settings.
-        // You can open the general notification settings instead.
-        val intent = Intent(Settings.ACTION_SETTINGS)
-        startActivity(intent)
-    }
+
+    val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+    intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+    startActivity(intent)
+
 }
 
 val Context.usableScreenSize: Point
@@ -969,7 +958,7 @@ fun Context.copyToClipboard(text: String) {
     val clip = ClipData.newPlainText(getString(R.string.simple_commons), text)
     (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)
     val toastText = String.format(getString(R.string.value_copied_to_clipboard_show), text)
-    ShowToastUseCase(this ,toastText)
+    ShowToastUseCase(this, toastText)
 }
 
 fun Context.isRestrictedWithSAFSdk30(path: String): Boolean {
@@ -983,9 +972,8 @@ fun Context.isRestrictedWithSAFSdk30(path: String): Boolean {
 
     val isInvalidName = firstParentDir == null
     val isDirectory = File(firstParentPath).isDirectory
-    val isARestrictedDirectory =
-        DIRS_INACCESSIBLE_WITH_SAF_SDK_30.any { firstParentDir.equals(it, true) }
-    return isRPlus() && (isInvalidName || (isDirectory && isARestrictedDirectory))
+    val isARestrictedDirectory = DIRS_INACCESSIBLE_WITH_SAF_SDK_30.any { firstParentDir.equals(it, true) }
+    return isInvalidName || (isDirectory && isARestrictedDirectory)
 }
 
 val Context.otgPath: String get() = baseConfig.oTGPath
@@ -1020,9 +1008,8 @@ fun Context.humanizePath(path: String): String {
     }
 }
 
-fun Context.isRestrictedSAFOnlyRoot(path: String): Boolean {
-    return isRPlus() && isSAFOnlyRoot(path)
-}
+fun Context.isRestrictedSAFOnlyRoot(path: String) = isSAFOnlyRoot(path)
+
 
 fun Context.isPathOnSD(path: String) = sdCardPath.isNotEmpty() && path.startsWith(sdCardPath)
 
@@ -1045,9 +1032,8 @@ fun Context.isAccessibleWithSAFSdk30(path: String): Boolean {
 
     val isValidName = firstParentDir != null
     val isDirectory = File(firstParentPath).isDirectory
-    val isAnAccessibleDirectory =
-        DIRS_INACCESSIBLE_WITH_SAF_SDK_30.all { !firstParentDir.equals(it, true) }
-    return isRPlus() && isValidName && isDirectory && isAnAccessibleDirectory
+    val isAnAccessibleDirectory = DIRS_INACCESSIBLE_WITH_SAF_SDK_30.all { !firstParentDir.equals(it, true) }
+    return isValidName && isDirectory && isAnAccessibleDirectory
 }
 
 fun Context.getMimeTypeFromUri(uri: Uri): String {
@@ -1103,7 +1089,7 @@ fun Context.showFileCreateError(path: String) {
 }
 
 fun Context.showErrorToast(msg: String, length: Int = Toast.LENGTH_LONG) {
-    ShowToastUseCase(this ,String.format(getString(R.string.error), msg), length)
+    ShowToastUseCase(this, String.format(getString(R.string.error), msg), length)
 }
 
 fun Context.showErrorToast(exception: Exception, length: Int = Toast.LENGTH_LONG) {
@@ -1384,7 +1370,7 @@ fun Context.getTempFile(folderName: String, filename: String): File? {
     val folder = File(cacheDir, folderName)
     if (!folder.exists()) {
         if (!folder.mkdir()) {
-            ShowToastUseCase(this ,R.string.unknown_error_occurred)
+            ShowToastUseCase(this, R.string.unknown_error_occurred)
             return null
         }
     }
@@ -1393,7 +1379,7 @@ fun Context.getTempFile(folderName: String, filename: String): File? {
 }
 
 fun Context.getPopupMenuTheme(): Int {
-    return if (isSPlus() && baseConfig.isUsingSystemTheme) {
+    return if (baseConfig.isUsingSystemTheme) {
         R.style.AppTheme_YouPopupMenuStyle
     } else if (isWhiteTheme()) {
         R.style.AppTheme_PopupMenuLightStyle
@@ -1860,25 +1846,25 @@ fun Context.loadTrackCoverArt(track: Track?): Bitmap? {
         }
     }
 
-    if (isQPlus()) {
-        val coverArtHeight = resources.getCoverArtHeight()
-        val size = Size(coverArtHeight, coverArtHeight)
-        if (artworkUri.startsWith("content://")) {
-            try {
-                return contentResolver.loadThumbnail(artworkUri.toUri(), size, null)
-            } catch (ignored: Exception) {
-            }
-        }
 
-        val path = track.path
-        if (path.isNotEmpty() && File(path).exists()) {
-            try {
-                return ThumbnailUtils.createAudioThumbnail(File(track.path), size, null)
-            } catch (ignored: OutOfMemoryError) {
-            } catch (ignored: Exception) {
-            }
+    val coverArtHeight = resources.getCoverArtHeight()
+    val size = Size(coverArtHeight, coverArtHeight)
+    if (artworkUri.startsWith("content://")) {
+        try {
+            return contentResolver.loadThumbnail(artworkUri.toUri(), size, null)
+        } catch (ignored: Exception) {
         }
     }
+
+    val path = track.path
+    if (path.isNotEmpty() && File(path).exists()) {
+        try {
+            return ThumbnailUtils.createAudioThumbnail(File(track.path), size, null)
+        } catch (ignored: OutOfMemoryError) {
+        } catch (ignored: Exception) {
+        }
+    }
+
 
     return null
 }
@@ -1984,8 +1970,7 @@ fun getPaths(file: File): java.util.ArrayList<String> {
 }
 
 // no need to use DocumentFile if an SD card is set as the default storage
-fun Context.needsStupidWritePermissions(path: String) =
-    (!isRPlus() && isPathOnSD(path) && !isSDCardSetAsDefaultStorage()) || isPathOnOTG(path)
+fun Context.needsStupidWritePermissions(path: String) = isPathOnOTG(path)
 
 val Context.internalStoragePath: String get() = baseConfig.internalStoragePath
 
@@ -2605,7 +2590,7 @@ fun Context.launchActivityIntent(intent: Intent) {
     try {
         startActivity(intent)
     } catch (e: ActivityNotFoundException) {
-        ShowToastUseCase(this , R.string.no_app_found)
+        ShowToastUseCase(this, R.string.no_app_found)
     } catch (e: Exception) {
         showErrorToast(e)
     }

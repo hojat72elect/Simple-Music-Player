@@ -201,7 +201,7 @@ open class BaseConfig(val context: Context) {
         }
 
 
-    var wasUseEnglishToggled: Boolean
+    private var wasUseEnglishToggled: Boolean
         get() = prefs.getBoolean(WAS_USE_ENGLISH_TOGGLED, false)
         set(wasUseEnglishToggled) = prefs.edit()
             .putBoolean(WAS_USE_ENGLISH_TOGGLED, wasUseEnglishToggled).apply()
@@ -229,7 +229,7 @@ open class BaseConfig(val context: Context) {
             .apply()
 
     var isUsingSystemTheme: Boolean
-        get() = prefs.getBoolean(IS_USING_SYSTEM_THEME, isSPlus())
+        get() = prefs.getBoolean(IS_USING_SYSTEM_THEME, true)
         set(isUsingSystemTheme) = prefs.edit().putBoolean(IS_USING_SYSTEM_THEME, isUsingSystemTheme)
             .apply()
 
@@ -290,8 +290,7 @@ open class BaseConfig(val context: Context) {
         get() = prefs.getBoolean(USE_24_HOUR_FORMAT, DateFormat.is24HourFormat(context))
         set(use24HourFormat) = prefs.edit().putBoolean(USE_24_HOUR_FORMAT, use24HourFormat).apply()
 
-
-    var isUsingModifiedAppIcon: Boolean
+    private var isUsingModifiedAppIcon: Boolean
         get() = prefs.getBoolean(IS_USING_MODIFIED_APP_ICON, false)
         set(isUsingModifiedAppIcon) = prefs.edit()
             .putBoolean(IS_USING_MODIFIED_APP_ICON, isUsingModifiedAppIcon).apply()
@@ -323,11 +322,6 @@ open class BaseConfig(val context: Context) {
         get() = prefs.getBoolean(WAS_BEFORE_ASKING_SHOWN, false)
         set(wasBeforeAskingShown) = prefs.edit()
             .putBoolean(WAS_BEFORE_ASKING_SHOWN, wasBeforeAskingShown).apply()
-
-    var wasBeforeRateShown: Boolean
-        get() = prefs.getBoolean(WAS_BEFORE_RATE_SHOWN, false)
-        set(wasBeforeRateShown) = prefs.edit().putBoolean(WAS_BEFORE_RATE_SHOWN, wasBeforeRateShown)
-            .apply()
 
 
     var wasAppIconCustomizationWarningShown: Boolean

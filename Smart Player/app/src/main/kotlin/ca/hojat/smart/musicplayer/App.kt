@@ -4,13 +4,11 @@ import android.app.Application
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
-import ca.hojat.smart.musicplayer.shared.extensions.checkUseEnglish
 import ca.hojat.smart.musicplayer.shared.helpers.SimpleMediaController
 
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        checkUseEnglish()
         initController()
     }
 

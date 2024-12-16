@@ -14,20 +14,19 @@ import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import ca.hojat.smart.musicplayer.R
+import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.LocalTheme
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.Shapes
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.SimpleTheme
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.light_grey_stroke
 import ca.hojat.smart.musicplayer.shared.ui.compose.theme.model.Theme
-import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
-import ca.hojat.smart.musicplayer.shared.helpers.isSPlus
 import kotlinx.coroutines.android.awaitFrame
 
 val dialogContainerColor
     @ReadOnlyComposable
     @Composable get() = when (LocalTheme.current) {
         is Theme.BlackAndWhite -> Color.Black
-        is Theme.SystemDefaultMaterialYou -> if (isSPlus()) colorResource(R.color.you_dialog_background_color) else SimpleTheme.colorScheme.surface
+        is Theme.SystemDefaultMaterialYou -> colorResource(R.color.you_dialog_background_color)
         else -> {
             val context = LocalContext.current
             Color(context.baseConfig.backgroundColor)

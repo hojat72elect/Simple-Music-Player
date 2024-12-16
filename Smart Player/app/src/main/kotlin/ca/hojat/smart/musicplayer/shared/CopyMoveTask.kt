@@ -39,7 +39,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.toFileDirItem
 import ca.hojat.smart.musicplayer.shared.helpers.CONFLICT_KEEP_BOTH
 import ca.hojat.smart.musicplayer.shared.helpers.CONFLICT_SKIP
 import ca.hojat.smart.musicplayer.shared.helpers.getConflictResolution
-import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
 import ca.hojat.smart.musicplayer.shared.data.CopyMoveListener
 import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
 import java.io.File
@@ -165,14 +164,13 @@ class CopyMoveTask(
     private fun initProgressNotification() {
         val channelId = "Copy/Move"
         val title = activity.getString(if (copyOnly) R.string.copying else R.string.moving)
-        if (isOreoPlus()) {
+
             val importance = NotificationManager.IMPORTANCE_LOW
             NotificationChannel(channelId, title, importance).apply {
                 enableLights(false)
                 enableVibration(false)
                 activity.notificationManager.createNotificationChannel(this)
             }
-        }
 
         mNotificationBuilder.setContentTitle(title)
             .setSmallIcon(R.drawable.ic_copy_vector)

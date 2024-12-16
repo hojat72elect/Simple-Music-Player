@@ -1,9 +1,7 @@
 package ca.hojat.smart.musicplayer.shared.ui.dialogs
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -46,7 +44,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.showKeyboard
 import ca.hojat.smart.musicplayer.shared.extensions.value
-import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
 import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.AlertDialogState
 import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.ShowKeyboardWhenDialogIsOpenedAndRequestFocus
 import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.dialogBorder
@@ -62,7 +59,6 @@ import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.File
 
 @SuppressLint("SetTextI18n")
-@RequiresApi(Build.VERSION_CODES.O)
 class CreateNewFolderDialog(
     val activity: BaseSimpleActivity,
     val path: String,
@@ -137,7 +133,7 @@ class CreateNewFolderDialog(
                 }
 
                 File(path).mkdirs() -> sendSuccess(alertDialog, path)
-                isRPlus() && activity.isAStorageRootFolder(path.getParentPath()) -> activity.handleSAFCreateDocumentDialogSdk30(
+                activity.isAStorageRootFolder(path.getParentPath()) -> activity.handleSAFCreateDocumentDialogSdk30(
                     path
                 ) {
                     if (it) {

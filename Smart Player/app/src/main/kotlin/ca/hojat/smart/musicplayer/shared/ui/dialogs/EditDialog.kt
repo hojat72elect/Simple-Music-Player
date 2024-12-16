@@ -1,13 +1,10 @@
 package ca.hojat.smart.musicplayer.shared.ui.dialogs
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.databinding.DialogRenameSongBinding
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
+import ca.hojat.smart.musicplayer.shared.data.models.Track
 import ca.hojat.smart.musicplayer.shared.extensions.audioHelper
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
@@ -20,10 +17,9 @@ import ca.hojat.smart.musicplayer.shared.extensions.showKeyboard
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.TagHelper
-import ca.hojat.smart.musicplayer.shared.data.models.Track
+import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 
-@RequiresApi(Build.VERSION_CODES.O)
 class EditDialog(
     val activity: BaseSimpleActivity,
     val track: Track,
@@ -40,10 +36,8 @@ class EditDialog(
             val filename = track.path.getFilenameFromPath()
             fileName.setText(filename.substring(0, filename.lastIndexOf(".")))
             extension.setText(track.path.getFilenameExtension())
-            if (isRPlus()) {
-                arrayOf(fileNameHint, extensionHint).forEach {
-                    it.beGone()
-                }
+            arrayOf(fileNameHint, extensionHint).forEach {
+                it.beGone()
             }
         }
 
@@ -78,19 +72,6 @@ class EditDialog(
                                     callback(track)
                                     alertDialog.dismiss()
                                     return@updateContentResolver
-                                }
-
-                                if (!isRPlus()) {
-                                    activity.newRenameFile(oldPath, newPath, false) { success, _ ->
-                                        if (success) {
-                                            storeEditedSong(track, oldPath, newPath)
-                                            track.path = newPath
-                                            callback(track)
-                                        } else {
-                                            ShowToastUseCase(activity, R.string.rename_song_error)
-                                        }
-                                        alertDialog.dismiss()
-                                    }
                                 }
                             }
                         } else {

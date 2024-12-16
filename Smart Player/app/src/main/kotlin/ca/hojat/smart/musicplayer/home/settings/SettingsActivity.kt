@@ -1,9 +1,7 @@
 package ca.hojat.smart.musicplayer.home.settings
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.ActivitySettingsBinding
 import ca.hojat.smart.musicplayer.shared.SimpleControllerActivity
@@ -21,8 +19,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.NavigationIcon
 import ca.hojat.smart.musicplayer.shared.helpers.SHOW_FILENAME_ALWAYS
 import ca.hojat.smart.musicplayer.shared.helpers.SHOW_FILENAME_IF_UNAVAILABLE
 import ca.hojat.smart.musicplayer.shared.helpers.SHOW_FILENAME_NEVER
-import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isTiramisuPlus
 import ca.hojat.smart.musicplayer.shared.playback.CustomCommands
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ManageVisibleTabsDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.RadioGroupDialog
@@ -48,7 +44,6 @@ class SettingsActivity : SimpleControllerActivity() {
         setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsToolbar)
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onResume() {
         super.onResume()
         setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
@@ -98,7 +93,7 @@ class SettingsActivity : SimpleControllerActivity() {
     }
 
     private fun setupUseEnglish() = binding.apply {
-        settingsUseEnglishHolder.beVisibleIf((config.wasUseEnglishToggled || Locale.getDefault().language != "en") && !isTiramisuPlus())
+        settingsUseEnglishHolder.beVisibleIf(false)
         settingsUseEnglish.isChecked = config.useEnglish
         settingsUseEnglishHolder.setOnClickListener {
             settingsUseEnglish.toggle()
@@ -107,10 +102,9 @@ class SettingsActivity : SimpleControllerActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun setupLanguage() = binding.apply {
         settingsLanguage.text = Locale.getDefault().displayLanguage
-        settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
+        settingsLanguageHolder.beVisibleIf(true)
         settingsLanguageHolder.setOnClickListener {
             launchChangeAppLanguageIntent()
         }
@@ -164,7 +158,7 @@ class SettingsActivity : SimpleControllerActivity() {
     }
 
     private fun setupManageExcludedFolders() {
-        binding.settingsManageExcludedFoldersHolder.beVisibleIf(isQPlus())
+        binding.settingsManageExcludedFoldersHolder.beVisibleIf(true)
         binding.settingsManageExcludedFoldersHolder.setOnClickListener {
             startActivity(Intent(this, ExcludedFoldersActivity::class.java))
         }

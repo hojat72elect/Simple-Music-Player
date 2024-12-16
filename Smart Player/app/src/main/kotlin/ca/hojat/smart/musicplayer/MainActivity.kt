@@ -7,10 +7,8 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.viewpager.widget.ViewPager
 import ca.hojat.smart.musicplayer.databinding.ActivityMainBinding
 import ca.hojat.smart.musicplayer.databinding.BottomTablayoutItemBinding
@@ -58,7 +56,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.LOWER_ALPHA
 import ca.hojat.smart.musicplayer.shared.helpers.M3uImporter
 import ca.hojat.smart.musicplayer.shared.helpers.M3uImporter.ImportResult
 import ca.hojat.smart.musicplayer.shared.helpers.MIME_TYPE_M3U
-import ca.hojat.smart.musicplayer.shared.helpers.PERMISSION_READ_STORAGE
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_ALBUMS
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_ARTISTS
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_FOLDERS
@@ -66,8 +63,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.TAB_GENRES
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_PLAYLISTS
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.getPermissionToRequest
-import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
 import ca.hojat.smart.musicplayer.shared.helpers.tabsList
 import ca.hojat.smart.musicplayer.shared.playback.CustomCommands
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.PlaylistDialog
@@ -83,7 +78,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 class MainActivity : SimpleMusicActivity() {
     private val PICK_IMPORT_SOURCE_INTENT = 1
 
@@ -176,7 +171,7 @@ class MainActivity : SimpleMusicActivity() {
             val isPlaylistFragment = getCurrentFragment() is PlaylistsFragment
             findItem(R.id.create_new_playlist).isVisible = isPlaylistFragment
             findItem(R.id.create_playlist_from_folder).isVisible = isPlaylistFragment
-            findItem(R.id.import_playlist).isVisible = isPlaylistFragment && isOreoPlus()
+            findItem(R.id.import_playlist).isVisible = isPlaylistFragment
             findItem(R.id.more_apps_from_us).isVisible =
                 !resources.getBoolean(R.bool.hide_google_relations)
         }
@@ -427,27 +422,21 @@ class MainActivity : SimpleMusicActivity() {
     }
 
     private fun tryImportPlaylist() {
-        if (isQPlus()) {
-            hideKeyboard()
-            Intent(Intent.ACTION_GET_CONTENT).apply {
-                addCategory(Intent.CATEGORY_OPENABLE)
-                type = MIME_TYPE_M3U
 
-                try {
-                    startActivityForResult(this, PICK_IMPORT_SOURCE_INTENT)
-                } catch (e: ActivityNotFoundException) {
-                    ShowToastUseCase(this@MainActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
-                } catch (e: Exception) {
-                    showErrorToast(e)
-                }
-            }
-        } else {
-            handlePermission(PERMISSION_READ_STORAGE) { granted ->
-                if (granted) {
-                    showFilePickerDialog()
-                }
+        hideKeyboard()
+        Intent(Intent.ACTION_GET_CONTENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = MIME_TYPE_M3U
+
+            try {
+                startActivityForResult(this, PICK_IMPORT_SOURCE_INTENT)
+            } catch (e: ActivityNotFoundException) {
+                ShowToastUseCase(this@MainActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
+            } catch (e: Exception) {
+                showErrorToast(e)
             }
         }
+
     }
 
 

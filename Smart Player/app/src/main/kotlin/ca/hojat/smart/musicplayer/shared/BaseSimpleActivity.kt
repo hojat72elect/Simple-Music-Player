@@ -20,7 +20,6 @@ import android.os.Bundle
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.Settings
-import android.telecom.TelecomManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -91,15 +90,12 @@ import ca.hojat.smart.musicplayer.shared.extensions.getProperBackgroundColor
 import ca.hojat.smart.musicplayer.shared.extensions.getProperStatusBarColor
 import ca.hojat.smart.musicplayer.shared.extensions.getSomeDocumentFile
 import ca.hojat.smart.musicplayer.shared.extensions.getThemeId
-import ca.hojat.smart.musicplayer.shared.extensions.hasAllPermissions
 import ca.hojat.smart.musicplayer.shared.extensions.hasPermission
 import ca.hojat.smart.musicplayer.shared.extensions.hasProperStoredAndroidTreeUri
 import ca.hojat.smart.musicplayer.shared.extensions.hasProperStoredDocumentUriSdk30
 import ca.hojat.smart.musicplayer.shared.extensions.hasProperStoredFirstParentUri
-import ca.hojat.smart.musicplayer.shared.extensions.hasProperStoredTreeUri
 import ca.hojat.smart.musicplayer.shared.extensions.hideKeyboard
 import ca.hojat.smart.musicplayer.shared.extensions.humanizePath
-import ca.hojat.smart.musicplayer.shared.extensions.internalStoragePath
 import ca.hojat.smart.musicplayer.shared.extensions.isAccessibleWithSAFSdk30
 import ca.hojat.smart.musicplayer.shared.extensions.isAppInstalledOnSDCard
 import ca.hojat.smart.musicplayer.shared.extensions.isPathOnInternalStorage
@@ -108,7 +104,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.isPathOnSD
 import ca.hojat.smart.musicplayer.shared.extensions.isRecycleBinPath
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedWithSAFSdk30
-import ca.hojat.smart.musicplayer.shared.extensions.isSDCardSetAsDefaultStorage
 import ca.hojat.smart.musicplayer.shared.extensions.isUsingGestureNavigation
 import ca.hojat.smart.musicplayer.shared.extensions.navigationBarHeight
 import ca.hojat.smart.musicplayer.shared.extensions.needsStupidWritePermissions
@@ -145,7 +140,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.EXTERNAL_STORAGE_PROVIDER_AUTHO
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_SHOW_ADVANCED
 import ca.hojat.smart.musicplayer.shared.helpers.HIGHER_ALPHA
 import ca.hojat.smart.musicplayer.shared.helpers.MEDIUM_ALPHA
-import ca.hojat.smart.musicplayer.shared.helpers.MyContextWrapper
 import ca.hojat.smart.musicplayer.shared.helpers.NavigationIcon
 import ca.hojat.smart.musicplayer.shared.helpers.OPEN_DOCUMENT_TREE_FOR_ANDROID_DATA_OR_OBB
 import ca.hojat.smart.musicplayer.shared.helpers.OPEN_DOCUMENT_TREE_FOR_SDK_30
@@ -153,7 +147,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.OPEN_DOCUMENT_TREE_OTG
 import ca.hojat.smart.musicplayer.shared.helpers.OPEN_DOCUMENT_TREE_SD
 import ca.hojat.smart.musicplayer.shared.helpers.PERMISSION_POST_NOTIFICATIONS
 import ca.hojat.smart.musicplayer.shared.helpers.PERMISSION_READ_MEDIA_VISUAL_USER_SELECTED
-import ca.hojat.smart.musicplayer.shared.helpers.PERMISSION_WRITE_STORAGE
 import ca.hojat.smart.musicplayer.shared.helpers.REQUEST_CODE_SET_DEFAULT_CALLER_ID
 import ca.hojat.smart.musicplayer.shared.helpers.REQUEST_CODE_SET_DEFAULT_DIALER
 import ca.hojat.smart.musicplayer.shared.helpers.SD_OTG_SHORT
@@ -161,11 +154,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.SELECT_EXPORT_SETTINGS_FILE_INT
 import ca.hojat.smart.musicplayer.shared.helpers.SHOW_FAQ_BEFORE_MAIL
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.getConflictResolution
-import ca.hojat.smart.musicplayer.shared.helpers.isOreoPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isTiramisuPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isUpsideDownCakePlus
 import ca.hojat.smart.musicplayer.shared.helpers.sumByLong
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationAdvancedDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
@@ -176,7 +164,6 @@ import ca.hojat.smart.musicplayer.shared.ui.dialogs.WhatsNewDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.WritePermissionDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.WritePermissionDialog.WritePermissionDialogMode
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
-import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase.invoke
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -290,11 +277,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context) {
-        if (newBase.baseConfig.useEnglish && !isTiramisuPlus()) {
-            super.attachBaseContext(MyContextWrapper(newBase).wrap(newBase, "en"))
-        } else {
-            super.attachBaseContext(newBase)
-        }
+        super.attachBaseContext(newBase)
     }
 
     fun updateBackgroundColor(color: Int = baseConfig.backgroundColor) {
@@ -324,14 +307,12 @@ open class BaseSimpleActivity : AppCompatActivity() {
     }
 
     fun updateNavigationBarButtons(color: Int) {
-        if (isOreoPlus()) {
-            if (color.getContrastColor() == DARK_GREY) {
-                window.decorView.systemUiVisibility =
-                    window.decorView.systemUiVisibility.addBit(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
-            } else {
-                window.decorView.systemUiVisibility =
-                    window.decorView.systemUiVisibility.removeBit(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
-            }
+        if (color.getContrastColor() == DARK_GREY) {
+            window.decorView.systemUiVisibility =
+                window.decorView.systemUiVisibility.addBit(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
+        } else {
+            window.decorView.systemUiVisibility =
+                window.decorView.systemUiVisibility.removeBit(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
         }
     }
 
@@ -512,9 +493,9 @@ open class BaseSimpleActivity : AppCompatActivity() {
                     setHintTextColor(contrastColor.adjustAlpha(MEDIUM_ALPHA))
                     hint = "${getString(R.string.search)}…"
 
-                    if (isQPlus()) {
-                        textCursorDrawable = null
-                    }
+
+                    textCursorDrawable = null
+
                 }
 
             // search underline
@@ -581,7 +562,10 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 val checkedUri = buildDocumentUriSdk30(checkedDocumentPath)
 
                 if (treeUri != checkedUri) {
-                    ShowToastUseCase(this, getString(R.string.wrong_folder_selected, checkedDocumentPath))
+                    ShowToastUseCase(
+                        this,
+                        getString(R.string.wrong_folder_selected, checkedDocumentPath)
+                    )
                     return
                 }
 
@@ -603,7 +587,10 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 if (treeUri != checkedUri) {
                     val level = getFirstParentLevel(checkedDocumentPath)
                     val firstParentPath = checkedDocumentPath.getFirstParentPath(this, level)
-                    ShowToastUseCase(this, getString(R.string.wrong_folder_selected, humanizePath(firstParentPath)))
+                    ShowToastUseCase(
+                        this,
+                        getString(R.string.wrong_folder_selected, humanizePath(firstParentPath))
+                    )
                     return
                 }
 
@@ -622,7 +609,10 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 if (isProperAndroidRoot(checkedDocumentPath, resultData.data!!)) {
                     if (resultData.dataString == baseConfig.oTGTreeUri || resultData.dataString == baseConfig.sdTreeUri) {
                         val pathToSelect = createAndroidDataOrObbPath(checkedDocumentPath)
-                        ShowToastUseCase(this, getString(R.string.wrong_folder_selected, pathToSelect))
+                        ShowToastUseCase(
+                            this,
+                            getString(R.string.wrong_folder_selected, pathToSelect)
+                        )
                         return
                     }
 
@@ -646,12 +636,12 @@ open class BaseSimpleActivity : AppCompatActivity() {
                         )
                     )
                     Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
-                        if (isRPlus()) {
-                            putExtra(
-                                DocumentsContract.EXTRA_INITIAL_URI,
-                                createAndroidDataOrObbUri(checkedDocumentPath)
-                            )
-                        }
+
+                        putExtra(
+                            DocumentsContract.EXTRA_INITIAL_URI,
+                            createAndroidDataOrObbUri(checkedDocumentPath)
+                        )
+
 
                         try {
                             startActivityForResult(this, requestCode)
@@ -851,7 +841,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun handleSAFDialogSdk30(path: String, callback: (success: Boolean) -> Unit): Boolean {
         hideKeyboard()
         return if (isShowingSAFDialogSdk30(path)) {
@@ -863,7 +852,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun checkManageMediaOrHandleSAFDialogSdk30(
         path: String,
         callback: (success: Boolean) -> Unit
@@ -877,7 +865,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun handleSAFCreateDocumentDialogSdk30(
         path: String,
         callback: (success: Boolean) -> Unit
@@ -923,7 +910,11 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 try {
                     startActivityForResult(this, OPEN_DOCUMENT_TREE_OTG)
                 } catch (e: ActivityNotFoundException) {
-                    ShowToastUseCase(this@BaseSimpleActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
+                    ShowToastUseCase(
+                        this@BaseSimpleActivity,
+                        R.string.system_service_disabled,
+                        Toast.LENGTH_LONG
+                    )
                 } catch (e: Exception) {
                     ShowToastUseCase(this@BaseSimpleActivity, R.string.unknown_error_occurred)
                 }
@@ -934,50 +925,38 @@ open class BaseSimpleActivity : AppCompatActivity() {
     @SuppressLint("NewApi")
     fun deleteSDK30Uris(uris: List<Uri>, callback: (success: Boolean) -> Unit) {
         hideKeyboard()
-        if (isRPlus()) {
-            funAfterSdk30Action = callback
-            try {
-                val deleteRequest =
-                    MediaStore.createDeleteRequest(contentResolver, uris).intentSender
-                startIntentSenderForResult(deleteRequest, DELETE_FILE_SDK_30_HANDLER, null, 0, 0, 0)
-            } catch (e: Exception) {
-                showErrorToast(e)
-            }
-        } else {
-            callback(false)
+        funAfterSdk30Action = callback
+        try {
+            val deleteRequest =
+                MediaStore.createDeleteRequest(contentResolver, uris).intentSender
+            startIntentSenderForResult(deleteRequest, DELETE_FILE_SDK_30_HANDLER, null, 0, 0, 0)
+        } catch (e: Exception) {
+            showErrorToast(e)
         }
     }
 
     @SuppressLint("NewApi")
     fun trashSDK30Uris(uris: List<Uri>, toTrash: Boolean, callback: (success: Boolean) -> Unit) {
         hideKeyboard()
-        if (isRPlus()) {
-            funAfterTrash30File = callback
-            try {
-                val trashRequest =
-                    MediaStore.createTrashRequest(contentResolver, uris, toTrash).intentSender
-                startIntentSenderForResult(trashRequest, TRASH_FILE_SDK_30_HANDLER, null, 0, 0, 0)
-            } catch (e: Exception) {
-                showErrorToast(e)
-            }
-        } else {
-            callback(false)
+        funAfterTrash30File = callback
+        try {
+            val trashRequest =
+                MediaStore.createTrashRequest(contentResolver, uris, toTrash).intentSender
+            startIntentSenderForResult(trashRequest, TRASH_FILE_SDK_30_HANDLER, null, 0, 0, 0)
+        } catch (e: Exception) {
+            showErrorToast(e)
         }
     }
 
     @SuppressLint("NewApi")
     fun updateSDK30Uris(uris: List<Uri>, callback: (success: Boolean) -> Unit) {
         hideKeyboard()
-        if (isRPlus()) {
-            funAfterUpdate30File = callback
-            try {
-                val writeRequest = MediaStore.createWriteRequest(contentResolver, uris).intentSender
-                startIntentSenderForResult(writeRequest, UPDATE_FILE_SDK_30_HANDLER, null, 0, 0, 0)
-            } catch (e: Exception) {
-                showErrorToast(e)
-            }
-        } else {
-            callback(false)
+        funAfterUpdate30File = callback
+        try {
+            val writeRequest = MediaStore.createWriteRequest(contentResolver, uris).intentSender
+            startIntentSenderForResult(writeRequest, UPDATE_FILE_SDK_30_HANDLER, null, 0, 0, 0)
+        } catch (e: Exception) {
+            showErrorToast(e)
         }
     }
 
@@ -986,26 +965,21 @@ open class BaseSimpleActivity : AppCompatActivity() {
         try {
             callback.invoke(true)
         } catch (securityException: SecurityException) {
-            if (isQPlus()) {
-                funRecoverableSecurity = callback
-                val recoverableSecurityException =
-                    securityException as? RecoverableSecurityException ?: throw securityException
-                val intentSender = recoverableSecurityException.userAction.actionIntent.intentSender
-                startIntentSenderForResult(
-                    intentSender,
-                    RECOVERABLE_SECURITY_HANDLER,
-                    null,
-                    0,
-                    0,
-                    0
-                )
-            } else {
-                callback(false)
-            }
+            funRecoverableSecurity = callback
+            val recoverableSecurityException =
+                securityException as? RecoverableSecurityException ?: throw securityException
+            val intentSender = recoverableSecurityException.userAction.actionIntent.intentSender
+            startIntentSenderForResult(
+                intentSender,
+                RECOVERABLE_SECURITY_HANDLER,
+                null,
+                0,
+                0,
+                0
+            )
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.S)
     fun launchMediaManagementIntent(callback: () -> Unit) {
         Intent(Settings.ACTION_REQUEST_MANAGE_MEDIA).apply {
             data = Uri.parse("package:$packageName")
@@ -1018,7 +992,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
         funAfterManageMediaPermission = callback
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun copyMoveFilesTo(
         fileDirItems: ArrayList<FileDirItem>,
         source: String,
@@ -1307,41 +1280,25 @@ open class BaseSimpleActivity : AppCompatActivity() {
         callback: (granted: Boolean) -> Unit
     ) {
         actionOnPermission = null
-        if (isUpsideDownCakePlus()) {
-            if (hasPermission(PERMISSION_READ_MEDIA_VISUAL_USER_SELECTED) && !force) {
-                callback(true)
-            } else {
-                isAskingPermissions = true
-                actionOnPermission = callback
-                ActivityCompat.requestPermissions(
-                    this,
-                    permissionIds.map { getPermissionString(it) }.toTypedArray(),
-                    GENERIC_PERM_HANDLER
-                )
-            }
+        if (hasPermission(PERMISSION_READ_MEDIA_VISUAL_USER_SELECTED) && !force) {
+            callback(true)
         } else {
-            if (hasAllPermissions(permissionIds)) {
-                callback(true)
-            } else {
-                isAskingPermissions = true
-                actionOnPermission = callback
-                ActivityCompat.requestPermissions(
-                    this,
-                    permissionIds.map { getPermissionString(it) }.toTypedArray(),
-                    GENERIC_PERM_HANDLER
-                )
-            }
+            isAskingPermissions = true
+            actionOnPermission = callback
+            ActivityCompat.requestPermissions(
+                this,
+                permissionIds.map { getPermissionString(it) }.toTypedArray(),
+                GENERIC_PERM_HANDLER
+            )
         }
     }
 
     fun handleNotificationPermission(callback: (granted: Boolean) -> Unit) {
-        if (!isTiramisuPlus()) {
-            callback(true)
-        } else {
-            handlePermission(PERMISSION_POST_NOTIFICATIONS) { granted ->
-                callback(granted)
-            }
+
+        handlePermission(PERMISSION_POST_NOTIFICATIONS) { granted ->
+            callback(granted)
         }
+
     }
 
     override fun onRequestPermissionsResult(
@@ -1408,38 +1365,24 @@ open class BaseSimpleActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun exportSettings(configItems: LinkedHashMap<String, Any>) {
-        if (isQPlus()) {
-            configItemsToExport = configItems
-            ExportSettingsDialog(this, getExportSettingsFilename(), true) { path, filename ->
-                Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
-                    type = "text/plain"
-                    putExtra(Intent.EXTRA_TITLE, filename)
-                    addCategory(Intent.CATEGORY_OPENABLE)
+        configItemsToExport = configItems
+        ExportSettingsDialog(this, getExportSettingsFilename(), true) { path, filename ->
+            Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TITLE, filename)
+                addCategory(Intent.CATEGORY_OPENABLE)
 
-                    try {
-                        startActivityForResult(this, SELECT_EXPORT_SETTINGS_FILE_INTENT)
-                    } catch (e: ActivityNotFoundException) {
-                        ShowToastUseCase(this@BaseSimpleActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
-                    } catch (e: Exception) {
-                        showErrorToast(e)
-                    }
-                }
-            }
-        } else {
-            handlePermission(PERMISSION_WRITE_STORAGE) {
-                if (it) {
-                    ExportSettingsDialog(
-                        this,
-                        getExportSettingsFilename(),
-                        false
-                    ) { path, _ ->
-                        val file = File(path)
-                        getFileOutputStream(file.toFileDirItem(this), true) {
-                            exportSettingsTo(it, configItems)
-                        }
-                    }
+                try {
+                    startActivityForResult(this, SELECT_EXPORT_SETTINGS_FILE_INTENT)
+                } catch (e: ActivityNotFoundException) {
+                    ShowToastUseCase(
+                        this@BaseSimpleActivity,
+                        R.string.system_service_disabled,
+                        Toast.LENGTH_LONG
+                    )
+                } catch (e: Exception) {
+                    showErrorToast(e)
                 }
             }
         }
@@ -1473,28 +1416,11 @@ open class BaseSimpleActivity : AppCompatActivity() {
 
     @SuppressLint("InlinedApi")
     protected fun launchSetDefaultDialerIntent() {
-        if (isQPlus()) {
-            val roleManager = getSystemService(RoleManager::class.java)
-            if (roleManager!!.isRoleAvailable(RoleManager.ROLE_DIALER) && !roleManager.isRoleHeld(
-                    RoleManager.ROLE_DIALER
-                )
-            ) {
-                val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_DIALER)
-                startActivityForResult(intent, REQUEST_CODE_SET_DEFAULT_DIALER)
-            }
-        } else {
-            Intent(TelecomManager.ACTION_CHANGE_DEFAULT_DIALER).putExtra(
-                TelecomManager.EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME,
-                packageName
-            ).apply {
-                try {
-                    startActivityForResult(this, REQUEST_CODE_SET_DEFAULT_DIALER)
-                } catch (e: ActivityNotFoundException) {
-                    ShowToastUseCase(this@BaseSimpleActivity, R.string.no_app_found)
-                } catch (e: Exception) {
-                    showErrorToast(e)
-                }
-            }
+
+        val roleManager = getSystemService(RoleManager::class.java)
+        if (roleManager!!.isRoleAvailable(RoleManager.ROLE_DIALER) && !roleManager.isRoleHeld(RoleManager.ROLE_DIALER)) {
+            val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_DIALER)
+            startActivityForResult(intent, REQUEST_CODE_SET_DEFAULT_DIALER)
         }
     }
 
@@ -1526,18 +1452,8 @@ open class BaseSimpleActivity : AppCompatActivity() {
         baseConfig.lastVersion = currVersion
     }
 
-    private fun isShowingOTGDialog(path: String): Boolean {
+    private fun isShowingOTGDialog(path: String) = false
 
-        return if (!isRPlus() && isPathOnOTG(path) && (baseConfig.oTGTreeUri.isEmpty() || !hasProperStoredTreeUri(
-                true
-            ))
-        ) {
-            showOTGPermissionDialog(path)
-            true
-        } else {
-            false
-        }
-    }
 
     private fun showOTGPermissionDialog(path: String) {
 
@@ -1557,9 +1473,16 @@ open class BaseSimpleActivity : AppCompatActivity() {
                             startActivityForResult(this, OPEN_DOCUMENT_TREE_OTG)
                             checkedDocumentPath = path
                         } catch (e: ActivityNotFoundException) {
-                            ShowToastUseCase(this@BaseSimpleActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
+                            ShowToastUseCase(
+                                this@BaseSimpleActivity,
+                                R.string.system_service_disabled,
+                                Toast.LENGTH_LONG
+                            )
                         } catch (e: Exception) {
-                            ShowToastUseCase(this@BaseSimpleActivity, R.string.unknown_error_occurred)
+                            ShowToastUseCase(
+                                this@BaseSimpleActivity,
+                                R.string.unknown_error_occurred
+                            )
                         }
                     }
                 }
@@ -1601,9 +1524,16 @@ open class BaseSimpleActivity : AppCompatActivity() {
                                 startActivityForResult(this, OPEN_DOCUMENT_TREE_FOR_SDK_30)
                                 checkedDocumentPath = path
                             } catch (e: ActivityNotFoundException) {
-                                ShowToastUseCase(this@BaseSimpleActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
+                                ShowToastUseCase(
+                                    this@BaseSimpleActivity,
+                                    R.string.system_service_disabled,
+                                    Toast.LENGTH_LONG
+                                )
                             } catch (e: Exception) {
-                                ShowToastUseCase(this@BaseSimpleActivity, R.string.unknown_error_occurred)
+                                ShowToastUseCase(
+                                    this@BaseSimpleActivity,
+                                    R.string.unknown_error_occurred
+                                )
                             }
                         }
                     }
@@ -1642,9 +1572,16 @@ open class BaseSimpleActivity : AppCompatActivity() {
                                 startActivityForResult(this, CREATE_DOCUMENT_SDK_30)
                                 checkedDocumentPath = path
                             } catch (e: ActivityNotFoundException) {
-                                ShowToastUseCase(this@BaseSimpleActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
+                                ShowToastUseCase(
+                                    this@BaseSimpleActivity,
+                                    R.string.system_service_disabled,
+                                    Toast.LENGTH_LONG
+                                )
                             } catch (e: Exception) {
-                                ShowToastUseCase(this@BaseSimpleActivity, R.string.unknown_error_occurred)
+                                ShowToastUseCase(
+                                    this@BaseSimpleActivity,
+                                    R.string.unknown_error_occurred
+                                )
                             }
                         }
                     }
@@ -1695,9 +1632,16 @@ open class BaseSimpleActivity : AppCompatActivity() {
                                     )
                                     checkedDocumentPath = path
                                 } catch (e: ActivityNotFoundException) {
-                                    ShowToastUseCase(this@BaseSimpleActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
+                                    ShowToastUseCase(
+                                        this@BaseSimpleActivity,
+                                        R.string.system_service_disabled,
+                                        Toast.LENGTH_LONG
+                                    )
                                 } catch (e: Exception) {
-                                    ShowToastUseCase(this@BaseSimpleActivity, R.string.unknown_error_occurred)
+                                    ShowToastUseCase(
+                                        this@BaseSimpleActivity,
+                                        R.string.unknown_error_occurred
+                                    )
                                 }
                             }
                         }
@@ -1734,10 +1678,6 @@ open class BaseSimpleActivity : AppCompatActivity() {
             deleteAndroidSAFDirectory(path, allowDeleteFolder, callback)
         } else {
             val file = File(path)
-            if (!isRPlus() && file.absolutePath.startsWith(internalStoragePath) && !file.canWrite()) {
-                callback?.invoke(false)
-                return
-            }
 
             var fileDeleted =
                 !isPathOnOTG(path) && ((!file.exists() && file.length() == 0L) || file.delete())
@@ -1781,7 +1721,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                                 }
                             }
                         }
-                    } else if (isRPlus() && !isDeletingMultipleFiles) {
+                    } else if (!isDeletingMultipleFiles) {
                         deleteSdk30(fileDirItem, callback)
                     } else {
                         callback?.invoke(false)
@@ -1803,7 +1743,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         val tempFile = try {
             createTempFile(oldFile) ?: return
         } catch (exception: Exception) {
-            if (isRPlus() && exception is java.nio.file.FileSystemException) {
+            if (exception is java.nio.file.FileSystemException) {
                 // if we are renaming multiple files at once, we should give the Android 30+ permission dialog all uris together, not one by one
                 if (isRenamingMultipleFiles) {
                     callback?.invoke(false, Android30RenameFormat.CONTENT_RESOLVER)
@@ -1876,129 +1816,89 @@ open class BaseSimpleActivity : AppCompatActivity() {
         } else {
             tempFile.delete()
             newFile.delete()
-            if (isRPlus()) {
-                // if we are renaming multiple files at once, we should give the Android 30+ permission dialog all uris together, not one by one
-                if (isRenamingMultipleFiles) {
-                    callback?.invoke(false, Android30RenameFormat.SAF)
-                } else {
-                    val fileUris =
-                        getFileUrisFromFileDirItems(arrayListOf(File(oldPath).toFileDirItem(this)))
-                    updateSDK30Uris(fileUris) { success ->
-                        if (!success) {
-                            return@updateSDK30Uris
-                        }
-                        try {
-                            val sourceUri = fileUris.first()
-                            val sourceFile = File(oldPath).toFileDirItem(this)
 
-                            if (oldPath.equals(newPath, true)) {
-                                val tempDestination = try {
-                                    createTempFile(File(sourceFile.path)) ?: return@updateSDK30Uris
-                                } catch (exception: Exception) {
-                                    showErrorToast(exception)
-                                    callback?.invoke(false, Android30RenameFormat.NONE)
-                                    return@updateSDK30Uris
+            // if we are renaming multiple files at once, we should give the Android 30+ permission dialog all uris together, not one by one
+            if (isRenamingMultipleFiles) {
+                callback?.invoke(false, Android30RenameFormat.SAF)
+            } else {
+                val fileUris =
+                    getFileUrisFromFileDirItems(arrayListOf(File(oldPath).toFileDirItem(this)))
+                updateSDK30Uris(fileUris) { success ->
+                    if (!success) {
+                        return@updateSDK30Uris
+                    }
+                    try {
+                        val sourceUri = fileUris.first()
+                        val sourceFile = File(oldPath).toFileDirItem(this)
+
+                        if (oldPath.equals(newPath, true)) {
+                            val tempDestination = try {
+                                createTempFile(File(sourceFile.path)) ?: return@updateSDK30Uris
+                            } catch (exception: Exception) {
+                                showErrorToast(exception)
+                                callback?.invoke(false, Android30RenameFormat.NONE)
+                                return@updateSDK30Uris
+                            }
+
+                            val copyTempSuccess =
+                                copySingleFileSdk30(
+                                    sourceFile,
+                                    tempDestination.toFileDirItem(this)
+                                )
+                            if (copyTempSuccess) {
+                                contentResolver.delete(sourceUri, null)
+                                tempDestination.renameTo(File(newPath))
+                                if (!baseConfig.keepLastModified) {
+                                    newFile.setLastModified(System.currentTimeMillis())
                                 }
-
-                                val copyTempSuccess =
-                                    copySingleFileSdk30(
-                                        sourceFile,
-                                        tempDestination.toFileDirItem(this)
-                                    )
-                                if (copyTempSuccess) {
-                                    contentResolver.delete(sourceUri, null)
-                                    tempDestination.renameTo(File(newPath))
-                                    if (!baseConfig.keepLastModified) {
-                                        newFile.setLastModified(System.currentTimeMillis())
+                                updateInMediaStore(oldPath, newPath)
+                                scanPathsRecursively(arrayListOf(newPath)) {
+                                    runOnUiThread {
+                                        callback?.invoke(true, Android30RenameFormat.NONE)
                                     }
-                                    updateInMediaStore(oldPath, newPath)
-                                    scanPathsRecursively(arrayListOf(newPath)) {
-                                        runOnUiThread {
-                                            callback?.invoke(true, Android30RenameFormat.NONE)
-                                        }
-                                    }
-                                } else {
-                                    callback?.invoke(false, Android30RenameFormat.NONE)
                                 }
                             } else {
-                                val destinationFile = FileDirItem(
-                                    newPath,
-                                    newPath.getFilenameFromPath(),
-                                    sourceFile.isDirectory,
-                                    sourceFile.children,
-                                    sourceFile.size,
-                                    sourceFile.modified
-                                )
-                                val copySuccessful =
-                                    copySingleFileSdk30(sourceFile, destinationFile)
-                                if (copySuccessful) {
-                                    if (!baseConfig.keepLastModified) {
-                                        newFile.setLastModified(System.currentTimeMillis())
-                                    }
-                                    contentResolver.delete(sourceUri, null)
-                                    updateInMediaStore(oldPath, newPath)
-                                    scanPathsRecursively(arrayListOf(newPath)) {
-                                        runOnUiThread {
-                                            callback?.invoke(true, Android30RenameFormat.NONE)
-                                        }
-                                    }
-                                } else {
-                                    ShowToastUseCase(this, R.string.unknown_error_occurred)
-                                    callback?.invoke(false, Android30RenameFormat.NONE)
+                                callback?.invoke(false, Android30RenameFormat.NONE)
+                            }
+                        } else {
+                            val destinationFile = FileDirItem(
+                                newPath,
+                                newPath.getFilenameFromPath(),
+                                sourceFile.isDirectory,
+                                sourceFile.children,
+                                sourceFile.size,
+                                sourceFile.modified
+                            )
+                            val copySuccessful =
+                                copySingleFileSdk30(sourceFile, destinationFile)
+                            if (copySuccessful) {
+                                if (!baseConfig.keepLastModified) {
+                                    newFile.setLastModified(System.currentTimeMillis())
                                 }
+                                contentResolver.delete(sourceUri, null)
+                                updateInMediaStore(oldPath, newPath)
+                                scanPathsRecursively(arrayListOf(newPath)) {
+                                    runOnUiThread {
+                                        callback?.invoke(true, Android30RenameFormat.NONE)
+                                    }
+                                }
+                            } else {
+                                ShowToastUseCase(this, R.string.unknown_error_occurred)
+                                callback?.invoke(false, Android30RenameFormat.NONE)
                             }
-
-                        } catch (e: Exception) {
-                            showErrorToast(e)
-                            callback?.invoke(false, Android30RenameFormat.NONE)
                         }
+
+                    } catch (e: Exception) {
+                        showErrorToast(e)
+                        callback?.invoke(false, Android30RenameFormat.NONE)
                     }
                 }
-            } else {
-                ShowToastUseCase(this, R.string.unknown_error_occurred)
-                callback?.invoke(false, Android30RenameFormat.NONE)
             }
         }
     }
 
-    private fun isShowingSAFDialog(path: String): Boolean {
-        return if ((!isRPlus() && isPathOnSD(path) && !isSDCardSetAsDefaultStorage() && (baseConfig.sdTreeUri.isEmpty() || !hasProperStoredTreeUri(
-                false
-            )))
-        ) {
-            runOnUiThread {
-                if (!isDestroyed && !isFinishing) {
-                    WritePermissionDialog(this, WritePermissionDialogMode.SdCard) {
-                        Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
-                            putExtra(EXTRA_SHOW_ADVANCED, true)
-                            try {
-                                startActivityForResult(this, OPEN_DOCUMENT_TREE_SD)
-                                checkedDocumentPath = path
-                                return@apply
-                            } catch (e: Exception) {
-                                type = "*/*"
-                            }
+    private fun isShowingSAFDialog(path: String) = false
 
-                            try {
-                                startActivityForResult(this, OPEN_DOCUMENT_TREE_SD)
-                                checkedDocumentPath = path
-                            } catch (e: ActivityNotFoundException) {
-                                ShowToastUseCase(
-                                    this@BaseSimpleActivity, R.string.system_service_disabled,
-                                    Toast.LENGTH_LONG
-                                )
-                            } catch (e: Exception) {
-                                ShowToastUseCase(this@BaseSimpleActivity, R.string.unknown_error_occurred)
-                            }
-                        }
-                    }
-                }
-            }
-            true
-        } else {
-            false
-        }
-    }
 
     private fun copySingleFileSdk30(source: FileDirItem, destination: FileDirItem): Boolean {
         val directory = destination.getParentPath()
@@ -2252,7 +2152,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 val document = getSomeDocumentFile(oldPath)
                 if (document == null || (File(oldPath).isDirectory != document.isDirectory)) {
                     runOnUiThread {
-                        ShowToastUseCase(this ,R.string.unknown_error_occurred)
+                        ShowToastUseCase(this, R.string.unknown_error_occurred)
                         callback?.invoke(false, Android30RenameFormat.NONE)
                     }
                     return@handleSAFDialog
@@ -2316,16 +2216,13 @@ open class BaseSimpleActivity : AppCompatActivity() {
         return if (file.isDirectory) {
             createTempDir("temp", "${System.currentTimeMillis()}", file.parentFile)
         } else {
-            if (isRPlus()) {
-                // this can throw FileSystemException, lets catch and handle it at the place calling this function
-                kotlin.io.path.createTempFile(
-                    file.parentFile?.toPath(),
-                    "temp",
-                    "${System.currentTimeMillis()}"
-                ).toFile()
-            } else {
-                createTempFile("temp", "${System.currentTimeMillis()}", file.parentFile)
-            }
+
+            // this can throw FileSystemException, lets catch and handle it at the place calling this function
+            kotlin.io.path.createTempFile(
+                file.parentFile?.toPath(),
+                "temp",
+                "${System.currentTimeMillis()}"
+            ).toFile()
         }
     }
 

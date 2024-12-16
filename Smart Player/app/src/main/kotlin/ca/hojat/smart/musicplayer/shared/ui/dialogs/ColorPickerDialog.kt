@@ -65,7 +65,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.toHex
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
 import ca.hojat.smart.musicplayer.shared.extensions.value
-import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
 import java.util.LinkedList
 
 private const val RECENT_COLORS_NUMBER = 5
@@ -292,13 +291,9 @@ private fun DialogColorPickerBinding.init(
     currentColorCallback: ((color: Int) -> Unit)
 ) {
     var isHueBeingDragged = false
-
-    if (isQPlus()) {
-        root.isForceDarkAllowed = false
-    }
+    root.isForceDarkAllowed = false
 
     colorPickerSquare.setHue(hsv.getHue())
-
     colorPickerNewColor.setFillWithStroke(color, backgroundColor)
     colorPickerOldColor.setFillWithStroke(color, backgroundColor)
 

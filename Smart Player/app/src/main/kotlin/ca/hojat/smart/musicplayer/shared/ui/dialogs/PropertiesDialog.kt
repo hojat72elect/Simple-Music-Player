@@ -26,7 +26,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.getFileInputStreamSync
 import ca.hojat.smart.musicplayer.shared.extensions.getFilenameFromPath
 import ca.hojat.smart.musicplayer.shared.extensions.getIsPathDirectory
 import ca.hojat.smart.musicplayer.shared.extensions.getLongValue
-import ca.hojat.smart.musicplayer.shared.extensions.hasPermission
 import ca.hojat.smart.musicplayer.shared.extensions.isAudioSlow
 import ca.hojat.smart.musicplayer.shared.extensions.isImageSlow
 import ca.hojat.smart.musicplayer.shared.extensions.isPathOnInternalStorage
@@ -37,10 +36,7 @@ import ca.hojat.smart.musicplayer.shared.extensions.md5
 import ca.hojat.smart.musicplayer.shared.extensions.removeValues
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
-import ca.hojat.smart.musicplayer.shared.helpers.PERMISSION_WRITE_STORAGE
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.helpers.isNougatPlus
-import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
 import ca.hojat.smart.musicplayer.shared.helpers.sumByInt
 import ca.hojat.smart.musicplayer.shared.helpers.sumByLong
 import ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
@@ -76,10 +72,7 @@ class PropertiesDialog : BasePropertiesDialog {
                 path
             )
         ) {
-            if ((isRPlus() && Environment.isExternalStorageManager()) || (!isRPlus() && activity.hasPermission(
-                    PERMISSION_WRITE_STORAGE
-                ))
-            ) {
+            if (Environment.isExternalStorageManager()) {
                 builder.setNeutralButton(R.string.remove_exif, null)
             }
         }
@@ -144,13 +137,13 @@ class PropertiesDialog : BasePropertiesDialog {
                     }
                 }
 
-                val exif = if (isNougatPlus() && mActivity.isPathOnOTG(fileDirItem.path)) {
+                val exif = if (mActivity.isPathOnOTG(fileDirItem.path)) {
                     ExifInterface(
                         (mActivity as BaseSimpleActivity).getFileInputStreamSync(
                             fileDirItem.path
                         )!!
                     )
-                } else if (isNougatPlus() && fileDirItem.path.startsWith("content://")) {
+                } else if (fileDirItem.path.startsWith("content://")) {
                     try {
                         ExifInterface(
                             mActivity.contentResolver.openInputStream(
@@ -325,10 +318,7 @@ class PropertiesDialog : BasePropertiesDialog {
                     it
                 )
             }) {
-            if ((isRPlus() && Environment.isExternalStorageManager()) || (!isRPlus() && activity.hasPermission(
-                    PERMISSION_WRITE_STORAGE
-                ))
-            ) {
+            if (Environment.isExternalStorageManager()) {
                 builder.setNeutralButton(R.string.remove_exif, null)
             }
         }
@@ -343,9 +333,9 @@ class PropertiesDialog : BasePropertiesDialog {
     }
 
     private fun addExifProperties(path: String, activity: Activity) {
-        val exif = if (isNougatPlus() && activity.isPathOnOTG(path)) {
+        val exif = if (activity.isPathOnOTG(path)) {
             ExifInterface((activity as BaseSimpleActivity).getFileInputStreamSync(path)!!)
-        } else if (isNougatPlus() && path.startsWith("content://")) {
+        } else if (path.startsWith("content://")) {
             try {
                 ExifInterface(activity.contentResolver.openInputStream(Uri.parse(path))!!)
             } catch (e: Exception) {

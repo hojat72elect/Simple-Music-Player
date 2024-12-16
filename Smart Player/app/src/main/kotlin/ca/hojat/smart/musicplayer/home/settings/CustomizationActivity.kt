@@ -34,7 +34,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.MyContentProvider
 import ca.hojat.smart.musicplayer.shared.helpers.NavigationIcon
 import ca.hojat.smart.musicplayer.shared.helpers.SAVE_DISCARD_PROMPT_INTERVAL
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
-import ca.hojat.smart.musicplayer.shared.helpers.isSPlus
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ColorPickerDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationAdvancedDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.ConfirmationDialog
@@ -106,7 +105,7 @@ class CustomizationActivity : BaseSimpleActivity() {
                     )
                 }
             } catch (e: Exception) {
-                ShowToastUseCase(this ,R.string.update_thank_you)
+                ShowToastUseCase(this, R.string.update_thank_you)
                 finish()
             }
         }
@@ -121,7 +120,7 @@ class CustomizationActivity : BaseSimpleActivity() {
         updateLabelColors(textColor)
         originalAppIconColor = baseConfig.appIconColor
 
-        if (resources.getBoolean(R.bool.hide_google_relations) ) {
+        if (resources.getBoolean(R.bool.hide_google_relations)) {
             binding.applyToAllHolder.beGone()
         }
     }
@@ -175,10 +174,8 @@ class CustomizationActivity : BaseSimpleActivity() {
 
     private fun setupThemes() {
         predefinedThemes.apply {
-            if (isSPlus()) {
-                put(THEME_SYSTEM, getSystemThemeColors())
-            }
 
+            put(THEME_SYSTEM, getSystemThemeColors())
             put(THEME_AUTO, getAutoThemeColors())
             put(
                 THEME_LIGHT,
@@ -272,7 +269,7 @@ class CustomizationActivity : BaseSimpleActivity() {
             updateColorTheme(it as Int, true)
             if (it != THEME_CUSTOM && it != THEME_SHARED && it != THEME_AUTO && it != THEME_SYSTEM && !baseConfig.wasCustomThemeSwitchDescriptionShown) {
                 baseConfig.wasCustomThemeSwitchDescriptionShown = true
-                ShowToastUseCase(this ,R.string.changing_color_description)
+                ShowToastUseCase(this, R.string.changing_color_description)
             }
 
             val hideGoogleRelations = resources.getBoolean(R.bool.hide_google_relations)

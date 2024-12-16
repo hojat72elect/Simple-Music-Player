@@ -3,9 +3,7 @@ package ca.hojat.smart.musicplayer.shared.helpers
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Build
 import android.os.Looper
-import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.annotation.StringRes
 import ca.hojat.smart.musicplayer.R
 
@@ -93,31 +91,18 @@ const val FLAG_IS_CURRENT = 2
 fun isOnMainThread() = Looper.myLooper() == Looper.getMainLooper()
 
 // show Folders tab only on Android Q+, BUCKET_DISPLAY_NAME hasn't been available before that
-val allTabsMask = if (isQPlus()) {
-    TAB_PLAYLISTS or TAB_FOLDERS or TAB_ARTISTS or TAB_ALBUMS or TAB_TRACKS
-} else {
-    TAB_PLAYLISTS or TAB_ARTISTS or TAB_ALBUMS or TAB_TRACKS
-}
+const val allTabsMask = TAB_PLAYLISTS or TAB_FOLDERS or TAB_ARTISTS or TAB_ALBUMS or TAB_TRACKS
+
 
 val tabsList: ArrayList<Int>
-    get() = if (isQPlus()) {
-        arrayListOf(
-            TAB_PLAYLISTS,
-            TAB_FOLDERS,
-            TAB_ARTISTS,
-            TAB_ALBUMS,
-            TAB_TRACKS,
-            TAB_GENRES
-        )
-    } else {
-        arrayListOf(
-            TAB_PLAYLISTS,
-            TAB_ARTISTS,
-            TAB_ALBUMS,
-            TAB_TRACKS,
-            TAB_GENRES
-        )
-    }
+    get() = arrayListOf(
+        TAB_PLAYLISTS,
+        TAB_FOLDERS,
+        TAB_ARTISTS,
+        TAB_ALBUMS,
+        TAB_TRACKS,
+        TAB_GENRES
+    )
 
 
 const val APP_NAME = "app_name"
@@ -252,8 +237,7 @@ const val M3U_HEADER = "#EXTM3U"
 const val M3U_ENTRY = "#EXTINF:"
 const val M3U_DURATION_SEPARATOR = ","
 
-fun getPermissionToRequest() =
-    if (isTiramisuPlus()) PERMISSION_READ_MEDIA_AUDIO else PERMISSION_WRITE_STORAGE
+fun getPermissionToRequest() = PERMISSION_READ_MEDIA_AUDIO
 
 
 // font sizes
@@ -291,27 +275,6 @@ const val PERMISSION_ACCESS_FINE_LOCATION = 22
 const val PERMISSION_READ_MEDIA_VISUAL_USER_SELECTED = 23
 const val PERMISSION_READ_SYNC_SETTINGS = 24
 
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.N)
-fun isNougatPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.O)
-fun isOreoPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.Q)
-fun isQPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.R)
-fun isRPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
-fun isSPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.TIRAMISU)
-fun isTiramisuPlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
-fun isUpsideDownCakePlus() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
-
 
 // shared preferences
 const val PREFS_KEY = "Prefs"
@@ -333,7 +296,6 @@ const val BACKGROUND_COLOR = "background_color"
 const val PRIMARY_COLOR = "primary_color_2"
 const val ACCENT_COLOR = "accent_color"
 const val APP_ICON_COLOR = "app_icon_color"
-
 
 
 const val LAST_ICON_COLOR = "last_icon_color"
@@ -376,8 +338,6 @@ const val WIDGET_ID_TO_MEASURE = "widget_id_to_measure"
 const val WAS_ORANGE_ICON_CHECKED = "was_orange_icon_checked"
 const val WAS_APP_ON_SD_SHOWN = "was_app_on_sd_shown"
 const val WAS_BEFORE_ASKING_SHOWN = "was_before_asking_shown"
-const val WAS_BEFORE_RATE_SHOWN = "was_before_rate_shown"
-
 
 
 const val WAS_APP_ICON_CUSTOMIZATION_WARNING_SHOWN = "was_app_icon_customization_warning_shown"
@@ -415,7 +375,6 @@ const val DATE_FORMAT_FIVE = "d MMMM yyyy"
 const val DATE_FORMAT_SIX = "MMMM d yyyy"
 const val DATE_FORMAT_SEVEN = "MM-dd-yyyy"
 const val DATE_FORMAT_EIGHT = "dd-MM-yyyy"
-
 
 
 // security

@@ -1,11 +1,8 @@
 package ca.hojat.smart.musicplayer.shared.ui.dialogs
 
-import ca.hojat.smart.musicplayer.shared.helpers.isQPlus
-import ca.hojat.smart.musicplayer.shared.ui.views.MyAppCompatCheckbox
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.databinding.DialogManageVisibleTabsBinding
-import ca.hojat.smart.musicplayer.shared.extensions.beGone
+import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.extensions.config
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
@@ -17,7 +14,7 @@ import ca.hojat.smart.musicplayer.shared.helpers.TAB_GENRES
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_PLAYLISTS
 import ca.hojat.smart.musicplayer.shared.helpers.TAB_TRACKS
 import ca.hojat.smart.musicplayer.shared.helpers.allTabsMask
-
+import ca.hojat.smart.musicplayer.shared.ui.views.MyAppCompatCheckbox
 
 class ManageVisibleTabsDialog(
     val activity: BaseSimpleActivity,
@@ -34,11 +31,6 @@ class ManageVisibleTabsDialog(
             put(TAB_ALBUMS, binding.manageVisibleTabsAlbums)
             put(TAB_TRACKS, binding.manageVisibleTabsTracks)
             put(TAB_GENRES, binding.manageVisibleTabsGenres)
-        }
-
-        if (!isQPlus()) {
-            tabs.remove(TAB_FOLDERS)
-            binding.manageVisibleTabsFolders.beGone()
         }
 
         val showTabs = activity.config.showTabs

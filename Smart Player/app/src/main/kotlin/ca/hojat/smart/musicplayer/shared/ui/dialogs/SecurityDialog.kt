@@ -6,27 +6,25 @@ import androidx.appcompat.app.AlertDialog
 import androidx.biometric.auth.AuthPromptHost
 import androidx.fragment.app.FragmentActivity
 import ca.hojat.smart.musicplayer.R
-import ca.hojat.smart.musicplayer.shared.ui.views.PasswordTypesAdapter
 import ca.hojat.smart.musicplayer.databinding.DialogSecurityBinding
-import ca.hojat.smart.musicplayer.shared.extensions.isBiometricIdAvailable
-import ca.hojat.smart.musicplayer.shared.extensions.isFingerPrintSensorAvailable
-import ca.hojat.smart.musicplayer.shared.extensions.onPageChangeListener
 import ca.hojat.smart.musicplayer.shared.data.HashListener
-import ca.hojat.smart.musicplayer.shared.ui.views.MyDialogViewPager
 import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.extensions.beGone
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
 import ca.hojat.smart.musicplayer.shared.extensions.getProperBackgroundColor
 import ca.hojat.smart.musicplayer.shared.extensions.getProperPrimaryColor
 import ca.hojat.smart.musicplayer.shared.extensions.getProperTextColor
+import ca.hojat.smart.musicplayer.shared.extensions.isBiometricIdAvailable
 import ca.hojat.smart.musicplayer.shared.extensions.onGlobalLayout
+import ca.hojat.smart.musicplayer.shared.extensions.onPageChangeListener
 import ca.hojat.smart.musicplayer.shared.extensions.onTabSelectionChanged
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
 import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_FINGERPRINT
 import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_PATTERN
 import ca.hojat.smart.musicplayer.shared.helpers.PROTECTION_PIN
 import ca.hojat.smart.musicplayer.shared.helpers.SHOW_ALL_TABS
-import ca.hojat.smart.musicplayer.shared.helpers.isRPlus
+import ca.hojat.smart.musicplayer.shared.ui.views.MyDialogViewPager
+import ca.hojat.smart.musicplayer.shared.ui.views.PasswordTypesAdapter
 
 class SecurityDialog(
     private val activity: Activity,
@@ -50,7 +48,7 @@ class SecurityDialog(
                 scrollView = dialogScrollview,
                 biometricPromptHost = AuthPromptHost(activity as FragmentActivity),
                 showBiometricIdTab = shouldShowBiometricIdTab(),
-                showBiometricAuthentication = showTabIndex == PROTECTION_FINGERPRINT && isRPlus()
+                showBiometricAuthentication = showTabIndex == PROTECTION_FINGERPRINT
             )
             viewPager.adapter = tabsAdapter
             viewPager.onPageChangeListener {
@@ -65,9 +63,8 @@ class SecurityDialog(
                 val textColor = root.context.getProperTextColor()
 
                 if (shouldShowBiometricIdTab()) {
-                    val tabTitle = if (isRPlus()) R.string.biometrics else R.string.fingerprint
                     dialogTabLayout.addTab(
-                        dialogTabLayout.newTab().setText(tabTitle),
+                        dialogTabLayout.newTab().setText(R.string.biometrics),
                         PROTECTION_FINGERPRINT
                     )
                 }
@@ -134,11 +131,6 @@ class SecurityDialog(
         }
     }
 
-    private fun shouldShowBiometricIdTab(): Boolean {
-        return if (isRPlus()) {
-            activity.isBiometricIdAvailable()
-        } else {
-            isFingerPrintSensorAvailable()
-        }
-    }
+    private fun shouldShowBiometricIdTab() = activity.isBiometricIdAvailable()
+
 }
