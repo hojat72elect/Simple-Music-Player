@@ -18,7 +18,6 @@ fun File.containsNoMedia(): Boolean {
 fun File.isMediaFile() = absolutePath.isMediaFile()
 fun File.isAudioFast() = audioExtensions.any { absolutePath.endsWith(it, true) }
 
-
 fun File.getDirectChildrenCount(context: Context, countHiddenItems: Boolean): Int {
     val fileCount = if (context.isRestrictedSAFOnlyRoot(path)) {
         context.getAndroidSAFDirectChildrenCount(
@@ -74,7 +73,6 @@ fun File.getProperSize(countHiddenItems: Boolean): Long {
     }
 }
 
-
 fun File.getDigest(algorithm: String): String? {
     return try {
         inputStream().getDigest(algorithm)
@@ -99,6 +97,5 @@ private fun getDirectorySize(dir: File, countHiddenItems: Boolean): Long {
     }
     return size
 }
-
 
 fun File.md5() = this.getDigest(MD5)

@@ -169,30 +169,6 @@ const val REQUEST_CODE_SET_DEFAULT_CALLER_ID = 1010
 const val EXTERNAL_STORAGE_PROVIDER_AUTHORITY = "com.android.externalstorage.documents"
 const val EXTRA_SHOW_ADVANCED = "android.content.extra.SHOW_ADVANCED"
 
-
-val photoExtensions: Array<String>
-    get() = arrayOf(
-        ".jpg",
-        ".png",
-        ".jpeg",
-        ".bmp",
-        ".webp",
-        ".heic",
-        ".heif",
-        ".apng",
-        ".avif"
-    )
-val videoExtensions: Array<String>
-    get() = arrayOf(
-        ".mp4",
-        ".mkv",
-        ".webm",
-        ".avi",
-        ".3gp",
-        ".mov",
-        ".m4v",
-        ".3gpp"
-    )
 val audioExtensions: Array<String>
     get() = arrayOf(
         ".mp3",
@@ -205,28 +181,6 @@ val audioExtensions: Array<String>
         ".aac",
         ".m4b"
     )
-val rawExtensions: Array<String>
-    get() = arrayOf(
-        ".dng",
-        ".orf",
-        ".nef",
-        ".arw",
-        ".rw2",
-        ".cr2",
-        ".cr3"
-    )
-
-val extensionsSupportingEXIF: Array<String>
-    get() = arrayOf(
-        ".jpg",
-        ".jpeg",
-        ".png",
-        ".webp",
-        ".dng"
-    )
-
-
-val normalizeRegex = "\\p{InCombiningDiacriticalMarks}+".toRegex()
 
 // licenses
 internal const val LICENSE_KOTLIN = 1L
@@ -310,9 +264,6 @@ const val FONT_SIZE_LARGE = 2
 const val SIDELOADING_UNCHECKED = 0
 const val SIDELOADING_TRUE = 1
 const val SIDELOADING_FALSE = 2
-
-val proPackages = arrayListOf("draw", "gallery", "filemanager", "contacts", "notes", "calendar")
-
 
 // permissions
 const val PERMISSION_READ_STORAGE = 1

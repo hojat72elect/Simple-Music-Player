@@ -11,18 +11,13 @@ import android.text.Spanned
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
 import ca.hojat.smart.musicplayer.shared.helpers.audioExtensions
-import ca.hojat.smart.musicplayer.shared.helpers.extensionsSupportingEXIF
-import ca.hojat.smart.musicplayer.shared.helpers.normalizeRegex
-import ca.hojat.smart.musicplayer.shared.helpers.photoExtensions
-import ca.hojat.smart.musicplayer.shared.helpers.rawExtensions
-import ca.hojat.smart.musicplayer.shared.helpers.videoExtensions
 import java.io.File
 import java.text.Normalizer
 import java.util.regex.Pattern
 
 // remove diacritics, for example č -> c
 fun String.normalizeString() = Normalizer.normalize(this, Normalizer.Form.NFD).replace(
-    normalizeRegex, ""
+    "\\p{InCombiningDiacriticalMarks}+".toRegex(), ""
 )
 
 
@@ -154,7 +149,16 @@ fun String.isVideoSlow() =
     isVideoFast() || getMimeType().startsWith("video") || startsWith(MediaStore.Video.Media.EXTERNAL_CONTENT_URI.toString())
 
 // fast extension checks, not guaranteed to be accurate
-fun String.isVideoFast() = videoExtensions.any { endsWith(it, true) }
+fun String.isVideoFast() = arrayOf(
+    ".mp4",
+    ".mkv",
+    ".webm",
+    ".avi",
+    ".3gp",
+    ".mov",
+    ".m4v",
+    ".3gpp"
+).any { endsWith(it, true) }
 
 fun String.isAValidFilename(): Boolean {
     val ILLEGAL_CHARACTERS =
@@ -171,7 +175,17 @@ fun String.isAudioFast() = audioExtensions.any { endsWith(it, true) }
 fun String.isImageSlow() =
     isImageFast() || getMimeType().startsWith("image") || startsWith(MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString())
 
-fun String.isImageFast() = photoExtensions.any { endsWith(it, true) }
+fun String.isImageFast() = arrayOf(
+    ".jpg",
+    ".png",
+    ".jpeg",
+    ".bmp",
+    ".webp",
+    ".heic",
+    ".heif",
+    ".apng",
+    ".avif"
+).any { endsWith(it, true) }
 
 fun String.getMimeType(): String {
     val typesMap = HashMap<String, String>().apply {
@@ -795,9 +809,23 @@ fun String.isPortrait() = getFilenameFromPath().contains(
     true
 ) && File(this).parentFile?.name?.startsWith("img_", true) == true
 
-fun String.isRawFast() = rawExtensions.any { endsWith(it, true) }
+fun String.isRawFast() = arrayOf(
+    ".dng",
+    ".orf",
+    ".nef",
+    ".arw",
+    ".rw2",
+    ".cr2",
+    ".cr3"
+).any { endsWith(it, true) }
 
-fun String.canModifyEXIF() = extensionsSupportingEXIF.any { endsWith(it, true) }
+fun String.canModifyEXIF() = arrayOf(
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".webp",
+    ".dng"
+).any { endsWith(it, true) }
 
 
 fun String.getAvailableStorageB(): Long {
