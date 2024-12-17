@@ -20,7 +20,6 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import  ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -52,6 +51,7 @@ import ca.hojat.smart.musicplayer.shared.ui.dialogs.PropertiesDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.SecurityDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.SelectPlaylistDialog
 import ca.hojat.smart.musicplayer.shared.ui.views.MyTextView
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 fun Activity.launchViewIntent(url: String) {
@@ -61,9 +61,9 @@ fun Activity.launchViewIntent(url: String) {
             try {
                 startActivity(this)
             } catch (e: ActivityNotFoundException) {
-                ShowToastUseCase(this@launchViewIntent ,R.string.no_browser_found)
+                ShowToastUseCase(this@launchViewIntent, R.string.no_browser_found)
             } catch (e: Exception) {
-                showErrorToast(e)
+                ShowToastUseCase(this@launchViewIntent, "The error : $e")
             }
         }
     }
@@ -84,7 +84,7 @@ fun Activity.updateSharedTheme(sharedTheme: SharedTheme) {
             null
         )
     } catch (e: Exception) {
-        showErrorToast(e)
+        ShowToastUseCase(this, "The error : $e")
     }
 }
 
@@ -614,13 +614,13 @@ fun Activity.showBiometricPrompt(
                     val isCanceledByUser =
                         errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON || errorCode == BiometricPrompt.ERROR_USER_CANCELED
                     if (!isCanceledByUser) {
-                        ShowToastUseCase(this@showBiometricPrompt ,errString.toString())
+                        ShowToastUseCase(this@showBiometricPrompt, errString.toString())
                     }
                     failureCallback?.invoke()
                 }
 
                 override fun onAuthenticationFailed(activity: FragmentActivity?) {
-                    ShowToastUseCase(this@showBiometricPrompt ,  R.string.authentication_failed)
+                    ShowToastUseCase(this@showBiometricPrompt, R.string.authentication_failed)
                     failureCallback?.invoke()
                 }
             }
@@ -635,12 +635,12 @@ fun Activity.getFinalUriFromPath(path: String, applicationId: String): Uri? {
     val uri = try {
         ensurePublicUri(path, applicationId)
     } catch (e: Exception) {
-        showErrorToast(e)
+        ShowToastUseCase(this, "The error : $e")
         return null
     }
 
     if (uri == null) {
-        ShowToastUseCase(this ,R.string.unknown_error_occurred)
+        ShowToastUseCase(this, R.string.unknown_error_occurred)
         return null
     }
 
@@ -795,16 +795,16 @@ fun Activity.sharePathIntent(path: String, applicationId: String) {
             try {
                 startActivity(Intent.createChooser(this, getString(R.string.share_via)))
             } catch (e: ActivityNotFoundException) {
-                ShowToastUseCase(this@sharePathIntent ,R.string.no_app_found)
+                ShowToastUseCase(this@sharePathIntent, R.string.no_app_found)
             } catch (e: RuntimeException) {
                 if (e.cause is TransactionTooLargeException) {
-                    ShowToastUseCase(this@sharePathIntent ,R.string.maximum_share_reached)
+                    ShowToastUseCase(this@sharePathIntent, R.string.maximum_share_reached)
 
                 } else {
-                    showErrorToast(e)
+                    ShowToastUseCase(this@sharePathIntent, "The error : $e")
                 }
             } catch (e: Exception) {
-                showErrorToast(e)
+                ShowToastUseCase(this@sharePathIntent, "The error : $e")
             }
         }
     }
@@ -836,15 +836,15 @@ fun Activity.sharePathsIntent(paths: List<String>, applicationId: String) {
                 try {
                     startActivity(Intent.createChooser(this, getString(R.string.share_via)))
                 } catch (e: ActivityNotFoundException) {
-                    ShowToastUseCase(this@sharePathsIntent ,R.string.no_app_found)
+                    ShowToastUseCase(this@sharePathsIntent, R.string.no_app_found)
                 } catch (e: RuntimeException) {
                     if (e.cause is TransactionTooLargeException) {
-                       ShowToastUseCase(this@sharePathsIntent , R.string.maximum_share_reached)
+                        ShowToastUseCase(this@sharePathsIntent, R.string.maximum_share_reached)
                     } else {
-                        showErrorToast(e)
+                        ShowToastUseCase(this@sharePathsIntent, "The error : $e")
                     }
                 } catch (e: Exception) {
-                    showErrorToast(e)
+                    ShowToastUseCase(this@sharePathsIntent, "The error : $e")
                 }
             }
         }

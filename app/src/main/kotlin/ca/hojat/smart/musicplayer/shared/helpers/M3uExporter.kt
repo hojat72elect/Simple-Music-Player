@@ -2,7 +2,6 @@ package ca.hojat.smart.musicplayer.shared.helpers
 
 import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.writeLn
 import ca.hojat.smart.musicplayer.shared.data.models.Track
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
@@ -39,7 +38,7 @@ class M3uExporter(val activity: BaseSimpleActivity) {
             }
         } catch (e: Exception) {
             failedEvents++
-            activity.showErrorToast(e)
+            ShowToastUseCase(activity, "The error : $e")
         } finally {
             outputStream.close()
         }

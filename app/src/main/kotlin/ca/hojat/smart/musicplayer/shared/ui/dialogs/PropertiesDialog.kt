@@ -35,7 +35,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.isVideoSlow
 import ca.hojat.smart.musicplayer.shared.extensions.md5
 import ca.hojat.smart.musicplayer.shared.extensions.removeValues
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.sumByInt
 import ca.hojat.smart.musicplayer.shared.helpers.sumByLong
@@ -232,7 +231,7 @@ class PropertiesDialog : BasePropertiesDialog {
             try {
                 addExifProperties(path, mActivity)
             } catch (e: Exception) {
-                mActivity.showErrorToast(e)
+                ShowToastUseCase(mActivity, "The error : $e")
                 return
             }
 
@@ -381,7 +380,7 @@ class PropertiesDialog : BasePropertiesDialog {
                 mPropertyView.findViewById<LinearLayout>(R.id.properties_holder).removeAllViews()
                 addProperties(path)
             } catch (e: Exception) {
-                mActivity.showErrorToast(e)
+                ShowToastUseCase(mActivity, "The error : $e")
             }
         }
     }
@@ -395,7 +394,7 @@ class PropertiesDialog : BasePropertiesDialog {
                     }
                 ShowToastUseCase(mActivity, R.string.exif_removed)
             } catch (e: Exception) {
-                mActivity.showErrorToast(e)
+                ShowToastUseCase(mActivity, "The error : $e")
             }
         }
     }

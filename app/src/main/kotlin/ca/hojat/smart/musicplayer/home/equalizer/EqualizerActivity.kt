@@ -21,12 +21,12 @@ import ca.hojat.smart.musicplayer.shared.extensions.getContrastColor
 import ca.hojat.smart.musicplayer.shared.extensions.getProperPrimaryColor
 import ca.hojat.smart.musicplayer.shared.extensions.getProperTextColor
 import ca.hojat.smart.musicplayer.shared.extensions.isWhiteTheme
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.EQUALIZER_PRESET_CUSTOM
 import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.playback.SimpleEqualizer
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.text.DecimalFormat
 import kotlin.math.log10
 import kotlin.math.pow
@@ -154,7 +154,7 @@ class EqualizerActivity : BaseSimpleActivity() {
         try {
             presetChanged(config.equalizerPreset, equalizer)
         } catch (e: Exception) {
-            showErrorToast(e)
+            ShowToastUseCase(this, "The error : $e")
             config.equalizerPreset = EQUALIZER_PRESET_CUSTOM
         }
 
@@ -170,7 +170,7 @@ class EqualizerActivity : BaseSimpleActivity() {
                     config.equalizerPreset = presetId as Int
                     presetChanged(presetId, equalizer)
                 } catch (e: Exception) {
-                    showErrorToast(e)
+                    ShowToastUseCase(this, "The error : $e")
                     config.equalizerPreset = EQUALIZER_PRESET_CUSTOM
                 }
             }

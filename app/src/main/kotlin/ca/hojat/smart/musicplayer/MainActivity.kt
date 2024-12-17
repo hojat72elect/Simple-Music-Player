@@ -44,7 +44,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.launchMoreAppsFromUsIntent
 import ca.hojat.smart.musicplayer.shared.extensions.mediaScanner
 import ca.hojat.smart.musicplayer.shared.extensions.onTabSelectionChanged
 import ca.hojat.smart.musicplayer.shared.extensions.sendCommand
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.updateBottomTabItemColors
 import ca.hojat.smart.musicplayer.shared.extensions.updateTextColors
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
@@ -413,7 +412,7 @@ class MainActivity : SimpleMusicActivity() {
 
                     showImportPlaylistDialog(tempFile.absolutePath)
                 } catch (e: Exception) {
-                    showErrorToast(e)
+                    ShowToastUseCase(this, "The error : $e")
                 }
             }
 
@@ -433,7 +432,7 @@ class MainActivity : SimpleMusicActivity() {
             } catch (e: ActivityNotFoundException) {
                 ShowToastUseCase(this@MainActivity, R.string.system_service_disabled, Toast.LENGTH_LONG)
             } catch (e: Exception) {
-                showErrorToast(e)
+                ShowToastUseCase(this@MainActivity, "The error : $e")
             }
         }
 

@@ -41,7 +41,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.isAccessibleWithSAFSdk30
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
 import ca.hojat.smart.musicplayer.shared.extensions.needsStupidWritePermissions
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.showKeyboard
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.ui.compose.alert_dialog.AlertDialogState
@@ -127,7 +126,7 @@ class CreateNewFolderDialog(
                                 ShowToastUseCase(activity, R.string.unknown_error_occurred)
                             }
                         } catch (e: SecurityException) {
-                            activity.showErrorToast(e)
+                            ShowToastUseCase(activity, "The error : $e")
                         }
                     }
                 }
@@ -144,7 +143,7 @@ class CreateNewFolderDialog(
                 else -> ShowToastUseCase(activity, activity.getString(R.string.could_not_create_folder, path.getFilenameFromPath()))
             }
         } catch (e: Exception) {
-            activity.showErrorToast(e)
+            ShowToastUseCase(activity, "The error : $e")
         }
     }
 

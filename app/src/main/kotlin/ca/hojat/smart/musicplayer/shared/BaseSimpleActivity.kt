@@ -115,7 +115,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.rescanPath
 import ca.hojat.smart.musicplayer.shared.extensions.rescanPaths
 import ca.hojat.smart.musicplayer.shared.extensions.scanPathRecursively
 import ca.hojat.smart.musicplayer.shared.extensions.scanPathsRecursively
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.showFileCreateError
 import ca.hojat.smart.musicplayer.shared.extensions.statusBarHeight
 import ca.hojat.smart.musicplayer.shared.extensions.storeAndroidTreeUri
@@ -644,7 +643,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                         try {
                             startActivityForResult(this, requestCode)
                         } catch (e: Exception) {
-                            showErrorToast(e)
+                              ShowToastUseCase(this@BaseSimpleActivity, "The error : $e")
                         }
                     }
                 }
@@ -672,7 +671,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                     try {
                         startActivityForResult(intent, requestCode)
                     } catch (e: Exception) {
-                        showErrorToast(e)
+                          ShowToastUseCase(this, "The error : $e")
                     }
                 }
             } else {
@@ -711,7 +710,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                     try {
                         startActivityForResult(intent, requestCode)
                     } catch (e: Exception) {
-                        showErrorToast(e)
+                        ShowToastUseCase(this, "The error : $e")
                     }
                 }
             } else {
@@ -927,7 +926,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 MediaStore.createDeleteRequest(contentResolver, uris).intentSender
             startIntentSenderForResult(deleteRequest, DELETE_FILE_SDK_30_HANDLER, null, 0, 0, 0)
         } catch (e: Exception) {
-            showErrorToast(e)
+              ShowToastUseCase(this, "The error : $e")
         }
     }
 
@@ -940,7 +939,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 MediaStore.createTrashRequest(contentResolver, uris, toTrash).intentSender
             startIntentSenderForResult(trashRequest, TRASH_FILE_SDK_30_HANDLER, null, 0, 0, 0)
         } catch (e: Exception) {
-            showErrorToast(e)
+              ShowToastUseCase(this, "The error : $e")
         }
     }
 
@@ -952,7 +951,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
             val writeRequest = MediaStore.createWriteRequest(contentResolver, uris).intentSender
             startIntentSenderForResult(writeRequest, UPDATE_FILE_SDK_30_HANDLER, null, 0, 0, 0)
         } catch (e: Exception) {
-            showErrorToast(e)
+              ShowToastUseCase(this, "The error : $e")
         }
     }
 
@@ -982,7 +981,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
             try {
                 startActivityForResult(this, MANAGE_MEDIA_RC)
             } catch (e: Exception) {
-                showErrorToast(e)
+                  ShowToastUseCase(this@BaseSimpleActivity, "The error : $e")
             }
         }
         funAfterManageMediaPermission = callback
@@ -1140,7 +1139,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                                 }
                             }
                         } catch (e: Exception) {
-                            showErrorToast(e)
+                              ShowToastUseCase(this, "The error : $e")
                         }
                     }
                 }
@@ -1378,7 +1377,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     )
                 } catch (e: Exception) {
-                    showErrorToast(e)
+                      ShowToastUseCase(this@BaseSimpleActivity, "The error : $e")
                 }
             }
         }
@@ -1756,7 +1755,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                                 contentResolver.update(fileUris.first(), values, null, null)
                                 callback?.invoke(true, Android30RenameFormat.NONE)
                             } catch (e: Exception) {
-                                showErrorToast(e)
+                                  ShowToastUseCase(this, "The error : $e")
                                 callback?.invoke(false, Android30RenameFormat.NONE)
                             }
                         } else {
@@ -1771,7 +1770,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 ) {
                     ShowToastUseCase(this, R.string.cannot_rename_folder)
                 } else {
-                    showErrorToast(exception)
+                    ShowToastUseCase(this, "The error : $exception")
                 }
                 callback?.invoke(false, Android30RenameFormat.NONE)
             }
@@ -1828,7 +1827,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                             val tempDestination = try {
                                 createTempFile(File(sourceFile.path)) ?: return@updateSDK30Uris
                             } catch (exception: Exception) {
-                                showErrorToast(exception)
+                                ShowToastUseCase(this, "The error : $exception")
                                 callback?.invoke(false, Android30RenameFormat.NONE)
                                 return@updateSDK30Uris
                             }
@@ -1882,7 +1881,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                         }
 
                     } catch (e: Exception) {
-                        showErrorToast(e)
+                          ShowToastUseCase(this, "The error : $e")
                         callback?.invoke(false, Android30RenameFormat.NONE)
                     }
                 }
@@ -1897,7 +1896,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         val directory = destination.getParentPath()
         if (!createDirectorySync(directory)) {
             val error = String.format(getString(R.string.could_not_create_folder), directory)
-            showErrorToast(error)
+            ShowToastUseCase(this, "The error : $error")
             return false
         }
 
@@ -2022,7 +2021,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                                 )
                             )
                         } catch (e: FileNotFoundException) {
-                            showErrorToast(e)
+                              ShowToastUseCase(this, "The error : $e")
                             callback(null)
                         }
                     } else {
@@ -2092,7 +2091,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                         }
                     }
                 } catch (e: Exception) {
-                    showErrorToast(e)
+                      ShowToastUseCase(this, "The error : $e")
                     runOnUiThread {
                         callback?.invoke(false, Android30RenameFormat.NONE)
                     }
@@ -2128,7 +2127,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                             }
                         }
                     } catch (e: Exception) {
-                        showErrorToast(e)
+                          ShowToastUseCase(this, "The error : $e")
                         runOnUiThread {
                             callback?.invoke(false, Android30RenameFormat.NONE)
                         }
@@ -2161,7 +2160,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                         } catch (ignored: FileNotFoundException) {
                             // FileNotFoundException is thrown in some weird cases, but renaming works just fine
                         } catch (e: Exception) {
-                            showErrorToast(e)
+                              ShowToastUseCase(this, "The error : $e")
                             callback?.invoke(false, Android30RenameFormat.NONE)
                             return@ensureBackgroundThread
                         }
@@ -2178,7 +2177,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                         }
                     }
                 } catch (e: Exception) {
-                    showErrorToast(e)
+                      ShowToastUseCase(this, "The error : $e")
                     runOnUiThread {
                         callback?.invoke(false, Android30RenameFormat.NONE)
                     }
@@ -2198,7 +2197,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
         return try {
             FileOutputStream(targetFile)
         } catch (e: Exception) {
-            activity.showErrorToast(e)
+            ShowToastUseCase(activity, "The error : $e")
             null
         }
     }

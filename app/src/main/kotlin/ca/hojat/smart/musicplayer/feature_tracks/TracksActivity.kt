@@ -39,7 +39,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.getProperTextColor
 import ca.hojat.smart.musicplayer.shared.extensions.isAudioFast
 import ca.hojat.smart.musicplayer.shared.extensions.openNotificationSettings
 import ca.hojat.smart.musicplayer.shared.extensions.rescanPaths
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.underlineText
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
 import ca.hojat.smart.musicplayer.shared.helpers.ACTIVITY_PLAYLIST_FOLDER
@@ -118,7 +117,7 @@ class TracksActivity : SimpleMusicActivity() {
                 val outputStream = contentResolver.openOutputStream(resultData.data!!)
                 exportPlaylistTo(outputStream)
             } catch (e: Exception) {
-                showErrorToast(e)
+                ShowToastUseCase(this, "The error : $e")
             }
         }
     }
@@ -439,7 +438,7 @@ class TracksActivity : SimpleMusicActivity() {
                         Toast.LENGTH_LONG
                     )
                 } catch (e: Exception) {
-                    showErrorToast(e)
+                    ShowToastUseCase(this@TracksActivity, "The error : $e")
                 }
             }
         }

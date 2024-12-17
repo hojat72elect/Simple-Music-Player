@@ -1,9 +1,9 @@
 package ca.hojat.smart.musicplayer.shared.helpers
 
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.audioHelper
 import ca.hojat.smart.musicplayer.shared.data.models.Track
 import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.File
 import net.bjoernpetersen.m3u.M3uParser
 import net.bjoernpetersen.m3u.model.M3uEntry
@@ -46,7 +46,7 @@ class M3uImporter(
             exportedEvents = playlistItems.size
         } catch (e: Exception) {
             failedEvents++
-            activity.showErrorToast(e)
+            ShowToastUseCase(activity, "The error : $e")
         } finally {
             inputStream.close()
         }

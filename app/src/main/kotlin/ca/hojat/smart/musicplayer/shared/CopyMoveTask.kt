@@ -34,13 +34,13 @@ import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedWithSAFSdk30
 import ca.hojat.smart.musicplayer.shared.extensions.needsStupidWritePermissions
 import ca.hojat.smart.musicplayer.shared.extensions.notificationManager
 import ca.hojat.smart.musicplayer.shared.extensions.rescanPath
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.toFileDirItem
 import ca.hojat.smart.musicplayer.shared.helpers.CONFLICT_KEEP_BOTH
 import ca.hojat.smart.musicplayer.shared.helpers.CONFLICT_SKIP
 import ca.hojat.smart.musicplayer.shared.helpers.getConflictResolution
 import ca.hojat.smart.musicplayer.shared.data.CopyMoveListener
 import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
+import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
@@ -131,7 +131,7 @@ class CopyMoveTask(
 
                 copy(file, newFileDirItem)
             } catch (e: Exception) {
-                activity.showErrorToast(e)
+                ShowToastUseCase(activity, "The error : $e")
                 return false
             }
         }
@@ -213,7 +213,7 @@ class CopyMoveTask(
         if (!activity.createDirectorySync(destinationPath)) {
             val error =
                 String.format(activity.getString(R.string.could_not_create_folder), destinationPath)
-            activity.showErrorToast(error)
+            ShowToastUseCase(activity, "The error : $error")
             return
         }
 
@@ -291,7 +291,7 @@ class CopyMoveTask(
         if (!activity.createDirectorySync(directory)) {
             val error =
                 String.format(activity.getString(R.string.could_not_create_folder), directory)
-            activity.showErrorToast(error)
+            ShowToastUseCase(activity, "The error : $error")
             mCurrentProgress += source.size
             return
         }
@@ -348,7 +348,7 @@ class CopyMoveTask(
                 }
             }
         } catch (e: Exception) {
-            activity.showErrorToast(e)
+            ShowToastUseCase(activity, "The error : $e")
         } finally {
             inputStream?.close()
             out?.close()

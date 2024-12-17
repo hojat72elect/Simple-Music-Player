@@ -12,7 +12,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.getFilenameExtension
 import ca.hojat.smart.musicplayer.shared.extensions.getFilenameFromPath
 import ca.hojat.smart.musicplayer.shared.extensions.getParentPath
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.extensions.showKeyboard
 import ca.hojat.smart.musicplayer.shared.extensions.value
 import ca.hojat.smart.musicplayer.shared.extensions.viewBinding
@@ -87,7 +86,7 @@ class EditDialog(
             try {
                 activity.audioHelper.updateTrackInfo(newPath, track.artist, track.title, oldPath)
             } catch (e: Exception) {
-                activity.showErrorToast(e)
+                ShowToastUseCase(activity, "The error : $e")
             }
         }
     }

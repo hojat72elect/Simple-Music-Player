@@ -42,7 +42,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.baseConfig
 import ca.hojat.smart.musicplayer.shared.extensions.getStoreUrl
 import ca.hojat.smart.musicplayer.shared.extensions.launchMoreAppsFromUsIntent
 import ca.hojat.smart.musicplayer.shared.extensions.launchViewIntent
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase.invoke
 
@@ -235,7 +234,7 @@ class AboutActivity : ComponentActivity() {
                 ShowToastUseCase(this ,R.string.no_email_client_found)
             }
         } catch (e: Exception) {
-            showErrorToast(e)
+            ShowToastUseCase(this, "The error : $e")
         }
     }
 

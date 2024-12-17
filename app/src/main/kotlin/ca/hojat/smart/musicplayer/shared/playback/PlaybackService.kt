@@ -32,7 +32,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.getPlaybackSetting
 import ca.hojat.smart.musicplayer.shared.extensions.hasPermission
 import ca.hojat.smart.musicplayer.shared.extensions.isReallyPlaying
 import ca.hojat.smart.musicplayer.shared.extensions.nextMediaItem
-import ca.hojat.smart.musicplayer.shared.extensions.showErrorToast
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_NEXT_MEDIA_ID
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_SHUFFLE_INDICES
 import ca.hojat.smart.musicplayer.shared.helpers.NotificationHelper
@@ -128,7 +127,7 @@ class PlaybackService : MediaLibraryService(), MediaSessionService.Listener {
      * background.
      */
     override fun onForegroundServiceStartNotAllowedException() {
-        showErrorToast(getString(R.string.unknown_error_occurred))
+        ShowToastUseCase(this, "The error : ${getString(R.string.unknown_error_occurred)}")
         // todo: show a notification instead.
     }
 
