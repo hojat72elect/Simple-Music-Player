@@ -3,8 +3,6 @@ package ca.hojat.smart.musicplayer.shared.data.models
 import android.content.Context
 import android.net.Uri
 import android.provider.MediaStore
-import androidx.compose.runtime.Immutable
-import com.bumptech.glide.signature.ObjectKey
 import ca.hojat.smart.musicplayer.shared.extensions.formatDate
 import ca.hojat.smart.musicplayer.shared.extensions.formatSize
 import ca.hojat.smart.musicplayer.shared.extensions.getAlbum
@@ -38,6 +36,7 @@ import ca.hojat.smart.musicplayer.shared.helpers.SORT_BY_NAME
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_BY_SIZE
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_DESCENDING
 import ca.hojat.smart.musicplayer.shared.helpers.SORT_USE_NUMERIC_VALUE
+import com.bumptech.glide.signature.ObjectKey
 import java.io.File
 
 open class FileDirItem(
@@ -210,26 +209,4 @@ open class FileDirItem(
         return Uri.withAppendedPath(uri, mediaStoreId.toString())
     }
 
-    fun asReadOnly() = FileDirItemReadOnly(
-        path = path,
-        name = name,
-        isDirectory = isDirectory,
-        children = children,
-        size = size,
-        modified = modified,
-        mediaStoreId = mediaStoreId
-    )
-
 }
-
-
-@Immutable
-class FileDirItemReadOnly(
-    path: String,
-    name: String = "",
-    isDirectory: Boolean = false,
-    children: Int = 0,
-    size: Long = 0L,
-    modified: Long = 0L,
-    mediaStoreId: Long = 0L
-) : FileDirItem(path, name, isDirectory, children, size, modified, mediaStoreId)

@@ -109,8 +109,7 @@ fun String.getFirstParentDirName(context: Context, level: Int): String? {
     }
 }
 
-fun String.isMediaFile() =
-    isImageFast() || isVideoFast() || isGif() || isRawFast() || isSvg() || isPortrait()
+fun String.isMediaFile() = isImageFast() || isVideoFast() || isGif() || isRawFast() || isSvg() || isPortrait()
 
 fun String.getFirstParentPath(context: Context, level: Int): String {
     val basePath = getBasePath(context)
@@ -181,7 +180,7 @@ fun String.isImageFast() = arrayOf(
     ".heif",
     ".apng",
     ".avif"
-).any { endsWith(it, true) }
+).any { this.endsWith(it, true) }
 
 fun String.getMimeType(): String {
     val typesMap = HashMap<String, String>().apply {
