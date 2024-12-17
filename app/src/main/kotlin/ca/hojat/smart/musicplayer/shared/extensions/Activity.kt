@@ -949,13 +949,4 @@ fun Activity.shareFiles(tracks: List<Track>) {
     sharePathsIntent(paths, BuildConfig.APPLICATION_ID)
 }
 
-fun Activity.redirectToRateUs() {
-    hideKeyboard()
-    try {
-        launchViewIntent("market://details?id=${packageName.removeSuffix(".debug")}")
-    } catch (ignored: ActivityNotFoundException) {
-        launchViewIntent(getStoreUrl())
-    }
-}
-
 fun Activity.launchViewIntent(id: Int) = launchViewIntent(getString(id))
