@@ -294,12 +294,6 @@ val Context.newNavigationBarHeight: Int
         return navigationBarHeight
     }
 
-fun Context.isSDCardSetAsDefaultStorage() =
-    sdCardPath.isNotEmpty() && Environment.getExternalStorageDirectory().absolutePath.equals(
-        sdCardPath,
-        true
-    )
-
 fun Context.isUsingGestureNavigation(): Boolean {
     return try {
         val resourceId =
@@ -1681,8 +1675,9 @@ fun Context.getProperStatusBarColor() = when {
     else -> getProperBackgroundColor()
 }
 
-fun Context.hasAllPermissions(permIds: Collection<Int>) = permIds.all(this::hasPermission)
-
+/**
+ * Programmatically direct the user to the application's settings page within the device's settings.
+ */
 fun Context.openDeviceSettings() {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
         data = Uri.fromParts("package", packageName, null)

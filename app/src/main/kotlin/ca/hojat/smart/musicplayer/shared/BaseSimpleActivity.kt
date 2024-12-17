@@ -106,7 +106,6 @@ import ca.hojat.smart.musicplayer.shared.extensions.isUsingGestureNavigation
 import ca.hojat.smart.musicplayer.shared.extensions.navigationBarHeight
 import ca.hojat.smart.musicplayer.shared.extensions.needsStupidWritePermissions
 import ca.hojat.smart.musicplayer.shared.extensions.onApplyWindowInsets
-import ca.hojat.smart.musicplayer.shared.extensions.openDeviceSettings
 import ca.hojat.smart.musicplayer.shared.extensions.openNotificationSettings
 import ca.hojat.smart.musicplayer.shared.extensions.removeBit
 import ca.hojat.smart.musicplayer.shared.extensions.renameAndroidSAFDocument
@@ -161,6 +160,7 @@ import ca.hojat.smart.musicplayer.shared.ui.dialogs.PermissionRequiredDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.WhatsNewDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.WritePermissionDialog
 import ca.hojat.smart.musicplayer.shared.ui.dialogs.WritePermissionDialog.WritePermissionDialogMode
+import ca.hojat.smart.musicplayer.shared.usecases.OpenDeviceSettingsUseCase
 import ca.hojat.smart.musicplayer.shared.usecases.ShowToastUseCase
 import java.io.File
 import java.io.FileNotFoundException
@@ -821,7 +821,7 @@ open class BaseSimpleActivity : AppCompatActivity() {
                 startActivity(this)
             }
         } catch (e: Exception) {
-            openDeviceSettings()
+            OpenDeviceSettingsUseCase(this)
         }
     }
 
