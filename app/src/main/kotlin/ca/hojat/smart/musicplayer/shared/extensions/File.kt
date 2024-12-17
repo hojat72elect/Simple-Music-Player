@@ -1,10 +1,9 @@
 package ca.hojat.smart.musicplayer.shared.extensions
 
 import android.content.Context
-import ca.hojat.smart.musicplayer.shared.helpers.MD5
+import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
 import ca.hojat.smart.musicplayer.shared.helpers.NOMEDIA
 import ca.hojat.smart.musicplayer.shared.helpers.audioExtensions
-import ca.hojat.smart.musicplayer.shared.data.models.FileDirItem
 import java.io.File
 
 fun File.toFileDirItem(context: Context) = FileDirItem(absolutePath, name, context.getIsPathDirectory(absolutePath), 0, length(), lastModified())
@@ -15,7 +14,7 @@ fun File.containsNoMedia(): Boolean {
         File(this, NOMEDIA).exists()
     }
 }
-fun File.isMediaFile() = absolutePath.isMediaFile()
+
 fun File.isAudioFast() = audioExtensions.any { absolutePath.endsWith(it, true) }
 
 fun File.getDirectChildrenCount(context: Context, countHiddenItems: Boolean): Int {
@@ -97,5 +96,3 @@ private fun getDirectorySize(dir: File, countHiddenItems: Boolean): Long {
     }
     return size
 }
-
-fun File.md5() = this.getDigest(MD5)

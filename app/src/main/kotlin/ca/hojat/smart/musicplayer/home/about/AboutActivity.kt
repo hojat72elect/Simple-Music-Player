@@ -259,7 +259,7 @@ class AboutActivity : ComponentActivity() {
     }
 
     private fun onFacebookClick() {
-      // user wants to follow us on FB
+        ShowToastUseCase(this ,"User wants to follow us on FB!")
     }
 
     private fun onGithubClick() {
@@ -267,7 +267,7 @@ class AboutActivity : ComponentActivity() {
     }
 
     private fun onRedditClick() {
-     // our subreddit
+        ShowToastUseCase(this ,"User wants to follow us on Reddit!")
     }
 
 
@@ -281,7 +281,7 @@ class AboutActivity : ComponentActivity() {
     }
 
     private fun onPrivacyPolicyClick() {
-       // We gotta have a specific privacy policy for our app.
+        ShowToastUseCase(this ,"User wants to see our privacy policy!")
     }
 
     private fun onLicenseClick() {

@@ -136,7 +136,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.github.ajalt.reprint.core.Reprint
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -388,8 +387,8 @@ fun Context.createDirectorySync(directory: String): Boolean {
         return createAndroidSAFDirectory(directory)
     }
 
-    if (isAccessibleWithSAFSdk30(directory)) {
-        return createSAFDirectorySdk30(directory)
+    if (isAccessibleWithSAF(directory)) {
+        return createSAFDirectory(directory)
     }
 
     return File(directory).mkdirs()
@@ -476,9 +475,9 @@ fun Context.hasPermission(permId: Int) = ContextCompat.checkSelfPermission(
     getPermissionString(permId)
 ) == PackageManager.PERMISSION_GRANTED
 
-fun Context.getDoesFilePathExistSdk30(path: String): Boolean {
+fun Context.getDoesFilePathExist(path: String): Boolean {
     return when {
-        isAccessibleWithSAFSdk30(path) -> getFastDocumentSdk30(path)?.exists() ?: false
+        isAccessibleWithSAF(path) -> getFastDocumentSdk30(path)?.exists() ?: false
         else -> File(path).exists()
     }
 }
@@ -556,7 +555,7 @@ fun Context.getFileInputStreamSync(path: String): InputStream? {
             applicationContext.contentResolver.openInputStream(uri)
         }
 
-        isAccessibleWithSAFSdk30(path) -> {
+        isAccessibleWithSAF(path) -> {
             try {
                 FileInputStream(File(path))
             } catch (e: Exception) {
@@ -643,7 +642,7 @@ fun Context.getFileOutputStreamSync(
             }
         }
 
-        isAccessibleWithSAFSdk30(path) -> {
+        isAccessibleWithSAF(path) -> {
             try {
                 val uri = createDocumentUriUsingFirstParentTreeUri(path)
                 if (!getDoesFilePathExist(path)) {
@@ -659,12 +658,12 @@ fun Context.getFileOutputStreamSync(
     }
 }
 
-fun Context.createSAFDirectorySdk30(path: String): Boolean {
+fun Context.createSAFDirectory(path: String): Boolean {
     return try {
         val treeUri = createFirstParentTreeUri(path)
         val parentPath = path.getParentPath()
-        if (!getDoesFilePathExistSdk30(parentPath)) {
-            createSAFDirectorySdk30(parentPath)
+        if (!getDoesFilePathExist(parentPath)) {
+            createSAFDirectory(parentPath)
         }
 
         val documentId = getSAFDocumentId(parentPath)
@@ -740,7 +739,7 @@ fun Context.ensurePublicUri(path: String, applicationId: String): Uri? {
             getAndroidSAFUri(path)
         }
 
-        hasProperStoredDocumentUriSdk30(path) && isAccessibleWithSAFSdk30(path) -> {
+        hasProperStoredDocumentUriSdk30(path) && isAccessibleWithSAF(path) -> {
             createDocumentUriUsingFirstParentTreeUri(path)
         }
 
@@ -895,8 +894,6 @@ fun Context.isBiometricIdAvailable(): Boolean = when (BiometricManager.from(this
     else -> false
 }
 
-fun isFingerPrintSensorAvailable() = Reprint.isHardwarePresent()
-
 val Context.isRTLLayout: Boolean get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
 fun Context.getStringsPackageName() = getString(R.string.package_name)
@@ -973,8 +970,8 @@ fun Context.createSAFFileSdk30(path: String): Boolean {
     return try {
         val treeUri = createFirstParentTreeUri(path)
         val parentPath = path.getParentPath()
-        if (!getDoesFilePathExistSdk30(parentPath)) {
-            createSAFDirectorySdk30(parentPath)
+        if (!getDoesFilePathExist(parentPath)) {
+            createSAFDirectory(parentPath)
         }
 
         val documentId = getSAFDocumentId(parentPath)
@@ -1012,7 +1009,7 @@ fun Context.isBlackAndWhiteTheme() =
 fun Context.isWhiteTheme() =
     baseConfig.textColor == DARK_GREY && baseConfig.primaryColor == Color.WHITE && baseConfig.backgroundColor == Color.WHITE
 
-fun Context.isAccessibleWithSAFSdk30(path: String): Boolean {
+fun Context.isAccessibleWithSAF(path: String): Boolean {
     if (path.startsWith(recycleBinPath) || isExternalStorageManager()) {
         return false
     }
@@ -1623,19 +1620,6 @@ fun Context.getSharedTheme(callback: (sharedTheme: SharedTheme?) -> Unit) {
     }
 }
 
-fun Context.hasProperStoredTreeUri(isOTG: Boolean): Boolean {
-    val uri = if (isOTG) baseConfig.oTGTreeUri else baseConfig.sdTreeUri
-    val hasProperUri = contentResolver.persistedUriPermissions.any { it.uri.toString() == uri }
-    if (!hasProperUri) {
-        if (isOTG) {
-            baseConfig.oTGTreeUri = ""
-        } else {
-            baseConfig.sdTreeUri = ""
-        }
-    }
-    return hasProperUri
-}
-
 fun Context.isInDownloadDir(path: String): Boolean {
     if (path.startsWith(recycleBinPath)) {
         return false
@@ -1664,21 +1648,6 @@ fun Context.hasOTGConnected(): Boolean {
 fun Context.getProperStatusBarColor() = when {
     baseConfig.isUsingSystemTheme -> resources.getColor(R.color.you_status_bar_color, theme)
     else -> getProperBackgroundColor()
-}
-
-/**
- * Programmatically direct the user to the application's settings page within the device's settings.
- */
-fun Context.openDeviceSettings() {
-    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-        data = Uri.fromParts("package", packageName, null)
-    }
-
-    try {
-        startActivity(intent)
-    } catch (e: Exception) {
-        ShowToastUseCase(this, "The error : $e")
-    }
 }
 
 fun Context.getMediaStoreIdFromPath(path: String): Long {
@@ -2580,7 +2549,7 @@ fun Context.launchActivityIntent(intent: Intent) {
 
 fun Context.getFilePublicUri(file: File, applicationId: String): Uri {
 
-    var uri = if (file.isMediaFile()) {
+    var uri = if (file.absolutePath.isMediaFile()) {
         getMediaContentUri(file.absolutePath)
     } else {
         getMediaContent(file.absolutePath, Files.getContentUri("external"))

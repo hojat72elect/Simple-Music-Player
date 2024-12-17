@@ -38,7 +38,7 @@ import ca.hojat.smart.musicplayer.shared.extensions.getTextSize
 import ca.hojat.smart.musicplayer.shared.extensions.handleHiddenFolderPasswordProtection
 import ca.hojat.smart.musicplayer.shared.extensions.handleLockedFolderOpening
 import ca.hojat.smart.musicplayer.shared.extensions.internalStoragePath
-import ca.hojat.smart.musicplayer.shared.extensions.isAccessibleWithSAFSdk30
+import ca.hojat.smart.musicplayer.shared.extensions.isAccessibleWithSAF
 import ca.hojat.smart.musicplayer.shared.extensions.isInDownloadDir
 import ca.hojat.smart.musicplayer.shared.extensions.isPathOnOTG
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
@@ -248,7 +248,7 @@ class FilePickerDialog(
                 sendSuccessForDocumentFile(fileDocument)
             }
 
-            activity.isAccessibleWithSAFSdk30(currPath) -> {
+            activity.isAccessibleWithSAF(currPath) -> {
                 if (enforceStorageRestrictions) {
                     activity.handleSAFDialogSdk30(currPath) {
                         if (it) {

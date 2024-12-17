@@ -29,7 +29,7 @@ import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.databinding.DialogCreateNewFolderBinding
 import ca.hojat.smart.musicplayer.shared.BaseSimpleActivity
 import ca.hojat.smart.musicplayer.shared.extensions.createAndroidSAFDirectory
-import ca.hojat.smart.musicplayer.shared.extensions.createSAFDirectorySdk30
+import ca.hojat.smart.musicplayer.shared.extensions.createSAFDirectory
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
 import ca.hojat.smart.musicplayer.shared.extensions.getDocumentFile
 import ca.hojat.smart.musicplayer.shared.extensions.getFilenameFromPath
@@ -37,7 +37,7 @@ import ca.hojat.smart.musicplayer.shared.extensions.getParentPath
 import ca.hojat.smart.musicplayer.shared.extensions.humanizePath
 import ca.hojat.smart.musicplayer.shared.extensions.isAStorageRootFolder
 import ca.hojat.smart.musicplayer.shared.extensions.isAValidFilename
-import ca.hojat.smart.musicplayer.shared.extensions.isAccessibleWithSAFSdk30
+import ca.hojat.smart.musicplayer.shared.extensions.isAccessibleWithSAF
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
 import ca.hojat.smart.musicplayer.shared.extensions.needsStupidWritePermissions
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
@@ -108,8 +108,8 @@ class CreateNewFolderDialog(
                     path
                 )
 
-                activity.isAccessibleWithSAFSdk30(path) -> activity.handleSAFDialogSdk30(path) {
-                    if (it && activity.createSAFDirectorySdk30(path)) {
+                activity.isAccessibleWithSAF(path) -> activity.handleSAFDialogSdk30(path) {
+                    if (it && activity.createSAFDirectory(path)) {
                         sendSuccess(alertDialog, path)
                     }
                 }

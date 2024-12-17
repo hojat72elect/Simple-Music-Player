@@ -18,6 +18,7 @@ import ca.hojat.smart.musicplayer.shared.extensions.formatDate
 import ca.hojat.smart.musicplayer.shared.extensions.formatSize
 import ca.hojat.smart.musicplayer.shared.extensions.getAlertDialogBuilder
 import ca.hojat.smart.musicplayer.shared.extensions.getAndroidSAFUri
+import ca.hojat.smart.musicplayer.shared.extensions.getDigest
 import ca.hojat.smart.musicplayer.shared.extensions.getDoesFilePathExist
 import ca.hojat.smart.musicplayer.shared.extensions.getExifCameraModel
 import ca.hojat.smart.musicplayer.shared.extensions.getExifDateTaken
@@ -32,9 +33,9 @@ import ca.hojat.smart.musicplayer.shared.extensions.isPathOnInternalStorage
 import ca.hojat.smart.musicplayer.shared.extensions.isPathOnOTG
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
 import ca.hojat.smart.musicplayer.shared.extensions.isVideoSlow
-import ca.hojat.smart.musicplayer.shared.extensions.md5
 import ca.hojat.smart.musicplayer.shared.extensions.removeValues
 import ca.hojat.smart.musicplayer.shared.extensions.setupDialogStuff
+import ca.hojat.smart.musicplayer.shared.helpers.MD5
 import ca.hojat.smart.musicplayer.shared.helpers.ensureBackgroundThread
 import ca.hojat.smart.musicplayer.shared.helpers.sumByInt
 import ca.hojat.smart.musicplayer.shared.helpers.sumByLong
@@ -239,10 +240,9 @@ class PropertiesDialog : BasePropertiesDialog {
             addProperty(R.string.md5, "…", R.id.properties_md5)
             ensureBackgroundThread {
                 val md5 = if (mActivity.isRestrictedSAFOnlyRoot(path)) {
-                    mActivity.contentResolver.openInputStream(mActivity.getAndroidSAFUri(path))
-                        ?.md5()
+                    mActivity.contentResolver.openInputStream(mActivity.getAndroidSAFUri(path))?.getDigest(MD5)
                 } else {
-                    File(path).md5()
+                    File(path).getDigest(MD5)
                 }
 
                 mActivity.runOnUiThread {

@@ -1,8 +1,6 @@
 package ca.hojat.smart.musicplayer.shared.extensions
 
 import android.content.Context
-import android.os.Build
-import android.os.StatFs
 import android.provider.MediaStore
 import android.text.Html
 import android.text.Spannable
@@ -35,7 +33,7 @@ fun String.highlightTextPart(
     var startIndex = normalizeString().indexOf(textToHighlight, 0, true)
     val indexes = ArrayList<Int>()
     while (startIndex >= 0) {
-            indexes.add(startIndex)
+        indexes.add(startIndex)
 
         startIndex =
             normalizeString().indexOf(textToHighlight, startIndex + textToHighlight.length, true)
@@ -83,8 +81,7 @@ fun String.highlightTextPart(
 fun String?.fromHtml(): Spanned =
     when {
         this == null -> SpannableString("")
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
-        else -> Html.fromHtml(this)
+        else -> Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
     }
 
 fun String.getBasePath(context: Context): String {
@@ -131,7 +128,6 @@ fun String.getFirstParentPath(context: Context, level: Int): String {
         basePath
     }
 }
-
 
 fun String.getFilenameFromPath() = substring(lastIndexOf("/") + 1)
 
@@ -826,16 +822,3 @@ fun String.canModifyEXIF() = arrayOf(
     ".webp",
     ".dng"
 ).any { endsWith(it, true) }
-
-
-fun String.getAvailableStorageB(): Long {
-    return try {
-        val stat = StatFs(this)
-        val bytesAvailable = stat.blockSizeLong * stat.availableBlocksLong
-        bytesAvailable
-    } catch (e: Exception) {
-        -1L
-    }
-}
-
-

@@ -26,7 +26,7 @@ import ca.hojat.smart.musicplayer.shared.extensions.getFilenameFromPath
 import ca.hojat.smart.musicplayer.shared.extensions.getIntValue
 import ca.hojat.smart.musicplayer.shared.extensions.getLongValue
 import ca.hojat.smart.musicplayer.shared.extensions.getMimeType
-import ca.hojat.smart.musicplayer.shared.extensions.isAccessibleWithSAFSdk30
+import ca.hojat.smart.musicplayer.shared.extensions.isAccessibleWithSAF
 import ca.hojat.smart.musicplayer.shared.extensions.isMediaFile
 import ca.hojat.smart.musicplayer.shared.extensions.isPathOnOTG
 import ca.hojat.smart.musicplayer.shared.extensions.isRestrictedSAFOnlyRoot
@@ -248,7 +248,7 @@ class CopyMoveTask(
                 }
                 mTransferredFiles.add(source)
             }
-        } else if (activity.isAccessibleWithSAFSdk30(source.path)) {
+        } else if (activity.isAccessibleWithSAF(source.path)) {
             val children = activity.getDocumentSdk30(source.path)?.listFiles() ?: return
             for (child in children) {
                 val newPath = "$destinationPath/${child.name}"

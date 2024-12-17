@@ -8,10 +8,9 @@ import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Intent
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.MainActivity
+import ca.hojat.smart.musicplayer.R
 import ca.hojat.smart.musicplayer.shared.extensions.notificationManager
 
 /** Helper class to manage all-things-notification. */

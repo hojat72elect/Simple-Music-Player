@@ -1,15 +1,12 @@
 package ca.hojat.smart.musicplayer.shared.extensions
 
-import android.annotation.TargetApi
 import android.content.Context
-import android.os.Build
 import androidx.exifinterface.media.ExifInterface
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 fun ExifInterface.removeValues() {
     val attributes = arrayListOf(
-        // ExifInterface.TAG_ORIENTATION,   // do not remove the orientation, it could lead to unexpected behaviour at displaying the file
         ExifInterface.TAG_APERTURE_VALUE,
         ExifInterface.TAG_DATETIME,
         ExifInterface.TAG_DATETIME_DIGITIZED,
@@ -79,7 +76,7 @@ fun ExifInterface.getExifProperties(): String {
     return exifString.trim()
 }
 
-@TargetApi(Build.VERSION_CODES.N)
+
 fun ExifInterface.getExifDateTaken(context: Context): String {
     val dateTime = getAttribute(ExifInterface.TAG_DATETIME_ORIGINAL) ?: getAttribute(ExifInterface.TAG_DATETIME)
     dateTime.let {

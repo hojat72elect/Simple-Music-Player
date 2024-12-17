@@ -2,10 +2,10 @@ package ca.hojat.smart.musicplayer.shared.extensions
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
+import ca.hojat.smart.musicplayer.shared.data.models.Track
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_ALBUM
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_ALBUM_ID
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_ARTIST
@@ -25,9 +25,6 @@ import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_PLAYLIST_ID
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_TITLE
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_TRACK_ID
 import ca.hojat.smart.musicplayer.shared.helpers.EXTRA_YEAR
-import ca.hojat.smart.musicplayer.shared.data.models.Album
-import ca.hojat.smart.musicplayer.shared.data.models.Genre
-import ca.hojat.smart.musicplayer.shared.data.models.Track
 
 fun buildMediaItem(
     mediaId: String,

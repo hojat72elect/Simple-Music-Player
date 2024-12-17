@@ -1,11 +1,7 @@
 package ca.hojat.smart.musicplayer.shared.extensions
 
-import ca.hojat.smart.musicplayer.shared.helpers.MD5
 import java.io.InputStream
 import java.security.MessageDigest
-
-
-fun InputStream.md5(): String = this.getDigest(MD5)
 
 fun InputStream.getDigest(algorithm: String): String {
     return use { fis ->
