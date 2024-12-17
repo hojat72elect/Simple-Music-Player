@@ -70,8 +70,7 @@ fun Activity.launchViewIntent(url: String) {
 }
 
 fun Activity.launchMoreAppsFromUsIntent() {
-    val developerPlayStoreUrl = "https://play.google.com/store/apps/dev?id=9070296388022589266"
-    launchViewIntent(developerPlayStoreUrl)
+  ShowToastUseCase(this, "User wants to see our other apps")
 }
 
 fun Activity.updateSharedTheme(sharedTheme: SharedTheme) {
